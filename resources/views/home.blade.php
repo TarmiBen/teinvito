@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <br><br><br>
+                    <a href="{{route('profile.index')}}" class="btn btn-primary">Editar perfil</a>
                 </div>
             </div>
         </div>
