@@ -36,6 +36,7 @@
                                 </h2>
                             </div>
                         </div>
+                        @include('alerts.alerts')
                         <div class="row">
                             <div class="col-6">
                                 <div class="mt-3 text-secondary">
