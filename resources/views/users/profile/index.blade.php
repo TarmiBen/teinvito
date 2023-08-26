@@ -1,32 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container mt-4">
+    <div class="container">
         <div class="row">
-            <div class="col-3 d-none d-xl-block">
-                <div class="card bg-dark">
-                    <div class="card-body">
-                        <a class="btn btn-light w-100">
-                            <div class="d-flex px-2">
-                                <i class="bi bi-window-dock"></i>
-                                <span class="ms-2">Dashboard</span>
-                            </div>
-                        </a>
-                        <a class="btn text-white w-100 mt-3">
-                            <div class="d-flex px-2">
-                                <i class="bi bi-window-dock"></i>
-                                <span class="ms-2">menu 2</span>
-                            </div>
-                        </a>
-                        <a class="btn text-white w-100 mt-3">
-                            <div class="d-flex px-2">
-                                <i class="bi bi-window-dock"></i>
-                                <span class="ms-2">menu 3</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>    
-            </div>
-            <div class="col-12 col-xl-9">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title border-bottom">

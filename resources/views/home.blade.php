@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Inicio') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,9 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
-                    <br><br><br>
-                    <a href="{{route('profile.index')}}" class="btn btn-primary">Editar perfil</a>
+                    {{ __('Bienvenido') }}
                 </div>
             </div>
         </div>

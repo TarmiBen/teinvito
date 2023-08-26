@@ -1,0 +1,184 @@
+/* variables de colores */
+:root {
+    --texto-claro: #FFFFFF;
+    --texto-oscuro: #000000;
+    --color-primario: #54595F;
+    --color-primario-claro: #737a85;
+    --color-secundario: #00797E;
+    --color-secundario-claro: #00C5CC;
+    --color-terciario: #5AB1CF;
+    --color-terciario-claro: #A0D3E3;
+    --color-cuaternario: #D8E6B5;
+    --color-cuaternario-claro: #EFF5E1;
+    --color-quintenario: #EBC5DA;
+    --color-quintenario-claro: #F5E1EC;
+}
+
+/* variables de fuentes */
+.text-primary-ti {
+    color: var(--color-primario);
+}
+
+.bg-primary-ti {
+    background-color: var(--color-primario);
+}
+
+.text-secondary-ti {
+    color: var(--color-secundario);
+}
+
+.bg-secondary-ti {
+    background-color: var(--color-secundario);
+}
+
+.text-tertiary-ti {
+    color: var(--color-terciario);
+}
+
+.bg-tertiary-ti {
+    background-color: var(--color-terciario);
+}
+
+.text-quaternary-ti {
+    color: var(--color-cuaternario);
+}
+
+.bg-quaternary-ti {
+    background-color: var(--color-cuaternario);
+}
+
+.text-quintenary-ti {
+    color: var(--color-quintenario);
+}
+
+.bg-quintenary-ti {
+    background-color: var(--color-quintenario);
+}
+
+/* Buttons */
+
+.btn-ti {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.35rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+    border: transparent solid 1px;
+    user-select: none;
+}
+
+.btn-ti:active {
+    border: #000 solid 1px;
+}
+
+.btn-ti.btn-primary-ti {
+    color: var(--texto-claro);
+    background-color: var(--color-primario-claro);
+    border-color: var(--color-primario-claro);
+}
+
+.btn-ti.btn-primary-ti:hover {
+    color: var(--texto-claro);
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+.btn-ti.btn-primary-ti:active {
+    color: var(--texto-claro);
+    background-color: var(--color-primario-claro);
+    border-color: var(--color-primario-claro);
+}
+
+.btn-ti.btn-secondary-ti {
+    color: var(--texto-claro);
+    background-color: var(--color-secundario-claro);
+    border-color: var(--color-secundario-claro);
+}
+
+.btn-ti.btn-secondary-ti:hover {
+    color: var(--texto-claro);
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
+}
+
+.btn-ti.btn-secondary-ti:active {
+    color: var(--texto-claro);
+    background-color: var(--color-secundario-claro);
+    border-color: var(--color-secundario-claro);
+}
+
+.btn-ti.btn-tertiary-ti {
+    color: var(--texto-claro);
+    background-color: var(--color-terciario-claro);
+    border-color: var(--color-terciario-claro);
+}
+
+.btn-ti.btn-tertiary-ti:hover {
+    color: var(--texto-claro);
+    background-color: var(--color-terciario);
+    border-color: var(--color-terciario);
+}
+
+.btn-ti.btn-tertiary-ti:active {
+    color: var(--texto-claro);
+    background-color: var(--color-terciario-claro);
+    border-color: var(--color-terciario-claro);
+}
+
+.btn-ti.btn-quaternary-ti {
+    color: var(--texto-oscuro);
+    background-color: var(--color-cuaternario-claro);
+    border-color: var(--color-cuaternario-claro);
+}
+
+.btn-ti.btn-quaternary-ti:hover {
+    color: var(--texto-oscuro);
+    background-color: var(--color-cuaternario);
+    border-color: var(--color-cuaternario);
+}
+
+.btn-ti.btn-quaternary-ti:active {
+    color: var(--texto-oscuro);
+    background-color: var(--color-cuaternario-claro);
+    border-color: var(--color-cuaternario-claro);
+}
+
+.btn-ti.btn-quintenary-ti {
+    color: var(--texto-oscuro);
+    background-color: var(--color-quintenario-claro);
+    border-color: var(--color-quintenario-claro);
+}
+
+.btn-ti.btn-quintenary-ti:hover {
+    color: var(--texto-oscuro);
+    background-color: var(--color-quintenario);
+    border-color: var(--color-quintenario);
+}
+
+.btn-ti.btn-quintenary-ti:active {
+    color: var(--texto-oscuro);
+    background-color: var(--color-quintenario-claro);
+    border-color: var(--color-quintenario-claro);
+}
+
+.btn-text-ti {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.35rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--color-primario-claro);
+    border: transparent solid 1px;
+    user-select: none;
+    background: transparent;
+}
+
+.btn-text-ti:hover {
+    color: var(--color-primario);
+    font-weight: bold;
+}
