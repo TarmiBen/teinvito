@@ -40,10 +40,10 @@
 <main>
 	
 <!-- Sidebar -->
-<nav class="navbar sidebar navbar-expand-xl navbar-dark bg-dark">
+<nav class="navbar sidebar navbar-expand-xl navbar-light bg-light">
 
 	<!-- Navbar brand for xl -->
-	<div class="d-flex align-items-center">
+	<div class="d-flex align-items-center text-dark">
 		<a class="navbar-brand" href="index-2.html">
 			<img class="navbar-brand-item" src="/assets/images/logo.svg" alt="Te-invito-logo">
 		</a>
@@ -51,7 +51,7 @@
 	<!-- Navbar brand for xl END -->
 	
 	<div class="offcanvas offcanvas-start flex-row custom-scrollbar h-100" data-bs-backdrop="true" tabindex="-1" id="offcanvasSidebar">
-		<div class="offcanvas-body sidebar-content d-flex flex-column bg-dark">
+		<div class="offcanvas-body sidebar-content d-flex flex-column bg-light">
 
 			<!-- Sidebar menu START -->
 			<ul class="navbar-nav flex-column" id="navbar-sidebar">

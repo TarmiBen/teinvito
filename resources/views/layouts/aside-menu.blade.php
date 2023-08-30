@@ -1,6 +1,6 @@
 <!-- Menu item 1 -->
 <li class="nav-item">
-    <a href="/home" class="nav-link">
+    <a href="/home" class="nav-link text-dark">
         <i class="bi bi-house fa-fw me-2"></i>
         Inicio
     </a>
