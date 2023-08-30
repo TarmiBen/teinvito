@@ -23,6 +23,7 @@
     <!-- Styles CSS -->
     @vite(['resources/sass/app.scss'])
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
     
     @yield('css')
 </head>
@@ -30,25 +31,7 @@
 <body class="bg-white">
 
 @guest
-<div class="row">
-            <div class="col-12">
-                <div class="container">
-                    <div class="top-menu py-3 border-bottom mb-3 d-flex justify-content-end">
-                        @if (Route::has('login'))
-						<div>
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-						</div>
-                        @endif
 
-                        @if (Route::has('register'))
-						<div class="ms-4">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-						</div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
 @yield('content')
 
 @else

@@ -2,16 +2,16 @@
 :root {
     --texto-claro: #FFFFFF;
     --texto-oscuro: #000000;
-    --color-primario: #54595F;
-    --color-primario-claro: #737a85;
-    --color-secundario: #00797E;
-    --color-secundario-claro: #00C5CC;
+    --color-primario: #EBC5DA;
+    --color-primario-claro: #F5E1EC;
+    --color-secundario: #D8E6B5;
+    --color-secundario-claro: #EFF5E1;
     --color-terciario: #5AB1CF;
     --color-terciario-claro: #A0D3E3;
-    --color-cuaternario: #D8E6B5;
-    --color-cuaternario-claro: #EFF5E1;
-    --color-quintenario: #EBC5DA;
-    --color-quintenario-claro: #F5E1EC;
+    --color-cuaternario: #00797E;
+    --color-cuaternario-claro: #00C5CC;
+    --color-quintenario: #54595F;
+    --color-quintenario-claro: #737a85;
 }
 
 /* variables de fuentes */
@@ -57,7 +57,7 @@
 
 /* Buttons */
 
-.btn-ti {
+/* .btn-ti {
     display: inline-block;
     padding: 0.375rem 0.75rem;
     font-size: 0.875rem;
@@ -72,94 +72,174 @@
 
 .btn-ti:active {
     border: #000 solid 1px;
-}
+} */
 
-.btn-ti.btn-primary-ti {
-    color: var(--texto-claro);
-    background-color: var(--color-primario-claro);
-    border-color: var(--color-primario-claro);
-}
-
-.btn-ti.btn-primary-ti:hover {
-    color: var(--texto-claro);
+.btn.btn-primary-ti {
+    color: var(--texto-oscuro);
     background-color: var(--color-primario);
     border-color: var(--color-primario);
 }
 
-.btn-ti.btn-primary-ti:active {
-    color: var(--texto-claro);
+.btn.btn-primary-ti:hover {
+    color: var(--texto-oscuro);
     background-color: var(--color-primario-claro);
     border-color: var(--color-primario-claro);
 }
 
-.btn-ti.btn-secondary-ti {
-    color: var(--texto-claro);
-    background-color: var(--color-secundario-claro);
-    border-color: var(--color-secundario-claro);
+.btn.btn-primary-ti:active {
+    color: var(--texto-oscuro);
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
 }
 
-.btn-ti.btn-secondary-ti:hover {
-    color: var(--texto-claro);
+.btn.btn-secondary-ti {
+    color: var(--texto-oscuro);
     background-color: var(--color-secundario);
     border-color: var(--color-secundario);
 }
 
-.btn-ti.btn-secondary-ti:active {
-    color: var(--texto-claro);
+.btn.btn-secondary-ti:hover {
+    color: var(--texto-oscuro);
     background-color: var(--color-secundario-claro);
     border-color: var(--color-secundario-claro);
 }
 
-.btn-ti.btn-tertiary-ti {
-    color: var(--texto-claro);
-    background-color: var(--color-terciario-claro);
-    border-color: var(--color-terciario-claro);
+.btn.btn-secondary-ti:active {
+    color: var(--texto-oscuro);
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
 }
 
-.btn-ti.btn-tertiary-ti:hover {
+.btn.btn-tertiary-ti {
     color: var(--texto-claro);
     background-color: var(--color-terciario);
     border-color: var(--color-terciario);
 }
 
-.btn-ti.btn-tertiary-ti:active {
+.btn.btn-tertiary-ti:hover {
     color: var(--texto-claro);
     background-color: var(--color-terciario-claro);
     border-color: var(--color-terciario-claro);
 }
 
-.btn-ti.btn-quaternary-ti {
-    color: var(--texto-oscuro);
-    background-color: var(--color-cuaternario-claro);
-    border-color: var(--color-cuaternario-claro);
+.btn.btn-tertiary-ti:active {
+    color: var(--texto-claro);
+    background-color: var(--color-terciario);
+    border-color: var(--color-terciario);
 }
 
-.btn-ti.btn-quaternary-ti:hover {
-    color: var(--texto-oscuro);
+.btn.btn-quaternary-ti {
+    color: var(--texto-claro);
     background-color: var(--color-cuaternario);
     border-color: var(--color-cuaternario);
 }
 
-.btn-ti.btn-quaternary-ti:active {
-    color: var(--texto-oscuro);
+.btn.btn-quaternary-ti:hover {
+    color: var(--texto-claro);
     background-color: var(--color-cuaternario-claro);
     border-color: var(--color-cuaternario-claro);
 }
 
-.btn-ti.btn-quintenary-ti {
-    color: var(--texto-oscuro);
-    background-color: var(--color-quintenario-claro);
-    border-color: var(--color-quintenario-claro);
+.btn.btn-quaternary-ti:active {
+    color: var(--texto-claro);
+    background-color: var(--color-cuaternario);
+    border-color: var(--color-cuaternario);
 }
 
-.btn-ti.btn-quintenary-ti:hover {
-    color: var(--texto-oscuro);
+.btn.btn-quintenary-ti {
+    color: var(--texto-claro);
     background-color: var(--color-quintenario);
     border-color: var(--color-quintenario);
 }
 
-.btn-ti.btn-quintenary-ti:active {
+.btn.btn-quintenary-ti:hover {
+    color: var(--texto-claro);
+    background-color: var(--color-quintenario-claro);
+    border-color: var(--color-quintenario-claro);
+}
+
+.btn.btn-quintenary-ti:active {
+    color: var(--texto-claro);
+    background-color: var(--color-quintenario);
+    border-color: var(--color-quintenario);
+}
+
+.btn.btn-outline-primary-ti {
+    color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+.btn.btn-outline-primary-ti:hover {
     color: var(--texto-oscuro);
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+.btn.btn-outline-primary-ti:active {
+    background-color: var(--color-primario-claro);
+    border-color: var(--color-primario-claro);
+}
+
+.btn.btn-outline-secondary-ti {
+    color: var(--color-secundario);
+    border-color: var(--color-secundario);
+}
+
+.btn.btn-outline-secondary-ti:hover {
+    color: var(--texto-oscuro);
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
+}
+
+.btn.btn-outline-secondary-ti:active {
+    background-color: var(--color-secundario-claro);
+    border-color: var(--color-secundario-claro);
+}
+
+.btn.btn-outline-tertiary-ti {
+    color: var(--color-terciario);
+    border-color: var(--color-terciario);
+}
+
+.btn.btn-outline-tertiary-ti:hover {
+    color: var(--texto-claro);
+    background-color: var(--color-terciario);
+    border-color: var(--color-terciario);
+}
+
+.btn.btn-outline-tertiary-ti:active {
+    background-color: var(--color-terciario-claro);
+    border-color: var(--color-terciario-claro);
+}
+
+.btn.btn-outline-quaternary-ti {
+    color: var(--color-cuaternario);
+    border-color: var(--color-cuaternario);
+}
+
+.btn.btn-outline-quaternary-ti:hover {
+    color: var(--texto-claro);
+    background-color: var(--color-cuaternario);
+    border-color: var(--color-cuaternario);
+}
+
+.btn.btn-outline-quaternary-ti:active {
+    background-color: var(--color-cuaternario-claro);
+    border-color: var(--color-cuaternario-claro);
+}
+
+.btn.btn-outline-quintenary-ti {
+    color: var(--color-quintenario);
+    border-color: var(--color-quintenario);
+}
+
+.btn.btn-outline-quintenary-ti:hover {
+    color: var(--texto-claro);
+    background-color: var(--color-quintenario);
+    border-color: var(--color-quintenario);
+}
+
+.btn.btn-outline-quintenary-ti:active {
     background-color: var(--color-quintenario-claro);
     border-color: var(--color-quintenario-claro);
 }
