@@ -4,6 +4,15 @@
         Editar Perfil
     </a>
 </li>
+
+<li>
+    <a class="dropdown-item text-primary" href="{{ route('my-subscription.index') }}">
+        <i class="bi bi-stars"></i>
+        Mi Suscripción
+    </a>
+</li>
+
+
 <!-- <li>
     <a class="dropdown-item" href="#">
         <i class="bi bi-gear fa-fw me-2"></i>
