@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MySubscriptionController;
-
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +27,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 Route::resource('profile', ProfileController::class)->middleware('verified')->names('profile');	
 
 Route::resource('my-subscription', MySubscriptionController::class)->middleware('verified')->names('my-subscription');
+
+Route::resource('subscription', SubscriptionController::class)->middleware('verified')->names('subscription');

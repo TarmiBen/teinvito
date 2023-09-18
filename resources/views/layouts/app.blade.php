@@ -39,49 +39,49 @@
 <!-- Main content START -->
 <main>
 	
-<!-- Sidebar -->
-<nav class="navbar sidebar navbar-expand-xl navbar-light bg-light">
+	<!-- Sidebar -->
+	<nav class="navbar sidebar navbar-expand-xl navbar-light bg-light">
 
-	<!-- Navbar brand for xl -->
-	<div class="d-flex align-items-center text-dark">
-		<a class="navbar-brand" href="index-2.html">
-			<img class="navbar-brand-item" src="/assets/images/logo.svg" alt="Te-invito-logo">
-		</a>
-	</div>
-	<!-- Navbar brand for xl END -->
-	
-	<div class="offcanvas offcanvas-start flex-row custom-scrollbar h-100" data-bs-backdrop="true" tabindex="-1" id="offcanvasSidebar">
-		<div class="offcanvas-body sidebar-content d-flex flex-column bg-light">
-
-			<!-- Sidebar menu START -->
-			<ul class="navbar-nav flex-column" id="navbar-sidebar">
-				@include('layouts.aside-menu')
-			</ul>
-			<!-- Sidebar menu end -->
-
-			<!-- Sidebar footer -->
-			<div class="px-3 mt-auto pt-3 pb-2">
-				<div class="d-flex align-items-center justify-content-between text-primary-hover">
-					<a class="h5 mb-0 text-secondary" href="admin-setting.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Configuración">
-						<i class="bi bi-gear-fill"></i>
-					</a>
-					<a class="h5 mb-0 text-secondary" href="index-2.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Home">
-						<i class="bi bi-globe"></i>
-					</a>
-					<a class="h5 mb-0 text-danger" href="{{ route('logout') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cerrar Sesión" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-						<i class="bi bi-power"></i>
-					</a>
-					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-						@csrf
-					</form>
-				</div>
-			</div>
-			<!-- Sidebar footer END -->
-			
+		<!-- Navbar brand for xl -->
+		<div class="d-flex align-items-center text-dark">
+			<a class="navbar-brand" href="index-2.html">
+				<img class="navbar-brand-item" src="/assets/images/logo.svg" alt="Te-invito-logo">
+			</a>
 		</div>
-	</div>
-</nav>
-<!-- Sidebar END -->
+		<!-- Navbar brand for xl END -->
+		
+		<div class="offcanvas offcanvas-start flex-row custom-scrollbar h-100" data-bs-backdrop="true" tabindex="-1" id="offcanvasSidebar">
+			<div class="offcanvas-body sidebar-content d-flex flex-column bg-light">
+
+				<!-- Sidebar menu START -->
+				<ul class="navbar-nav flex-column" id="navbar-sidebar">
+					@include('layouts.aside-menu')
+				</ul>
+				<!-- Sidebar menu end -->
+
+				<!-- Sidebar footer -->
+				<div class="px-3 mt-auto pt-3 pb-2">
+					<div class="d-flex align-items-center justify-content-between text-primary-hover">
+						<a class="h5 mb-0 text-secondary" href="admin-setting.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Configuración">
+							<i class="bi bi-gear-fill"></i>
+						</a>
+						<a class="h5 mb-0 text-secondary" href="index-2.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Home">
+							<i class="bi bi-globe"></i>
+						</a>
+						<a class="h5 mb-0 text-danger" href="{{ route('logout') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cerrar Sesión" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+							<i class="bi bi-power"></i>
+						</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+							@csrf
+						</form>
+					</div>
+				</div>
+				<!-- Sidebar footer END -->
+				
+			</div>
+		</div>
+	</nav>
+	<!-- Sidebar END -->
 
 <!-- Page content -->
 <div class="page-content">
@@ -109,37 +109,33 @@
 				<!-- Toggler for sidebar END -->
 				
 				<!-- Top bar left -->
-				<div class="navbar-expand-lg ms-auto ms-xl-0">
+				<div class="navbar-expand-lg ms-auto ms-xl-auto z-1">
 					
-					<!-- Toggler for menubar -->
-					<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTopContent" aria-controls="navbarTopContent" aria-expanded="false" aria-label="Toggle navigation">
+					<!-- Responsive navbar toggler -->
+					<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-animation">
 							<span></span>
 							<span></span>
 							<span></span>
 						</span>
 					</button>
-					<!-- Toggler for menubar END -->
 
-					<!-- Topbar menu -->
-					<div class="collapse navbar-collapse w-100" id="navbarTopContent">
-						<!-- Top search -->
-						<div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
-							<div class="nav-item w-100">
-								<!-- <form class="position-relative">
-									<input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search" placeholder="Search" aria-label="Search">
-									<button class="bg-transparent px-2 py-0 border-0 position-absolute top-50 end-0 translate-middle-y" type="submit"><i class="fas fa-search fs-6 text-primary"></i></button>
-								</form> -->
-							</div>
-						</div>
-						<!-- Top search END -->
+					<!-- Main navbar START -->
+					<div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+
+						<!-- Nav Main menu START -->
+						<ul class="navbar-nav navbar-nav-scroll me-auto">
+							@include('layouts.navbar-menu')
+						</ul>
+						<!-- Nav Main menu END -->
+
 					</div>
-					<!-- Topbar menu END -->
+					<!-- Main navbar END -->
 				</div>
 				<!-- Top bar left END -->
 				
 				<!-- Top bar right -->
-				<div class="ms-xl-auto">
+				<div class="ms-xl-0">
 					<ul class="navbar-nav flex-row align-items-center">
 
 						<!-- Profile dropdown -->
