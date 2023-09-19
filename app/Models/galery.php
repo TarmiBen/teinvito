@@ -19,8 +19,9 @@ class galery extends Model
         'text',
     ];
 
-    public function service_package()
+    public function services_packages()
     {
-        return $this->hasMany(service_package::class, 'id');
+        return $this->BelongsTo(service_package::class, 'id');
     }
+    
 }

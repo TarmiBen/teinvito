@@ -22,7 +22,7 @@ class users extends Model
         'remember_token', 
     ];
 
-    public function users(){
-        return $this->belongTo(user_provider::class, 'users_providers');
+    public function users_provider(){
+        return $this->HasMany(user_provider::class, 'user_id');
     }
 }

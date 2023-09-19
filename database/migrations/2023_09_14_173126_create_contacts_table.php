@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreign('company_id')->references('id')->on('company');
+            $table->BigInteger('company_id')->unsigned();
             $table->string('name');
             $table->string('lastname');
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('telephone');
         });
+
+        // Schema::table('contacts', function (Blueprint $table) {            
+        //     $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+        // });
     }
 
     /**

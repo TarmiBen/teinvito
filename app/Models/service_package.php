@@ -19,12 +19,12 @@ class service_package extends Model
         'price',         
     ];
 
-    public function galery(){
-        return $this->belongTo(galery::class, 'id');
+    public function galeries(){
+        return $this->hasMany(galery::class, 'service_package_id');
     }
 
     public function services()
     {
-        return $this->hasMany(services::class, 'service_id');
+        return $this->BelongsTo(services::class, 'id');
     }
 }

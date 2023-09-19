@@ -17,8 +17,13 @@ class user_provider extends Model
         'company_id',
     ];
 
-    public function users_provider()
+    public function users()
     {
-        return $this->hasMany(users::class, 'users');
+        return $this->BelongsTo(users::class, 'id');
+    }
+
+    public function company()
+    {
+        return $this->BelongTo(company::class, 'id');
     }
 }

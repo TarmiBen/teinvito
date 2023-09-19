@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('user_providers', function (Blueprint $table) {
             $table->id();
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('company_id')->references('id')->on('company');
+            $table->BigInteger('users_id')->unsigned();
+            $table->BigInteger('company_id')->unsigned();
         });
+        
+        // Schema::table('user_providers', function (Blueprint $table) {
+        //     $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        //     $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+        // });
     }
-
     /**
      * Reverse the migrations.
      */

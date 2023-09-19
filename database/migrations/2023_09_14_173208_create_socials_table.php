@@ -14,10 +14,16 @@ return new class extends Migration
         Schema::create('socials', function (Blueprint $table) {
             $table->id();
             $table->string('model');
-            $table->foreign('model_id')->references('id')->on('company');
-            $table->foreign('type_social_id')->references('id')->on('types_socials');
+            $table->BigInteger('model_id')->unsigned();
+            $table->BigInteger('type_social_id')->unsigned();
             $table->string('url');            
         });
+
+        // Schema::table('socials', function (Blueprint $table) {           
+            
+        //     $table->foreign('model_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+        //     $table->foreign('type_social_id')->references('id')->onDelete('cascade')->onUpdate('cascade');
+        // });
     }
 
     /**

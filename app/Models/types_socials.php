@@ -17,7 +17,7 @@ class types_socials extends Model
         'icon',        
     ];
 
-    public function types_socials(){
-        return $this->hasOne(socials::class, 'type_social');
+    public function social(){
+        return $this->BelongTo(socials::class, 'type_social_id');
     }
 }

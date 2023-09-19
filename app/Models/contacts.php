@@ -20,4 +20,9 @@ class contacts extends Model
         'phone', 
         'telephone',         
     ];
+
+    public function company()
+    {
+        return $this->BelongsTo(company::class, 'id');
+    }
 }

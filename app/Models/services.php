@@ -22,7 +22,23 @@ class services extends Model
         'keywords',
     ];
 
-    public function services_package(){
-        return $this->belongTo(services_package::class, 'service_id');
+    public function services_package()
+    {
+        return $this->hasMany(services_package::class, 'service_id');
+    }
+    
+    public function socials()
+    {
+        return $this->HasMany(category::class, 'model_id');
+    }
+
+    public function category()
+    {
+        return $this->HasOne(category::class, 'id');
+    }
+
+    public function company()
+    {
+        return $this->HasOne(company::class, 'id');
     }
 }

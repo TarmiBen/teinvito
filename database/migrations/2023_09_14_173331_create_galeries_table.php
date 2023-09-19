@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('galeries', function (Blueprint $table) {
             $table->id();
-            $table->foreign('service_package_id')->references('id')->on('service_package');
+            $table->BigInteger('service_package_id')->unsigned();
             $table->string('src');
             $table->string('tittle');
             $table->string('text');
         });
+
+        // Schema::table('galeries', function (Blueprint $table) {
+        //     $table->foreign('service_package_id')->references('id')->on('service_packages')->onDelete('cascade')->onUpdate('cascade');
+        // });
     }
 
     /**

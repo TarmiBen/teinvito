@@ -16,4 +16,14 @@ class categories extends Model
         'category_id',
         'name',
     ];
+
+    public function category()
+    {
+        return $this->hasOne(categories::class, 'id');
+    }    
+
+    public function service()
+    {
+        return $this->belongTo(services::class, 'category_id');
+    }
 }
