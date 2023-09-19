@@ -11,26 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('socials', function (Blueprint $table) {
+        Schema::create('social', function (Blueprint $table) {
             $table->id();
             $table->string('model');
             $table->BigInteger('model_id')->unsigned();
-            $table->BigInteger('type_social_id')->unsigned();
+            $table->BigInteger('typesSocial')->unsigned();
             $table->string('url');            
         });
 
-        // Schema::table('socials', function (Blueprint $table) {           
+        Schema::table('social', function (Blueprint $table) {           
             
-        //     $table->foreign('model_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-        //     $table->foreign('type_social_id')->references('id')->onDelete('cascade')->onUpdate('cascade');
-        // });
+            $table->foreign('model_id')->references('id')->on('company')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('typesSocial')->references('id')->on('typesSocial')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('socials');
+        Schema::dropIfExists('social');
     }
 };
+

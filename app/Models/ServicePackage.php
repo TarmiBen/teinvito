@@ -10,7 +10,7 @@ class service_package extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'service_package';
+    protected $table = 'servicePackage';
     protected $fillable = [
         'id', 
         'service_id', 
@@ -19,12 +19,12 @@ class service_package extends Model
         'price',         
     ];
 
-    public function galeries(){
+    public function galery(){
         return $this->hasMany(galery::class, 'service_package_id');
     }
 
-    public function services()
+    public function service()
     {
-        return $this->BelongsTo(services::class, 'id');
+        return $this->belongsTo(service::class, 'id');
     }
 }

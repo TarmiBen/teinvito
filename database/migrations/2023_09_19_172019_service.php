@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('service', function (Blueprint $table) {
             $table->id();
             $table->string('name');   
             $table->BigInteger('category_id')->unsigned();           
@@ -22,11 +22,11 @@ return new class extends Migration
             $table->string('keywords');      
         });
 
-        // Schema::table('services', function (Blueprint $table) {            
-        //     $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-        //     $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+        Schema::table('service', function (Blueprint $table) {            
+            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('company_id')->references('id')->on('company')->onDelete('cascade')->onUpdate('cascade');
             
-        // });
+        });
     }
 
     /**
@@ -34,6 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('service');
     }
 };
+

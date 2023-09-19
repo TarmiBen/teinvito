@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\user_providers;
+
 
 class company extends Model
 {
@@ -30,24 +30,24 @@ class company extends Model
         'cover',
     ];
 
-    public function user_providers()
+    public function userProvider()
     {
-        return $this->hasOne(user_providers::class, 'company_id');
+        return $this->hasOne(userProvider::class, 'company_id');
     }
 
-    public function socials()
+    public function social()
     {
-        return $this->hasMany(socials::class, 'model_id');
+        return $this->hasMany(social::class, 'model_id');
     }
 
     public function service()
     {
-        return $this->BelongTo(service::class, 'company_id');
+        return $this->belongTo(service::class, 'company_id');
     }
 
-    public function contacts()
+    public function contact()
     {
-        return $this->hasMany(contacts::class, 'company_id');
+        return $this->hasMany(contact::class, 'company_id');
     }
 
 }

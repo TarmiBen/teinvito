@@ -10,7 +10,7 @@ class categories extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'categories';
+    protected $table = 'category';
     protected $fillable = [
         'id',
         'category_id',
@@ -19,11 +19,11 @@ class categories extends Model
 
     public function category()
     {
-        return $this->hasOne(categories::class, 'id');
+        return $this->hasOne(category::class, 'id');
     }    
 
     public function service()
     {
-        return $this->belongTo(services::class, 'category_id');
+        return $this->belongTo(service::class, 'category_id');
     }
 }

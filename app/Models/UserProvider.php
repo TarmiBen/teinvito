@@ -19,11 +19,11 @@ class user_provider extends Model
 
     public function users()
     {
-        return $this->BelongsTo(users::class, 'id');
+        return $this->belongsTo(users::class, 'id');
     }
 
     public function company()
     {
-        return $this->BelongTo(company::class, 'id');
+        return $this->belongTo(company::class, 'id');
     }
 }

@@ -11,7 +11,7 @@ class socials extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'socials';
+    protected $table = 'social';
     protected $fillable = [
         'id', 
         'model', 
@@ -22,16 +22,16 @@ class socials extends Model
 
     public function type_social()
     {
-        return $this->hasOne(types_socials::class, 'id');
+        return $this->hasOne(type_social::class, 'id');
     }
     
     public function company()
     {
-        return $this->BelongsTo(company::class, 'id');
+        return $this->belongsTo(company::class, 'id');
     }
 
     public function service()
     {
-        return $this->BelongsTo(service::class, 'id');
+        return $this->belongsTo(service::class, 'id');
     }
 }

@@ -10,7 +10,7 @@ class services extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'services';
+    protected $table = 'service';
     protected $fillable = [
         'id',          
         'name', 
@@ -22,23 +22,23 @@ class services extends Model
         'keywords',
     ];
 
-    public function services_package()
+    public function servicePackage()
     {
-        return $this->hasMany(services_package::class, 'service_id');
+        return $this->hasMany(servicePackage::class, 'service_id');
     }
     
-    public function socials()
+    public function social()
     {
-        return $this->HasMany(category::class, 'model_id');
+        return $this->hasMany(category::class, 'model_id');
     }
 
     public function category()
     {
-        return $this->HasOne(category::class, 'id');
+        return $this->hasOne(category::class, 'id');
     }
 
     public function company()
     {
-        return $this->HasOne(company::class, 'id');
+        return $this->hasOne(company::class, 'id');
     }
 }

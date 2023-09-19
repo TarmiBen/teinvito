@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('galeries', function (Blueprint $table) {
+        Schema::create('galery', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('service_package_id')->unsigned();
             $table->string('src');
@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('text');
         });
 
-        // Schema::table('galeries', function (Blueprint $table) {
-        //     $table->foreign('service_package_id')->references('id')->on('service_packages')->onDelete('cascade')->onUpdate('cascade');
-        // });
+        Schema::table('galery', function (Blueprint $table) {
+            $table->foreign('service_package_id')->references('id')->on('servicePackage')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
 
     /**
@@ -29,6 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('galeries');
+        Schema::dropIfExists('galery');
     }
 };
+

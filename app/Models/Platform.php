@@ -5,23 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class galery extends Model
+class platform extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $table = 'platform';
 
-    protected $table = 'galery';
     protected $fillable = [
         'id',
-        'service_package_id',
-        'src',
-        'title',
-        'text',
+        'name',
     ];
 
-    public function servicePackage()
+    public function responseMessages()
     {
-        return $this->belongsTo(servicePackage::class, 'id');
+        return $this->hasMany(responseMessage::class, 'platform_id');
     }
     
 }

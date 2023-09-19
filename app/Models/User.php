@@ -5,24 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class contacts extends Model
+class users extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'contacts';
+    protected $table = 'user';
     protected $fillable = [
         'id', 
-        'company_id', 
+        'email', 
         'name', 
         'lastname', 
-        'email', 
         'phone', 
-        'telephone',         
+        'email_verified_at', 
+        'password', 
+        'remember_token', 
     ];
 
-    public function company()
-    {
-        return $this->BelongsTo(company::class, 'id');
+    public function userProvider(){
+        return $this->HasMany(userProvider::class, 'user_id');
     }
 }
