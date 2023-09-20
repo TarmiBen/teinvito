@@ -16,6 +16,7 @@ return new class extends Migration
             $table->biginteger('invitation_id')->unsigned(); 
             $table->biginteger('component_id')->unsigned(); 
             $table->timestamps();
+            $table->softDeletes()->nullable();
             
         });
 
