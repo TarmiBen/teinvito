@@ -4,19 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class address extends Model
+class Address extends Model
 {
-    protected $table = 'address';
-    protected $fillable = [
-        'id',        
-        'name',        
-        'street',
-        'int',
-        'ext',
-        'cp',
-        'colony',
-        'city',
-        'state',        
-    ];
+    
 }

@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class services extends Model
+class Service extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -22,23 +23,24 @@ class services extends Model
         'keywords',
     ];
 
-    public function servicePackage()
+    public function Company()
     {
-        return $this->hasMany(servicePackage::class, 'service_id');
+        return $this->belongsTo(Company::class, 'id');
+    }
+
+    public function ServicePackage()
+    {
+        return $this->hasMany(ServicePackage::class, 'service_id');
     }
     
-    public function social()
+    public function Social()
     {
-        return $this->hasMany(category::class, 'model_id');
+        return $this->hasMany(Social::class, 'model_id');
     }
 
-    public function category()
+    public function Category()
     {
-        return $this->hasOne(category::class, 'id');
+        return $this->belongTo(Category::class, 'id');
     }
-
-    public function company()
-    {
-        return $this->hasOne(company::class, 'id');
-    }
+    
 }

@@ -4,25 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class contacts extends Model
+class Contacts extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
-
-    protected $table = 'contact';
-    protected $fillable = [
-        'id', 
-        'company_id', 
-        'name', 
-        'lastname', 
-        'email', 
-        'phone', 
-        'telephone',         
-    ];
-
-    public function company()
-    {
-        return $this->belongsTo(company::class, 'id');
-    }
+    
 }
