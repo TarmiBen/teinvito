@@ -8,5 +8,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ComponentData extends Model
 {
+<<<<<<< HEAD
     
+=======
+    use HasFactory;
+    use SoftDeletes;
+    protected $table = 'component';
+    protected $fillable = [
+        'id',
+        'invitation_id',
+        'component_id',
+        'key',
+        'value',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    public function Component(){
+        return $this->belongsTo(Component::class, 'id');
+    }
+
+    public function Invitation(){
+        return $this->belongsTo(Invitation::class, 'id');
+    }
+>>>>>>> develop
 }

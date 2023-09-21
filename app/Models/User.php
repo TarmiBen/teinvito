@@ -36,6 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+<<<<<<< HEAD
     public function UserProvider(){
         return $this->hasMany(UserProvider::class, 'user_id');
     }
@@ -46,5 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function Invitation(){
         return $this->hasMany(Invitation::class, 'user_id');
+=======
+    public function userProvider(){
+        return $this->HasMany(userProvider::class, 'user_id');
+>>>>>>> develop
     }
 }

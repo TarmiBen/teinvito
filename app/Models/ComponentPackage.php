@@ -8,5 +8,31 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Componentpackage extends Model
 {
+<<<<<<< HEAD
     
+=======
+    use HasFactory;
+    use SoftDeletes;
+    protected $table = 'componentPackage';
+    protected $fillable = [
+        'id',
+        'component_id',
+        'package_id',
+    ];
+
+    public function Component()
+    {
+        return $this->belongsTo(Component::class, 'id');
+    }
+
+    public function Package()
+    {
+        return $this->belongsTo(Package::class, 'id');
+    }
+
+    public function Components()
+    {
+        return $this->hasMany(Component::class, 'component_package_id');
+    }
+>>>>>>> develop
 }

@@ -8,5 +8,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contacts extends Model
 {
+<<<<<<< HEAD
     
+=======
+    use HasFactory;
+    use SoftDeletes;
+
+    protected $table = 'contact';
+    protected $fillable = [
+        'id', 
+        'company_id', 
+        'name', 
+        'lastname', 
+        'email', 
+        'phone', 
+        'telephone',         
+    ];
+
+    public function Company()
+    {
+        return $this->belongsTo(Company::class, 'id');
+    }
+>>>>>>> develop
 }
