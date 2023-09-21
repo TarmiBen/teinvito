@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('src');
             $table->string('tittle');
             $table->string('text');
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
 
         Schema::table('galery', function (Blueprint $table) {
