@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class invitation extends Model
+class Invitation extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
     
+<<<<<<< HEAD
+=======
     protected $table = 'invitation';
     protected $fillable = [
         'id',
@@ -20,23 +21,31 @@ class invitation extends Model
         'deleted_at',
     ];
     
-    public function event()
+    public function User()
     {
-        return $this->hasOne(event::class, 'invitation_id');
+        return $this->belongsTo(User::class, 'id');
     }
 
-    public function packages()
+    public function Event()
     {
-        return $this->belongsTo(packages::class, 'id');
+        return $this->hasOne(Event::class, 'invitation_id');
     }
 
-    public function invitationComponents()
+    public function Package()
     {
-        return $this->hasMany(invitationComponent::class, 'invitation_id');
+        return $this->belongsTo(Package::class, 'id');
     }
 
-    public function ComponentsData()
+    public function InvitationComponent()
+    {
+        return $this->hasMany(InvitationComponent::class, 'invitation_id');
+    }
+
+    public function ComponentData()
     {
         return $this->hasMany(ComponentData::class, 'invitation_id');
     }
+
+    
+>>>>>>> develop
 }

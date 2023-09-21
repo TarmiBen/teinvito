@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class event extends Model
+class Event extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
     
+<<<<<<< HEAD
+=======
     protected $table = 'event';
     protected $fillable = [
         'id',
@@ -21,9 +22,16 @@ class event extends Model
         'event_date',
         'title',
     ];
-
-    public function invitation()
+    
+    public function User()
     {
-        return $this->belongTo(invitation::class, 'id');
+        return $this->belongsTo(User::class, 'id');
     }
+
+    public function Invitation()
+    {
+        return $this->belongTo(Invitation::class, 'id');
+    }
+    
+>>>>>>> develop
 }

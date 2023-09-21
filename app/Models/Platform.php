@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class platform extends Model
+class Platform extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -16,9 +17,9 @@ class platform extends Model
         'name',
     ];
 
-    public function responseMessages()
+    public function ResponseMessages()
     {
-        return $this->hasMany(responseMessage::class, 'platform_id');
+        return $this->hasMany(ResponseMessage::class, 'platform_id');
     }
     
 }

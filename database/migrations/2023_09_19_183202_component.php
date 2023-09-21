@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('component', function (Blueprint $table) { 
             $table->id();
-            $table->integer('component_package_id');
+            $table->biginteger('component_package_id')->unsigned();
             $table->string('name');
             $table->string('model_type'); 
             $table->timestamps();
+            $table->softDeletes()->nullable();
         });
+        // Schema::table('component', function (Blueprint $table) {
+        //     $table->foreign('component_package_id')->references('id')->on('componentPackage');
+        // });
     }
 
     /**

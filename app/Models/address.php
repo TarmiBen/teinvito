@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class address extends Model
+class Address extends Model
 {
+<<<<<<< HEAD
+    
+=======
     protected $table = 'address';
     protected $fillable = [
         'id',        
@@ -19,4 +23,10 @@ class address extends Model
         'city',
         'state',        
     ];
+
+    public function Company()
+    {
+        return $this->belongsTo(Company::class, 'id');
+    }
+>>>>>>> develop
 }
