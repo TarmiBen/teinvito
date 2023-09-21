@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model
 {
-<<<<<<< HEAD
-    
-=======
     protected $table = 'address';
     protected $fillable = [
         'id',        
@@ -28,5 +25,4 @@ class Address extends Model
     {
         return $this->belongsTo(Company::class, 'id');
     }
->>>>>>> develop
 }

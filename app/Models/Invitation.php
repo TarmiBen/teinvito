@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Invitation extends Model
 {
     
-<<<<<<< HEAD
-=======
     protected $table = 'invitation';
     protected $fillable = [
         'id',
@@ -47,5 +45,4 @@ class Invitation extends Model
     }
 
     
->>>>>>> develop
 }
