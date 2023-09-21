@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('social', function (Blueprint $table) {
+        Schema::create('socials', function (Blueprint $table) {
             $table->id();
             $table->string('model');
             $table->BigInteger('model_id')->unsigned();
             $table->BigInteger('typesSocial')->unsigned();
-            $table->string('url');            
+            $table->string('url');
+            $table->timestamps();
+            $table->softDeletes()->nullable();            
         });
 
         Schema::table('social', function (Blueprint $table) {           
             
             $table->foreign('model_id')->references('id')->on('company')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('typesSocial')->references('id')->on('typesSocial')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('typesSocial')->references('id')->on('typesSocials')->onDelete('cascade')->onUpdate('cascade');
         });
     }
     /**
@@ -30,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('social');
+        Schema::dropIfExists('socials');
     }
 };
 

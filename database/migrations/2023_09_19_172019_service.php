@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');   
             $table->BigInteger('category_id')->unsigned();           
@@ -19,11 +19,13 @@ return new class extends Migration
             $table->text('description_large');    
             $table->string('description_small');
             $table->string('img_src'); 
-            $table->string('keywords');      
+            $table->string('keywords');
+            $table->timestamps();
+            $table->softDeletes()->nullable();      
         });
 
         Schema::table('service', function (Blueprint $table) {            
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('company_id')->references('id')->on('company')->onDelete('cascade')->onUpdate('cascade');
             
         });
@@ -34,7 +36,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service');
+        Schema::dropIfExists('services');
     }
 };
 
