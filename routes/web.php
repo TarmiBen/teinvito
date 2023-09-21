@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MySubscriptionController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\InvitationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::resource('profile', ProfileController::class)->middleware('verified')->na
 Route::resource('my-subscription', MySubscriptionController::class)->middleware('verified')->names('my-subscription');
 
 Route::resource('subscription', SubscriptionController::class)->middleware('verified')->names('subscription');
+
+Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
