@@ -55,7 +55,7 @@
 
 				<!-- Sidebar menu START -->
 				<ul class="navbar-nav flex-column" id="navbar-sidebar">
-					@include('layouts.aside-menu')
+					@include('layouts.users.aside-menu')
 				</ul>
 				<!-- Sidebar menu end -->
 
@@ -125,7 +125,7 @@
 
 						<!-- Nav Main menu START -->
 						<ul class="navbar-nav navbar-nav-scroll me-auto">
-							@include('layouts.navbar-menu')
+							@include('layouts.users.navbar-menu')
 						</ul>
 						<!-- Nav Main menu END -->
 
@@ -164,7 +164,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
 								<!-- Links -->
-                                @include('layouts.profile-options')
+                                @include('layouts.users.profile-options')
                             </ul>
 							<!-- Profile dropdown END -->
 						</li>
