@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contacts extends Model
 {
+<<<<<<< HEAD
+    
+=======
     use HasFactory;
     use SoftDeletes;
 
@@ -26,4 +29,5 @@ class Contacts extends Model
     {
         return $this->belongsTo(Company::class, 'id');
     }
+>>>>>>> develop
 }

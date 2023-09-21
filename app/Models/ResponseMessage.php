@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class responseMessage extends Model
+class ResponseMessage extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -22,8 +23,8 @@ class responseMessage extends Model
         'created_at',
     ];
 
-    public function platforms()
+    public function Platform()
     {
-        return $this->belongsTo(invitation::class, 'id');
+        return $this->belongsTo(Platform::class, 'id');
     }
 }
