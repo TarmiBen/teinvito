@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
-    
-<<<<<<< HEAD
-=======
     protected $table = 'event';
     protected $fillable = [
         'id',
@@ -33,5 +30,4 @@ class Event extends Model
         return $this->belongTo(Invitation::class, 'id');
     }
     
->>>>>>> develop
 }

@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Component extends Model
 {
 
-<<<<<<< HEAD
-=======
     public function InvitationComponent()
     {
         return $this->hasMany(InvitationComponent::class, 'component_id');
@@ -26,5 +24,4 @@ class Component extends Model
         //return $this->hasMany(ComponentPackage::class, 'id');
         return $this->belongsTo(ComponentPackage::class, 'id');
     }
->>>>>>> develop
 }

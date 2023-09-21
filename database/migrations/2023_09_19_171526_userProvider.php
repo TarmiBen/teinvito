@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->BigInteger('users_id')->unsigned();
             $table->BigInteger('company_id')->unsigned();
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
         
         Schema::table('userProvider', function (Blueprint $table) {
-            $table->foreign('users_id')->references('id')->on('user')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('company_id')->references('id')->on('company')->onDelete('cascade')->onUpdate('cascade');
         });
     }
