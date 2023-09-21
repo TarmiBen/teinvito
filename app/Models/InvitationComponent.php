@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class invitationComponent extends Model
+class InvitationComponent extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -20,12 +21,12 @@ class invitationComponent extends Model
         'deleted_at',
     ];
 
-    public function invitations()
+    public function Invitation()
     {
-        return $this->belongsTo(invitation::class, 'id');
+        return $this->belongsTo(Invitation::class, 'id');
     }
 
-    public function components()
+    public function Component()
     {
         return $this->belongsTo(Component::class, 'id');
     }
