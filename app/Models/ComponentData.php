@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ComponentData extends Model
 {
-<<<<<<< HEAD
-    
-=======
     use HasFactory;
     use SoftDeletes;
     protected $table = 'component';
@@ -32,5 +29,4 @@ class ComponentData extends Model
     public function Invitation(){
         return $this->belongsTo(Invitation::class, 'id');
     }
->>>>>>> develop
 }

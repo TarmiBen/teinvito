@@ -24,8 +24,6 @@ class Component extends Model
 =======
 >>>>>>> 2b28387ed099f848fe1f0dc64daca5e59fc11120
 
-<<<<<<< HEAD
-=======
     public function InvitationComponent()
     {
         return $this->hasMany(InvitationComponent::class, 'component_id');
@@ -41,5 +39,4 @@ class Component extends Model
         //return $this->hasMany(ComponentPackage::class, 'id');
         return $this->belongsTo(ComponentPackage::class, 'id');
     }
->>>>>>> develop
 }
