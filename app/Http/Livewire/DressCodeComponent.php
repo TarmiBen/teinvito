@@ -45,12 +45,12 @@ class DressCodeComponent extends Component
     public function saveComponentData()
     {
         $component = ModelComponent::firstOrCreate([
-            'component_package_id' => null, 
+            'component_package_id' => 1, 
             'name' => 'dress code',
             'model_type' => 'dress-code-component',
         ]);
 
-        $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
+        $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
         $invitationId = $invitation->id;
 
         if ($this->image) {
