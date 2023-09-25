@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class contacts extends Model
+class Contacts extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -21,8 +22,8 @@ class contacts extends Model
         'telephone',         
     ];
 
-    public function company()
+    public function Company()
     {
-        return $this->belongsTo(company::class, 'id');
+        return $this->belongsTo(Company::class, 'id');
     }
 }
