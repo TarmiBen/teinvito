@@ -17,8 +17,8 @@
                 <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center mt-4 mt-lg-0">
                     @if($image)
                         <img src="{{ is_string($image) ? $image : $image->temporaryUrl() }}" alt="" class="img-fluid object-fit-contain w-75">
-                        <input type="file" class="form-control" wire:model="image" placeholder="subir imagen">
                     @endif
+                    <input type="file" class="form-control" wire:model="image" placeholder="subir imagen">
                 </div>
             </div>
         </div>
