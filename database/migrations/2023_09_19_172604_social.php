@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('model');
             $table->BigInteger('model_id')->unsigned();
             $table->BigInteger('typesSocial')->unsigned();
-            $table->string('url');
-            $table->timestamps();
-            $table->softDeletes()->nullable();            
+            $table->string('url');            
         });
 
         Schema::table('social', function (Blueprint $table) {           

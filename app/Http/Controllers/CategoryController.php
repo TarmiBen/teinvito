@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categoria = Category::all();
-        //return view('category.index', compact('category'));
+        return view('/category/category', compact('categoria'));
     }
     /**
      * Show the form for creating a new resource.
@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
         $categoria=Category::all();        
         
-        //return view('category.create',compact('category'));
+        return view('/category/category-add',compact('categoria'));
     }
     /**
      * Store a newly created resource in storage.
@@ -37,17 +37,18 @@ class CategoryController extends Controller
         $categoria = new Category();
         $categoria->category_id = $request->input('category_id');
         $categoria->name = $request->input('name');               
-        $animal->save();
+        $categoria->save();
+        
     }
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $categoria = Category::find($id);
         $categoria->CategoryParent;
         $categoria->CategoryChild;
-        return view('category.show', compact('category'));
+        return view('/category/category-show', compact('categoria'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -55,12 +56,12 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $categoria = Category::find($id);
-        return view('category.edit', compact('category'));
+        return view('/category/category-edit', compact('categoria'));
     }
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([           
             'category_id' => 'required',
@@ -70,7 +71,7 @@ class CategoryController extends Controller
         $categoria = new Category();
         $categoria->category_id = $request->input('category_id');
         $categoria->name = $request->input('name');               
-        $animal->save();
+        $categoria->save();
     }
     /**
      * Remove the specified resource from storage.
@@ -80,6 +81,6 @@ class CategoryController extends Controller
         $categoria = Category::find($categoria->id);
         $categoria->delete();
 
-        //return redirect("animal");
+        return redirect("/category");
     }
 }

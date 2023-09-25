@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Component extends Model
 {
-<<<<<<< HEAD
+
     use HasFactory;
     use SoftDeletes;
     protected $table = 'components';
@@ -21,8 +21,6 @@ class Component extends Model
         'updated_at',
         'deleted_at',
     ];
-=======
->>>>>>> 2b28387ed099f848fe1f0dc64daca5e59fc11120
 
     public function InvitationComponent()
     {
@@ -39,4 +37,8 @@ class Component extends Model
         //return $this->hasMany(ComponentPackage::class, 'id');
         return $this->belongsTo(ComponentPackage::class, 'id');
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
 }

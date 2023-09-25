@@ -21,12 +21,14 @@ return new class extends Migration
             
         });
 
+
         Schema::table('invitationComponents', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitation');
+            $table->foreign('invitation_id')->references('id')->on('invitations');
         });
 
-        Schema::table('invitationComponenst', function (Blueprint $table) {
-            $table->foreign('component_id')->references('id')->on('component');
+        Schema::table('invitationComponents', function (Blueprint $table) {
+            $table->foreign('component_id')->references('id')->on('components');
+
         });
     }
     /**

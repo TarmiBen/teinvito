@@ -24,7 +24,7 @@ return new class extends Migration
         });
 
         Schema::table('componentPackages', function (Blueprint $table) {
-            $table->foreign('package_id')->references('id')->on('packages');
+            $table->foreign('package_id')->references('id')->on('package');
         });   
     }
     /**
