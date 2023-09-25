@@ -4,36 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class categories extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'categories';
+    protected $table = 'category';
     protected $fillable = [
         'id',
         'category_id',
         'name',
     ];
 
-    // public function Category()
-    // {
-    //     return $this->hasOne(Category::class, 'id');
-    // }    
-    public function CategoryParent()
+    public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
+        return $this->hasOne(category::class, 'id');
+    }    
 
-    public function CategoryChild()
+    public function service()
     {
-        return $this->hasMany(Category::class, 'category_id');
-    } 
-    
-    public function Service()
-    {
-        return $this->hasOne(Service::class, 'category_id');
+        return $this->belongTo(service::class, 'category_id');
     }
 }

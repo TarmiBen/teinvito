@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Service extends Model
+class services extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'services';
+    protected $table = 'service';
     protected $fillable = [
         'id',          
         'name', 
@@ -23,24 +22,23 @@ class Service extends Model
         'keywords',
     ];
 
-    public function Company()
+    public function servicePackage()
     {
-        return $this->belongsTo(Company::class, 'id');
-    }
-
-    public function ServicePackage()
-    {
-        return $this->hasMany(ServicePackage::class, 'service_id');
+        return $this->hasMany(servicePackage::class, 'service_id');
     }
     
-    public function Social()
+    public function social()
     {
-        return $this->hasMany(Social::class, 'model_id');
+        return $this->hasMany(category::class, 'model_id');
     }
 
-    public function Category()
+    public function category()
     {
-        return $this->belongTo(Category::class, 'id');
+        return $this->hasOne(category::class, 'id');
     }
-    
+
+    public function company()
+    {
+        return $this->hasOne(company::class, 'id');
+    }
 }

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 @extends('layouts.app')
-=======
-@extends('layouts.users.app')
->>>>>>> develop
 
 @section('content')
 <div class="container-fluid">

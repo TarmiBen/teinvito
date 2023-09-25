@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('responseMessages', function (Blueprint $table) {
+        Schema::create('responseMessage', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('platform_id')->unsigned();
             $table->string('reference');
@@ -20,11 +20,10 @@ return new class extends Migration
             $table->string('cardholder');
             $table->integer('card');
             $table->double('amount');
-            $table->timestamps();
-            $table->softDeletes()->nullable();
+            $table->timestamp('created_at');
         });
 
-        Schema::table('responseMessages', function (Blueprint $table) {
+        Schema::table('responseMessage', function (Blueprint $table) {
             $table->foreign('platform_id')->references('id')->on('platform');
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('responseMessages');
+        Schema::dropIfExists('responseMessage');
     }
 };

@@ -27,8 +27,6 @@ return new class extends Migration
             $table->string('description');
             $table->string('logo');
             $table->string('cover');
-            $table->timestamps();
-            $table->softDeletes()->nullable();
         });
     }
 

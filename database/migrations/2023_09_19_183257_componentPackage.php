@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('componentPackages', function (Blueprint $table) { 
+        Schema::create('componentPackage', function (Blueprint $table) { 
             $table->id();
             $table->biginteger('component_id')->unsigned(); 
             $table->biginteger('package_id')->unsigned(); 
-            $table->timestamps();
-            $table->softDeletes()->nullable();
         });
 
-        Schema::table('componentPackages', function (Blueprint $table) {
-            $table->foreign('component_id')->references('id')->on('components');
+        Schema::table('componentPackage', function (Blueprint $table) {
+            $table->foreign('component_id')->references('id')->on('component');
         });
 
-        Schema::table('componentPackages', function (Blueprint $table) {
+        Schema::table('componentPackage', function (Blueprint $table) {
             $table->foreign('package_id')->references('id')->on('package');
         });   
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('componentPackages');
+        Schema::dropIfExists('componentPackage');
     }
 };
