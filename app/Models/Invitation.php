@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class invitation extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     
     protected $table = 'invitation';
     protected $fillable = [
