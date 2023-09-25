@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model
 {
+<<<<<<< HEAD
     use HasFactory;
     use SoftDeletes;
+=======
+
+>>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
     protected $table = 'address';
     protected $fillable = [
         'id',        
@@ -27,5 +31,8 @@ class Address extends Model
     {
         return $this->belongsTo(Company::class, 'id');
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
 }

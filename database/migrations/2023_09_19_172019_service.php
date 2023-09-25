@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');   
             $table->BigInteger('category_id')->unsigned();           
             $table->BigInteger('company_id')->unsigned();                       
             $table->text('description_large');    
             $table->string('description_small');
-            $table->string('img_src'); 
-            $table->string('keywords');  
+            $table->string('img_src');
+            $table->string('keywords');
             $table->timestamps();
-            $table->softDeletes()->nullable();    
+            $table->softDeletes()->nullable();
         });
 
         Schema::table('service', function (Blueprint $table) {            
@@ -36,7 +36,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service');
+        Schema::dropIfExists('services');
     }
 };
 
