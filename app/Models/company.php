@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Company extends Model
+
+class company extends Model
 {
-
     use HasFactory;
     use SoftDeletes;
 
@@ -31,29 +30,24 @@ class Company extends Model
         'cover',
     ];
 
-    public function UserProvider()
+    public function userProvider()
     {
-        return $this->hasOne(UserProvider::class, 'company_id');
-    }
-    
-    public function Contact()
-    {
-        return $this->hasMany(Contact::class, 'company_id');
+        return $this->hasOne(userProvider::class, 'company_id');
     }
 
-    public function Social()
+    public function social()
     {
-        return $this->hasMany(Social::class, 'model_id');
+        return $this->hasMany(social::class, 'model_id');
     }
 
-    public function Service()
+    public function service()
     {
-        return $this->hasMany(Service::class, 'company_id');
+        return $this->belongTo(service::class, 'company_id');
     }
 
-    public function Address()
+    public function contact()
     {
-        return $this->hasMany(Address::class, 'company_id');
+        return $this->hasMany(contact::class, 'company_id');
     }
-    
+
 }

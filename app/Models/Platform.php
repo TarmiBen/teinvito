@@ -4,22 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Platform extends Model
+class platform extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'platforms';
+    protected $table = 'platform';
 
     protected $fillable = [
         'id',
         'name',
     ];
 
-    public function ResponseMessages()
+    public function responseMessages()
     {
-        return $this->hasMany(ResponseMessage::class, 'platform_id');
+        return $this->hasMany(responseMessage::class, 'platform_id');
     }
     
 }

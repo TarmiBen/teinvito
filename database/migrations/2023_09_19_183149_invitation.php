@@ -11,20 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invitations', function (Blueprint $table) {
+        Schema::create('invitation', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('users_id')->unsigned(); 
+            $table->BigInteger('user_id')->unsigned(); 
             $table->BigInteger('package_id')->unsigned();
-            $table->timestamps();
-            $table->softDeletes()->nullable();                           
+            $table->timestamps();                           
         });
 
-        Schema::table('invitations', function (Blueprint $table) {
+        Schema::table('invitation', function (Blueprint $table) {
             $table->foreign('package_id')->references('id')->on('package');
-        });
-
-        Schema::table('invitations', function (Blueprint $table) {            
-            $table->foreign('users_id')->references('id')->on('user');
         });
         
     }
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invitations');
+        Schema::dropIfExists('invitation');
     }
 };
