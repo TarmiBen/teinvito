@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $categoria->category_id = $request->input('category_id');
         $categoria->name = $request->input('name');               
         $categoria->save();
-        
+        return view('/category/category-add',compact('categoria'));
     }
     /**
      * Display the specified resource.
