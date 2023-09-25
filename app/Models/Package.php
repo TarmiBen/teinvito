@@ -10,7 +10,7 @@ class Package extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'package';
+    protected $table = 'packages';
     protected $fillable = [
         'id',
         'name',

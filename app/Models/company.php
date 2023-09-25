@@ -8,10 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
-<<<<<<< HEAD
 
-=======
->>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
     use HasFactory;
     use SoftDeletes;
 
@@ -43,10 +40,6 @@ class Company extends Model
     {
         return $this->hasMany(Contact::class, 'company_id');
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
 
     public function Social()
     {
