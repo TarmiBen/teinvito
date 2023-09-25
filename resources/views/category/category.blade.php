@@ -74,7 +74,7 @@
             <form action="{{url('category/'.$categorias->id)}}" method="post">
                 @method("DELETE")
                 @csrf
-                <button type="button" type="submit" class="btn btn-outline-danger typcn typcn-delete"></button>   
+                <button type="submit" class="btn btn-outline-danger typcn typcn-delete"></button>   
             </form>               
         </form>
         </td>          

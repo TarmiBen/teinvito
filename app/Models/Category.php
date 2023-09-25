@@ -18,10 +18,10 @@ class Category extends Model
         'name',
     ];
 
-    // public function Category()
-    // {
-    //     return $this->hasOne(Category::class, 'id');
-    // }    
+    public function Category()
+    {
+        return $this->hasOne(Category::class, 'id');
+    }    
     public function CategoryParent()
     {
         return $this->belongsTo(Category::class, 'category_id');
