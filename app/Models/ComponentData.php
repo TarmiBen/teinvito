@@ -29,5 +29,4 @@ class ComponentData extends Model
     public function Invitation(){
         return $this->belongsTo(Invitation::class, 'id');
     }
-
 }
