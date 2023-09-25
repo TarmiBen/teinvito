@@ -16,7 +16,7 @@ class VideoComponent extends Component
     public $video = '';
     public $videoUrl = '';
     public $isEditing = true;
-    protected $listeners = ['saveComponents' => 'saveHeaderSection'];
+    protected $listeners = ['saveComponents' => 'saveComponents'];
 
     public function mount ()
     {
