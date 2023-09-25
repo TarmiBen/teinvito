@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model
 {
+    use HasFactory;
+    use SoftDeletes;
     protected $table = 'address';
     protected $fillable = [
         'id',        

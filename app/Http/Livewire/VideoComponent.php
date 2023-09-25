@@ -30,7 +30,7 @@ class VideoComponent extends Component
         return view('livewire.video-component');
     }
 
-    public function saveVideoComponent()
+    public function saveComponents()
     {
         $this->saveComponentData();
     }
@@ -38,12 +38,12 @@ class VideoComponent extends Component
     public function saveComponentData()
     {
         $component = ModelComponent::firstOrCreate([
-            'component_package_id' => null, 
+            'component_package_id' => 1, 
             'name' => 'video with title',
             'model_type' => 'video-component',
         ]);
 
-        $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
+        $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
         $invitationId = $invitation->id;
 
         if ($this->video) {

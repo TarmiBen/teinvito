@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class InvitationComponent extends Model
 {
     use HasFactory;
-    // use SoftDeletes;
-    protected $table = 'invitationcomponent';
+    use SoftDeletes;
+    protected $table = 'invitationcomponents';
     protected $fillable = [
         'id',
         'invitation_id',

@@ -10,7 +10,7 @@ class ComponentData extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'component';
+    protected $table = 'componentData';
     protected $fillable = [
         'id',
         'invitation_id',

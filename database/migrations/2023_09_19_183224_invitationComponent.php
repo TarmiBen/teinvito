@@ -11,21 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invitationComponent', function (Blueprint $table) { 
+        Schema::create('invitationComponents', function (Blueprint $table) { 
             $table->id();
             $table->biginteger('invitation_id')->unsigned(); 
-            $table->biginteger('component_id')->unsigned(); 
+            $table->biginteger('component_id')->unsigned();
+            $table->integer('order'); 
             $table->timestamps();
             $table->softDeletes()->nullable();
             
         });
 
-        Schema::table('invitationComponent', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitation');
+
+        Schema::table('invitationComponents', function (Blueprint $table) {
+            $table->foreign('invitation_id')->references('id')->on('invitations');
         });
 
-        Schema::table('invitationComponent', function (Blueprint $table) {
-            $table->foreign('component_id')->references('id')->on('component');
+        Schema::table('invitationComponents', function (Blueprint $table) {
+            $table->foreign('component_id')->references('id')->on('components');
+
         });
     }
     /**
@@ -33,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invitationComponent');
+        Schema::dropIfExists('invitationComponents');
     }
 };
