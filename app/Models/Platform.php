@@ -10,7 +10,7 @@ class Platform extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'platform';
+    protected $table = 'platforms';
 
     protected $fillable = [
         'id',

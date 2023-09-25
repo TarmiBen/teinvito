@@ -68,10 +68,11 @@ class CategoryController extends Controller
             'name' => 'required',            
         ]);
 
-        $categoria = new Category();
+        $categoria = Category::find($id);
         $categoria->category_id = $request->input('category_id');
         $categoria->name = $request->input('name');               
         $categoria->save();
+        return view('/category/category', compact('categoria'));
     }
     /**
      * Remove the specified resource from storage.
@@ -81,6 +82,6 @@ class CategoryController extends Controller
         $categoria = Category::find($categoria->id);
         $categoria->delete();
 
-        return redirect("/category");
+        return redirect("/category/category");
     }
 }

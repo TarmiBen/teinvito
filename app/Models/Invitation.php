@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Invitation extends Model
 {
-<<<<<<< HEAD
-    use HasFactory;
-    use SoftDeletes;
 
-=======
->>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
     protected $table = 'invitation';
     protected $fillable = [
         'id',
@@ -48,9 +43,5 @@ class Invitation extends Model
     {
         return $this->hasMany(ComponentData::class, 'invitation_id');
     }
-<<<<<<< HEAD
-    
 
-=======
->>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
 }

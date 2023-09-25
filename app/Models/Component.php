@@ -37,8 +37,5 @@ class Component extends Model
         //return $this->hasMany(ComponentPackage::class, 'id');
         return $this->belongsTo(ComponentPackage::class, 'id');
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
 }

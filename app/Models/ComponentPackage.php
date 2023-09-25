@@ -8,10 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Componentpackage extends Model
 {
-<<<<<<< HEAD
 
-=======
->>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
     use HasFactory;
     use SoftDeletes;
     protected $table = 'componentPackage';
@@ -35,8 +32,5 @@ class Componentpackage extends Model
     {
         return $this->hasMany(Component::class, 'component_package_id');
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> bf38eefba110ce1802cc7989ef8b250e2954c3d2
+ 
 }
