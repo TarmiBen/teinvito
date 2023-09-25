@@ -18,14 +18,15 @@ return new class extends Migration
             $table->string('key');
             $table->string('value'); 
             $table->timestamps();
+            $table->softDeletes()->nullable();
         });
 
         Schema::table('componentData', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitation');
+            $table->foreign('invitation_id')->references('id')->on('invitations');
         });
 
         Schema::table('componentData', function (Blueprint $table) {
-            $table->foreign('component_id')->references('id')->on('component');
+            $table->foreign('component_id')->references('id')->on('components');
         });
     }
     /**

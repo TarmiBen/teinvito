@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MySubscriptionController;
@@ -29,3 +30,12 @@ Route::resource('profile', ProfileController::class)->middleware('verified')->na
 Route::resource('my-subscription', MySubscriptionController::class)->middleware('verified')->names('my-subscription');
 
 Route::resource('subscription', SubscriptionController::class)->middleware('verified')->names('subscription');
+
+//category
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/category-add', [CategoryController::class, 'create'])->name('category.create');
+Route::get('/category/{id}/category-edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category/{id}/category-edit', [CategoryController::class, 'update'])->name('category.update');
+Route::get('/category/{id}/category-show', [CategoryController::class, 'show'])->name('category.show');
+Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
