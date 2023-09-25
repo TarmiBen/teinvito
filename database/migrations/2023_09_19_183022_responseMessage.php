@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('status_detail');
             $table->string('cardholder');
             $table->integer('card');
-            $table->double('amount');
-            $table->timestamp('created_at');
+            $table->double('amount');           
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
 
         Schema::table('responseMessage', function (Blueprint $table) {

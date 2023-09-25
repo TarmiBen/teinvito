@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Galery extends Model
 {
-<<<<<<< HEAD
-=======
+
     use HasFactory;
     use SoftDeletes;
 
@@ -26,6 +25,5 @@ class Galery extends Model
     {
         return $this->belongsTo(ServicePackage::class, 'id');
     }
->>>>>>> develop
     
 }

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->BigInteger('users_id')->unsigned();
             $table->BigInteger('company_id')->unsigned();
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
         
         Schema::table('userProvider', function (Blueprint $table) {

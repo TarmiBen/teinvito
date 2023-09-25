@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->biginteger('users_id')->unsigned();
             $table->integer('user_invited_id')->unsigned();
@@ -23,11 +23,11 @@ return new class extends Migration
             $table->string('title');
         });
 
-        Schema::table('event', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitation');
+        Schema::table('events', function (Blueprint $table) {
+            $table->foreign('invitation_id')->references('id')->on('invitations');
         });
 
-        Schema::table('event', function (Blueprint $table) {
+        Schema::table('events', function (Blueprint $table) {
             $table->foreign('users_id')->references('id')->on('user');
         });
     }
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event');
+        Schema::dropIfExists('events');
     }
 };
