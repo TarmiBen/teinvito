@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('telephone');
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
 
         Schema::table('contact', function (Blueprint $table) {            
