@@ -36,12 +36,12 @@ class InvitationsCreate extends Component
     {
         $invitation = Invitation::create([
             'user_id' => auth()->id(),
+            'package_id' => null,
         ]);
-        dd($invitation);
     
         foreach ($this->selectedComponents as $index => $componentData) {
             $componentName = $componentData['component'];
-            $componentRecord = ModelsComponent::where('name', $componentName)->first();
+            $componentRecord = ModelsComponent::where('model_type', $componentName)->first();
             if ($componentRecord) {
                 $componentClassName = $componentRecord->model_type;
                 $order = $index + 1; 
@@ -52,7 +52,6 @@ class InvitationsCreate extends Component
                 ]);
             }
         }
-        dd($this->selectedComponents);
     }
     //remover el ultimo componente que se agrego
     public function removeComponent($index)

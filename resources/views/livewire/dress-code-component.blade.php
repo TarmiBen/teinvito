@@ -2,30 +2,36 @@
     <section class="container py-5">
         <div class="d-flex flex-column justify-content-center align-items-center text-center">
             <h2>
-                Código de Vestimenta
+                <input type="text" class="form-control" wire:model="title">
             </h2>
             <div class="mt-4 w-100">
                 <h4 class="fw-bold">
-                    Formal
+                    <input type="text" class="form-control fw-bold text-center" wire:model="subtitle">
                 </h4>
 
                 <div class="row mt-4 justify-content-center">
                     <div class="col-5 col-md-3 col-lg-2">
-                        <img src="https://th.bing.com/th/id/R.ee8354e0bd34be81bfe0ec79486f8ada?rik=wdqC5I4gZ1753w&pid=ImgRaw&r=0" alt="" class="img-fluid object-fit-cover shadow w-100 rounded-pill" style="height: 300px;">
+                        @if($image)
+                            <img src="{{ is_string($image) ? $image : $image->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow w-100 rounded-pill" style="height: 300px;">
+                        @endif
+                        <input type="file" class="form-control" wire:model="image" placeholder="subir imagen">
                     </div>
                     <div class="col-5 col-md-3 col-lg-2 ms-lg-5">
-                        <img src="https://i.pinimg.com/originals/93/e4/59/93e459a2ae0d7f9e5cda24acee8b79b8.jpg" alt="" class="img-fluid object-fit-cover shadow w-100 rounded-pill" style="height: 300px;">
+                        @if($image2)
+                            <img src="{{ is_string($image2) ? $image2 : $image2->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow w-100 rounded-pill" style="height: 300px;">
+                        @endif
+                        <input type="file" class="form-control" wire:model="image2" placeholder="subir imagen">
                     </div>
                 </div>
             </div>
             <div class="mt-5 fs-4">
-                Estaremos felices de contar con tu presencia
+                <input type="text" class="form-control mt-5 fs-4 text-center" wire:model="text">
             </div>
             <div class="mt-4 fs-1">
-                !Gracias!
+                <input type="text" class="form-control mt-4 fs-1 text-center" wire:model="finalMessage">
             </div>
             <div class="mt-4 fs-1">
-                Benito y Lupita
+                <input type="text" class="form-control mt-4 fs-1 text-center" wire:model="coupleName">
             </div>
         </div>
     </section>

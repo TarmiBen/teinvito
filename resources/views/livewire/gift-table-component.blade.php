@@ -4,19 +4,21 @@
             <div class="row">
                 <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center">
                     <h2>
-                        Mesa de Regalos
+                        <input type="text" class="form-control" wire:model="title">
                     </h2>
                     <div class="mt-4">
-                        Tenemos disponible una mesa de regalos para que puedas apoyarnos con lo que gustes.
+                        <input type="text" class="form-control" wire:model="text">
                     </div>
                     <div class="mt-4">
-                        <a href="" class="btn btn-primary">
-                            Ver Mesa de Regalos
-                        </a>
+                        <input type="text" class="btn btn-primary" wire:model="button">
+                        <input type="text" class="form-control" wire:model="button_link" placeholder="agregar link" >
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center mt-4 mt-lg-0">
-                    <img src="https://1.bp.blogspot.com/-QLOY5pdwqX4/WetwCmQYNFI/AAAAAAAAYv0/idyW5Yfo8ZAe4qpOnjcz0Lsr9t3lToekACLcBGAs/s1600/liverpool.jpg" alt="" class="img-fluid object-fit-contain w-75">
+                    @if($image)
+                        <img src="{{ is_string($image) ? $image : $image->temporaryUrl() }}" alt="" class="img-fluid object-fit-contain w-75">
+                        <input type="file" class="form-control" wire:model="image" placeholder="subir imagen">
+                    @endif
                 </div>
             </div>
         </div>
