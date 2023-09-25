@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invitation', function (Blueprint $table) {
+        Schema::create('invitations', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('users_id')->unsigned(); 
             $table->BigInteger('package_id')->unsigned();
@@ -19,11 +19,11 @@ return new class extends Migration
             $table->softDeletes()->nullable();                           
         });
 
-        Schema::table('invitation', function (Blueprint $table) {
+        Schema::table('invitations', function (Blueprint $table) {
             $table->foreign('package_id')->references('id')->on('package');
         });
 
-        Schema::table('invitation', function (Blueprint $table) {            
+        Schema::table('invitations', function (Blueprint $table) {            
             $table->foreign('users_id')->references('id')->on('user');
         });
         
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invitation');
+        Schema::dropIfExists('invitations');
     }
 };

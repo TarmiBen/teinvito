@@ -24,5 +24,4 @@ class Galery extends Model
     {
         return $this->belongsTo(ServicePackage::class, 'id');
     }
-    
 }

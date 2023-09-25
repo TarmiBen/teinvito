@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
-    
     protected $table = 'event';
     protected $fillable = [
         'id',
@@ -29,6 +28,4 @@ class Event extends Model
     public function Invitation()
     {
         return $this->belongTo(Invitation::class, 'id');
-    }
-    
 }
