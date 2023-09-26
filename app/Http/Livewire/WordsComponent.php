@@ -13,6 +13,7 @@ class WordsComponent extends Component
     public $text;
     public $content;
     public $isEditing = true;
+    protected $listeners = ['saveComponents' => 'saveComponents'];
 
     public function mount()
     {
@@ -30,7 +31,7 @@ class WordsComponent extends Component
         $this->isEditing = !$this->isEditing;
     }
 
-    public function saveWordsComponent()
+    public function saveComponents()
     {
         $this->saveComponentData();
     }
@@ -43,22 +44,12 @@ class WordsComponent extends Component
             'model_type' => 'words-component',
         ]);
 
-        $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
+        $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
         $invitationId = $invitation->id;    
 
-        if ($this->images1) {
-            $this->images1->store('public/images');
-            $component->data()->updateOrCreate([
-                'invitation_id' => $invitationId,
-                'name' => 'images1',
-            ], [
-                'value' => $this->images1->hashName(),
-            ]);
-        }
-
         $this->componentData = [
-            'body' => $this->body,
             'text' => $this->text,
+            'content' => $this->content,
         ];
 
         foreach ($this->componentData as $key => $body) {

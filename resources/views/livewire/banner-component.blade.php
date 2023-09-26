@@ -10,11 +10,11 @@
                 <div class="text-start border border-3 py-3 px-4 text-white rounded">
                     <p>
                         <span>
-                            <input type="text">
+                            <input type="text" wire:model="title">
                         </span>
                     </p>
                     <h4 class="mt-4 fw-bold">
-                        <input type="text">
+                        <input type="text" wire:model="subtitle">
                     </h4>
                 </div>
             </div>

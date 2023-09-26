@@ -19,18 +19,18 @@
                 <div class="col-12 col-sm-6 px-0 py-4 d-flex flex-column justify-content-center align-items-center">
                     <div>
                         <p class="fw-bold">
-                            <input type="text">
+                            <input type="text" wire:model="event1">
                         </p>
                     </div>
                     <div class="mt-5">
                         <p class="fw-bold">
-                            <input type="text">
+                            <input type="text" wire:model="date1">
                         </p>
                         <p>
-                            <input type="text">
+                            <input type="text" wire:model="hour1">
                         </p>
                         <p>
-                            <input type="text">
+                            <input type="text" wire:model="place1">
                         </p>
                     </div>
                     <div class="mt-5">
@@ -53,18 +53,18 @@
                 <div class="col-12 col-sm-6 px-0 py-4 d-flex flex-column justify-content-center align-items-center">
                     <div>
                         <p class="fw-bold">
-                            <input type="text">
+                            <input type="text" wire:model="event2">
                         </p>
                     </div>
                     <div class="mt-5">
                         <p class="fw-bold">
-                            <input type="text">
+                            <input type="text" wire:model="date2">
                         </p>
                         <p>
-                            <input type="text">
+                            <input type="text"  wire:model="hour2">
                         </p>
                         <p>
-                            <input type="text">
+                            <input type="text" wire:model="place2">
                         </p>
                     </div>
                     <div class="mt-5">
@@ -72,7 +72,7 @@
                             Ver Ubicacion
                         </a>
                     </div>
-                    <input wire:model="link" class="form-control">
+                    <input wire:model="link2" class="form-control">
                 </div>
             </div>
         </div>

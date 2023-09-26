@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Component extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    protected $fillable = [
+        'component_package_id',
+        'name',
+        'model_type',
+    ];
 
     
     public function InvitationComponent()

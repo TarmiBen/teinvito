@@ -17,7 +17,7 @@ class GaleryComponent extends Component
     public $images3;
     public $images4;
     public $isEditing = true;
-    protected $listeners = ['saveComponents' => 'saveBannerComponent'];
+    protected $listeners = ['saveComponents' => 'saveComponents'];
 
     public function mount()
     {
@@ -44,7 +44,7 @@ class GaleryComponent extends Component
         ]);
     }
 
-    public function saveBannerComponent()
+    public function saveComponents()
     {
         $this->saveComponentData();
     }
@@ -57,40 +57,43 @@ class GaleryComponent extends Component
             'model_type' => 'galery-component',
         ]);
 
-        $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
+        $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
         $invitationId = $invitation->id;
 
+        // Define un arreglo para almacenar las rutas de las imágenes
+        $imagePaths = [];
+
+        // Verifica y almacena cada imagen individualmente
         if ($this->images1) {
             $imagePath = $this->images1->store('public/images');
-            $this->images1 = $imagePath;
-        } elseif ($this->images2) {
+            $imagePaths['images1'] = $imagePath;
+            $this->images1 = null;
+        }
+        if ($this->images2) {
             $imagePath = $this->images2->store('public/images');
-            $this->images2 = $imagePath;
-        } elseif ($this->images3) {
+            $imagePaths['images2'] = $imagePath;
+            $this->images2 = null;
+        }
+        if ($this->images3) {
             $imagePath = $this->images3->store('public/images');
-            $this->images3 = $imagePath;
-        } elseif ($this->images4) {
+            $imagePaths['images3'] = $imagePath;
+            $this->images3 = null;
+        }
+        if ($this->images4) {
             $imagePath = $this->images4->store('public/images');
-            $this->images4 = $imagePath;
+            $imagePaths['images4'] = $imagePath;
+            $this->images4 = null;
         }
 
-        $this->componentData = [
-            'images1' => $this->images1,
-            'images2' => $this->images2,
-            'images3' => $this->images3,
-            'images4' => $this->images4,
-        ];
-
-        foreach ($this->componentData as $key => $body) {
-            if (!is_null($body)) {
-                ComponentData::create([
-                    'key' => $key,
-                    'value' => $body,
-                    'invitation_id' => $invitationId,
-                    'component_id' => $component->id,
-                ]);
-            }
+        // Recorre el arreglo de rutas de imágenes y guárdalas en la base de datos
+        foreach ($imagePaths as $key => $imagePath) {
+            ComponentData::create([
+                'key' => $key,
+                'value' => $imagePath, // Almacena la ruta de la imagen en la base de datos
+                'invitation_id' => $invitationId,
+                'component_id' => $component->id,
+            ]);
         }
-
     }
+
 }
