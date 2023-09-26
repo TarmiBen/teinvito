@@ -51,7 +51,7 @@ class Company extends Model
         return $this->hasMany(Service::class, 'company_id');
     }
 
-    public function Address()
+    public function Addresses()
     {
         return $this->hasMany(Address::class, 'company_id');
     }
