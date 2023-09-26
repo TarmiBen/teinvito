@@ -42,4 +42,9 @@ class Invitation extends Model
     {
         return $this->hasMany(ComponentData::class, 'invitation_id');
     }
+
+    public function Guests()
+    {
+        return $this->hasMany(Guests::class, 'invitation_id');
+    }
 }
