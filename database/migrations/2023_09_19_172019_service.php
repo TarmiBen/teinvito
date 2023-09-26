@@ -24,9 +24,9 @@ return new class extends Migration
             $table->softDeletes()->nullable();
         });
 
-        Schema::table('service', function (Blueprint $table) {            
+        Schema::table('services', function (Blueprint $table) {            
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('company_id')->references('id')->on('company')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             
         });
     }

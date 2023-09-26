@@ -12,7 +12,7 @@ class Company extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'company';
+    protected $table = 'companies';
     protected $fillable = [
         'id',
         'phone',
@@ -36,17 +36,17 @@ class Company extends Model
         return $this->hasOne(UserProvider::class, 'company_id');
     }
     
-    public function Contact()
+    public function Contacts()
     {
         return $this->hasMany(Contact::class, 'company_id');
     }
 
-    public function Social()
+    public function Socials()
     {
         return $this->hasMany(Social::class, 'model_id');
     }
 
-    public function Service()
+    public function Services()
     {
         return $this->hasMany(Service::class, 'company_id');
     }

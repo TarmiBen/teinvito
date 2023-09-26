@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('componentPackages', function (Blueprint $table) { 
+        Schema::create('component_packages', function (Blueprint $table) { 
             $table->id();
             $table->biginteger('component_id')->unsigned(); 
             $table->biginteger('package_id')->unsigned(); 
@@ -19,12 +19,12 @@ return new class extends Migration
             $table->softDeletes()->nullable();
         });
 
-        Schema::table('componentPackages', function (Blueprint $table) {
+        Schema::table('component_packages', function (Blueprint $table) {
             $table->foreign('component_id')->references('id')->on('components');
         });
 
-        Schema::table('componentPackages', function (Blueprint $table) {
-            $table->foreign('package_id')->references('id')->on('package');
+        Schema::table('component_packages', function (Blueprint $table) {
+            $table->foreign('package_id')->references('id')->on('packages');
         });   
     }
     /**

@@ -20,11 +20,11 @@ return new class extends Migration
         });
 
         Schema::table('invitations', function (Blueprint $table) {
-            $table->foreign('package_id')->references('id')->on('package');
+            $table->foreign('package_id')->references('id')->on('packages');
         });
 
         Schema::table('invitations', function (Blueprint $table) {            
-            $table->foreign('users_id')->references('id')->on('user');
+            $table->foreign('users_id')->references('id')->on('users');
         });
         
     }
