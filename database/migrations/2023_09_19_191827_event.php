@@ -28,7 +28,7 @@ return new class extends Migration
         });
 
         Schema::table('events', function (Blueprint $table) {
-            $table->foreign('users_id')->references('id')->on('user');
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
     /**

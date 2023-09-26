@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('responseMessages', function (Blueprint $table) {
+        Schema::create('response_messages', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('platform_id')->unsigned();
             $table->string('reference');
@@ -24,8 +24,8 @@ return new class extends Migration
             $table->softDeletes()->nullable();
         });
 
-        Schema::table('responseMessages', function (Blueprint $table) {
-            $table->foreign('platform_id')->references('id')->on('platform');
+        Schema::table('response_messages', function (Blueprint $table) {
+            $table->foreign('platform_id')->references('id')->on('platforms');
         });
     }
 
