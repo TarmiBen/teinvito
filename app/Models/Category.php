@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'category';
+    protected $table = 'categories';
     protected $fillable = [
         'id',
         'category_id',
@@ -27,7 +27,7 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function CategoryChild()
+    public function CategorysChild()
     {
         return $this->hasMany(Category::class, 'category_id');
     } 
