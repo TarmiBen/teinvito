@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Invitation extends Model
 {
-    protected $table = 'invitation';
+
+    use HasFactory;
+    use SoftDeletes;
+
+    protected $table = 'invitations';
+
     protected $fillable = [
         'id',
         'user_id',
@@ -33,13 +38,14 @@ class Invitation extends Model
         return $this->belongsTo(Package::class, 'id');
     }
 
-    public function InvitationComponent()
+    public function InvitationsComponents()
     {
         return $this->hasMany(InvitationComponent::class, 'invitation_id');
     }
 
-    public function ComponentData()
+    public function ComponentsData()
     {
         return $this->hasMany(ComponentData::class, 'invitation_id');
     }
+
 }

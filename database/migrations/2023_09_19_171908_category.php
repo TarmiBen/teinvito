@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->BigInteger('category_id')->unsigned(); 
             $table->string('name');
-            $table->BigInteger('category_id')->unsigned();
             $table->timestamps();
             $table->softDeletes()->nullable();
         });

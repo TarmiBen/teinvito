@@ -18,15 +18,15 @@ return new class extends Migration
             $table->BigInteger('company_id')->unsigned();                       
             $table->text('description_large');    
             $table->string('description_small');
-            $table->string('img_src'); 
+            $table->string('img_src');
             $table->string('keywords');
             $table->timestamps();
-            $table->softDeletes()->nullable();      
+            $table->softDeletes()->nullable();
         });
 
-        Schema::table('service', function (Blueprint $table) {            
+        Schema::table('services', function (Blueprint $table) {            
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('company_id')->references('id')->on('company')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             
         });
     }
