@@ -8,26 +8,23 @@ use App\Models\Component as ModelComponent;
 use App\Models\ComponentData;
 use App\Models\Invitation;
 
-class VideoComponent extends Component
+class BannerComponent extends Component
 {
     use WithFileUploads;
 
-    public $title = 'Video de nuestra historia';
-    public $video = '';
-    public $videoUrl = '';
-    public $isEditing = true;
-    protected $listeners = ['saveComponents' => 'saveComponents'];
-
-    public function mount ()
-    {
-        $this->title = 'Video de nuestra historia';
-        $this->video = '';
-        $this->videoUrl = '';
-    }
+    public $title = 'Título';
+    public $subtitle = 'Subtítulo';
+    public $isEditing = true;   
+    public $listeners = ['saveComponents' => 'saveComponents'];
 
     public function render()
     {
-        return view('livewire.video-component');
+        return view('livewire.banner-component');
+    }
+
+    public function toggleEdit($index)
+    {
+        $this->isEditing = !$this->isEditing;
     }
 
     public function saveComponents()
@@ -38,30 +35,21 @@ class VideoComponent extends Component
     public function saveComponentData()
     {
         $component = ModelComponent::firstOrCreate([
-            'component_package_id' => 1, 
-            'name' => 'video with title',
-            'model_type' => 'video-component',
+            'component_package_id' => 1,
+            'name' => 'banner',
+            'model_type' => 'banner-component',
         ]);
 
         $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
         $invitationId = $invitation->id;
 
-        if ($this->video) {
-            $videoPath = $this->video->store('public/videos');
-            $this->video = $videoPath;
-        } elseif ($this->videoUrl) {
-            $this->video = $this->videoUrl;
-            $this->videoUrl = null; 
-        }
-
         $this->componentData = [
             'title' => $this->title,
-            'video' => $this->video,
-            'videoUrl' => $this->videoUrl,
+            'subtitle' => $this->subtitle,
         ];
 
         foreach ($this->componentData as $key => $body) {
-            if (!is_null($body)) {
+            if(!is_null($body)) {
                 ComponentData::create([
                     'key' => $key,
                     'value' => $body,
@@ -71,4 +59,5 @@ class VideoComponent extends Component
             }
         }
     }
+    
 }

@@ -10,17 +10,13 @@ class Component extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'components';
     protected $fillable = [
-        
         'component_package_id',
         'name',
         'model_type',
         
     ];
-
-    public function InvitationsComponents()
-
+    public function InvitationComponent()
     {
         return $this->hasMany(InvitationComponent::class, 'component_id');
     }
