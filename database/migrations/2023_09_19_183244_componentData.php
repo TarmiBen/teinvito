@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('componentData', function (Blueprint $table) { 
+        Schema::create('component_data', function (Blueprint $table) { 
             $table->id();
             $table->biginteger('invitation_id')->unsigned(); 
             $table->biginteger('component_id')->unsigned(); 
@@ -21,11 +21,11 @@ return new class extends Migration
             $table->softDeletes()->nullable();
         });
 
-        Schema::table('componentData', function (Blueprint $table) {
+        Schema::table('component_data', function (Blueprint $table) {
             $table->foreign('invitation_id')->references('id')->on('invitations');
         });
 
-        Schema::table('componentData', function (Blueprint $table) {
+        Schema::table('component_data', function (Blueprint $table) {
             $table->foreign('component_id')->references('id')->on('components');
         });
     }
