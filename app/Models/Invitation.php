@@ -8,14 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Invitation extends Model
 {
-    protected $table = 'invitation';
+    
+    protected $table = 'invitations';
     protected $fillable = [
         'id',
-        'user_id',
+        'users_id',
         'package_id',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
     
     public function User()
