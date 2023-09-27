@@ -12,7 +12,7 @@ class Invitation extends Model
     protected $table = 'invitations';
     protected $fillable = [
         'id',
-        'users_id',
+        'user_id',
         'package_id',
     ];
     
