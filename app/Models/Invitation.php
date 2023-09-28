@@ -9,7 +9,7 @@ class invitation extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
+
     protected $table = 'invitation';
     protected $fillable = [
         'id',
@@ -19,10 +19,10 @@ class invitation extends Model
         'updated_at',
         'deleted_at',
     ];
-    
+
     public function event()
     {
-        return $this->hasOne(event::class, 'invitation_id');
+        return $this->hasOne(Event::class, 'invitation_id');
     }
 
     public function packages()

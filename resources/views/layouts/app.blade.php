@@ -12,19 +12,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    
-    
+
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/font-awesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="/assets/vendor/choices/css/choices.min.css">
 	<link rel="stylesheet" type="text/css" href="/assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css">
-    
+
     <!-- Styles CSS -->
     @vite(['resources/sass/app.scss'])
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
-    
+
     @yield('css')
 </head>
 
@@ -38,7 +38,7 @@
 
 <!-- Main content START -->
 <main>
-	
+
 	<!-- Sidebar -->
 	<nav class="navbar sidebar navbar-expand-xl navbar-light bg-light">
 
@@ -49,7 +49,7 @@
 			</a>
 		</div>
 		<!-- Navbar brand for xl END -->
-		
+
 		<div class="offcanvas offcanvas-start flex-row custom-scrollbar h-100" data-bs-backdrop="true" tabindex="-1" id="offcanvasSidebar">
 			<div class="offcanvas-body sidebar-content d-flex flex-column bg-light">
 
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<!-- Sidebar footer END -->
-				
+
 			</div>
 		</div>
 	</nav>
@@ -85,7 +85,7 @@
 
 <!-- Page content -->
 <div class="page-content">
-	
+
 	<!-- Top bar -->
 	<nav class="navbar top-bar navbar-light bg-light border-bottom py-0 py-xl-3">
 		<div class="container-fluid p-0">
@@ -107,10 +107,10 @@
 					</button>
 				</div>
 				<!-- Toggler for sidebar END -->
-				
+
 				<!-- Top bar left -->
 				<div class="navbar-expand-lg ms-auto ms-xl-auto z-1">
-					
+
 					<!-- Responsive navbar toggler -->
 					<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-animation">
@@ -133,7 +133,7 @@
 					<!-- Main navbar END -->
 				</div>
 				<!-- Top bar left END -->
-				
+
 				<!-- Top bar right -->
 				<div class="ms-xl-0">
 					<ul class="navbar-nav flex-row align-items-center">
@@ -160,7 +160,7 @@
 										</div>
 									</div>
 								</li>
-                                <li>            
+                                <li>
                                     <hr class="dropdown-divider">
                                 </li>
 								<!-- Links -->
