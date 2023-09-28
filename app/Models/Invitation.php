@@ -14,11 +14,8 @@ class Invitation extends Model
     protected $table = 'invitations';
     protected $fillable = [
         'id',
-        'user_id',
-        'package_id',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'users_id',
+        'package_id',        
     ];
     
     public function User()

@@ -12,7 +12,6 @@
         <!-- DashForge CSS -->
         <link rel="stylesheet" href="/assets/css/dashforge.css">
         <link rel="stylesheet" href="/assets/css/dashforge.demo.css">
-        @yield('css')
 </head>
 
 <body class="pos-relative " data-spy="scroll" data-target="#navSection" data-offset="120" >
@@ -59,12 +58,13 @@
     <script src="/assets/lib/feather-icons/feather.min.js"></script>
     <script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/lib/prismjs/prism.js"></script>
+
     <script src="/assets/js/dashforge.js"></script>
     <script>
       $(function(){
         'use strict'
+
       });
     </script>
-    @yield('js')
 </body>
 </html>

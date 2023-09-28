@@ -12,15 +12,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categoria = Category::all();
-        return view('/category/category', compact('categoria'));
+        $categorias = Category::all();
+        return view('/category/category', compact('categorias'));
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $categoria=Category::all();        
+        $categoria=Category::whereNull('category_id')->get();       
         
         return view('/category/category-add',compact('categoria'));
     }
@@ -30,15 +30,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([            
-            'category_id' => 'required',
-            'name' => 'required',            
+            'category_id' => 'nullable',
+            'name' => 'required|unique:categories',            
         ]);
 
         $categoria = new Category();
         $categoria->category_id = $request->input('category_id');
-        $categoria->name = $request->input('name');               
+        $categoria->name = $request->input('name');                     
         $categoria->save();
-        return view('/category/category-add',compact('categoria'));
+        return redirect()->route('category')->with('add', 'ok');
     }
     /**
      * Display the specified resource.
@@ -55,24 +55,27 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categoria = Category::find($id);
-        return view('/category/category-edit', compact('categoria'));
+        $categoria = Category::find($id);        
+
+        $fathercategorias = Category::whereNull('category_id')->get();
+       
+        return view('/category/category-edit', compact('categoria','fathercategorias'));
     }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([           
-            'category_id' => 'required',
-            'name' => 'required',            
-        ]);
-
+    { 
         $categoria = Category::find($id);
+        $request->validate([           
+            'category_id' => 'nullable',
+            'name' => 'required|unique:categories,name,'.$categoria->id,            
+        ]);
+       
         $categoria->category_id = $request->input('category_id');
         $categoria->name = $request->input('name');               
         $categoria->save();
-        return view('/category/category-edit', compact('categoria'));
+        return redirect()->route('category')->with('edit', 'ok');
     }
     /**
      * Remove the specified resource from storage.
@@ -82,6 +85,6 @@ class CategoryController extends Controller
         
         $categoria->delete();
 
-        return redirect("/category");
+        return redirect("/category")->with('delete', 'ok');
     }
 }

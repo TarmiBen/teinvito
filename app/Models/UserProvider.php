@@ -14,18 +14,18 @@ class UserProvider extends Model
     protected $table = 'users_provider';
     protected $fillable = [
         'id',
-        'user_id',
+        'users_id',
         'company_id',
     ];
 
     public function User()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function Company()
     {
-        return $this->belongTo(Company::class, 'id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
 
