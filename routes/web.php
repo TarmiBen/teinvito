@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MySubscriptionController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\InvitationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::resource('my-subscription', MySubscriptionController::class)->middleware(
 
 Route::resource('subscription', SubscriptionController::class)->middleware('verified')->names('subscription');
 
+Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
 //category
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
