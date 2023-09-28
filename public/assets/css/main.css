@@ -262,3 +262,43 @@
     color: var(--color-primario);
     font-weight: bold;
 }
+
+.text-primary-ti, .link-primary-ti {
+    color: var(--color-primario);
+}
+
+.link-primary-ti:hover {
+    color: var(--color-primario-claro);
+}
+
+.text-secondary-ti, .link-secondary-ti {
+    color: var(--color-secundario);
+}
+
+.link-secondary-ti:hover {
+    color: var(--color-secundario-claro);
+}
+
+.text-tertiary-ti, .link-tertiary-ti {
+    color: var(--color-terciario);
+}
+
+.link-tertiary-ti:hover {
+    color: var(--color-terciario-claro);
+}
+
+.text-quaternary-ti, .link-quaternary-ti {
+    color: var(--color-cuaternario);
+}
+
+.link-quaternary-ti:hover {
+    color: var(--color-cuaternario-claro);
+}
+
+.text-quintenary-ti, .link-quintenary-ti {
+    color: var(--color-quintenario);
+}
+
+.link-quintenary-ti:hover {
+    color: var(--color-quintenario-claro);
+}
