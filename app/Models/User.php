@@ -16,19 +16,19 @@ class User extends Authenticatable implements MustVerifyEmail
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 
-        'email', 
-        'name', 
-        'lastname', 
-        'phone', 
-        'email_verified_at', 
-        'password', 
-        'remember_token', 
+        'id',
+        'email',
+        'name',
+        'lastname',
+        'phone',
+        'email_verified_at',
+        'password',
+        'remember_token',
     ];
 
     protected $hidden = [
-        'password', 
-        'remember_token', 
+        'password',
+        'remember_token',
     ];
 
     protected $casts = [
@@ -36,11 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
-<<<<<<< HEAD
-    public function userProvider(){
-        return $this->HasMany(userProvider::class, 'user_id');
-    }
-=======
+
     public function UserProvider(){
         return $this->hasMany(UserProvider::class, 'user_id');
     }
@@ -53,5 +49,5 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Invitation::class, 'user_id');
     }
 
->>>>>>> develop
+
 }
