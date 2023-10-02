@@ -53,4 +53,8 @@ class Invitation extends Model
         return $this->hasMany(Guests::class, 'invitation_id');
     }
 
+    public function Events_Invitations()
+    {
+    return $this->belongsTo(Events_Invitations::class, 'invitation_id');
+    }
 }
