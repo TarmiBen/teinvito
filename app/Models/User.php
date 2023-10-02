@@ -37,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
+
     public function UserProvider(){
         return $this->hasMany(UserProvider::class, 'user_id');
     }
