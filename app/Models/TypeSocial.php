@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class types_socials extends Model
+class TypeSocial extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -17,7 +18,7 @@ class types_socials extends Model
         'icon',        
     ];
 
-    public function social(){
-        return $this->belongTo(social::class, 'type_social_id');
+    public function Social(){
+        return $this->belongTo(Social::class, 'type_social_id');
     }
 }

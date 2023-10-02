@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('company', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('phone');
             $table->string('name');
@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('description');
             $table->string('logo');
             $table->string('cover');
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
     }
 
