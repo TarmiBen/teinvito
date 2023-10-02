@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\types_socials;
 
-class Social extends Model
+class socials extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -20,18 +20,18 @@ class Social extends Model
         'url',        
     ];
 
-    public function Company()
+    public function type_social()
     {
-        return $this->belongsTo(Company::class, 'id');
-    }
-
-    public function TypeSocial()
-    {
-        return $this->hasOne(TypeSocial::class, 'id');
+        return $this->hasOne(type_social::class, 'id');
     }
     
-    public function Service()
+    public function company()
     {
-        return $this->belongsTo(Service::class, 'id');
+        return $this->belongsTo(company::class, 'id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(service::class, 'id');
     }
 }

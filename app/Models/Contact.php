@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Contact extends Model
+class contacts extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'contacts';
+    protected $table = 'contact';
     protected $fillable = [
         'id', 
         'company_id', 
@@ -22,9 +21,8 @@ class Contact extends Model
         'telephone',         
     ];
 
-    public function Company()
+    public function company()
     {
-        return $this->belongsTo(Company::class, 'id');
+        return $this->belongsTo(company::class, 'id');
     }
 }
-

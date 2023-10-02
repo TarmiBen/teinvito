@@ -11,22 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('component_data', function (Blueprint $table) { 
+        Schema::create('component_data', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('invitation_id')->unsigned(); 
-            $table->biginteger('component_id')->unsigned(); 
+            $table->biginteger('invitation_id')->unsigned();
+            $table->biginteger('component_id')->unsigned();
             $table->string('key');
-            $table->string('value'); 
+            $table->string('value');
             $table->timestamps();
-            $table->softDeletes()->nullable();
+        });
+
+
+        Schema::table('component_data', function (Blueprint $table) {
+            $table->foreign('invitation_id')->references('id')->on('invitation');
         });
 
         Schema::table('component_data', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitations');
-        });
+            $table->foreign('component_id')->references('id')->on('component');
 
-        Schema::table('component_data', function (Blueprint $table) {
-            $table->foreign('component_id')->references('id')->on('components');
         });
     }
     /**
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('componentData');
+        Schema::dropIfExists('component_data');
     }
 };

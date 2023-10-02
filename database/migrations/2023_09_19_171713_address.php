@@ -20,9 +20,7 @@ return new class extends Migration
             $table->integer('cp')->unsigned();
             $table->string('colony');
             $table->string('city');
-            $table->string('state');  
-            $table->timestamps();
-            $table->softDeletes()->nullable();          
+            $table->string('state');            
         });
     }
 
