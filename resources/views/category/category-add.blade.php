@@ -17,14 +17,14 @@
               </div>
               <input type="text" class="form-control" placeholder="Categoria" aria-label="categoria" name="category_id" id="category_id" aria-describedby="basic-addon1" required>
             </div>
-            
+
             <div class="input-group mg-b-10">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Nombre</span>
               </div>
               <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre" name ="name" id= "name" aria-describedby="basic-addon1" required>
             </div>
-            <td><button type="submit" class="btn icon ion-md-add-circle-outline btn btn-outline-success ">    Registrar</button></td> 
+            <td><button type="submit" class="btn icon ion-md-add-circle-outline btn btn-outline-success ">    Registrar</button></td>
             <a href="{{route('category')}}" class="btn icon typcn typcn-arrow-back-outline btn btn-outline-info ">Regresar</a>
           </form>
         </section>
@@ -37,7 +37,7 @@
           </div>
           <div>
             <nav class="nav">
-              
+
             </nav>
           </div>
         </footer>

@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserProvider extends Model
+class user_provider extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -18,15 +17,13 @@ class UserProvider extends Model
         'company_id',
     ];
 
-    public function User()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(users::class, 'id');
     }
 
-    public function Company()
+    public function company()
     {
-        return $this->belongTo(Company::class, 'id');
+        return $this->belongTo(company::class, 'id');
     }
-
-
 }

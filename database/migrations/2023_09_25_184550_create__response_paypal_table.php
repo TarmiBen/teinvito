@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
+        Schema::create('response_paypal', function (Blueprint $table) {
             $table->id();
+            $table->string('id_paypal');
+            $table->string('status');
+            $table->string('payer_id');
             $table->string('name');
-            $table->BigInteger('category_id')->unsigned();
-        });
-
-        Schema::table('category', function (Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('amount');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,7 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('response_paypal');
     }
 };
-

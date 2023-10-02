@@ -11,23 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invitation_components', function (Blueprint $table) { 
+
+        Schema::create('invitation_components', function (Blueprint $table) {
+
             $table->id();
-            $table->biginteger('invitation_id')->unsigned(); 
+            $table->biginteger('invitation_id')->unsigned();
             $table->biginteger('component_id')->unsigned();
-            $table->integer('order'); 
             $table->timestamps();
-            $table->softDeletes()->nullable();
-            
+
         });
 
 
+
         Schema::table('invitation_components', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitations');
+            $table->foreign('invitation_id')->references('id')->on('invitation');
         });
 
         Schema::table('invitation_components', function (Blueprint $table) {
-            $table->foreign('component_id')->references('id')->on('components');
+            $table->foreign('component_id')->references('id')->on('component');
+
 
         });
     }

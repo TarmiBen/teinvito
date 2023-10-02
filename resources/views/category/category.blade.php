@@ -7,8 +7,8 @@
 <div class="content content-components bg-gray-1">
 <h1 class="df-title">Categorias</h1>
 
-<section id="Section1"> 
-  <table class="table table-bordered table-striped table-dark"> 
+<section id="Section1">
+  <table class="table table-bordered table-striped table-dark">
     <thead>
       <tr>
         <th>ID</th>
@@ -19,7 +19,7 @@
     </thead>
     <tbody>
       @foreach ($categoria as $categorias)
-      <tr>              
+      <tr>
         <td>{{$categorias->id}}</td>
         <td>{{$categorias->category_id}}</td>
         <td>{{$categorias->name}}</td>
@@ -29,14 +29,14 @@
             @csrf
             <a type="button" class="btn btn-outline-warning far fa-eye" href="{{url('category/'.$categorias->id. '/category-show')}}"></a>
             <a type="button" class="btn btn-outline-info far fa-edit" href="{{url('category/'.$categorias->id. '/category-edit')}}"></a>
-            <button type="submit" class="btn btn-outline-danger typcn typcn-delete"></button>   
-          </form>   
-        </td>          
-      </tr>   
-      @endforeach         
+            <button type="submit" class="btn btn-outline-danger typcn typcn-delete"></button>
+          </form>
+        </td>
+      </tr>
+      @endforeach
     </tbody>
   </table>
-</section>   
+</section>
 
 <br>
 <br>
@@ -49,7 +49,7 @@
   </div>
   <div>
     <nav class="nav">
-      
+
     </nav>
   </div>
 </footer>
