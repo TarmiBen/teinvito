@@ -9,16 +9,16 @@ class ComponentData extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'component';
+
+    protected $table = 'component_data';
+
     protected $fillable = [
-        'id',
+
         'invitation_id',
         'component_id',
         'key',
         'value',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+
     ];
 
     public function components(){

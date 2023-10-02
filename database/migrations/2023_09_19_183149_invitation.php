@@ -13,15 +13,21 @@ return new class extends Migration
     {
         Schema::create('invitation', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('user_id')->unsigned(); 
+            $table->BigInteger('user_id')->unsigned();
             $table->BigInteger('package_id')->unsigned();
-            $table->timestamps();                           
+            $table->timestamps();
         });
 
-        Schema::table('invitation', function (Blueprint $table) {
-            $table->foreign('package_id')->references('id')->on('package');
+
+        Schema::table('invitations', function (Blueprint $table) {
+            $table->foreign('package_id')->references('id')->on('packages');
         });
-        
+
+        Schema::table('invitations', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+
     }
 
     /**

@@ -20,7 +20,9 @@ return new class extends Migration
         });
 
         Schema::table('galery', function (Blueprint $table) {
-            $table->foreign('service_package_id')->references('id')->on('servicePackage')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreign('service_package_id')->references('id')->on('service_package')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

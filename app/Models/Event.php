@@ -22,10 +22,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
+
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'new_event';
+
+    protected $table = 'event';
+
     protected $fillable = [
         'id',
         'user_id',
@@ -41,4 +44,11 @@ class Event extends Model
     {
         return $this->belongTo(invitation::class, 'id');
     }
+
+
+    public function Events_Invitations()
+    {
+        return $this->belongsTo(Events_Invitations::class, 'event_id');
+    }
+
 }

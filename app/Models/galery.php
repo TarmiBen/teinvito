@@ -23,5 +23,8 @@ class galery extends Model
     {
         return $this->belongsTo(servicePackage::class, 'id');
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> develop
 }

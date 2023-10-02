@@ -7,16 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class address extends Model
 {
+
+    use HasFactory;
+    use SoftDeletes;
+
     protected $table = 'address';
     protected $fillable = [
-        'id',        
-        'name',        
+        'id',
+        'name',
         'street',
         'int',
         'ext',
         'cp',
         'colony',
         'city',
-        'state',        
+        'state',
     ];
+
+
+    public function Company()
+    {
+        return $this->belongsTo(Company::class, 'id');
+    }
+
 }

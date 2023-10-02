@@ -20,9 +20,11 @@ class categories extends Model
     public function category()
     {
         return $this->hasOne(category::class, 'id');
-    }    
+    }
 
-    public function service()
+
+    public function CategorysChild()
+
     {
         return $this->belongTo(service::class, 'category_id');
     }

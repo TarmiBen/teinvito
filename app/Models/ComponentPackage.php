@@ -9,7 +9,11 @@ class Componentpackage extends Model
 {
     use HasFactory;
     use SoftDeletes;
+<<<<<<< HEAD
     protected $table = 'component';
+=======
+    protected $table = 'componentPackages';
+>>>>>>> develop
     protected $fillable = [
         'id',
         'component_id',
@@ -21,8 +25,20 @@ class Componentpackage extends Model
         return $this->belongsTo(Component::class, 'id');
     }
 
+<<<<<<< HEAD
     public function packages()
+=======
+    public function Packages()
+>>>>>>> develop
     {
         return $this->belongsTo(package::class, 'id');
     }
+<<<<<<< HEAD
+=======
+
+    public function Components()
+    {
+        return $this->hasMany(Component::class, 'component_package_id');
+    }
+>>>>>>> develop
 }

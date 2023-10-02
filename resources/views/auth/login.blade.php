@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.users.app')
+
 
 @section('content')
 <div class="container-fluid">
@@ -6,7 +7,7 @@
         <div class="col-6 d-none d-lg-flex px-5 bg-tertiary-ti flex-column justify-content-center align-items-center">
             <span class="h1 fw-bold text-center text-white">
                 Cada evento comienza de manera excepcional con una invitación digital asombrosa.
-            </span>    
+            </span>
             <img src="/assets/img/login/login.svg" alt="" class="img-fluid">
         </div>
         <div class="col-12 col-lg-6 px-0 px-lg-5 py-5 d-flex justify-content-center align-items-center">
@@ -47,7 +48,7 @@
                                 <div class="col-12 d-flex justify-content-between mt-3">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-    
+
                                         <label class="form-check-label" for="remember">
                                             Recuerdame
                                         </label>

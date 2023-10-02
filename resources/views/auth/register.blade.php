@@ -1,4 +1,6 @@
-@extends('layouts.app')
+
+@extends('layouts.users.app')
+
 
 @section('content')
 <div class="container-fluid">
@@ -6,7 +8,7 @@
         <div class="col-6 d-none d-lg-flex px-5 bg-quaternary-ti flex-column justify-content-center align-items-center">
             <span class="h1 fw-bold text-center text-white">
                 Cada evento comienza de manera excepcional con una invitación digital asombrosa.
-            </span>    
+            </span>
             <img src="/assets/img/login/login.svg" alt="" class="img-fluid">
         </div>
         <div class="col-12 col-lg-6 px-0 px-lg-5 py-5 d-flex justify-content-center align-items-center">
@@ -31,7 +33,7 @@
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span> 
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="col-12 mt-3">
@@ -42,7 +44,7 @@
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span> 
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="col-12 mt-3">
@@ -53,7 +55,7 @@
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span> 
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="col-12 mt-3">
@@ -93,7 +95,7 @@
                             </div>
                         </div> -->
                         <div class="mt-4 text-center">
-                            ¿Ya tienes una cuenta? 
+                            ¿Ya tienes una cuenta?
                             <a href="{{ route('login') }}" class="text-decoration-none">
                                 Inicia Sesion
                             </a>

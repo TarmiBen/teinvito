@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('telephone');
         });
 
-        Schema::table('contact', function (Blueprint $table) {            
-            $table->foreign('company_id')->references('id')->on('company')->onDelete('cascade')->onUpdate('cascade');
+
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 
