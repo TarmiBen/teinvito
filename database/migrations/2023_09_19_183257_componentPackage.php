@@ -11,23 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('component_packages', function (Blueprint $table) {
-
+        Schema::create('component_packages', function (Blueprint $table) { 
             $table->id();
-            $table->biginteger('component_id')->unsigned();
-            $table->biginteger('package_id')->unsigned();
-        });
-
-
-        Schema::table('component_packages', function (Blueprint $table) {
-            $table->foreign('component_id')->references('id')->on('component');
+            $table->biginteger('component_id')->unsigned(); 
+            $table->biginteger('package_id')->unsigned(); 
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
 
         Schema::table('component_packages', function (Blueprint $table) {
-            $table->foreign('package_id')->references('id')->on('package');
-
+            $table->foreign('component_id')->references('id')->on('components');
         });
+
+        Schema::table('component_packages', function (Blueprint $table) {
+            $table->foreign('package_id')->references('id')->on('packages');
+        });   
     }
     /**
      * Reverse the migrations.

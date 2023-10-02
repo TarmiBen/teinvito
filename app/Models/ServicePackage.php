@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class service_package extends Model
+class Service_package extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -19,12 +20,12 @@ class service_package extends Model
         'price',         
     ];
 
-    public function galery(){
-        return $this->hasMany(galery::class, 'service_package_id');
+    public function Galery(){
+        return $this->hasMany(Galery::class, 'service_package_id');
     }
 
-    public function service()
+    public function Service()
     {
-        return $this->belongsTo(service::class, 'id');
+        return $this->belongsTo(Service::class, 'id');
     }
 }

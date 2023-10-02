@@ -12,10 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->integer('user_invited_id');
+            $table->biginteger('users_id')->unsigned();
+            $table->integer('user_invited_id')->unsigned();
             $table->bigInteger('invitation_id')->unsigned();
             $table->string('type');
             $table->datetime('ceremony_date');
@@ -25,22 +25,19 @@ return new class extends Migration
             $table->string('title');
         });
 
-        Schema::table('event', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
-
+        Schema::table('events', function (Blueprint $table) {
+            $table->foreign('invitation_id')->references('id')->on('invitations');
         });
 
-        Schema::table('event', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitation');
+        Schema::table('events', function (Blueprint $table) {
+            $table->foreign('users_id')->references('id')->on('users');
         });
-
-
     }
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('event');
+        Schema::dropIfExists('events');
     }
 };

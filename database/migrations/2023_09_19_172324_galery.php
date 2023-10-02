@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('src');
             $table->string('tittle');
             $table->string('text');
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
 
         Schema::table('galery', function (Blueprint $table) {
-
             $table->foreign('service_package_id')->references('id')->on('service_package')->onDelete('cascade')->onUpdate('cascade');
-
         });
     }
 

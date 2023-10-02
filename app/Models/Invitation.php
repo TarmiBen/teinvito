@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class invitation extends Model
+class Invitation extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -16,32 +17,31 @@ class invitation extends Model
         'user_id',
         'package_id',
     ];
+    
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 
-    public function event()
+    public function Event()
     {
         return $this->hasOne(Event::class, 'invitation_id');
     }
 
-    public function packages()
+    public function Package()
     {
-        return $this->belongsTo(packages::class, 'id');
+        return $this->belongsTo(Package::class, 'id');
     }
 
-<<<<<<< HEAD
-    public function invitationComponents()
-=======
     public function InvitationsComponents()
->>>>>>> develop
     {
-        return $this->hasMany(invitationComponent::class, 'invitation_id');
+        return $this->hasMany(InvitationComponent::class, 'invitation_id');
     }
 
     public function ComponentsData()
     {
         return $this->hasMany(ComponentData::class, 'invitation_id');
     }
-<<<<<<< HEAD
-=======
     
     public function Guests()
     {
@@ -52,5 +52,4 @@ class invitation extends Model
     {
     return $this->belongsTo(Events_Invitations::class, 'invitation_id');
     }
->>>>>>> develop
 }

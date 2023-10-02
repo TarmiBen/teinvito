@@ -5,7 +5,7 @@
 @section('contenido')
 
 <main>
-
+  
     <div class="content content-components bg-gray-1">
 
       <h1 class="df-title">Categoria</h1>
@@ -21,7 +21,7 @@
               </div>
               <input type="text" class="form-control" placeholder="Categoria" aria-label="categoria" name="category_id" id="category_id" aria-describedby="basic-addon1" value="{{$categoria->category_id}}" required>
             </div>
-
+            
             <div class="input-group mg-b-10">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Nombre</span>
@@ -31,7 +31,7 @@
             <td><button type="submit" class="btn icon ion-md-add-circle-outline btn btn-outline-success ">    Editar</button></td>
             <a href="{{route('category')}}" class="btn icon typcn typcn-arrow-back-outline btn btn-outline-info">Regresar</a>
           </form>
-        </section>
+        </section>        
 
         <footer class="content-footer">
           <div>
@@ -40,7 +40,7 @@
           </div>
           <div>
             <nav class="nav">
-
+              
             </nav>
           </div>
         </footer>

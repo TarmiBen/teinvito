@@ -16,15 +16,15 @@ return new class extends Migration
             $table->biginteger('event_id')->unsigned();
             $table->biginteger('invitation_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes()->nullable();
+            $table->softDeletes()->nullable(); 
         });
 
         Schema::table('events_invitations', function (Blueprint $table) {
-            $table->foreign('event_id')->references('id')->on('event');
+            $table->foreign('event_id')->references('id')->on('events');
         });
 
         Schema::table('events_invitations', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitation');
+            $table->foreign('invitation_id')->references('id')->on('invitations');
         });
     }
 
