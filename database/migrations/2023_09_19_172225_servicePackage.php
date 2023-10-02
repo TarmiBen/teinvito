@@ -23,7 +23,7 @@ return new class extends Migration
 
 
         Schema::table('service_package', function (Blueprint $table) {
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('service_id')->references('id')->on('service')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

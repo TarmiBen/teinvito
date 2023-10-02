@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('url');
         });
 
-        Schema::table('socials', function (Blueprint $table) {
+        Schema::table('social', function (Blueprint $table) {
 
 
             $table->foreign('model_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('event', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->integer('user_invited_id');
             $table->bigInteger('invitation_id')->unsigned();
             $table->string('type');
@@ -25,14 +25,16 @@ return new class extends Migration
             $table->string('title');
         });
 
-        Schema::table('events', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitations');
-        });
-
-        Schema::table('events', function (Blueprint $table) {
-            $table->foreign('users_id')->references('id')->on('users');
+        Schema::table('event', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
+
+        Schema::table('event', function (Blueprint $table) {
+            $table->foreign('invitation_id')->references('id')->on('invitation');
+        });
+
+
     }
     /**
      * Reverse the migrations.

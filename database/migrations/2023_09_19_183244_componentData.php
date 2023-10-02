@@ -22,11 +22,11 @@ return new class extends Migration
 
 
         Schema::table('component_data', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitations');
+            $table->foreign('invitation_id')->references('id')->on('invitation');
         });
 
         Schema::table('component_data', function (Blueprint $table) {
-            $table->foreign('component_id')->references('id')->on('components');
+            $table->foreign('component_id')->references('id')->on('component');
 
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('componentData');
+        Schema::dropIfExists('component_data');
     }
 };

@@ -22,7 +22,7 @@ return new class extends Migration
         });
 
 
-        Schema::table('contacts', function (Blueprint $table) {
+        Schema::table('contact', function (Blueprint $table) {
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
 
         });

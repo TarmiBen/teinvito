@@ -27,7 +27,7 @@ return new class extends Migration
 
 
         Schema::table('response_messages', function (Blueprint $table) {
-            $table->foreign('platform_id')->references('id')->on('platforms');
+            $table->foreign('platform_id')->references('id')->on('platform');
 
         });
     }
