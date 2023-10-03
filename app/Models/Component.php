@@ -14,15 +14,14 @@ class Component extends Model
         'component_package_id',
         'name',
         'model_type',
+        
     ];
-
-    
     public function InvitationComponent()
     {
         return $this->hasMany(InvitationComponent::class, 'component_id');
     }
 
-    public function ComponentData()
+    public function ComponentsData()
     {
         return $this->hasMany(ComponentData::class, 'component_id');
     }

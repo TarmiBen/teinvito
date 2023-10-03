@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invitationComponents', function (Blueprint $table) { 
+        Schema::create('invitation_components', function (Blueprint $table) { 
             $table->id();
             $table->biginteger('invitation_id')->unsigned(); 
             $table->biginteger('component_id')->unsigned();
@@ -22,11 +22,11 @@ return new class extends Migration
         });
 
 
-        Schema::table('invitationComponents', function (Blueprint $table) {
+        Schema::table('invitation_components', function (Blueprint $table) {
             $table->foreign('invitation_id')->references('id')->on('invitations');
         });
 
-        Schema::table('invitationComponents', function (Blueprint $table) {
+        Schema::table('invitation_components', function (Blueprint $table) {
             $table->foreign('component_id')->references('id')->on('components');
 
         });

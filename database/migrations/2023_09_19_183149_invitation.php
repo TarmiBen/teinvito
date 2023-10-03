@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('users_id')->unsigned(); 
+            $table->BigInteger('user_id')->unsigned(); 
             $table->BigInteger('package_id')->unsigned();
             $table->timestamps();
             $table->softDeletes()->nullable();                           
         });
 
         Schema::table('invitations', function (Blueprint $table) {
-            $table->foreign('package_id')->references('id')->on('package');
+            $table->foreign('package_id')->references('id')->on('packages');
         });
 
         Schema::table('invitations', function (Blueprint $table) {            
-            $table->foreign('users_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
         
     }

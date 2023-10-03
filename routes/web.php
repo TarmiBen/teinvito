@@ -62,4 +62,4 @@ Route::get('/category/category-add', [CategoryController::class, 'create'])->nam
 Route::get('/category/{id}/category-edit', [CategoryController::class, 'edit'])->name('category.edit');
 Route::put('/category/{id}/category-edit', [CategoryController::class, 'update'])->name('category.update');
 Route::get('/category/{id}/category-show', [CategoryController::class, 'show'])->name('category.show');
-Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+Route::delete('/category/{categoria}', [CategoryController::class, 'destroy'])->name('category.destroy');

@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('types_socials', function (Blueprint $table) {
+        Schema::create('guests', function (Blueprint $table) {
             $table->id();
+            $table->string('hash');
+            $table->BigInteger('invitation_id')->unsigned();
             $table->string('name');
-            $table->string('icon');
+            $table->string('lastname')->nullable();
+            $table->string('phone')->nullable();
+            $table->integer('number')->unique();
+            $table->integer('status')->nullable();
             $table->timestamps();
             $table->softDeletes()->nullable();
         });
@@ -25,7 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('types_socials');
+        Schema::dropIfExists('guests');
     }
 };
-
