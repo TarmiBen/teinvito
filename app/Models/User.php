@@ -9,6 +9,48 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+    use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
+
+    protected $fillable = [
+        'id', 
+        'email', 
+        'name', 
+        'lastname', 
+        'phone', 
+        'email_verified_at', 
+        'password', 
+        'remember_token', 
+    ];
+
+    protected $hidden = [
+        'password', 
+        'remember_token', 
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function UserProvider(){
+        return $this->hasMany(UserProvider::class, 'users_id');
+    }
+
+    public function Event(){
+        return $this->hasMany(Event::class, 'user_id');
+    }
+
+    public function Invitation(){
+
+        return $this->hasMany(Invitation::class, 'users_id');
+
+    }
+
+}
 use Illuminate\Support\Facades\Auth;
 
     class User extends Authenticatable implements MustVerifyEmail
@@ -49,3 +91,4 @@ use Illuminate\Support\Facades\Auth;
             return $this->hasMany(Invitation::class, 'user_id');
         }
     }
+
