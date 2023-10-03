@@ -1,47 +1,27 @@
-@extends('layouts.category.category-functions')
+@extends('layouts.users.category-functions')
 
 @section('title','category')
 
 @section('contenido')
 
 <div class="content content-components bg-gray-1">
-<h1 class="df-title">Categorias</h1>
 
-<section id="Section1"> 
-  <table class="table table-bordered table-striped table-dark"> 
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Id_Categoria</th>
-        <th>Nombre</th>
-        <th>Acción</th>
-      </tr>
-    </thead>
-    <tbody>
-      @foreach ($categoria as $categorias)
-      <tr>              
-        <td>{{$categorias->id}}</td>
-        <td>{{$categorias->category_id}}</td>
-        <td>{{$categorias->name}}</td>
-        <td>
-          <form action="{{url('category/'.$categorias->id)}}" method="post" class="btn-group">
-            @method("DELETE")
-            @csrf
-            <a type="button" class="btn btn-outline-warning far fa-eye" href="{{url('category/'.$categorias->id. '/category-show')}}"></a>
-            <a type="button" class="btn btn-outline-info far fa-edit" href="{{url('category/'.$categorias->id. '/category-edit')}}"></a>
-            <button type="submit" class="btn btn-outline-danger typcn typcn-delete"></button>   
-          </form>   
-        </td>          
-      </tr>   
-      @endforeach         
-    </tbody>
-  </table>
+<div class="d-flex justify-content-between align-items-center">
+  <h2 class="df-title">Categorias</h2>
+  <a href="{{route('category.create')}}" class="btn icon ion-md-add-circle-outline btn btn-outline-success ">  Registrar nueva categoria</a>
+</div>
+
+
+<section id="Section1">
+
+<div class="card shadow-lg mt-4">
+<div class="card-body">
+  @livewire('category-component')
+</div>
+
+</div>
 </section>   
 
-<br>
-<br>
-
-<a href="{{route('category.create')}}" class="btn icon ion-md-add-circle-outline btn btn-outline-success ">Registrar</a>
 <footer class="content-footer">
   <div>
     <span>&copy;  </span>
@@ -54,5 +34,69 @@
   </div>
 </footer>
 </div>
+@endsection
 
+@section('js')
+
+
+<!-- alertas -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  @if(session('delete') == 'ok')
+  <script>
+    Swal.fire(
+      'Eliminado!',
+      'Su categoria ha sido eliminado.',
+      'success'
+      )
+  </script>
+  @endif  
+
+  <script>
+
+    $('.form-delete').submit(function(e){
+      e.preventDefault();
+
+      Swal.fire({
+      title: 'Estas seguro?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borralo!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        // Swal.fire(
+        // 'Deleted!',
+        // 'Your file has been deleted.',
+        // 'success'
+        // )
+
+        this.submit();
+      }
+    })
+    });
+  </script>
+ 
+  @if(session('add') == 'ok')
+    <script>
+      Swal.fire(
+        'Registrado!',
+        'Su catergoria ha sido registrada.',
+        'success'
+        )
+    </script>
+    @endif
+    
+    @if(session('edit') == 'ok')
+    <script>
+      Swal.fire(
+        'Editado!',
+        'Su catergoria ha sido editada.',
+        'success'
+        )
+    </script>
+    @endif 
 @endsection

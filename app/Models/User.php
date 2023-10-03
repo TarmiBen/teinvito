@@ -37,7 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function UserProvider(){
-        return $this->hasMany(UserProvider::class, 'user_id');
+        return $this->hasMany(UserProvider::class, 'users_id');
     }
 
     public function Event(){
@@ -45,7 +45,9 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function Invitation(){
-        return $this->hasMany(Invitation::class, 'user_id');
+
+        return $this->hasMany(Invitation::class, 'users_id');
+
     }
 
 }

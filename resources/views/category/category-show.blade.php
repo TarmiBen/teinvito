@@ -1,4 +1,4 @@
-@extends('layouts.category.category-functions')
+@extends('layouts.users.category-functions')
 
 @section('title', 'Mostrar categoria')
 
@@ -21,7 +21,13 @@
               
               <tr>              
                 <td>{{$categoria->id}}</td>
-                <td>{{$categoria->category_id}}</td>
+                <td>
+                    @if ($categoria->Category)
+                        {{ $categoria->Category->name }}
+                    @else
+                        Esta es una categoría padre
+                    @endif
+                </td>
                 <td>{{$categoria->name}}</td>          
               </tr>   
             </tbody>
