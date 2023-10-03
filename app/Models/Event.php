@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
-    protected $table = 'event';
+    protected $table = 'events';
     protected $fillable = [
         'id',
         'user_id',
@@ -19,7 +19,7 @@ class Event extends Model
         'event_date',
         'title',
     ];
-    
+
     public function User()
     {
         return $this->belongsTo(User::class, 'id');
