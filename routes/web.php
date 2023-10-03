@@ -6,6 +6,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MySubscriptionController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\CompanieController;
+use App\Http\Controllers\UserProviderController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +26,7 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+//logout
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 
@@ -33,6 +37,16 @@ Route::resource('my-subscription', MySubscriptionController::class)->middleware(
 Route::resource('subscription', SubscriptionController::class)->middleware('verified')->names('subscription');
 
 Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
+Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
+Route::resource('admin/userProviders', UserProviderController::class)->names('admin.userProviders');
+Route::resource('admin/contacts', ContactController::class)->names('admin.contacts');
+//restored section
+Route::get('/admin/companies/{id}/restore', [CompanieController::class, 'restore'])->name('admin.companies.restore');
+Route::get('/admin/userProviders/{id}/restore', [UserProviderController::class, 'restore'])->name('admin.userProviders.restore');
+Route::get('/admin/contacts/{id}/restore', [ContactController::class, 'restore'])->name('admin.contacts.restore');
+//autocomplete section
+Route::get('/autoCompleteUser/json', [UserProviderController::class, 'autoCompleteUser'])->name('admin.userProviders.autoCompleteUser');
+Route::get('/autoCompleteCompany/json', [UserProviderController::class, 'autoCompleteCompany'])->name('admin.userProviders.autoCompleteCompany');
 //category
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
 Route::get('/categories', \App\Http\Livewire\CategoryComponent::class)->name('categories');
