@@ -17,8 +17,7 @@
 </head>
 
 
-<script>src="https://code.jquery.com/jquery-3.7.1.min.js"</script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 @livewireStyles
 
 <body class="pos-relative " data-spy="scroll" data-target="#navSection" data-offset="120" >
@@ -58,8 +57,9 @@
     </div>
 
 
-    @yield('contenido')  
-
+    @yield('content')  
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="/assets/lib/jquery/jquery.min.js"></script>
     <script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/lib/feather-icons/feather.min.js"></script>
@@ -71,6 +71,7 @@
         'use strict'
       });
     </script>
-    @yield('js')
+    
+    @yield('scripts')
 </body>
 </html>

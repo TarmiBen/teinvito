@@ -35,7 +35,6 @@ Route::resource('subscription', SubscriptionController::class)->middleware('veri
 Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
 //category
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
-Route::get('/categories', \App\Http\Livewire\CategoryComponent::class)->name('categories');
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
 Route::get('/category/category-add', [CategoryController::class, 'create'])->name('category.create');
 Route::get('/category/{id}/category-edit', [CategoryController::class, 'edit'])->name('category.edit');

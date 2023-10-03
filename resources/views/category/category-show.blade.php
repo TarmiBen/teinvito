@@ -1,17 +1,16 @@
-@extends('layouts.users.category-functions') {{-- Extiende una plantilla llamada 'layouts.users.category-functions' --}}
+@extends('layouts.users.category-functions')
 
-@section('title', 'Mostrar categoria') {{-- Define el título de la página --}}
+@section('title', 'Mostrar categoria')
 
-@section('contenido') {{--Abre la sección 'contenido'--}}
+@section('content')
 
-<div class="content content-components bg-gray-1 "> {{-- Abre un contenedor con clases para el diseño --}}
+<div class="content content-components bg-gray-1 ">
 
-    <h1 class="df-title">Categorias</h1> {{--Muestra un encabezado con título --}}
+    <h1 class="df-title">Categorias</h1>
 
-    <section id="1"> {{-- Inicia una sección" --}}
+    <section id="1">
 
         <table class="table table-bordered table-striped table-dark">
-            {{-- Crea una tabla con clases CSS para el estilo --}}
 
             <thead>
                 <tr>
@@ -39,7 +38,7 @@
     <br>
     <br>
     <a href="{{route('category')}}" class="btn icon typcn typcn-arrow-back-outline btn btn-outline-info">Regresar</a>
-    {{-- Muestra un enlace para regresar a la página de categorías --}}
+
     <footer class="content-footer">
         <div>
             <span>&copy; </span>
@@ -53,4 +52,4 @@
     </footer>
 </div>
 </div>
-@endsection {{-- Cierra la sección 'contenido' y la vista --}}
+@endsection 

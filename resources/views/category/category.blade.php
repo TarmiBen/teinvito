@@ -1,19 +1,19 @@
-@extends('layouts.users.category-functions') {{-- Extiende una plantilla llamada 'layouts.users.category-functions' --}}
+@extends('layouts.users.category-functions')
 
-@section('title','category') {{-- Define el título de la página --}}
+@section('title','category')
 
-@section('contenido') {{--Abre la sección 'contenido'--}}
+@section('content')
 
-<div class="content content-components bg-gray-1"> {{-- Abre un contenedor con clases el diseño --}}
+<div class="content content-components bg-gray-1">
 
     <div class="d-flex justify-content-between align-items-center">
-        {{--Muestra un encabezado con título y botón de registro --}}
+
         <h2 class="df-title">Categorias</h2>
         <a href="{{route('category.create')}}" class="btn icon ion-md-add-circle-outline btn btn-outline-success ">
             Registrar nueva categoria</a>
     </div>
 
-    <section id="Section1"> {{-- Inicia una sección" --}}
+    <section id="Section1"> 
 
         <div class="card shadow-lg mt-4">
             <div class="card-body">
@@ -22,12 +22,11 @@
         </div>
     </section>
 </div>
-@endsection {{-- Cierra la sección 'contenido' y la vista --}}
+@endsection 
 
-@section('js') {{-- Abre la sección 'js' para agregar scripts JavaScript --}}
-<!-- alertas -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{{--  Incluye el script de la biblioteca "SweetAlert2" para mostrar alertas --}}
+@section('scripts') 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> {{-- Script de la biblioteca "SweetAlert2" --}}
 
 
 @if(session('delete') == 'ok')
@@ -93,4 +92,4 @@
 
 </script>
 @endif
-@endsection {{-- Cierra la sección 'js' --}}
+@endsection
