@@ -22,15 +22,15 @@
             <tbody>
 
                 <tr>
-                    <td>{{$categoria->id}}</td> {{-- Muestra el ID de la categoría --}}
+                    <td>{{$category->id}}</td> {{-- Muestra el ID de la categoría --}}
                     <td>
-                        @if ($categoria->Category) {{-- Comprueba si existe una categoría asociada --}}
-                        {{ $categoria->Category->name }} {{-- Muestra el nombre de la categoría asociada --}}
+                        @if ($category->Category) {{-- Comprueba si existe una categoría asociada --}}
+                        {{ $category->Category->name }} {{-- Muestra el nombre de la categoría asociada --}}
                         @else
                         Esta es una categoría padre {{-- Muestra un mensaje si no hay categoría asociada --}}
                         @endif
                     </td>
-                    <td>{{$categoria->name}}</td> {{-- Muestra el nombre de la categoría --}}
+                    <td>{{$category->name}}</td> {{-- Muestra el nombre de la categoría --}}
                 </tr>
             </tbody>
         </table>

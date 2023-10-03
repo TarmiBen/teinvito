@@ -37,8 +37,8 @@
                 <select class="custom-select" placeholder="Categoria" aria-label="categoria" name="category_id"
                     id="category_id" aria-describedby="basic-addon1" required>
                     <option value="">Selecciona una categoria</option>
-                    @foreach ($categoria as $categorias)
-                    <option value="{{$categorias->id}}">{{$categorias->name}}</option>
+                    @foreach ($category as $categories)
+                    <option value="{{$categories->id}}">{{$categories->name}}</option>
                     {{-- Opciones de categoría padre --}}
                     @endforeach
                 </select>

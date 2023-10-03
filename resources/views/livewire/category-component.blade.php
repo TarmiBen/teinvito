@@ -1,8 +1,8 @@
 <div class="card shadow-lg mt-4" wire:ignore>
   <select id="select2" class="form-control select2" wire:model="category_id">
   <option value = ""></option>
-    @foreach ($categoria as $categorias)
-  <option value="{{$categorias->id}}">{{$categorias->name}}</option>
+    @foreach ($category as $categories)
+  <option value="{{$categories->id}}">{{$categories->name}}</option>
     @endforeach
   </select>
   <div class="card-body">
@@ -16,23 +16,23 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($categoria as $categorias)
+      @foreach ($category as $categories)
       <tr>              
-        <td>{{$categorias->id}}</td>
+        <td>{{$categories->id}}</td>
         <td>
-          @if ($categorias->Category)
-              {{ $categorias->Category->name }}
+          @if ($categories->Category)
+              {{ $categories->Category->name }}
           @else
               Esta es una categoría padre
           @endif
         </td>
-        <td>{{$categorias->name}}</td>
+        <td>{{$categories->name}}</td>
         <td>
-          <form action="{{url('category/'.$categorias->id)}}" method="post" class="btn-group form-delete form-edit form-add text-center">
+          <form action="{{url('category/'.$categories->id)}}" method="post" class="btn-group form-delete form-edit form-add text-center">
             @method("DELETE")
             @csrf
-            <a type="button" class="btn btn-outline-warning far fa-eye" href="{{url('category/'.$categorias->id. '/category-show')}}"></a>
-            <a type="button" class="btn btn-outline-info far fa-edit" href="{{url('category/'.$categorias->id. '/category-edit')}}"></a>
+            <a type="button" class="btn btn-outline-warning far fa-eye" href="{{url('category/'.$categories->id. '/category-show')}}"></a>
+            <a type="button" class="btn btn-outline-info far fa-edit" href="{{url('category/'.$categories->id. '/category-edit')}}"></a>
             <button type="submit" class="btn btn-outline-danger typcn typcn-delete  "></button>   
           </form>   
         </td>          

@@ -26,9 +26,9 @@
     <select class="custom-select" placeholder="Categoria" aria-label="categoria" name="category_id" id="category_id"
         aria-describedby="basic-addon1" required>
         <option selected>Selecciona una categoria</option> 
-        @foreach ($fathercategorias as $fathercategoria) {{-- Ciclo que recorre las categorías padre --}}
-        <option value="{{ $fathercategoria->id }}" @if ($fathercategoria->id == $fathercategoria->id) selected
-            @endif>{{ $fathercategoria->name }}</option> {{-- Opciones de categoría padre --}}
+        @foreach ($fathercategories as $fathercategory) {{-- Ciclo que recorre las categorías padre --}}
+        <option value="{{ $fathercategory->id }}" @if ($fathercategory->id == $fathercategory->id) selected
+            @endif>{{ $fathercategory->name }}</option> {{-- Opciones de categoría padre --}}
         @endforeach
     </select>
 </div>
@@ -38,7 +38,7 @@
         <span class="input-group-text" id="basic-addon1">Nombre</span>
     </div>
     <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre" name="name" id="name"
-        aria-describedby="basic-addon1" value="{{$categoria->name}}" required> {{-- Campo de entrada para el nombre de la categoría --}}
+        aria-describedby="basic-addon1" value="{{$category->name}}" required> {{-- Campo de entrada para el nombre de la categoría --}}
 </div>
 <br>
 </form>
