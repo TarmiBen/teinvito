@@ -3,7 +3,7 @@
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto">Lista de Contactos</h3>
         <div class="col-auto">
-            <a href="{{ route('admin.contacts.create') }}" class="btn btn-primary">
+            <a href="{{ route('admin.addresses.create') }}" class="btn btn-primary">
                 <i data-feather="plus-square"></i>
                 Crear Contacto
             </a>
@@ -34,37 +34,41 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Correo</th>
-                            <th>Celular</th>
-                            <th>Telefono</th>
+                            <th>Compañia</th>
+                            <th>Nombre de la Sucursal u Oficina</th>
+                            <th>Direccion</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($contacts as $contact)
+                        @foreach ($addresses as $address)
                             <tr>
-                                <td>{{ $contact->id }}</td>
-                                <td>{{ $contact->name }}</td>
-                                <td>{{ $contact->lastname }}</td>
-                                <td>{{ $contact->email }}</td>
-                                <td>{{ $contact->phone }}</td>
-                                <td>{{ $contact->telephone }}</td>
+                                <td>{{ $address->id }}</td>
+                                <td>{{ $address->company->name }}</td>
+                                <td>{{ $address->name }}</td>
+                                <td>{{ $address->street }}, {{ $address->int }}, {{ $address->ext }}, {{ $address->cp }}, {{ $address->colony }}, {{ $address->city }}, {{ $address->state }}</td>
                                 <td>
-                                    <a href="{{ route('admin.contacts.show', $contact) }}" class="btn btn-sm btn-success">Ver</a>
-                                    <a href="{{ route('admin.contacts.edit', $contact) }}" class="btn btn-sm btn-primary">Editar</a>
-                                    <form action="{{ route('admin.contacts.destroy', $contact) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                    </form>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="{{ route('admin.addresses.show', $address) }}" class="btn btn-icon btn-primary">
+                                            <i data-feather="eye"></i>
+                                        </a>
+                                        <a href="{{ route('admin.addresses.edit', $address) }}" class="btn btn-icon btn-info">
+                                            <i data-feather="edit"></i>
+                                        </a>
+                                        <form action="{{ route('admin.addresses.destroy', $address) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-icon btn-danger">
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {!! $contacts->links() !!}
+                {!! $addresses->links() !!}
             </div>
         </div>
     </div>

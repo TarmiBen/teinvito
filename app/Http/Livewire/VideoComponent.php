@@ -32,7 +32,21 @@ class VideoComponent extends Component
 
     public function saveComponents()
     {
+        $this->processVideoUrl();
+        dd($this->videoUrl);
         $this->saveComponentData();
+    }
+
+    public function processVideoUrl()
+    {
+        // Verifica si el enlace es de YouTube compartido
+        if (strpos($this->videoUrl, 'https://youtu.be/') === 0) {
+            // Extrae el código del video de la URL compartida
+            $videoCode = substr($this->videoUrl, 17);
+            $videoCode = strtok($videoCode, '?');
+            // Construye la URL completa del video de YouTube
+            $this->videoUrl = "https://www.youtube.com/embed/$videoCode";
+        }
     }
 
     public function saveComponentData()

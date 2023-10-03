@@ -36,7 +36,7 @@
                         <select name="company_id" id="company_id" class="form-control">
                             <option value="">Selecciona una opción</option>
                             @foreach ($UserProviders as $UserProvider)
-                                <option value="{{ $UserProvider->company_id }}">{{ $UserProvider->company->name }}</option>
+                            <option value="{{ $UserProvider->company_id }}" @if ($selectedCompany && $selectedCompany->id == $UserProvider->company_id) selected @endif>{{ $UserProvider->company->name }}</option>
                             @endforeach
                         </select>
                     </div>

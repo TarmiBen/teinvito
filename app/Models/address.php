@@ -14,7 +14,7 @@ class Address extends Model
     protected $fillable = [
         'id',
         'company_id',  
-        'priority',
+        'priority',      
         'name',        
         'street',
         'int',
@@ -27,6 +27,6 @@ class Address extends Model
 
     public function Company()
     {
-        return $this->belongsTo(Company::class, 'id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }
