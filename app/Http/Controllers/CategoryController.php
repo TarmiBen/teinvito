@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categoria=Category::whereNull('category_id')->get();       
+        $categoria = Category::whereNull('category_id')->orderBy('name', 'asc')->get();    
         
         return view('/category/category-add',compact('categoria'));
     }
@@ -87,4 +87,5 @@ class CategoryController extends Controller
 
         return redirect("/category")->with('delete', 'ok');
     }
+    
 }

@@ -28,4 +28,5 @@ class Event extends Model
     public function Invitation()
     {
         return $this->belongTo(Invitation::class, 'id');
+    }
 }
