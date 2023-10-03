@@ -26,7 +26,7 @@ class GiftTableComponent extends Component
         $this->text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.";
         $this->button = "View";
         $this->button_link = "";
-        $this->image = "https://1.bp.blogspot.com/-QLOY5pdwqX4/WetwCmQYNFI/AAAAAAAAYv0/idyW5Yfo8ZAe4qpOnjcz0Lsr9t3lToekACLcBGAs/s1600/liverpool.jpg";
+        $this->image = "";
 
     }
 
@@ -43,19 +43,20 @@ class GiftTableComponent extends Component
     public function saveComponentData()
     {
         $component = ModelComponent::firstOrCreate([
-            'component_package_id' => null,
+            'component_package_id' => 1,
             'name' => 'gift Table',
             'model_type' => 'gift-table-component',
         ]);
 
-        $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
+        $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
         $invitationId = $invitation->id;
 
         if ($this->image) {
             $imagePath = $this->image->store('public/images');
             $this->image = $imagePath;
+        }else{
+            null;
         }
-
         $this->componentData = [
             'title' => $this->title,
             'text' => $this->text,
@@ -63,7 +64,6 @@ class GiftTableComponent extends Component
             'button_link' => $this->button_link,
             'image' => $this->image,
         ];
-
         foreach ($this->componentData as $key => $body) {
             ComponentData::create([
                 'key' => $key,

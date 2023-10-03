@@ -35,7 +35,7 @@ class InvitationsCreate extends Component
     public function saveAll()
     {
         $invitation = Invitation::create([
-            'user_id' => auth()->id(),
+            'users_id' => auth()->id(),
             'package_id' => null,
         ]);
     
@@ -52,6 +52,7 @@ class InvitationsCreate extends Component
                 ]);
             }
         }
+        $this->emit('saveComponents');
     }
     //remover el ultimo componente que se agrego
     public function removeComponent($index)
