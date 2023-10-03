@@ -20,6 +20,8 @@ class UserProviderIndex extends Component
             ->orWhere('company_id', 'LIKE', '%' . $this->search . '%')
             ->orderBy($this->orderBy, $this->order)
             ->paginate($this->paginate);
+
+
         return view('livewire.user-provider-index', compact('userProviders'));
     }
 }
