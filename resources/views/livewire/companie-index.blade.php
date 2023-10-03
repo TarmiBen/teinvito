@@ -26,7 +26,9 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <input type="text" wire:model="search" placeholder="Buscar por nombre o email">
+                            <div class="form-group">
+                                <input wire:model="search" type="text" class="form-control" placeholder="Buscar...">
+                            </div>
                         </div>
                     </div>
                     <thead>

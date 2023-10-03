@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\UserProvider;
 use App\Models\User;
 use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\UserProviderAccessNotification;
 
 class UserProviderController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -37,18 +41,24 @@ class UserProviderController extends Controller
         $userProvider = new userProvider();
         $userProvider->users_id = $request->usersId;
         $userProvider->company_id = $request->companyId;
-        $userProvider->save();
-        return redirect()->route('admin.userProviders.index')
-            ->with('message','UserProvider created successfully.');
+        // $userProvider->save();
+        $usersInCompany = UserProvider::where('company_id', $userProvider->company_id)
+        ->pluck('users_id')
+        ->toArray();
+    // Enviar notificaciones a los usuarios de la misma empresa
+        Notification::send(User::whereIn('id', $usersInCompany)->get(), new UserProviderAccessNotification());
+
+    return redirect()->route('admin.userProviders.index')
+        ->with('message', 'UserProvider creado exitosamente.');
     }
 
     /**
      * Display the specified resource.
      */
-    // public function show(string $id)
-    // {
-    //     //
-    // }
+    public function show(userProvider $userProvider)
+    {
+        return view('admin.userProviders.show',compact('userProvider'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -93,9 +103,10 @@ class UserProviderController extends Controller
 
     public function autocompleteUser(Request $request)
     {
-        $data = User::select("name", "id")
+        $data = User::select("name", "id", "email")
                 ->where("name","LIKE","%{$request->input('query')}%")
                 ->orWhere("id","LIKE","%{$request->input('query')}%")
+                ->orWhere("email","LIKE","%{$request->input('query')}%")
                 ->get();
    
         return response()->json($data);
@@ -103,11 +114,18 @@ class UserProviderController extends Controller
 
     public function autocompleteCompany(Request $request)
     {
-        $data = Company::select("name", "id")
-                ->where("name","LIKE","%{$request->input('query')}%")
-                ->orWhere("id","LIKE","%{$request->input('query')}%")
-                ->get();
-   
+        $user = Auth::user()->id;
+        $data = Company::
+        whereHas('UserProvider', function ($query) use ($user) {
+            $query->where('users_id', $user);
+        })
+        ->where(function ($query) use ($request) {
+            $query->where("name", "LIKE", "%{$request->input('query')}%")
+                ->orWhere("id", "LIKE", "%{$request->input('query')}%");
+        })
+        ->select("name", "id")
+        ->get();
+    
         return response()->json($data);
     }
 }
