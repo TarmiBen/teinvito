@@ -24,6 +24,7 @@
     @vite(['resources/sass/app.scss'])
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+	<script src="https://unpkg.com/feather-icons"></script>
     
     @yield('css')
 </head>
@@ -199,6 +200,9 @@
 
 <!-- Template Functions -->
 <script src="/assets/js/functions.js"></script>
+<script>
+	feather.replace();
+  </script>
 
 </body>
 

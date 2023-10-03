@@ -11,7 +11,7 @@ use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\CompanieController;
 use App\Http\Controllers\UserProviderController;
 use App\Http\Controllers\ContactController;
-
+use App\Http\Controllers\AdressController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,12 +47,20 @@ Route::get('/event/restore/{id}', [EventController::class, 'restore'])->name('ev
 
 Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
 Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
-Route::resource('admin/userProviders', UserProviderController::class)->names('admin.userProviders');
+
+
+Route::middleware(['auth', 'password.confirm'])->group(function () {
+    Route::resource('admin/userProviders', UserProviderController::class)->names('admin.userProviders');
+});
+
+
 Route::resource('admin/contacts', ContactController::class)->names('admin.contacts');
+Route::resource('admin/addresses', AdressController::class)->names('admin.addresses');
 //restored section
 Route::get('/admin/companies/{id}/restore', [CompanieController::class, 'restore'])->name('admin.companies.restore');
 Route::get('/admin/userProviders/{id}/restore', [UserProviderController::class, 'restore'])->name('admin.userProviders.restore');
 Route::get('/admin/contacts/{id}/restore', [ContactController::class, 'restore'])->name('admin.contacts.restore');
+Route::get('/admin/addresses/{id}/restore', [AdressController::class, 'restore'])->name('admin.addresses.restore');
 //autocomplete section
 Route::get('/autoCompleteUser/json', [UserProviderController::class, 'autoCompleteUser'])->name('admin.userProviders.autoCompleteUser');
 Route::get('/autoCompleteCompany/json', [UserProviderController::class, 'autoCompleteCompany'])->name('admin.userProviders.autoCompleteCompany');
