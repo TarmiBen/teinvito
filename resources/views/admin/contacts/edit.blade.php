@@ -35,7 +35,6 @@
                     <div class="col-12 col-sm-6 col-lg-3 mt-3 mt-sm-0">
                         <label for="company_id">Compañia:</label>
                         <select name="company_id" id="company_id" class="form-control">
-                            <option value="{{ isset($contact->company_id) ? $contact->company_id : '' }}">{{ isset($contact->company_id) ? $contact->company->name : 'Selecciona una opción' }}</option>
                             @foreach ($UserProviders as $UserProvider)
                                 <option value="{{ $UserProvider->company_id }}">{{ $UserProvider->company->name }}</option>
                             @endforeach

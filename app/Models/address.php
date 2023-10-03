@@ -12,7 +12,9 @@ class Address extends Model
     use SoftDeletes;
     protected $table = 'address';
     protected $fillable = [
-        'id',        
+        'id',
+        'company_id',
+        'priority',        
         'name',        
         'street',
         'int',
@@ -25,6 +27,6 @@ class Address extends Model
 
     public function Company()
     {
-        return $this->belongsTo(Company::class, 'id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }

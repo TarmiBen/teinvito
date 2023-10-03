@@ -9,9 +9,13 @@
             @if($video)
                 <iframe class="w-100 h-100" src="{{ is_string($video) ? $video : $video->temporaryUrl() }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             @endif
-            @if($videoUrl)
-                <iframe class="w-100 h-100" src="{{ $videoUrl }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            @endif
+            @if ($videoUrl)
+            @php
+                $this->processVideoUrl();
+            @endphp
+        
+            <iframe class="w-100 h-100" src="{{ $videoUrl }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        @endif
         </div>
     </section>
 </div>

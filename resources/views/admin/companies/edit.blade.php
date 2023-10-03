@@ -30,7 +30,7 @@
 
                     <div class="col-12 col-sm-6 mt-3">
                         <label for="description">Descripción:</label>
-                        <input type="text" name="description" class="form-control" placeholder="Descripción" value="{{$company->description}}">
+                        <textarea name="description" class="form-control" placeholder="Descripción">{{$company->description}}</textarea>
                     </div>
 
                     <div class="col-12 col-sm-6 mt-3">
@@ -42,40 +42,7 @@
                         <label for="cover">Cover:</label>
                         <input type="file" name="cover" class="form-control" placeholder="Cover" value="{{$company->cover}}">
                     </div>
-
-                    <div class="col-12 col-sm-6 mt-3">
-                        <label for="cp">Codigo Postal:</label>
-                        <input type="text" name="cp" class="form-control" placeholder="Codigo Postal" value="{{$company->cp}}">
-                    </div>
-
-                    <div class="col-12 col-sm-6 mt-3">
-                        <label for="state">Estado:</label>
-                        <input type="text" name="state" class="form-control" placeholder="Estado" value="{{$company->state}}">
-                    </div>
-                    <div class="col-12 col-sm-6 mt-3">
-                        <label for="street">Calle:</label>
-                        <input type="text" name="street" class="form-control" placeholder="Calle" value="{{$company->street}}">
-                    </div>
                     
-                    <div class="col-12 col-sm-6 mt-3">
-                        <label for="int">Numero Interior:</label>
-                        <input type="text" name="int" class="form-control" placeholder="Numero Interior" value="{{$company->int}}">
-                    </div>
-
-                    <div class="col-12 col-sm-6 mt-3">
-                        <label for="ext">Numero Exterior:</label>
-                        <input type="text" name="ext" class="form-control" placeholder="Numero Exterior" value="{{$company->ext}}">
-                    </div>
-
-                    <div class="col-12 col-sm-6 mt-3">
-                        <label for="colony">Colonia:</label>
-                        <input type="text" name="colony" class="form-control" placeholder="Colonia" value="{{$company->colony}}">
-                    </div>
-
-                    <div class="col-12 col-sm-6 mt-3">
-                        <label for="city">Ciudad:</label>
-                        <input type="text" name="city" class="form-control" placeholder="Ciudad" value="{{$company->city}}">
-                    </div>
                         <div class="col-12 mt-3">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>

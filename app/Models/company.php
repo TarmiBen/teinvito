@@ -18,13 +18,6 @@ class Company extends Model
         'name',
         'email',
         'rfc',
-        'street',
-        'int',
-        'ext',
-        'colony',
-        'city',
-        'state',
-        'cp',
         'description',
         'logo',
         'cover',
@@ -37,7 +30,7 @@ class Company extends Model
     
     public function Contact()
     {
-        return $this->hasMany(Contact::class, 'company_id');
+        return $this->hasMany(Contact::class, 'id');
     }
 
     public function Social()

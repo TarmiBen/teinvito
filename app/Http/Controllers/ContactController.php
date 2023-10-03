@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserProvider;
 use App\Models\Contact;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 
@@ -14,17 +15,21 @@ class ContactController extends Controller
      */
     public function index()
     {
-
         return view('admin.contacts.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        $company_id  = $request->input('company_id');
         $UserProviders = UserProvider::where('users_id', auth()->user()->id)->get();
-        return view('admin.contacts.create', compact('UserProviders'));
+        $selectedCompany = null;
+        if ($company_id ) {
+            $selectedCompany = Company::find($company_id );
+        }
+        return view('admin.contacts.create', compact('UserProviders', 'selectedCompany'));
     }
 
     /**
@@ -77,7 +82,7 @@ class ContactController extends Controller
         $request->validate([
             'name' => 'required',
             'lastname' => 'required',
-            'email' => 'required|unique:contacts,email,'.$contact->id.'|email|max:255',
+            'name' => 'required|unique:categories,name,'.$contact->id,
             'phone' => 'required',
             'telephone' => 'nullable|required_with:phone',
             'company_id' => 'required',
