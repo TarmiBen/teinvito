@@ -1,20 +1,54 @@
-@extends('layouts.users.category-functions')
+@extends('layouts.users.app')
 
 @section('title','Agregar categoria')
 
 @section('content')
 
-<div class="content content-components bg-gray-1"> 
+<div class="content content-components bg-gray-1">
 
-    <section id="section1"> 
+    <header class="navbar navbar-header navbar-header-fixed">
+        <a href="el-icons.html" id="sidebarMenuOpen" class="burger-menu"><i data-feather="arrow-left"></i></a>
+        <div class="navbar-brand">
+            <a href="" class="df-logo">dash<span>forge</span></a>
+        </div>
+        <div id="navbarMenu" class="navbar-menu-wrapper">
+            <div class="navbar-menu-header">
+                <a href="" class="df-logo">dash<span>forge</span></a>
+                <a id="mainMenuClose" href="el-icons.html"><i data-feather="x"></i></a>
+            </div>
+    </header>
+
+    <div id="sidebarMenu" class="sidebar sidebar-fixed sidebar-components ">
+        <div class="sidebar-header">
+            <a href="" id="mainMenuOpen"><i data-feather="menu"></i></a>
+            <h5>Componentes</h5>
+            <a href="" id="sidebarMenuClose"><i data-feather="x"></i></a>
+        </div>
+        <div class="sidebar-body">
+            <ul class="sidebar-nav">
+                <li class="nav-label mg-b-15">Herramientas</li>
+                <li class="nav-item show">
+                    <a class="nav-link active"><i data-feather="layers"></i> Categorias</a>
+                </li>
+            </ul>
+        </div>
+        <div class="section-nav">
+            <label class="nav-label">En esta pagina</label>
+            <nav id="navSection" class="nav flex-column">
+                <a class="nav-link active"> Registrar categoria</a>
+            </nav>
+        </div>
+    </div>
+
+    <section id="section1">
 
         <form action="{{route('category')}}" method="post" data-parsley-validate="" novalidate="" class="form-add">
             {{-- Formulario de registro de nueva categoría --}}
             <div class="d-flex justify-content-between align-items-center">
-                <h2 class="df-title">Registrar categoria nueva </h2> 
+                <h2 class="df-title">Registrar categoria nueva </h2>
                 <button type="submit"
                     class="btn icon ion-md-add-circle-outline btn btn-outline-success ">Registrar</button>
-                
+
             </div>
 
             @if ($errors->any()) {{-- Verifica si hay errores de validación --}}
@@ -71,4 +105,20 @@
     </footer>
 </div>
 </div>
-@endsection 
+@endsection
+
+@section('scripts')
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/lib/feather-icons/feather.min.js"></script>
+    <script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/assets/lib/prismjs/prism.js"></script>
+    <script src="/assets/lib/spectrum-colorpicker/spectrum.js"></script>
+    <script src="/assets/js/dashforge.js"></script>
+    <script>
+        $(function () {
+            'use strict'
+        });
+
+    </script>
+@yield('scripts')
