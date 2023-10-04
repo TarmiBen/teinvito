@@ -13,10 +13,11 @@
 
 
 <section id="Section1">
-
+  
 <div class="card shadow-lg mt-4">
-<div class="card-body">
+<div class="">
   @livewire('category-component')
+  @livewireScripts()
 </div>
 
 </div>
@@ -79,7 +80,7 @@
     })
     });
   </script>
- 
+  
   @if(session('add') == 'ok')
     <script>
       Swal.fire(

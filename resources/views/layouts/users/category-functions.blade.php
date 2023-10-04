@@ -17,8 +17,7 @@
 </head>
 
 
-<script>src="https://code.jquery.com/jquery-3.7.1.min.js"</script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 @livewireStyles
 
 <body class="pos-relative " data-spy="scroll" data-target="#navSection" data-offset="120" >
@@ -66,6 +65,9 @@
     <script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/lib/prismjs/prism.js"></script>
     <script src="/assets/js/dashforge.js"></script>
+    <script src="/assets/js/category.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
       $(function(){
         'use strict'

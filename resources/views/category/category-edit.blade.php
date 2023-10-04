@@ -8,7 +8,7 @@
       
         <section id="Section1"> 
 
-          <form action="{{ route('category.edit', ['id' => $categoria->id]) }}" method="post" data-parsley-validate="" novalidate="" class="form-edit">
+          <form action="{{ route('category.edit', ['id' => $categoria->id]) }}" method="post" data-parsley-validate="" novalidate="" >
 
 
           <div class="d-flex justify-content-between align-items-center">
@@ -20,14 +20,16 @@
           @method("PUT")
           @csrf
             <div class="input-group mg-b-10">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Categoria</span>
-              </div>
-              
-              <select class="custom-select" placeholder="Categoria" aria-label="categoria" name="category_id" id="category_id" aria-describedby="basic-addon1" required>
+              {{-- <select class="custom-select" placeholder="Categoria" aria-label="categoria" name="category_id" id="category_id" aria-describedby="basic-addon1" required>
                 <option selected>Selecciona una categoria</option>
                 @foreach ($fathercategorias as $fathercategoria)
                 <option value="{{ $fathercategoria->id }}" @if ($fathercategoria->id == $fathercategoria->id) selected @endif>{{ $fathercategoria->name }}</option>
+                @endforeach
+              </select> --}}
+              <select id="select2" class="js-example-basic-single form-control" style="width: 100%;" wire:model="category_id" name="category_id" required>
+                <option value="">Selecciona una categoria</option>
+                @foreach($fathercategorias as $fathercategoria)
+                  <option value="{{ $fathercategoria->id }}" @if ($fathercategoria->id == $fathercategoria->id) selected @endif>{{ $fathercategoria->name }}</option>
                 @endforeach
               </select>
             </div>

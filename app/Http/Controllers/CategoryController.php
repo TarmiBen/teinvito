@@ -12,8 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categorias = Category::all();
-        return view('/category/category', compact('categorias'));
+        $categoria = Category::all();
+        return view('/category/category', compact('categoria'));
     }
     /**
      * Show the form for creating a new resource.
@@ -57,7 +57,7 @@ class CategoryController extends Controller
     {
         $categoria = Category::find($id);        
 
-        $fathercategorias = Category::whereNull('category_id')->get();
+        $fathercategorias = Category::whereNull('category_id')->orderBy('name', 'asc')->get();
        
         return view('/category/category-edit', compact('categoria','fathercategorias'));
     }
