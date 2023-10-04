@@ -18,7 +18,9 @@ return new class extends Migration
             $table->integer('user_invited_id')->unsigned();
             $table->bigInteger('invitation_id')->unsigned();
             $table->string('type');
-            $table->timestamp('ceremony_date');
+            $table->datetime('ceremony_date');
+            $table->datetime('event_date');
+            $table->timestamps();
             $table->softDeletes()->nullable();
             $table->string('title');
         });
