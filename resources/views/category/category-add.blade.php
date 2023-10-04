@@ -2,7 +2,8 @@
 
 @section('title','Agregar categoria')
 
-@section('contenido')
+@section('content')
+
 
 <div class="content content-components bg-gray-1">
 
@@ -142,3 +143,4 @@
 </script>
 
 @endsection
+

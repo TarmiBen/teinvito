@@ -1,18 +1,21 @@
 @extends ('layouts.users.category-functions')
 
-@section('title', 'Editar categoria')
+@section('title', 'Editar categoria') 
 
-@section('contenido')
+@section('content')
 
-  <div class="content content-components bg-gray-1">
-      
-        <section id="Section1"> 
+<div class="content content-components bg-gray-1"> 
+
 
           <form action="{{ route('category.edit', ['id' => $categoria->id]) }}" method="post" data-parsley-validate="" novalidate="" >
 
 
-          <div class="d-flex justify-content-between align-items-center">
+        <form action="{{ route('category.edit', ['id' => $categoria->id]) }}" method="post" data-parsley-validate=""
+            novalidate="" class="form-edit"> {{-- Formulario de edición de categoría--}}
+
+            <div class="d-flex justify-content-between align-items-center">
             <H2 class="df-title">Inserta los datos a editar</H2>
+
             <button type="submit" class="btn icon ion-md-add-circle-outline btn btn-outline-success ">    Editar</button>
           </div>
 
@@ -70,25 +73,26 @@
 
   <script>
 
-    $('.form-edit').submit(function(e){
-      e.preventDefault();
 
-      Swal.fire({
-      title: 'Estas seguro?',
-      text: "Podrás editar esto despues",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Editar!',
-      cancelButtonText: 'Cancelar'
+    $('.form-edit').submit(function(e){
+    e.preventDefault();
+
+    Swal.fire({
+    title: 'Estas seguro?',
+    text: "Podrás editar esto despues",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Editar!',
+    cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.value) {
+    
+    if (result.value) {
         this.submit();
-      }
+    }
     })
     });
-  </script>
- 
-@endsection
+</script>
 
+@endsection

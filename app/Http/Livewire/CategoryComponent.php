@@ -21,6 +21,7 @@ class CategoryComponent extends Component
     public $sortLink = '<i class="sorticon fa-solid fa-caret-up"></i>';
     public $sortOrder = "asc"; 
     
+
     // -- search
     public $paginate = 10;
     public $search = '';
@@ -46,6 +47,7 @@ class CategoryComponent extends Component
     public function mount()
     {
         // Aquí obtén los datos de las categorías y asigna el resultado a $this->categoria
+
         $this->category = Category::orderBy('id', 'desc')->get(); // Ejemplo de obtener todas las categorías desde un modelo llamado Categoria
          $this->categories = Category::orderBy('id', 'asc')->get();
     }
@@ -94,7 +96,7 @@ class CategoryComponent extends Component
     {
         $this->resetPage(); // Reiniciar la página a la primera cuando cambia la paginación
     }
-
+  
     public function deleteConfirm($id)
     {
         $count = Category::where('id', $id)->count();
@@ -102,7 +104,7 @@ class CategoryComponent extends Component
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'question',
             'message' => '¿Esta seguro de esta accion?',
-            'text' => $count>0?"Se eliminara registro de $count postulaciones, puede haber error a futuro": 'Eliminar Registro',
+            'text' => $count > 0 ? "Se eliminara registro de $count postulaciones, puede haber error a futuro" : 'Eliminar Registro',
         ]);
     }
 

@@ -1,34 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@yield('title')</title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- vendor css -->
+	<link href="/assets/lib/%40fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/assets/lib/typicons.font/src/font/typicons.css" rel="stylesheet">
+    <link href="/assets/lib/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="/assets/lib/prismjs/themes/prism-vs.css" rel="stylesheet">
+    <link href="/assets/lib/spectrum-colorpicker/spectrum.css" rel="stylesheet">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<!-- Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="/assets/vendor/choices/css/choices.min.css">
-	<link rel="stylesheet" type="text/css" href="/assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css">
-    
-    <!-- Styles CSS -->
-    @vite(['resources/sass/app.scss'])
-	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+
+    <!-- DashForge CSS -->
+    <link rel="stylesheet" href="/assets/css/dashforge.css">
+	<link rel="stylesheet" href="/assets/css/dashforge.demo.css">
+
+	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
-    
-    @yield('css')
+
+	@livewireStyles
+	@yield('styles')
 </head>
 
-<body class="bg-white">
+<body class="pos-relative" data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
 
 @guest
 
@@ -36,170 +36,177 @@
 
 @else
 
-<!-- Main content START -->
-<main>
-	
-	<!-- Sidebar -->
-	<nav class="navbar sidebar navbar-expand-xl navbar-light bg-light">
-
-		<!-- Navbar brand for xl -->
-		<div class="d-flex align-items-center text-dark">
-			<a class="navbar-brand" href="index-2.html">
-				<img class="navbar-brand-item" src="/assets/images/logo.svg" alt="Te-invito-logo">
-			</a>
+<header class="navbar navbar-header navbar-header-fixed">
+  <a href="#" id="sidebarMenuOpen" class="burger-menu"><i data-feather="arrow-left"></i></a>
+  <div class="navbar-brand">
+	<a href="../index.html" class="df-logo">Te<span>Invito</span></a>
+  </div><!-- navbar-brand -->
+  <div id="navbarMenu" class="navbar-menu-wrapper">
+	<div class="navbar-menu-header">
+	  <a href="../index.html" class="df-logo">Te<span>Invito</span></a>
+	  <a id="mainMenuClose" href="#"><i data-feather="x"></i></a>
+	</div><!-- navbar-menu-header -->
+	<!-- <ul class="nav navbar-menu">
+	  <li class="nav-label pd-l-20 pd-lg-l-25 d-lg-none">Main Navigation</li>
+	  <li class="nav-item with-sub">
+		<a href="#" class="nav-link"><i data-feather="pie-chart"></i> Dashboard</a>
+		<ul class="navbar-menu-sub">
+		  <li class="nav-sub-item"><a href="../template/classic/dashboard-one.html" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Sales Monitoring</a></li>
+		  <li class="nav-sub-item"><a href="../template/classic/dashboard-two.html" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Website Analytics</a></li>
+		  <li class="nav-sub-item"><a href="../template/classic/dashboard-three.html" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Cryptocurrency</a></li>
+		  <li class="nav-sub-item"><a href="../template/classic/dashboard-four.html" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Helpdesk Management</a></li>
+		</ul>
+	  </li>
+	  <li class="nav-item with-sub">
+		<a href="#" class="nav-link"><i data-feather="package"></i> Apps</a>
+		<ul class="navbar-menu-sub">
+		  <li class="nav-sub-item"><a href="../template/classic/app-calendar.html" class="nav-sub-link"><i data-feather="calendar"></i>Calendar</a></li>
+		  <li class="nav-sub-item"><a href="../template/classic/app-chat.html" class="nav-sub-link"><i data-feather="message-square"></i>Chat</a></li>
+		  <li class="nav-sub-item"><a href="../template/classic/app-contacts.html" class="nav-sub-link"><i data-feather="users"></i>Contacts</a></li>
+		  <li class="nav-sub-item"><a href="../template/classic/app-file-manager.html" class="nav-sub-link"><i data-feather="file-text"></i>File Manager</a></li>
+		  <li class="nav-sub-item"><a href="../template/classic/app-mail.html" class="nav-sub-link"><i data-feather="mail"></i>Mail</a></li>
+		</ul>
+	  </li>
+	  <li class="nav-item with-sub">
+		<a href="#" class="nav-link"><i data-feather="layers"></i> Pages</a>
+		<div class="navbar-menu-sub">
+		  <div class="d-lg-flex">
+			<ul>
+			  <li class="nav-label">Authentication</li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-signin.html" class="nav-sub-link"><i data-feather="log-in"></i> Sign In</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-signup.html" class="nav-sub-link"><i data-feather="user-plus"></i> Sign Up</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-verify.html" class="nav-sub-link"><i data-feather="user-check"></i> Verify Account</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-forgot.html" class="nav-sub-link"><i data-feather="shield-off"></i> Forgot Password</a></li>
+			  <li class="nav-label mg-t-20">User Pages</li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-profile-view.html" class="nav-sub-link"><i data-feather="user"></i> View Profile</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-connections.html" class="nav-sub-link"><i data-feather="users"></i> Connections</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-groups.html" class="nav-sub-link"><i data-feather="users"></i> Groups</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-events.html" class="nav-sub-link"><i data-feather="calendar"></i> Events</a></li>
+			</ul>
+			<ul>
+			  <li class="nav-label">Error Pages</li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-404.html" class="nav-sub-link"><i data-feather="file"></i> 404 Page Not Found</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-500.html" class="nav-sub-link"><i data-feather="file"></i> 500 Internal Server</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-503.html" class="nav-sub-link"><i data-feather="file"></i> 503 Service Unavailable</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-505.html" class="nav-sub-link"><i data-feather="file"></i> 505 Forbidden</a></li>
+			  <li class="nav-label mg-t-20">Other Pages</li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-timeline.html" class="nav-sub-link"><i data-feather="file-text"></i> Timeline</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-pricing.html" class="nav-sub-link"><i data-feather="file-text"></i> Pricing</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-help-center.html" class="nav-sub-link"><i data-feather="file-text"></i> Help Center</a></li>
+			  <li class="nav-sub-item"><a href="../template/classic/page-invoice.html" class="nav-sub-link"><i data-feather="file-text"></i> Invoice</a></li>
+			</ul>
+		  </div>
 		</div>
-		<!-- Navbar brand for xl END -->
-		
-		<div class="offcanvas offcanvas-start flex-row custom-scrollbar h-100" data-bs-backdrop="true" tabindex="-1" id="offcanvasSidebar">
-			<div class="offcanvas-body sidebar-content d-flex flex-column bg-light">
-
-				<!-- Sidebar menu START -->
-				<ul class="navbar-nav flex-column" id="navbar-sidebar">
-					@include('layouts.users.aside-menu')
-				</ul>
-				<!-- Sidebar menu end -->
-
-				<!-- Sidebar footer -->
-				<div class="px-3 mt-auto pt-3 pb-2">
-					<div class="d-flex align-items-center justify-content-between text-primary-hover">
-						<a class="h5 mb-0 text-secondary" href="admin-setting.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Configuración">
-							<i class="bi bi-gear-fill"></i>
-						</a>
-						<a class="h5 mb-0 text-secondary" href="index-2.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Home">
-							<i class="bi bi-globe"></i>
-						</a>
-						<a class="h5 mb-0 text-danger" href="{{ route('logout') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cerrar Sesión" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-							<i class="bi bi-power"></i>
-						</a>
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-							@csrf
-						</form>
+	  </li>
+	  <li class="nav-item active"><a href="index-2.html" class="nav-link"><i data-feather="box"></i> Components</a></li>
+	  <li class="nav-item"><a href="../collections/index.html" class="nav-link"><i data-feather="archive"></i> Collections</a></li>
+	</ul> -->
+  </div><!-- navbar-menu-wrapper -->
+  	<div class="navbar-right">
+		@include('layouts.users.navbar-menu')
+		<!-- Avatar -->
+		<a class="avatar avatar-sm p-0 ms-5" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+			<img class="avatar-img rounded-circle" src="/assets/images/avatar/01.jpg" alt="avatar">
+		</a>
+		<!-- Profile dropdown -->
+		<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
+			<!-- Profile info -->
+			<li class="px-3">
+				<div class="d-flex align-items-center">
+					<!-- Avatar -->
+					<div class="avatar me-3 mb-3">
+						<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
+					</div>
+					<div>
+						<a class="h6 mt-2 mt-sm-0" href="#">Emmanuel Santoyo</a>
+						<p class="small m-0">example@gmail.com</p>
 					</div>
 				</div>
-				<!-- Sidebar footer END -->
-				
-			</div>
-		</div>
-	</nav>
-	<!-- Sidebar END -->
-
-<!-- Page content -->
-<div class="page-content">
-	
-	<!-- Top bar -->
-	<nav class="navbar top-bar navbar-light bg-light border-bottom py-0 py-xl-3">
-		<div class="container-fluid p-0">
-			<div class="d-flex align-items-center w-100">
-
-				<!-- Logo -->
-				<div class="d-flex align-items-center d-xl-none">
-					<a class="navbar-brand" href="index-2.html">
-						<img class="light-mode-item navbar-brand-item h-30px" src="/assets/images/logo-mobile.svg" alt="logo-mobil">
-						<!-- <img class="dark-mode-item navbar-brand-item h-30px" src="/assets/images/logo-mobile-light.svg" alt=""> -->
-					</a>
-				</div>
-				<!-- Logo END -->
-
-				<!-- Toggler for sidebar -->
-				<div class="navbar-expand-xl sidebar-offcanvas-menu">
-					<button class="navbar-toggler me-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="outside">
-						<i class="bi bi-text-right fa-fw h2 lh-0 mb-0 rtl-flip" data-bs-target="#offcanvasMenu"> </i>
-					</button>
-				</div>
-				<!-- Toggler for sidebar END -->
-				
-				<!-- Top bar left -->
-				<div class="navbar-expand-lg ms-auto ms-xl-auto z-1">
-					
-					<!-- Responsive navbar toggler -->
-					<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-animation">
-							<span></span>
-							<span></span>
-							<span></span>
-						</span>
-					</button>
-
-					<!-- Main navbar START -->
-					<div class="navbar-collapse w-100 collapse" id="navbarCollapse">
-
-						<!-- Nav Main menu START -->
-						<ul class="navbar-nav navbar-nav-scroll me-auto">
-							@include('layouts.users.navbar-menu')
-						</ul>
-						<!-- Nav Main menu END -->
-
-					</div>
-					<!-- Main navbar END -->
-				</div>
-				<!-- Top bar left END -->
-				
-				<!-- Top bar right -->
-				<div class="ms-xl-0">
-					<ul class="navbar-nav flex-row align-items-center">
-
-						<!-- Profile dropdown -->
-						<li class="nav-item me-4 ms-md-3 dropdown">
-							<!-- Avatar -->
-							<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-								<img class="avatar-img rounded-circle" src="/assets/images/avatar/01.jpg" alt="avatar">
-							</a>
-
-							<!-- Profile dropdown -->
-							<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
-								<!-- Profile info -->
-								<li class="px-3">
-									<div class="d-flex align-items-center">
-										<!-- Avatar -->
-										<div class="avatar me-3 mb-3">
-											<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
-										</div>
-										<div>
-											<a class="h6 mt-2 mt-sm-0" href="#">Emmanuel Santoyo</a>
-											<p class="small m-0">example@gmail.com</p>
-										</div>
-									</div>
-								</li>
-                                <li>            
-                                    <hr class="dropdown-divider">
-                                </li>
-								<!-- Links -->
-                                @include('layouts.users.profile-options')
-                            </ul>
-							<!-- Profile dropdown END -->
-						</li>
-						<!-- Profile dropdown END -->
-					</ul>
-				</div>
-				<!-- Top bar right END -->
-			</div>
-		</div>
-	</nav>
-	<!-- Top bar END -->
-
-	<!-- Page main content -->
-	<div class="m-5">
-        @yield('content')
+			</li>
+            <li>            
+                <hr class="dropdown-divider">
+            </li>
+			<!-- Links -->
+			@include('layouts.users.profile-options')
+		</ul>
 	</div>
-	<!-- Page main content END -->
+  <!-- navbar-right -->
+</header><!-- navbar -->
 
-</div>
-<!-- Page content END -->
+<div id="sidebarMenu" class="sidebar sidebar-fixed sidebar-components">
+  <div class="sidebar-header">
+	<a href="#" id="mainMenuOpen"><i data-feather="menu"></i></a>
+	<h5>Components</h5>
+	<a href="#" id="sidebarMenuClose"><i data-feather="x"></i></a>
+  </div><!-- sidebar-header -->
+  <div class="sidebar-body">
+	  @include('layouts.users.sidebar-left')
+  </div><!-- sidebar-body -->
+</div><!-- sidebar -->
 
-</main>
+<!-- <div class="section-nav">
+  <label class="nav-label">On This Page</label>
+  <nav id="navSection" class="nav flex-column">
+	<a href="#section1" class="nav-link">Input Box</a>
+	<a href="#section2" class="nav-link">Validation State</a>
+	<a href="#section3" class="nav-link">Checkboxes</a>
+	<a href="#section4" class="nav-link">Radios</a>
+	<a href="#section5" class="nav-link">Switches</a>
+	<a href="#section6" class="nav-link">Select Menu</a>
+	<a href="#section7" class="nav-link">Range</a>
+	<a href="#section8" class="nav-link">File Browser</a>
+	<a href="#section9" class="nav-link">Colorpicker</a>
+  </nav>
+</div> -->
+<!-- df-section-nav -->
+
+<div class="content content-components me-0">
+  <div class="container-fluid">
+	<!-- <ol class="breadcrumb df-breadcrumbs mg-b-10">
+	  <li class="breadcrumb-item"><a href="#">Components</a></li>
+	  <li class="breadcrumb-item"><a href="#">Forms</a></li>
+	  <li class="breadcrumb-item active" aria-current="page">Form Elements</li>
+	</ol> -->
+
+	@yield('content')
+
+	<footer class="content-footer">
+	  <div>
+		<span>&copy; 2023 DashForge v1.0.0. </span>
+		<span>Made by <a href="http://themepixels.me/">ThemePixels</a></span>
+	  </div>
+	  <div>
+		<nav class="nav">
+		  <a href="https://themeforest.net/licenses/standard" class="nav-link">Licenses</a>
+		  <a href="../change-log.html" class="nav-link">Change Log</a>
+		  <a href="https://discordapp.com/invite/RYqkVuw" class="nav-link">Get Help</a>
+		</nav>
+	  </div>
+	</footer><!-- content-footer -->
+
+  </div><!-- container -->
+</div><!-- content -->
 
 @endguest
 
-<!-- Bootstrap JS -->
-<script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/lib/jquery/jquery.min.js"></script>
+<script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/lib/feather-icons/feather.min.js"></script>
+<script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="/assets/lib/prismjs/prism.js"></script>
+<script src="/assets/lib/spectrum-colorpicker/spectrum.js"></script>
 
-<!-- Vendors -->
-<script src="/assets/vendor/choices/js/choices.min.js"></script>
-<script src="/assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
+<script src="/assets/js/dashforge.js"></script>
+<script>
+  $(function(){
+	'use strict'
+  });
+</script>
 
-<!-- Template Functions -->
-<script src="/assets/js/functions.js"></script>
+@livewireScripts
+@yield('scripts')
 
 </body>
+
 
 </html>
