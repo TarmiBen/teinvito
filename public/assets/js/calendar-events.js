@@ -8,7 +8,7 @@ var curMonth = moment().format('MM');
 // Calendar Event Source
 var calendarEvents = {
   id: 1,
-  backgroundColor: 'rgba(1,104,250, .15)',
+  backgroundColor: '#d9e8ff',
   borderColor: '#0168fa',
   events: [
     {
@@ -54,7 +54,7 @@ var calendarEvents = {
 // Birthday Events Source
 var birthdayEvents = {
   id: 2,
-  backgroundColor: 'rgba(16,183,89, .25)',
+  backgroundColor: '#c3edd5',
   borderColor: '#10b759',
   events: [
     {
@@ -84,7 +84,7 @@ var birthdayEvents = {
 
 var holidayEvents = {
   id: 3,
-  backgroundColor: 'rgba(241,0,117,.25)',
+  backgroundColor: '#fcbfdc',
   borderColor: '#f10075',
   events: [
     {
@@ -110,7 +110,7 @@ var holidayEvents = {
 
 var discoveredEvents = {
   id: 4,
-  backgroundColor: 'rgba(0,204,204,.25)',
+  backgroundColor: '#bff2f2',
   borderColor: '#00cccc',
   events: [
     {
@@ -124,7 +124,7 @@ var discoveredEvents = {
 
 var meetupEvents = {
   id: 5,
-  backgroundColor: 'rgba(91,71,251,.2)',
+  backgroundColor: '#dedafe',
   borderColor: '#5b47fb',
   events: [
     {
@@ -145,7 +145,7 @@ var meetupEvents = {
 
 var otherEvents = {
   id: 6,
-  backgroundColor: 'rgba(253,126,20,.25)',
+  backgroundColor: '#ffdec4',
   borderColor: '#fd7e14',
   events: [
     {

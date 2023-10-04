@@ -17,7 +17,7 @@ class Company extends Model
         'phone',
         'name',
         'email',
-        'rfc',
+        'rfc',        
         'description',
         'logo',
         'cover',
@@ -25,7 +25,7 @@ class Company extends Model
 
     public function UserProvider()
     {
-        return $this->hasOne(UserProvider::class, 'company_id');
+        return $this->hasMany(UserProvider::class, 'id');
     }
     
     public function Contacts()

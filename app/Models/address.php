@@ -13,8 +13,8 @@ class Address extends Model
     protected $table = 'address';
     protected $fillable = [
         'id',
-        'company_id',
-        'priority',        
+        'company_id',  
+        'priority',      
         'name',        
         'street',
         'int',

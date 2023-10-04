@@ -12,17 +12,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categoria = Category::all();
-        return view('/category/category', compact('categoria'));
+        $categories = Category::all();
+        return view('/category/category', compact('categories'));
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $categoria=Category::all();        
+        $category = Category::whereNull('category_id')->orderBy('name', 'asc')->get();    
         
-        return view('/category/category-add',compact('categoria'));
+        return view('/category/category-add',compact('category'));
     }
     /**
      * Store a newly created resource in storage.
@@ -30,58 +30,60 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([            
-            'category_id' => 'required',
-            'name' => 'required',            
+            'category_id' => 'nullable',
+            'name' => 'required|unique:categories',            
         ]);
 
-        $categoria = new Category();
-        $categoria->category_id = $request->input('category_id');
-        $categoria->name = $request->input('name');               
-        $categoria->save();
-        return view('/category/category-add',compact('categoria'));
+        $category = new Category();
+        $category->category_id = $request->input('category_id');
+        $category->name = $request->input('name');                     
+        $category->save();
+        return redirect()->route('category')->with('add', 'ok');
     }
     /**
      * Display the specified resource.
      */
     public function show($id)
     {
-        $categoria = Category::find($id);
-        $categoria->CategoryParent;
-        $categoria->CategoryChild;
-        return view('/category/category-show', compact('categoria'));
+        $category = Category::find($id);
+        $category->CategoryParent;
+        $category->CategoryChild;
+        return view('/category/category-show', compact('category'));
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-        $categoria = Category::find($id);
-        return view('/category/category-edit', compact('categoria'));
+        $categoriy = Category::find($id);        
+
+        $fathercategories = Category::whereNull('category_id')->get();   
+        return view('/category/category-edit', compact('category','fathercategories'));
     }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
+    { 
+        $category = Category::find($id);
         $request->validate([           
-            'category_id' => 'required',
-            'name' => 'required',            
-        ]);
-
-        $categoria = Category::find($id);
-        $categoria->category_id = $request->input('category_id');
-        $categoria->name = $request->input('name');               
-        $categoria->save();
-        return view('/category/category-edit', compact('categoria'));
+            'category_id' => 'nullable',
+            'name' => 'required|unique:categories,name,'.$category->id,            
+        ]);     
+        $category->category_id = $request->input('category_id');
+        $category->name = $request->input('name');               
+        $category->save();
+        return redirect()->route('category')->with('edit', 'ok');
     }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $categoria)
+    public function destroy(Category $category)
     {
         
-        $categoria->delete();
+        $category ->delete();
 
-        return redirect("/category");
+        return redirect("/category")->with('delete', 'ok');
     }
+    
 }

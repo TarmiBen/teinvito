@@ -16,15 +16,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('rfc');
-            $table->string('street');
-            $table->string('int');
-            $table->string('ext');
-            $table->string('colony');
-            $table->string('city');
-            $table->string('state');
-            $table->integer('cp')->unsigned();
-            $table->string('description');
+            $table->string('rfc');            
+            $table->text('description');
             $table->string('logo');
             $table->string('cover');
             $table->timestamps();
@@ -37,7 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('company');
+        Schema::dropIfExists('companies');
     }
 };
 
