@@ -7,7 +7,7 @@
 .app-mail.mail-sidebar-show .mail-wrapper {
   transform: translateX(0); }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 991.98px) {
   .app-mail.mail-content-show .mail-wrapper {
     transform: translateX(-200vw); } }
 
@@ -275,8 +275,8 @@
 .mail-compose-body {
   background-color: #fff;
   padding: 20px;
-  border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
   transition: all 0.3s; }
   @media (prefers-reduced-motion: reduce) {
     .mail-compose-body {

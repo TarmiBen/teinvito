@@ -4,7 +4,7 @@
  * This style is use in contacts page.
  *
  */
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
   .app-contact.contact-content-show .contact-navleft,
   .app-contact.contact-content-show .contact-sidebar {
     visibility: hidden;
@@ -14,13 +14,13 @@
     transform: translateX(0);
     opacity: 1; } }
 
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
   .app-contact.contact-content-visible .contact-content {
     visibility: visible;
     transform: translateX(305px);
     opacity: 1; } }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 991.98px) {
   .app-contact.contact-options-show .contact-content {
     transform: translateX(-260px); } }
 

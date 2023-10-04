@@ -2,7 +2,8 @@ $(function(){
 
   'use strict'
 
-  $('[data-toggle="tooltip"]').tooltip();
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
   // set active contact from list to show in desktop view by default
   if(window.matchMedia('(min-width: 992px)').matches) {
