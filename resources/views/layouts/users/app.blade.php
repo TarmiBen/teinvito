@@ -103,8 +103,9 @@
 	</ul> -->
   </div><!-- navbar-menu-wrapper -->
   	<div class="navbar-right">
+		@include('layouts.users.navbar-menu')
 		<!-- Avatar -->
-		<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+		<a class="avatar avatar-sm p-0 ms-5" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
 			<img class="avatar-img rounded-circle" src="/assets/images/avatar/01.jpg" alt="avatar">
 		</a>
 		<!-- Profile dropdown -->
