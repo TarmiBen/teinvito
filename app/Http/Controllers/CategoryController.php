@@ -55,10 +55,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categoriy = Category::find($id);        
+        $categoriy = Category::find($id);
 
         $fathercategories = Category::whereNull('category_id')->get();   
         return view('/category/category-edit', compact('category','fathercategories'));
+
     }
     /**
      * Update the specified resource in storage.

@@ -12,12 +12,21 @@ class CategoryComponent extends Component
 
     use withPagination;
 
-    public $categoria;
+     
+    public $categories;  
+    public $category;
     public $CategoryParent;
-    public $sort = 'id';
+    public $sort = 'id';   
+    public $orderColumn = "id";
+    public $sortLink = '<i class="sorticon fa-solid fa-caret-up"></i>';
+    public $sortOrder = "asc"; 
+    
 
     // -- search
-    public $paginate = 10, $search = '', $orderBy = 'id', $order = 'desc';
+    public $paginate = 10;
+    public $search = '';
+    public $orderBy = 'id'; 
+    public $order = 'desc';
 
     // -- filter
     public $category_id = null, $name = null;
@@ -38,34 +47,56 @@ class CategoryComponent extends Component
     public function mount()
     {
         // Aquí obtén los datos de las categorías y asigna el resultado a $this->categoria
-        $this->categoria = Category::orderBy('id', 'desc')->get(); // Ejemplo de obtener todas las categorías desde un modelo llamado Categoria
 
+        $this->category = Category::orderBy('id', 'desc')->get(); // Ejemplo de obtener todas las categorías desde un modelo llamado Categoria
+         $this->categories = Category::orderBy('id', 'asc')->get();
     }
 
     public function render()
     {
-        $categoria = Category::select('id', 'category_id', 'name')
-            ->where('name', 'like', '%' . $this->search . '%')
-            ->orWhereHas('CategoryParent', function ($CategoryParent) {
-                $CategoryParent->where('name', 'like', '%' . $this->search . '%');
-            })
-            ->orderBy($this->sort, $this->order)
-            ->paginate(10); // Aplicamos la paginación aquí
+        // $categoria = Category::where('name', 'like', '%' . $this->search . '%')            
+        //     ->orwhere('category_id', 'like', '%' . $this->search . '%')
+        //      ->orWhereHas('CategoryParent', function ($CategoryParent) {
+        //          $CategoryParent->where('name', 'like', '%' . $this->search . '%');
+        //      })
+        //     ->orderBy($this->sort, $this->order)
+        //     ->get();
+       
+        $categoriaQuery = Category::orderBy($this->orderColumn, $this->sortOrder)->select('*');
 
-        return view('livewire.category-component', ['categoria' => $categoria]);
+        if(!empty($this->search)){
+
+            $categoriaQuery->orWhere('category_id', 'like', "%" . $this->search . "%")
+            ->orWhere('name', 'like', "%" . $this->search . "%");
+        }
+
+        
+        $categoria = $categoriaQuery->paginate($this->paginate);
+        // $categoria = Category::paginate(10);
+        
+        return view('livewire.category-component', compact('categoria'));
     }
 
-    public function order($sort)
+    public function sortOrder($columnName=""){
+        $caretOrder = "up";
+        if($this->sortOrder == 'asc'){
+             $this->sortOrder = 'desc';
+             $caretOrder = "down";
+        }else{
+             $this->sortOrder = 'asc';
+             $caretOrder = "up";
+        } 
+        $this->sortLink = '<i class="sorticon fa-solid fa-caret-'.$caretOrder.'"></i>';
+
+        $this->orderColumn = $columnName;
+
+   }
+
+   public function updatePagination()
     {
-    if ($this->sort == $sort) {
-        $this->order = ($this->order == 'desc') ? 'asc' : 'desc';
-    } else {
-        $this->sort = $sort;
-        $this->order = 'asc';
+        $this->resetPage(); // Reiniciar la página a la primera cuando cambia la paginación
     }
-    }
-
-
+  
     public function deleteConfirm($id)
     {
         $count = Category::where('id', $id)->count();
@@ -79,7 +110,7 @@ class CategoryComponent extends Component
 
     public function destroy()
     {
-        $category = Category::findOrFail($this->deleteId);
-        $category->delete();
+        $categoria = Category::findOrFail($this->deleteId);
+        $categoria->delete();
     }
 }
