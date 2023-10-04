@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
-
+use App\Models\Category;
+use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 class ServiceController extends Controller
 {
     /**
@@ -20,7 +24,12 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.services.create');
+        $user = Auth::user();
+        $categories = Category::all();
+        $companies = Company::whereHas('UserProvider', function ($query) use ($user) {
+            $query->where('users_id', $user->id);
+        })->get();
+        return view('admin.services.create', compact('categories', 'companies'));
     }
 
     /**
@@ -46,8 +55,19 @@ class ServiceController extends Controller
         $service->description_small = $request->description_small;
         $service->img_src = $request->img_src;
         $service->keywords = $request->keywords;
+        if ($request->hasFile('img_src')) {
+            $img_src = $request->file('img_src');
+            $extension = 'webp';
+            $originalName = pathinfo($img_src->getClientOriginalName(), PATHINFO_FILENAME);
+            $ImgName = time() . '-' . $originalName . '.' . $extension;
+            $img = Image::make($img_src)->resize(1080, 1080)->encode($extension);
+            Storage::disk('public')->put($ImgName, $img);
+            $service->img_src = $ImgName;
+            dd($service->img_src);
+        }elseif ($request->file('img_src') == null) {
+            $service->img_src = null;
+        }
         $service->save();
-
         return redirect()->route('services.index')
             ->with('message', 'Service created successfully.');
     }
