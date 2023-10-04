@@ -2,7 +2,9 @@
 $(function(){
   'use strict'
 
-  $('[data-toggle="tooltip"]').tooltip()
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 
   // chat sidebar body scrollbar
   new PerfectScrollbar('.chat-sidebar-body', {

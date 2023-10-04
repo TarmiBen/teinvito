@@ -6,40 +6,50 @@
 	<title>@yield('title')</title>
 
     <!-- vendor css -->
-    <link href="/assets/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="/assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="/assets/lib/typicons.font/typicons.css" rel="stylesheet">
+	<link href="/assets/lib/%40fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/assets/lib/typicons.font/src/font/typicons.css" rel="stylesheet">
+    <link href="/assets/lib/remixicon/fonts/remixicon.css" rel="stylesheet">
     <link href="/assets/lib/prismjs/themes/prism-vs.css" rel="stylesheet">
+    <link href="/assets/lib/spectrum-colorpicker/spectrum.css" rel="stylesheet">
 
 	<!-- Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/font-awesome/css/all.min.css">
-    
+
 
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="/assets/css/dashforge.css">
-    <link rel="stylesheet" href="/assets/css/dashforge.demo.css">
-	
-	@livewireStyles()
+	<link rel="stylesheet" href="/assets/css/dashforge.demo.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+
+	@livewireStyles
 	@yield('styles')
 </head>
 
-<body class="pos-relative" data-spy="scroll" data-target="#navSection" data-offset="120">
+<body class="pos-relative" data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
+
+@guest
+
+@yield('content')
+
+@else
 
 <header class="navbar navbar-header navbar-header-fixed">
-  <a href="el-avatar.html" id="sidebarMenuOpen" class="burger-menu"><i data-feather="arrow-left"></i></a>
+  <a href="#" id="sidebarMenuOpen" class="burger-menu"><i data-feather="arrow-left"></i></a>
   <div class="navbar-brand">
 	<a href="../index.html" class="df-logo">Te<span>Invito</span></a>
   </div><!-- navbar-brand -->
   <div id="navbarMenu" class="navbar-menu-wrapper">
 	<div class="navbar-menu-header">
 	  <a href="../index.html" class="df-logo">Te<span>Invito</span></a>
-	  <a id="mainMenuClose" href="el-avatar.html"><i data-feather="x"></i></a>
+	  <a id="mainMenuClose" href="#"><i data-feather="x"></i></a>
 	</div><!-- navbar-menu-header -->
 	<!-- <ul class="nav navbar-menu">
 	  <li class="nav-label pd-l-20 pd-lg-l-25 d-lg-none">Main Navigation</li>
 	  <li class="nav-item with-sub">
-		<a href="el-avatar.html" class="nav-link"><i data-feather="pie-chart"></i>Dashboard</a>
+		<a href="#" class="nav-link"><i data-feather="pie-chart"></i> Dashboard</a>
 		<ul class="navbar-menu-sub">
 		  <li class="nav-sub-item"><a href="../template/classic/dashboard-one.html" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Sales Monitoring</a></li>
 		  <li class="nav-sub-item"><a href="../template/classic/dashboard-two.html" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Website Analytics</a></li>
@@ -48,7 +58,7 @@
 		</ul>
 	  </li>
 	  <li class="nav-item with-sub">
-		<a href="el-avatar.html" class="nav-link"><i data-feather="package"></i> Apps</a>
+		<a href="#" class="nav-link"><i data-feather="package"></i> Apps</a>
 		<ul class="navbar-menu-sub">
 		  <li class="nav-sub-item"><a href="../template/classic/app-calendar.html" class="nav-sub-link"><i data-feather="calendar"></i>Calendar</a></li>
 		  <li class="nav-sub-item"><a href="../template/classic/app-chat.html" class="nav-sub-link"><i data-feather="message-square"></i>Chat</a></li>
@@ -58,7 +68,7 @@
 		</ul>
 	  </li>
 	  <li class="nav-item with-sub">
-		<a href="el-avatar.html" class="nav-link"><i data-feather="layers"></i> Pages</a>
+		<a href="#" class="nav-link"><i data-feather="layers"></i> Pages</a>
 		<div class="navbar-menu-sub">
 		  <div class="d-lg-flex">
 			<ul>
@@ -88,102 +98,86 @@
 		  </div>
 		</div>
 	  </li>
-	  <li class="nav-item active"><a href="index.html" class="nav-link"><i data-feather="box"></i> Components</a></li>
-	  <li class="nav-item"><a href="../collections.5" class="nav-link"><i data-feather="archive"></i> Collections</a></li>
+	  <li class="nav-item active"><a href="index-2.html" class="nav-link"><i data-feather="box"></i> Components</a></li>
+	  <li class="nav-item"><a href="../collections/index.html" class="nav-link"><i data-feather="archive"></i> Collections</a></li>
 	</ul> -->
   </div><!-- navbar-menu-wrapper -->
-  <div class="navbar-right">
-	<div class="dropdown">
-		<a href="#" class="avatar avatar-md" type="button" role="button" data-toggle="dropdown" aria-expanded="false">
-		  <img class="rounded-circle" src="/assets/images/avatar/01.jpg" alt="avatar">
-	  </a>
-		<div class="dropdown-menu dropdown-menu-right">
-			<li class="px-3 mb-3">
+  	<div class="navbar-right">
+		<!-- Avatar -->
+		<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+			<img class="avatar-img rounded-circle" src="/assets/images/avatar/01.jpg" alt="avatar">
+		</a>
+		<!-- Profile dropdown -->
+		<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
+			<!-- Profile info -->
+			<li class="px-3">
 				<div class="d-flex align-items-center">
 					<!-- Avatar -->
-					<div class="avatar avatar-md me-3">
-						<img class="rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
+					<div class="avatar me-3 mb-3">
+						<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
 					</div>
-					<div class="ml-3">
+					<div>
 						<a class="h6 mt-2 mt-sm-0" href="#">Emmanuel Santoyo</a>
 						<p class="small m-0">example@gmail.com</p>
 					</div>
 				</div>
 			</li>
+            <li>            
+                <hr class="dropdown-divider">
+            </li>
+			<!-- Links -->
 			@include('layouts.users.profile-options')
-		</div>
+		</ul>
 	</div>
-	<!-- Profile dropdown -->
-	<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
-		<!-- Profile info -->
-		<li class="px-3">
-			<div class="d-flex align-items-center">
-				<!-- Avatar -->
-				<div class="avatar me-3 mb-3">
-					<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
-				</div>
-				<div>
-					<a class="h6 mt-2 mt-sm-0" href="#">Emmanuel Santoyo</a>
-					<p class="small m-0">example@gmail.com</p>
-				</div>
-			</div>
-		</li>
-    	<li>            
-    	    <hr class="dropdown-divider">
-    	</li>
-		<!-- Links -->
-    	@include('layouts.users.profile-options')
-    </ul>
-	<!-- Profile dropdown END -->
-
-	<!-- <a href="http://dribbble.com/themepixels" class="btn btn-social"><i class="fab fa-dribbble"></i></a>
-	<a href="https://github.com/themepixels" class="btn btn-social"><i class="fab fa-github"></i></a>
-	<a href="https://twitter.com/themepixels" class="btn btn-social"><i class="fab fa-twitter"></i></a>
-	<a href="https://themeforest.net/item/dashforge-responsive-admin-dashboard-template/23725961" class="btn btn-buy"><i data-feather="shopping-bag"></i> <span>Buy Now</span></a>
-  </div> -->
+  <!-- navbar-right -->
 </header><!-- navbar -->
 
 <div id="sidebarMenu" class="sidebar sidebar-fixed sidebar-components">
   <div class="sidebar-header">
-	<a href="el-avatar.html" id="mainMenuOpen"><i data-feather="menu"></i></a>
+	<a href="#" id="mainMenuOpen"><i data-feather="menu"></i></a>
 	<h5>Components</h5>
-	<a href="el-avatar.html" id="sidebarMenuClose"><i data-feather="x"></i></a>
+	<a href="#" id="sidebarMenuClose"><i data-feather="x"></i></a>
   </div><!-- sidebar-header -->
   <div class="sidebar-body">
-	@include('layouts.users.sidebar-left')
+	  @include('layouts.users.sidebar-left')
   </div><!-- sidebar-body -->
 </div><!-- sidebar -->
 
 <!-- <div class="section-nav">
   <label class="nav-label">On This Page</label>
   <nav id="navSection" class="nav flex-column">
-	<a href="el-avatar.html#section1" class="nav-link">Sizes</a>
-	<a href="el-avatar.html#section2" class="nav-link">Shapes</a>
-	<a href="el-avatar.html#section3" class="nav-link">Initials</a>
-	<a href="el-avatar.html#section4" class="nav-link">Status Indicator</a>
+	<a href="#section1" class="nav-link">Input Box</a>
+	<a href="#section2" class="nav-link">Validation State</a>
+	<a href="#section3" class="nav-link">Checkboxes</a>
+	<a href="#section4" class="nav-link">Radios</a>
+	<a href="#section5" class="nav-link">Switches</a>
+	<a href="#section6" class="nav-link">Select Menu</a>
+	<a href="#section7" class="nav-link">Range</a>
+	<a href="#section8" class="nav-link">File Browser</a>
+	<a href="#section9" class="nav-link">Colorpicker</a>
   </nav>
 </div> -->
 <!-- df-section-nav -->
 
-<div class="content content-components mr-0">
+<div class="content content-components me-0">
   <div class="container-fluid">
 	<!-- <ol class="breadcrumb df-breadcrumbs mg-b-10">
-	  <li class="breadcrumb-item"><a href="el-avatar.html#">Components</a></li>
-	  <li class="breadcrumb-item"><a href="el-avatar.html#">UI Elements</a></li>
-	  <li class="breadcrumb-item active" aria-current="page">Avatar</li>
+	  <li class="breadcrumb-item"><a href="#">Components</a></li>
+	  <li class="breadcrumb-item"><a href="#">Forms</a></li>
+	  <li class="breadcrumb-item active" aria-current="page">Form Elements</li>
 	</ol> -->
-	
+
 	@yield('content')
 
 	<footer class="content-footer">
 	  <div>
-		<span>&copy; 2019 DashForge v1.0.0. </span>
-		<span>Made by <a href="../../index.html">ThemePixels</a></span>
+		<span>&copy; 2023 DashForge v1.0.0. </span>
+		<span>Made by <a href="http://themepixels.me/">ThemePixels</a></span>
 	  </div>
 	  <div>
 		<nav class="nav">
 		  <a href="https://themeforest.net/licenses/standard" class="nav-link">Licenses</a>
-		  <a href="http://themepixels.me/dashforge/change-log.html" class="nav-link">Change Log</a>
+		  <a href="../change-log.html" class="nav-link">Change Log</a>
 		  <a href="https://discordapp.com/invite/RYqkVuw" class="nav-link">Get Help</a>
 		</nav>
 	  </div>
@@ -192,21 +186,26 @@
   </div><!-- container -->
 </div><!-- content -->
 
+@endguest
+
 <script src="/assets/lib/jquery/jquery.min.js"></script>
 <script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/lib/feather-icons/feather.min.js"></script>
 <script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="/assets/lib/prismjs/prism.js"></script>
+<script src="/assets/lib/spectrum-colorpicker/spectrum.js"></script>
 
 <script src="/assets/js/dashforge.js"></script>
 <script>
   $(function(){
 	'use strict'
-
   });
 </script>
 
-@livewireScripts()
+@livewireScripts
 @yield('scripts')
+
 </body>
+
+
 </html>
