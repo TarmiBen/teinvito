@@ -2,7 +2,9 @@ $(function(){
 
   'use strict'
 
-  $('[data-toggle="tooltip"]').tooltip()
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 
   const asideBody = new PerfectScrollbar('.aside-body', {
     suppressScrollX: true

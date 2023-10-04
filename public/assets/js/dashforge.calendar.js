@@ -3,7 +3,8 @@ $(function(){
   'use strict'
 
   // Initialize tooltip
-  $('[data-toggle="tooltip"]').tooltip()
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
   // Sidebar calendar
   $('#calendarInline').datepicker({
@@ -13,7 +14,6 @@ $(function(){
 
       // add leading zero to single digit date
       var day = date.getDate();
-      console.log(day);
       return [true, (day < 10 ? 'zero' : '')];
     }
   });
@@ -67,8 +67,6 @@ $(function(){
           if(now === text[1]) { $(this).addClass('now'); }
         });
       }
-
-      console.log(view.el);
     },
     eventRender: function(event, element) {
 
