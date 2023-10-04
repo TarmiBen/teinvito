@@ -30,3 +30,4 @@ class Event extends Model
         return $this->belongsTo(Events_Invitations::class, 'event_id');
     }
 }
+

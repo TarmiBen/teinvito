@@ -8,7 +8,7 @@
   .app-calendar.calendar-sidebar-show .calendar-content {
     display: none; } }
 
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
   .app-calendar.calendar-sidebar-show .calendar-sidebar {
     left: 0;
     visibility: visible; }
@@ -119,9 +119,9 @@
       .calendar-nav a.calendar span::before {
         background-color: #0168fa; }
     .calendar-nav a.birthday span {
-      border-color: #10b759; }
+      border-color: #0c8842; }
       .calendar-nav a.birthday span::before {
-        background-color: #10b759; }
+        background-color: #0c8842; }
     .calendar-nav a.holiday span {
       border-color: #f10075; }
       .calendar-nav a.holiday span::before {

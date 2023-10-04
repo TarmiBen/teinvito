@@ -15,7 +15,10 @@ class Invitation extends Model
     protected $fillable = [
         'id',
         'users_id',
+        'package_id',        
+        'user_id',
         'package_id',
+
     ];
     
     public function User()
