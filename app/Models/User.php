@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
         use SoftDeletes;
 
         protected $fillable = [
-            'id', 
+            'id',
             'email',
             'name',
             'lastname',

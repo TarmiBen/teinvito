@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
+use App\Notifications\UserInvitedId;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -22,7 +26,9 @@ class EventController extends Controller
     public function create()
     {
         $userId = auth()->user()->id;
-        return view('event.create',compact('userId'));
+        $userName = auth()->user()->name;
+        $users = User::all();
+        return view('event.create',compact('userId','users','userName'));
     }
 
     /**
@@ -42,11 +48,16 @@ class EventController extends Controller
         $event = new Event();
         $event->users_id = $request->user_id;
         $event->user_invited_id = $request->user_invited_id;
+        $userInvited = $request->user_invited_id;
         $event->invitation_id = $request->invitation_id;
         $event->type = $request->type;
         $event->ceremony_date = $request->ceremony_date;
         $event->event_date = $request->event_date;
         $event->title = $request->title;
+        $user = User::find($userInvited);
+
+        $user->notify(new UserInvitedId());
+
         $event->save();
 
         return redirect()->route('event.index')->with('message', 'Event created successfully');

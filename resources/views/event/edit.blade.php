@@ -56,11 +56,11 @@
                         </div>
                         <div class="col-auto mt-4">
                             <label for="name">CeremonyDate</label>
-                            <input type="date" name="ceremony_date" value="{{$event->ceremony_date}}">
+                            <input type="datetime" name="ceremony_date" value="{{$event->ceremony_date}}">
                         </div>
                         <div class="col-auto mt-4">
                             <label for="name">EventDate</label>
-                            <input type="date" name="event_date" value="{{$event->event_date}}">
+                            <input type="datetime" name="event_date" value="{{$event->event_date}}">
                         </div>
                         <div class="col-auto mt-4">
                             <label for="name">Title</label>
