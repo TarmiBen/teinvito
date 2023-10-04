@@ -10,6 +10,7 @@ use App\Http\Controllers\CompanieController;
 use App\Http\Controllers\UserProviderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdressController;
+use App\Http\Controllers\ServiceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,26 +28,18 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 //logout
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
-
 Route::resource('profile', ProfileController::class)->middleware('verified')->names('profile');	
-
 Route::resource('my-subscription', MySubscriptionController::class)->middleware('verified')->names('my-subscription');
-
 Route::resource('subscription', SubscriptionController::class)->middleware('verified')->names('subscription');
-
 Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
 Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
-
-
 Route::middleware(['auth', 'password.confirm'])->group(function () {
     Route::resource('admin/userProviders', UserProviderController::class)->names('admin.userProviders');
 });
-
-
 Route::resource('admin/contacts', ContactController::class)->names('admin.contacts');
 Route::resource('admin/addresses', AdressController::class)->names('admin.addresses');
+Route::resource('admin/services', ServiceController::class)->names('admin.services');
 //restored section
 Route::get('/admin/companies/{id}/restore', [CompanieController::class, 'restore'])->name('admin.companies.restore');
 Route::get('/admin/userProviders/{id}/restore', [UserProviderController::class, 'restore'])->name('admin.userProviders.restore');
