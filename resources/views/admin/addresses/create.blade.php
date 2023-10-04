@@ -11,6 +11,8 @@
                 </button>
             </div>
         </div>
+        
+        @include('layouts.users.alert')
 
         <div class="row mt-3">
             <div class="col">
@@ -18,7 +20,6 @@
                     <div class="card-body">
                         @csrf
                         <div class="row">
-                            @include('layouts.users.alert')
                             <div class="col-12 col-sm-6  mt-3">
                                 <label for="company_id">Compañia:</label>
                                 <select name="company_id" id="company_id" class="form-select">
