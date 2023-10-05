@@ -23,6 +23,8 @@
 
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/cropper.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/index.css">
     
     @yield('css')
 </head>
@@ -197,6 +199,8 @@
 
 <!-- Template Functions -->
 <script src="/assets/js/functions.js"></script>
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/cropper.js"></script>
 
 </body>
 
