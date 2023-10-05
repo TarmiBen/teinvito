@@ -18,16 +18,16 @@ class Category extends Model
         'name',
     ];
 
-    // public function Category()
-    // {
-    //     return $this->hasOne(Category::class, 'id');
-    // }    
+    public function Category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }    
     public function CategoryParent()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function CategoryChild()
+    public function CategorysChild()
     {
         return $this->hasMany(Category::class, 'category_id');
     } 

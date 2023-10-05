@@ -17,14 +17,7 @@ class Company extends Model
         'phone',
         'name',
         'email',
-        'rfc',
-        'street',
-        'int',
-        'ext',
-        'colony',
-        'city',
-        'state',
-        'cp',
+        'rfc',        
         'description',
         'logo',
         'cover',
@@ -32,25 +25,25 @@ class Company extends Model
 
     public function UserProvider()
     {
-        return $this->hasOne(UserProvider::class, 'company_id');
+        return $this->hasMany(UserProvider::class, 'id');
     }
     
-    public function Contact()
+    public function Contacts()
     {
-        return $this->hasMany(Contact::class, 'company_id');
+        return $this->hasMany(Contact::class, 'id');
     }
 
-    public function Social()
+    public function Socials()
     {
         return $this->hasMany(Social::class, 'model_id');
     }
 
-    public function Service()
+    public function Services()
     {
         return $this->hasMany(Service::class, 'company_id');
     }
 
-    public function Address()
+    public function Addresses()
     {
         return $this->hasMany(Address::class, 'company_id');
     }

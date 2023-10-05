@@ -30,6 +30,13 @@
     letter-spacing: normal;
     background-color: #f8f9fc; }
 
+.content-widgets {
+  background-color: rgba(245, 246, 250, 0.75);
+  font-size: 14px;
+  margin-top: 60px;
+  margin-left: 240px;
+  padding: 30px; }
+
 .df-breadcrumbs {
   padding: 0;
   background-color: transparent; }
@@ -267,6 +274,12 @@
 
 .demo-static-toast .toast {
   opacity: 1; }
+
+.demo-static-toast .toast:not(.show) {
+  display: block; }
+
+.demo-static-toast .toast-container {
+  position: relative; }
 
 .demo-table .table th,
 .demo-table .table td {

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -37,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function UserProvider(){
-        return $this->hasMany(UserProvider::class, 'user_id');
+        return $this->hasMany(UserProvider::class, 'users_id');
     }
 
     public function Event(){
@@ -47,5 +48,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function Invitation(){
         return $this->hasMany(Invitation::class, 'user_id');
     }
-
 }
+

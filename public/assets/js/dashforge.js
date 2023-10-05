@@ -50,7 +50,7 @@ $(function(){
     if(window.matchMedia('(min-width: 992px)').matches) {
       var navTarg = $(e.target).closest('.navbar-menu .nav-item').length;
       if(!navTarg) {
-        $('.navbar-header .show').removeClass('show');
+        $('.navbar-header .nav-item').removeClass('show');
       }
     }
   })
