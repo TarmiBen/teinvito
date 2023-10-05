@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+    --primary-color: rgb(58,79,105);
+    --secundary-color: rgb(157,167,180);
+    --thir-color: rgb(233,95,133);
+    --primary-color-hover: rgb(30, 50, 75);
+    --secundary-color-hover:rgb(110, 116, 124);
+}
+
+/* Estilos para la tarjeta */
+/* Estilos para la tarjeta */
+.card {
+    background-color: #fff; /* Color de fondo de la tarjeta */
+    border: 1px solid #ccc; /* Borde de la tarjeta */
+    border-radius: 5px; /* Borde redondeado */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra de la tarjeta */
+    margin: 20px; /* Margen exterior */
+    max-width: 400px; /* Ancho máximo de la tarjeta */
+    display: none; /* Oculta la tarjeta por defecto */
+}
+
+/* ... (otros estilos de la tarjeta) */
+
+.card.active {
+    display: block; /* Muestra la tarjeta cuando tiene la clase 'active' */
+}
+
+
+.card-header {
+    background-color: #f0f0f0; /* Color de fondo del encabezado de la tarjeta */
+    padding: 10px; /* Espaciado interior del encabezado */
+}
+
+.card-header p {
+    font-weight: bold; /* Texto en negrita */
+}
+
+.card-body {
+    padding: 20px; /* Espaciado interior del cuerpo de la tarjeta */
+}
+
+.card-footer {
+    background-color: #f0f0f0; /* Color de fondo del pie de la tarjeta */
+    padding: 10px; /* Espaciado interior del pie */
+    text-align: center; /* Alineación del contenido en el pie */
+}
+
+.image-container {
+    max-width: 100%; /* Ajusta el ancho máximo del contenedor según sea necesario */
+    text-align: center; /* Centra la imagen horizontalmente */
+}
+
+.img-cropper {
+    max-width: 100%; /* Ajusta el ancho máximo de la imagen dentro del contenedor */
+    height: auto; /* Mantén la relación de aspecto original */
+}
+
+/* Estilos para los botones */
+.btn {
+    padding: 10px 20px; /* Espaciado interior de los botones */
+    margin-right: 10px; /* Margen derecho entre botones */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+.btn.primary {
+    background-color: #007bff; /* Color de fondo del botón primario (azul) */
+    color: #fff; /* Color de texto del botón primario */
+}
+
+.btn.secondary {
+    background-color: #ccc; /* Color de fondo del botón secundario (gris) */
+    color: #000; /* Color de texto del botón secundario */
+}
