@@ -6,9 +6,7 @@
  */
 .content-auth {
   min-height: calc(100vh - 106px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center; }
+  display: flex; }
   .content-auth > .container {
     padding: 0; }
     @media (max-width: 1139px) {

@@ -13,14 +13,14 @@
             Registrar nueva categoria</a>
     </div>
 
-    <section id="Section1"> 
 
-        <div class="card shadow-lg mt-4">
-            <div class="card-body">
-                @livewire('category-component') {{-- Incluye un componente Livewire llamado 'category-component' --}}
-            </div>
-        </div>
-    </section>
+<section id="Section1">
+  
+<div class="card shadow-lg mt-4">
+<div class="">
+  @livewire('category-component')
+  @livewireScripts()
+
 </div>
 @endsection 
 
@@ -68,11 +68,11 @@
         })
     });
 
-</script>
-
-@if(session('add') == 'ok') {{-- Si existe una sesión con la clave 'add' igual a 'ok', muestra una alerta de éxito --}}
-<script>
-    Swal.fire(
+  </script>
+  
+  @if(session('add') == 'ok')
+    <script>
+      Swal.fire(
         'Registrado!',
         'Su catergoria ha sido registrada.',
         'success'

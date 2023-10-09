@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -29,7 +29,7 @@
 	@yield('styles')
 </head>
 
-<body class="bg-white">
+<body class="pos-relative" data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
 
     @guest
 
@@ -208,5 +208,6 @@
 @yield('scripts')
 
 </body>
+
 
 </html>
