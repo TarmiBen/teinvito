@@ -25,12 +25,12 @@ class Service extends Model
 
     public function Company()
     {
-        return $this->belongsTo(Company::class, 'id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
     public function ServicePackage()
     {
-        return $this->hasMany(ServicePackage::class, 'service_id');
+        return $this->hasMany(ServicePackage::class, 'id');
     }
     
     public function Social()
@@ -40,7 +40,7 @@ class Service extends Model
 
     public function Category()
     {
-        return $this->belongTo(Category::class, 'id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
     
 }

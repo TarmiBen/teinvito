@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,11 +31,11 @@
 
 <body class="pos-relative" data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
 
-@guest
+    @guest
 
-@yield('content')
+    @yield('content')
 
-@else
+    @else
 
 <header class="navbar navbar-header navbar-header-fixed">
   <a href="#" id="sidebarMenuOpen" class="burger-menu"><i data-feather="arrow-left"></i></a>
@@ -187,7 +188,7 @@
   </div><!-- container -->
 </div><!-- content -->
 
-@endguest
+    @endguest
 
 <script src="/assets/lib/jquery/jquery.min.js"></script>
 <script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>

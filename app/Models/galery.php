@@ -13,10 +13,9 @@ class Galery extends Model
 
     protected $table = 'galery';
     protected $fillable = [
-        'id',
         'service_package_id',
         'src',
-        'title',
+        'tittle',
         'text',
     ];
 

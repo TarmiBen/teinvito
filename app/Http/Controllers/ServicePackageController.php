@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ServicePackage;
 
 class ServicePackageController extends Controller
 {
@@ -11,15 +12,15 @@ class ServicePackageController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.servicePackages.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($servicePackageId = null)
     {
-        //
+        return view('admin.servicePackages.create', compact('servicePackageId'));
     }
 
     /**
@@ -33,9 +34,9 @@ class ServicePackageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ServicePackage $servicePackage)
     {
-        //
+        return view('admin.servicePackages.show', compact('servicePackage'));
     }
 
     /**
