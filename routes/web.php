@@ -43,8 +43,9 @@ Route::resource('admin/addresses', AdressController::class)->names('admin.addres
 Route::resource('admin/services', ServiceController::class)->names('admin.services');
 Route::get('/admin/servicePackage/create/{servicePackageId?}', [ServicePackageController::class, 'create'])->name('admin.servicePackages.create');
 Route::get('/admin/servicePackage', [ServicePackageController::class, 'index'])->name('admin.servicePackages.index');
-Route::get('/admin/servicePackage/{servicePackage}', [ServicePackageController::class, 'show'])->name('admin.servicePackages.show');
+Route::get('/admin/servicePackage/show/{servicePackage}', [ServicePackageController::class, 'show'])->name('admin.servicePackages.show');
 Route::get('/admin/servicePackage/delete/{deleteId}', [ServicePackageController::class, 'deleteConfirm'])->name('admin.servicePackages.deleteConfirm');
+Route::delete('/admin/servicePackage/{servicePackage}', [ServicePackageController::class, 'destroy'])->name('admin.servicePackages.destroy');
 //restored section
 Route::get('/admin/companies/{id}/restore', [CompanieController::class, 'restore'])->name('admin.companies.restore');
 Route::get('/admin/userProviders/{id}/restore', [UserProviderController::class, 'restore'])->name('admin.userProviders.restore');

@@ -14,6 +14,8 @@ class ServicePackageIndex extends Component
     public $search = '';
     public $orderBy = 'id';
     public $order = 'desc';
+    public $deleteId = null;
+    protected $listeners = ['destroy'];
 
     public function updatingSearch()
     {
@@ -39,5 +41,27 @@ class ServicePackageIndex extends Component
         })
             ->paginate($this->paginate);
         return view('livewire.service-package-index', compact('servicePackages'));
+    }
+
+    public function deleteConfirm($id)
+    {
+        $this->deleteId = $id;
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'question',
+            'message' => '¿Estás seguro de eliminar este servicio?',
+            'text' => "Esta acción no se puede deshacer.",
+        ]);
+    }
+
+    public function destroy()
+    {
+        if ($this->deleteId) {
+            $servicePackage = ServicePackage::find($this->deleteId);
+            if ($servicePackage) {
+                $servicePackage->delete();
+                // Limpiar el ID de eliminación después de la eliminación exitosa
+                $this->deleteId = null;
+            }
+        }
     }
 }

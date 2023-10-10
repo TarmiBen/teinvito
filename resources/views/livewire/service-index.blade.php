@@ -52,11 +52,7 @@
                                 <td>
                                     <a href="{{ route('admin.services.show', $service) }}" class="btn btn-sm btn-success">Ver</a>
                                     <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-sm btn-warning">Editar</a>
-                                    <form action="{{ route('admin.services.destroy', ['deleteId' => $service->id]) }}" method="POST" wire:submit.prevent="deleteConfirm">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                    </form>
+                                    <button wire:click="deleteConfirm({{ $service->id }})" class="btn btn-sm btn-danger">Eliminar</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -68,5 +64,4 @@
     </div>
 </div>
 @livewireScripts()
-
 </div>
