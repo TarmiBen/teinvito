@@ -7,15 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
-use App\Models\UserProvider;
 
-
-class UserProviderAccessNotification extends Notification implements ShouldQueue
+class ConfirmacionAsistencia extends Notification
 {
     use Queueable;
+    public $link;
 
     /**
-     * Create a new notification instance.|
+     * Create a new notification instance.
      */
     public function __construct()
     {
@@ -35,18 +34,14 @@ class UserProviderAccessNotification extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail($notifiable)
+    public function toMail(object $notifiable): MailMessage
     {
         $user = Auth::user();
-        //obtener el id del ultimo registro de la tabla userProvider hecho por el usuario autenticado
-        $userProvider = UserProvider::where('users_id', $user->id)->latest()->first();
-        $url = route('admin.userProviders.show', ['userProvider' => $userProvider->id]);
-        $indexurl = route('admin.userProviders.index');
+
         return (new MailMessage)
-            ->line('El usuario ' . Auth::user()->name . ' ' . 'ha asignado oto usuario a la compañia ')
-            ->action('Ver registros', $indexurl)
-            ->line('Gracias por usar nuestra aplicación.')
-            ->line('Si, usted acepto la asignación de usuario a la compañia ignorar este mensaje');
+            ->line($user->name . ' ' . 'Te ha invitado a un evento')
+                    ->action('Responder', url('/confirmar/{$notifiable->hash}'))
+                    ->line('Thank you for using our application!');
     }
 
     /**
