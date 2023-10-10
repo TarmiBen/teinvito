@@ -42,7 +42,8 @@
 
     <section id="section1">
 
-        <form action="{{route('category')}}" method="post" data-parsley-validate="" novalidate="" class="form-add">
+        <form action="{{ route('category') }}" method="post" data-parsley-validate="" novalidate=""
+            class="form-add">
             {{-- Formulario de registro de nueva categoría --}}
             <div class="d-flex justify-content-between align-items-center">
                 <h2 class="df-title">Registrar categoria nueva </h2>
@@ -51,18 +52,19 @@
 
             </div>
 
-            @if ($errors->any()) {{-- Verifica si hay errores de validación --}}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <ul>
-                    @foreach($errors->all() as $error)
-                    <li>{{$error}}</li> {{-- Muestra los mensajes de error --}}
-                    @endforeach
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <blade
+                if|%20(%24errors-%3Eany())%20%7B%7B--Verifica%2520si%2520hay%2520errores%2520de%2520validaci%25C3%25B3n--%7D%7D>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li> {{-- Muestra los mensajes de error --}}
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
 
-            @csrf {{-- Token CSRF para la seguridad del formulario --}}
+            @csrf{{-- Token CSRF para la seguridad del formulario --}}
 
             <div class="input-group mg-b-10">
                 <div class="input-group-prepend">
@@ -71,9 +73,9 @@
                 <select class="custom-select" placeholder="Categoria" aria-label="categoria" name="category_id"
                     id="category_id" aria-describedby="basic-addon1" required>
                     <option value="">Selecciona una categoria</option>
-                    @foreach ($category as $categories)
-                    <option value="{{$categories->id}}">{{$categories->name}}</option>
-                    {{-- Opciones de categoría padre --}}
+                    @foreach($category as $categories)
+                        <option value="{{ $categories->id }}">{{ $categories->name }}</option>
+                        {{-- Opciones de categoría padre --}}
                     @endforeach
                 </select>
             </div>
@@ -87,7 +89,7 @@
             </div>
             <br>
         </form>
-        <a href="{{route('category')}}"
+        <a href="{{ route('category') }}"
             class="btn icon typcn typcn-arrow-back-outline btn btn-outline-info">Regresar</a>
     </section>
     <br>
@@ -108,17 +110,17 @@
 @endsection
 
 @section('scripts')
-    <script src="/assets/lib/jquery/jquery.min.js"></script>
-    <script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/lib/feather-icons/feather.min.js"></script>
-    <script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="/assets/lib/prismjs/prism.js"></script>
-    <script src="/assets/lib/spectrum-colorpicker/spectrum.js"></script>
-    <script src="/assets/js/dashforge.js"></script>
-    <script>
-        $(function () {
-            'use strict'
-        });
+<script src="/assets/lib/jquery/jquery.min.js"></script>
+<script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/lib/feather-icons/feather.min.js"></script>
+<script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="/assets/lib/prismjs/prism.js"></script>
+<script src="/assets/lib/spectrum-colorpicker/spectrum.js"></script>
+<script src="/assets/js/dashforge.js"></script>
+<script>
+    $(function () {
+        'use strict'
+    });
 
-    </script>
+</script>
 @yield('scripts')
