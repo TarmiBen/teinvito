@@ -1,4 +1,4 @@
-@extends ('layouts.users.category-functions')
+@extends('layouts.users.app')
 
 @section('title', 'Editar categoria') 
 

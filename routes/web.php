@@ -11,6 +11,7 @@ use App\Http\Controllers\UserProviderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdressController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServicePackageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,10 @@ Route::middleware(['auth', 'password.confirm'])->group(function () {
 Route::resource('admin/contacts', ContactController::class)->names('admin.contacts');
 Route::resource('admin/addresses', AdressController::class)->names('admin.addresses');
 Route::resource('admin/services', ServiceController::class)->names('admin.services');
+Route::get('/admin/servicePackage/create/{servicePackageId?}', [ServicePackageController::class, 'create'])->name('admin.servicePackages.create');
+Route::get('/admin/servicePackage', [ServicePackageController::class, 'index'])->name('admin.servicePackages.index');
+Route::get('/admin/servicePackage/{servicePackage}', [ServicePackageController::class, 'show'])->name('admin.servicePackages.show');
+Route::get('/admin/servicePackage/delete/{deleteId}', [ServicePackageController::class, 'deleteConfirm'])->name('admin.servicePackages.deleteConfirm');
 //restored section
 Route::get('/admin/companies/{id}/restore', [CompanieController::class, 'restore'])->name('admin.companies.restore');
 Route::get('/admin/userProviders/{id}/restore', [UserProviderController::class, 'restore'])->name('admin.userProviders.restore');

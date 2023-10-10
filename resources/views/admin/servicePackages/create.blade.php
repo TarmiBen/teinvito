@@ -4,6 +4,6 @@
 
     @include('layouts.users.alert')
 
-    @livewire('service-index')
+    @livewire('service-package-create', ['servicePackageId' => $servicePackageId])
 
 @endsection
