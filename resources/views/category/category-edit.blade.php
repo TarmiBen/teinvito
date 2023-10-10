@@ -7,10 +7,10 @@
 <div class="content content-components bg-gray-1"> 
 
 
-          <form action="{{ route('category.edit', ['id' => $categoria->id]) }}" method="post" data-parsley-validate="" novalidate="" >
+          <form action="{{ route('category.edit', ['id' => $category->id]) }}" method="post" data-parsley-validate="" novalidate="" >
 
 
-        <form action="{{ route('category.edit', ['id' => $categoria->id]) }}" method="post" data-parsley-validate=""
+        <form action="{{ route('category.edit', ['id' => $category->id]) }}" method="post" data-parsley-validate=""
             novalidate="" class="form-edit"> {{-- Formulario de edición de categoría--}}
 
             <div class="d-flex justify-content-between align-items-center">
@@ -31,8 +31,8 @@
               </select> --}}
               <select id="select2" class="js-example-basic-single form-control" style="width: 100%;" wire:model="category_id" name="category_id" required>
                 <option value="">Selecciona una categoria</option>
-                @foreach($fathercategorias as $fathercategoria)
-                  <option value="{{ $fathercategoria->id }}" @if ($fathercategoria->id == $fathercategoria->id) selected @endif>{{ $fathercategoria->name }}</option>
+                @foreach($fathercategories as $fathercategory)
+                  <option value="{{ $fathercategory->id }}" @if ($fathercategory->id == $fathercategory->id) selected @endif>{{ $fathercategory->name }}</option>
                 @endforeach
               </select>
             </div>
@@ -41,7 +41,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Nombre</span>
               </div>
-              <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre" name="name" id="name"aria-describedby="basic-addon1" value="{{$categoria->name}}" required>
+              <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre" name="name" id="name"aria-describedby="basic-addon1" value="{{$category->name}}" required>
               
             </div>
             <br>
