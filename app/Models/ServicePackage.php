@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Service_package extends Model
+class ServicePackage extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'servicePackage';
+    protected $table = 'servicepackages';
     protected $fillable = [
-        'id', 
         'service_id', 
         'name', 
         'description', 
@@ -26,6 +25,6 @@ class Service_package extends Model
 
     public function Service()
     {
-        return $this->belongsTo(Service::class, 'id');
+        return $this->belongsTo(Service::class, 'service_id');
     }
 }
