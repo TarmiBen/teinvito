@@ -79,8 +79,8 @@
       <div class="input-group mg-b-10">
         <select id="select2" class="js-example-basic-single form-control" style="width: 100%;" wire:model="category_id" name="category_id" required>
           <option value="">Selecciona una categoria</option>
-          @foreach($categoria as $categorias)
-            <option value="{{ $categorias->id }}">{{ $categorias->name }}</option>
+          @foreach($category as $categories)
+            <option value="{{ $categories->id }}">{{ $categories->name }}</option>
           @endforeach
         </select>
       </div>

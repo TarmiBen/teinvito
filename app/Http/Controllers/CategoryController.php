@@ -55,9 +55,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categoriy = Category::find($id);
+        $category = Category::find($id);
 
-        $fathercategories = Category::whereNull('category_id')->get();   
+        $fathercategories = Category::whereNull('category_id')->orderBy('name', 'asc')->get();   
         return view('/category/category-edit', compact('category','fathercategories'));
 
     }
