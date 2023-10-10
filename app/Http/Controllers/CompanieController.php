@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ImageHelper;
 use Illuminate\Http\Request;
 use App\Models\company;
 use App\Models\Contact;
@@ -65,35 +66,31 @@ class CompanieController extends Controller
             'city' => 'nullable|required_with:street',
             'cp' => 'nullable|required_with:street',
         ]);
+        $imgName = ImageHelper::uploadAndResizeImage(
+            $request->file('logo'),
+            'companies/logos', 
+            400,     
+            400      
+        );
+        $imgNameCover = ImageHelper::uploadAndResizeImage(
+            $request->file('cover'),
+            'companies/covers', 
+            851,     
+            315      
+        );
         $company = new company();
         $company->phone = $request->phone;
         $company->name = $request->name;
         $company->email = $request->email;
         $company->description = $request->description;
-        $company->logo = $request->logo;
-        $company->cover = $request->cover;
+        $company->logo = $imgName;
+        $company->cover = $imgNameCover;
         $company->rfc = $request->rfc;
-        if ($request->file('logo')) {
-            $logo = $request->file('logo');
-            $logoName = time() . '-' . $logo->getClientOriginalName(); // Genera un nombre único
-            $logo->move(public_path('media/companies/logos'), $logoName);
-            $company->logo = 'media/companies/logos/' . $logoName;
-        } elseif ($request->file('logo') == null) {
-            $company->logo = null;
-        }  
-        if ($request->file('cover')) {
-            $cover = $request->file('cover');
-            $coverName = time() . '-' . $cover->getClientOriginalName(); // Genera un nombre único
-            $cover->move(public_path('media/companies/covers'), $coverName);
-            $company->cover = 'media/companies/covers/' . $coverName;
-        } elseif ($request->file('cover') == null) {
-            $company->cover = null;
-        }
         $company->save();
-        // $userProvider = new UserProvider();
-        // $userProvider->users_id = auth()->user()->id;
-        // $userProvider->company_id = $company->id;
-        // $userProvider->save();
+        $userProvider = new UserProvider();
+        $userProvider->users_id = auth()->user()->id;
+        $userProvider->company_id = $company->id;
+        $userProvider->save();
         if ($request->address_name == null) {
             return redirect()->route('admin.companies.index')
             ->with('message','Company created successfully.');
@@ -154,28 +151,25 @@ class CompanieController extends Controller
             'city' => 'nullable|required_with:street',
             'cp' => 'nullable|required_with:street',
         ]);
+        $imgName = ImageHelper::uploadAndResizeImage(
+            $request->file('logo'),
+            'companies/logos', 
+            400,     
+            400      
+        );
+        $imgNameCover = ImageHelper::uploadAndResizeImage(
+            $request->file('cover'),
+            'companies/covers', 
+            851,     
+            315      
+        );
         $company->phone = $request->phone;
         $company->name = $request->name;
         $company->email = $request->email;
         $company->description = $request->description;
+        $company->logo = $imgName;
+        $company->cover = $imgNameCover;
         $company->rfc = $request->rfc;
-        if ($request->file('logo')) {
-            $logo = $request->file('logo');
-            $logoName = time() . '-' . $logo->getClientOriginalName(); // Genera un nombre único
-            $logo->move(public_path('media/companies/logos'), $logoName);
-            $company->logo = 'media/companies/logos/' . $logoName;
-        } elseif ($request->file('logo') == null) {
-            $company->logo = null;
-        }
-        
-        if ($request->file('cover')) {
-            $cover = $request->file('cover');
-            $coverName = time() . '-' . $cover->getClientOriginalName(); // Genera un nombre único
-            $cover->move(public_path('media/companies/covers'), $coverName);
-            $company->cover = 'media/companies/covers/' . $coverName;
-        } elseif ($request->file('cover') == null) {
-            $company->cover = null;
-        }
         $company->save();
         return redirect()->route('admin.companies.index')
             ->with('message','Company updated successfully.');
