@@ -50,9 +50,9 @@
                                 <td>{{ $servicePackage->description }}</td>
                                 <td>{{ $servicePackage->price }}</td>
                                 <td>
-                                    <a href="{{ route('admin.contacts.show', $servicePackage) }}" class="btn btn-sm btn-success">Ver</a>
+                                    <a href="{{ route('admin.servicePackages.show', $servicePackage) }}" class="btn btn-sm btn-success">Ver</a>
                                     <a href="{{ route('admin.servicePackages.create', ['servicePackageId' => $servicePackage->id]) }}" class="btn btn-sm btn-warning">Editar</a>
-                                    <form action="{{ route('admin.contacts.destroy', $servicePackage) }}" method="POST">
+                                    <form action="{{ route('admin.servicePackages.destroy', $servicePackage) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>

@@ -10,7 +10,6 @@
                     </button>
                 </div>
             </div>
-    
             @include('layouts.users.alert')
     
             <div class="row mt-3">
