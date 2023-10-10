@@ -16,14 +16,12 @@ class Invitation extends Model
         'id',
         'users_id',
         'package_id',        
-        'user_id',
-        'package_id',
 
     ];
     
     public function User()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function Event()

@@ -1,10 +1,12 @@
 @extends('layouts.users.app')
+
 @section('content')
 @livewireStyles()
 @include('layouts.users.alert')
     @livewire('category-component')
 @livewireScripts()
 @endsection
+
 
 <div class="content content-components ">
     <div class="d-flex justify-content-between align-items-center ">
