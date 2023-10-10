@@ -60,7 +60,7 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('event.index')->with('message', 'Event created successfully');
+        return view('admin.invitations.index')->with('message', 'Event created successfully');
     }
 
     /**
