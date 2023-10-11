@@ -16,7 +16,9 @@
 	<!-- Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/font-awesome/css/all.min.css">
-
+	
+	<!-- sweetalert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="/assets/css/dashforge.css">
@@ -24,9 +26,8 @@
 
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
-
-	@livewireStyles
-	@yield('styles')
+    
+    @yield('css')
 </head>
 
 <body class="pos-relative" data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
@@ -196,6 +197,8 @@
 <script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="/assets/lib/prismjs/prism.js"></script>
 <script src="/assets/lib/spectrum-colorpicker/spectrum.js"></script>
+<script src="{{ asset('vendor/livewire/livewire.js') }}" defer></script>
+<script src="/assets/js/livewire-swall.js"></script>
 
 <script src="/assets/js/dashforge.js"></script>
 <script>
@@ -206,6 +209,16 @@
 
 @livewireScripts
 @yield('scripts')
+
+<!-- Bootstrap JS -->
+<script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Vendors -->
+<script src="/assets/vendor/choices/js/choices.min.js"></script>
+<script src="/assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
+
+<!-- Template Functions -->
+<script src="/assets/js/functions.js"></script>
 
 </body>
 

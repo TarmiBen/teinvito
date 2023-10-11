@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ServicePackage;
+use App\Models\Galery;
 
 class ServicePackageController extends Controller
 {
@@ -36,7 +37,8 @@ class ServicePackageController extends Controller
      */
     public function show(ServicePackage $servicePackage)
     {
-        return view('admin.servicePackages.show', compact('servicePackage'));
+        $Gallerys = Galery::where('service_package_id', $servicePackage->id)->get();
+        return view('admin.servicePackages.show', compact('servicePackage', 'Gallerys'));
     }
 
     /**

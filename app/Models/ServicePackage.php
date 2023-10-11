@@ -11,7 +11,7 @@ class ServicePackage extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'servicepackages';
+    protected $table = 'service_package';
     protected $fillable = [
         'service_id', 
         'name', 

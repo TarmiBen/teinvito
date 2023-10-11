@@ -34,15 +34,16 @@ class GaleryComponent extends Component
         return view('livewire.galery-component');
     }
 
-    public function updatedPhoto()//function to validate the image
+    public function updatedPhoto()
     {
         $this->validate([
-            'images1' => 'image|max:1024', // 1MB Max   
-            'images2' => 'image|max:1024', // 1MB Max
-            'images3' => 'image|max:1024', // 1MB Max
-            'images4' => 'image|max:1024', // 1MB Max
+            'images1' => 'image|mimes:png,jpg,jpeg|max:5120', // 5MB Max and only png, jpg, jpeg files
+            'images2' => 'image|mimes:png,jpg,jpeg|max:5120', // 5MB Max and only png, jpg, jpeg files
+            'images3' => 'image|mimes:png,jpg,jpeg|max:5120', // 5MB Max and only png, jpg, jpeg files
+            'images4' => 'image|mimes:png,jpg,jpeg|max:5120', // 5MB Max and only png, jpg, jpeg files
         ]);
     }
+
 
     public function saveComponents()
     {
@@ -87,6 +88,23 @@ class GaleryComponent extends Component
 
         // Recorre el arreglo de rutas de imágenes y guárdalas en la base de datos
         foreach ($imagePaths as $key => $imagePath) {
+            // Obtén la ruta completa del archivo
+            $filePath = storage_path('app/' . $imagePath);
+    
+            // Verifica el tamaño del archivo
+            if (filesize($filePath) > 5 * 1024 * 1024) {
+                // Si el archivo supera los 5 MB, redimensiona la imagen
+                $img = Image::make($filePath);
+                $img->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+    
+                // Guarda la imagen redimensionada
+                $img->save($filePath);
+            }
+    
+            // Actualiza la base de datos con la ruta de la imagen
             ComponentData::create([
                 'key' => $key,
                 'value' => $imagePath, // Almacena la ruta de la imagen en la base de datos
@@ -95,5 +113,4 @@ class GaleryComponent extends Component
             ]);
         }
     }
-
 }
