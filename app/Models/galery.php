@@ -21,6 +21,6 @@ class Galery extends Model
 
     public function ServicePackage()
     {
-        return $this->belongsTo(ServicePackage::class, 'id');
+        return $this->belongsTo(ServicePackage::class, 'service_package_id');
     }
 }

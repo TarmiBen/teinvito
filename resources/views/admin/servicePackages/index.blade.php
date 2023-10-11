@@ -6,6 +6,4 @@
 
     @livewire('service-package-index')
 
-    <script href="{{ asset('public/assets/js/livewire-swall.js') }}"></script>
-
 @endsection
