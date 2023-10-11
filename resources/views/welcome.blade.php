@@ -7,7 +7,6 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
@@ -17,8 +16,11 @@
             <div class="row align-items-center">
                 <div class="col-lg-7 col-12">
                     <div class="px-5 text-center text-md-start">
-                        <h1>
+                        <!-- <h1>
                             Conviértete en el proveedor, anfitrión o fotógrafo de momentos inolvidables junto a nosotros
+                        </h1> -->
+                        <h1>
+                        Conviértete en el <span id="element"></span> de momentos inolvidables junto a nosotros
                         </h1>
                         <h5 class="mt-3">
                             Descubre un mundo de invitaciones diseñadas para hacer que cada evento sea especial.
@@ -290,5 +292,17 @@
             </div>
         </div>
     </section>
+
+    <script src="/assets/lib/typed.js/typed.min.js"></script>
+
+
+    <script>
+        const typed = new Typed('#element', {
+            strings: ['<i class="fw-bold text-primary">Proveedor</i>', '<i class="fw-bold text-primary">Anfitrión</i>', '<i class="fw-bold text-primary">Fotógrafo</i>'],
+            typeSpeed: 50,
+            backSpeed: 50,
+            loop: true
+        });
+    </script>
 </body>
 </html>
