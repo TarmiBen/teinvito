@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\guests;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,14 +12,14 @@ use Illuminate\Support\Facades\Auth;
 class ConfirmacionAsistencia extends Notification
 {
     use Queueable;
-    public $link;
+
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($url)
     {
-        //
+        $this->url = $url;
     }
 
     /**
@@ -37,10 +38,11 @@ class ConfirmacionAsistencia extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $user = Auth::user();
-
+        $guests = guests::latest()->first();
+        $hash = $guests->hash;
         return (new MailMessage)
             ->line($user->name . ' ' . 'Te ha invitado a un evento')
-                    ->action('Responder', url('/confirmar/{$notifiable->hash}'))
+                    ->action('Responder', $this->url)
                     ->line('Thank you for using our application!');
     }
 

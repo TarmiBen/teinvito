@@ -8,7 +8,11 @@ use App\Models\User;
 use App\Notifications\ConfirmacionAsistencia;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+
 
 class GuestsController extends Controller
 {
@@ -37,6 +41,14 @@ class GuestsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'number' => 'required',
+        ]);
+
         $guest = new guests();
         do {
             $guest->hash = Str::random(13);
@@ -49,26 +61,36 @@ class GuestsController extends Controller
         $userInvited = $request->email;
         $guest->number = $request->number;
         $guest->status = 3;
-        $notification = new ConfirmacionAsistencia();
+        $guest->save();
+        $user = Auth::user();
+        $guest = guests::latest()->first();
+        $hash = $guest->hash;
+
+        $url = URL::temporarySignedRoute('guests.confirmar',
+            now()->addMinutes(5), [ 'hash' => $hash]);
+
+        $notification = new ConfirmacionAsistencia($url);
         \Notification::route('mail', $userInvited)->notify($notification);
 
-        $guest->save();
-
-        return redirect()->route('guests.index')->with('success','Invitado creado correctamente');
+        return redirect()->route('guests.index')->with('message','Invitado creado correctamente');
 
 
     }
 
-    public function confirmarAsistencia(Request $request, $codigoInvitacion)
+    public function confirmarAsistencia(Request $request,  $hash)
     {
-        $guests = guests::where('hash', $codigoInvitacion)->first();
-        $respuesta = $request->input('respuesta');
-        $guests->status = $respuesta;
-        $guests->update();
-        return redirect()->route('guests.index')->with('success','Invitado confirmado correctamente');
+        if (!$request->hasValidSignature()) {
+            abort(403, 'ha expirado el tiempo de confirmacion');
+        }else {
+            $guests = guests::where('hash', $hash)->latest()->first();
+            $respuesta = $request->input('respuesta');
+            $guests->status = $respuesta;
+            $guests->update();
+            return redirect()->route('guests.index')->with('message', ' Estatus Invitado confirmado correctamente');
+        }
     }
 
-    
+
 
     /**
      * Display the specified resource.
@@ -102,14 +124,17 @@ class GuestsController extends Controller
         //
     }
 
-    public function link(){
+    public function link(Invitation $invitation){
         $link = URL::temporarySignedRoute(
-            'guests.create', now()->addMinutes(30), ['user' => 1]
+            'guests.create',
+            now()->addMinutes(30),
+            ['user' => 1]
         );
     }
 
-    public function response(){
-        return view('guests.response');
+    public function response( $hash){
+        $guests = guests::where('hash', $hash)->first();
+        return view('guests.response', compact('guests'));
     }
 
 
