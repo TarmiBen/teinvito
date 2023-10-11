@@ -1,7 +1,11 @@
 @extends('layouts.users.app')
+
+@section('title', 'Direcciones')
+
 @section('content')
-@livewireStyles()
-@include('layouts.users.alert')
+
+    @include('layouts.users.alert')
+    
     @livewire('adress-index')
-@livewireScripts()
+
 @endsection

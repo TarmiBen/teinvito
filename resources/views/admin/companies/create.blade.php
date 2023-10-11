@@ -7,7 +7,7 @@
             <h3 class="col-auto m-0"></h3>
             <div class="col-auto">
                 <button type="submit" class="btn btn-success">
-                    <i data-feather="plus-square"></i>
+                    <i class="fa-regular fa-square-plus"></i>
                     Guardar
                 </button>
             </div>
@@ -21,6 +21,7 @@
                     <div class="card-body">
                         @csrf
                         <div class="row">
+                            <h3>Datos de la compañia</h3>
                             <div class="col-12 col-sm-6 mt-3">
                                 <label for="name">Nombre de la Compañia:</label>
                                 <input type="text" name="name" class="form-control" placeholder="Nombre de la Compañia" value="{{ old('name') }}">
@@ -58,17 +59,17 @@
                             </div>
         
                             <div class="col-12 col-sm-6 col-md-3 mt-3">
-                                <label for="ext">Numero Exterior:</label>
+                                <label for="ext">Número Exterior:</label>
                                 <input type="text" name="ext" class="form-control" placeholder="Numero Exterior">
                             </div>
         
                             <div class="col-12 col-sm-6 col-md-3 mt-3">
-                                <label for="int">Numero Interior:</label>
+                                <label for="int">Número Interior:</label>
                                 <input type="text" name="int" class="form-control" placeholder="Numero Interior">
                             </div>
         
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="cp">Codigo Postal:</label>
+                                <label for="cp">Código Postal:</label>
                                 <input type="text" name="cp" class="form-control" placeholder="Codigo Postal" value="{{ old('cp') }}">
                             </div>
         

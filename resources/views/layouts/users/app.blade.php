@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@yield('title')</title>
+	<title>@yield('title') | Te Invito</title>
 
     <!-- vendor css -->
 	<link href="/assets/lib/%40fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -14,8 +14,7 @@
     <link href="/assets/lib/spectrum-colorpicker/spectrum.css" rel="stylesheet">
 
 	<!-- Icons -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/lib/fontawesome/all.min.css">
 	
 	<!-- sweetalert2 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
