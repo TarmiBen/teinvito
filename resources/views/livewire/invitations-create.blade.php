@@ -1,4 +1,8 @@
 <div class="container">
+    <link rel="stylesheet" type="text/css" href="/assets/css/cropper.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/cropperImage.css">
+    @livewireStyles
+
     <h2>Agregar Componentes</h2>
     <ul>
         @foreach($availableComponents as $component => $label)
@@ -16,4 +20,9 @@
         @endforeach
     </div>
     <button wire:click="saveAll" class="btn btn-primary">Guardar</button>
+
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/cropper.js"></script>
+    @livewireScripts
 </div>
+

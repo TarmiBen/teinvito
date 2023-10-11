@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-12 col-sm-12 mt-3">
                                     <label for="src">Imagen</label>
-                                    <input type="file" wire:model="src" class="form-control">
+                                    <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" data-image-id="1" wire:model="src">
                                     @error('src.*') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 @if (count($src) > 0)
@@ -62,11 +62,7 @@
                                             @foreach ($src as $index => $image)
                                             <tr>
                                                 <td>
-                                                    @if (is_string($image))
-                                                    <img src="{{ asset('storage/' . $image) }}" alt="Imagen">
-                                                    @else
-                                                        <img src="{{ $image->temporaryUrl() }}" width="100">
-                                                    @endif
+                                                    <img class="img-fluid object-fit-cover shadow crop-image" data-image-id="1" width="100">
                                                 </td>
                                                 <td>
                                                     <input type="text" wire:model="tittle.{{ $index }}" class="form-control">
@@ -80,6 +76,7 @@
                                                     <button type="button" wire:click="removeImage({{ $index }})">Eliminar</button>
                                                 </td>
                                             </tr>
+                 
                                             @endforeach              
                                         </tbody>
                                     </table>
@@ -91,3 +88,4 @@
             </div> 
         </form>
     </div>
+</div>

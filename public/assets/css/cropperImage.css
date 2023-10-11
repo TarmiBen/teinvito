@@ -1,16 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-:root{
-    --primary-color: rgb(58,79,105);
-    --secundary-color: rgb(157,167,180);
-    --thir-color: rgb(233,95,133);
-    --primary-color-hover: rgb(30, 50, 75);
-    --secundary-color-hover:rgb(110, 116, 124);
-}
 
 /* Estilos para la tarjeta */
 /* Estilos para la tarjeta */
-.card {
+#modal {
     background-color: #fff; /* Color de fondo de la tarjeta */
     border: 1px solid #ccc; /* Borde de la tarjeta */
     border-radius: 5px; /* Borde redondeado */
@@ -22,7 +13,7 @@
 
 /* ... (otros estilos de la tarjeta) */
 
-.card.active {
+#modal.active {
     display: block; /* Muestra la tarjeta cuando tiene la clase 'active' */
 }
 
