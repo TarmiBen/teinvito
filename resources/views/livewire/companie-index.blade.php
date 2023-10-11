@@ -51,7 +51,7 @@
                                     <td>{{ $company->rfc }}</td>
                                     <td>
                                         @if ($company->logo)
-                                            <img src="{{ asset($company->logo) }}" width="100px">
+                                            <img src="{{ asset('storage/'.$company->logo) }}" alt="{{ $company->name }}" width="50px">
                                         @else
                                             Sin imagen
                                         @endif

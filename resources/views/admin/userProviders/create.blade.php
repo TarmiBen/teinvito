@@ -28,7 +28,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="/assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="/assets/lib/typeahead.js/typeahead.bundle.min.js"></script>
     <script>
         var route = "{{ url('/autoCompleteUser/json?q=%QUERY') }}";
         var clave = new Bloodhound({
