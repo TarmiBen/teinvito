@@ -16,7 +16,9 @@
 	<!-- Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/font-awesome/css/all.min.css">
-
+	
+	<!-- sweetalert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="/assets/css/dashforge.css">
@@ -188,6 +190,25 @@
 </div><!-- content -->
 
     @endguest
+
+<script src="/assets/lib/jquery/jquery.min.js"></script>
+<script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/lib/feather-icons/feather.min.js"></script>
+<script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="/assets/lib/prismjs/prism.js"></script>
+<script src="/assets/lib/spectrum-colorpicker/spectrum.js"></script>
+<script src="{{ asset('vendor/livewire/livewire.js') }}" defer></script>
+<script src="/assets/js/livewire-swall.js"></script>
+
+<script src="/assets/js/dashforge.js"></script>
+<script>
+  $(function(){
+	'use strict'
+  });
+</script>
+
+@livewireScripts
+@yield('scripts')
 
 <!-- Bootstrap JS -->
 <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

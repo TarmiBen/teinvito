@@ -68,13 +68,13 @@ class CompanieController extends Controller
         ]);
         $imgName = ImageHelper::uploadAndResizeImage(
             $request->file('logo'),
-            'companies/logos', 
+            'public/companies/logos', 
             400,     
             400      
         );
         $imgNameCover = ImageHelper::uploadAndResizeImage(
             $request->file('cover'),
-            'companies/covers', 
+            'public/companies/covers',
             851,     
             315      
         );

@@ -43,14 +43,20 @@ class ServiceIndex extends Component
         $this->deleteId = $id;
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'question',
-            'message' => '¿Esta seguro de esta accion?',
-            'text' => "Eliminar el Registro",
+            'message' => '¿Estás seguro de eliminar este servicio?',
+            'text' => "Esta acción no se puede deshacer.",
         ]);
     }
 
     public function destroy()
     {
-        $applicant = Service::find($this->deleteId);
-        $applicant->delete();
+        if ($this->deleteId) {
+            $service = Service::find($this->deleteId);
+            if ($service) {
+                $service->delete();
+                // Limpiar el ID de eliminación después de la eliminación exitosa
+                $this->deleteId = null;
+            }
+        }
     }
 }

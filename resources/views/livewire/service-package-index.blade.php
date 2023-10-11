@@ -1,11 +1,11 @@
 <div>
     @livewireStyles()
     <div class="row justify-content-between align-items-center">
-        <h3 class="col-auto">Lista de Contactos</h3>
+        <h3 class="col-auto">Lista de Paquetes de Servicios</h3>
         <div class="col-auto">
             <a href="{{ route('admin.servicePackages.create') }}" class="btn btn-primary">
                 <i data-feather="plus-square"></i>
-                Crear Contacto
+                Crear Paquete de Servicio
             </a>
         </div>
     </div>
@@ -51,6 +51,8 @@
                                 <td>{{ $servicePackage->price }}</td>
                                 <td>
                                     <a href="{{ route('admin.servicePackages.show', $servicePackage) }}" class="btn btn-sm btn-success">Ver</a>
+                                    <a href="{{ route('admin.servicePackages.create', ['servicePackageId' => $servicePackage->id]) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    <button wire:click="deleteConfirm({{ $servicePackage->id }})" class="btn btn-sm btn-danger">Eliminar</button>
                                 </td>
                             </tr>
                         @endforeach
