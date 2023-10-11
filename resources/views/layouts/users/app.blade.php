@@ -24,9 +24,8 @@
 
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
-
-	@livewireStyles
-	@yield('styles')
+    
+    @yield('css')
 </head>
 
 <body class="pos-relative" data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
@@ -190,22 +189,15 @@
 
     @endguest
 
-<script src="/assets/lib/jquery/jquery.min.js"></script>
-<script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/lib/feather-icons/feather.min.js"></script>
-<script src="/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="/assets/lib/prismjs/prism.js"></script>
-<script src="/assets/lib/spectrum-colorpicker/spectrum.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="/assets/js/dashforge.js"></script>
-<script>
-  $(function(){
-	'use strict'
-  });
-</script>
+<!-- Vendors -->
+<script src="/assets/vendor/choices/js/choices.min.js"></script>
+<script src="/assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
 
-@livewireScripts
-@yield('scripts')
+<!-- Template Functions -->
+<script src="/assets/js/functions.js"></script>
 
 </body>
 
