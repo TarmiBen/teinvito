@@ -3,7 +3,7 @@
         <h3 class="col-auto m-0">Lista de Compañias</h3>
         <div class="col-auto">
             <a href="{{ route('admin.companies.create') }}" class="btn btn-primary">
-                <i data-feather="plus-square"></i>
+                <i class="fa-regular fa-square-plus"></i>
                 Nueva Compañia
             </a>
         </div>
@@ -35,7 +35,7 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Correo</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
                                 <th>RFC</th>
                                 <th>Imagen/archivo</th>
                                 <th>Acciones</th>
@@ -51,18 +51,24 @@
                                     <td>{{ $company->rfc }}</td>
                                     <td>
                                         @if ($company->logo)
-                                            <img src="{{ asset($company->logo) }}" width="100px">
+                                            <img src="{{ asset('storage/'.$company->logo) }}" alt="{{ $company->name }}" width="50px">
                                         @else
                                             Sin imagen
                                         @endif
+                                    </td>
                                     <td>
-                                    <td>
-                                        <a href="{{ route('admin.companies.show', $company) }}" class="btn btn-sm btn-success">Ver</a>
-                                        <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-sm btn-primary">Editar</a>
                                         <form action="{{ route('admin.companies.destroy', $company) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                            <a href="{{ route('admin.companies.show', $company) }}" class="btn btn-icon btn-warning">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-icon btn-info">
+                                                <i class="fa-regular fa-edit"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-icon btn-danger">
+                                                <i class="fa-regular fa-trash-alt"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>

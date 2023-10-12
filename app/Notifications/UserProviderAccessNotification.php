@@ -15,7 +15,7 @@ class UserProviderAccessNotification extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * Create a new notification instance.
+     * Create a new notification instance.|
      */
     public function __construct()
     {

@@ -10,7 +10,7 @@ class InvitationComponent extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'invitationcomponents';
+    protected $table = 'invitation_components';
     protected $fillable = [
         'id',
         'invitation_id',

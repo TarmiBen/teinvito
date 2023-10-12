@@ -13,15 +13,14 @@ class Galery extends Model
 
     protected $table = 'galery';
     protected $fillable = [
-        'id',
         'service_package_id',
         'src',
-        'title',
+        'tittle',
         'text',
     ];
 
     public function ServicePackage()
     {
-        return $this->belongsTo(ServicePackage::class, 'id');
+        return $this->belongsTo(ServicePackage::class, 'service_package_id');
     }
 }

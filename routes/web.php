@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\GuestsController;
+use App\Http\Controllers\PayPalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MySubscriptionController;
@@ -11,6 +14,7 @@ use App\Http\Controllers\UserProviderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdressController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServicePackageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +33,24 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 //logout
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
-Route::resource('profile', ProfileController::class)->middleware('verified')->names('profile');	
+
+Route::resource('profile', ProfileController::class)->middleware('verified')->names('profile');
+
 Route::resource('my-subscription', MySubscriptionController::class)->middleware('verified')->names('my-subscription');
 Route::resource('subscription', SubscriptionController::class)->middleware('verified')->names('subscription');
+
+
+Route::get('/paypal', [PayPalController::class,'index']);
+Route::get('/withpay', [PayPalController::class,'payWhit']);
+Route::get('/paypal/status', [PayPalController::class,'status']);
+
+Route::resource('event', EventController::class)->names('event');
+Route::get('/event/restore/{id}', [EventController::class, 'restore'])->name('event.restore');
+
+Route::resource('guests', GuestsController::class)->names('guests');
+Route::get('/confirmar/{codigoInvitacion}', [GuestsController::class, 'response'])->name('guests.confirmar');
+Route::get('/invitado/{codigo}', [GuestsController::class, 'confirmarAsistencia'])->name('guests.invitado');
+
 Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
 Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {
@@ -40,6 +59,11 @@ Route::middleware(['auth', 'password.confirm'])->group(function () {
 Route::resource('admin/contacts', ContactController::class)->names('admin.contacts');
 Route::resource('admin/addresses', AdressController::class)->names('admin.addresses');
 Route::resource('admin/services', ServiceController::class)->names('admin.services');
+Route::get('/admin/servicePackage/create/{servicePackageId?}', [ServicePackageController::class, 'create'])->name('admin.servicePackages.create');
+Route::get('/admin/servicePackage', [ServicePackageController::class, 'index'])->name('admin.servicePackages.index');
+Route::get('/admin/servicePackage/show/{servicePackage}', [ServicePackageController::class, 'show'])->name('admin.servicePackages.show');
+Route::get('/admin/servicePackage/delete/{deleteId}', [ServicePackageController::class, 'deleteConfirm'])->name('admin.servicePackages.deleteConfirm');
+Route::delete('/admin/servicePackage/{servicePackage}', [ServicePackageController::class, 'destroy'])->name('admin.servicePackages.destroy');
 //restored section
 Route::get('/admin/companies/{id}/restore', [CompanieController::class, 'restore'])->name('admin.companies.restore');
 Route::get('/admin/userProviders/{id}/restore', [UserProviderController::class, 'restore'])->name('admin.userProviders.restore');

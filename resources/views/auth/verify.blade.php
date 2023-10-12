@@ -7,7 +7,7 @@
 
     <!-- Icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+
     <!-- Styles CSS -->
     @vite(['resources/sass/app.scss'])
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
@@ -19,7 +19,7 @@
             <div class="col-6 d-none d-lg-flex px-5 bg-tertiary-ti flex-column justify-content-center align-items-center">
                 <span class="h1 fw-bold text-center text-white">
                     ¡ Tu seguridad es muy importante para nosotros !
-                </span>    
+                </span>
                 <img src="/assets/img/login/login.svg" alt="" class="img-fluid">
             </div>
             <div class="col-12 col-lg-6 px-0 px-lg-5 py-5 d-flex justify-content-center align-items-center">
@@ -37,7 +37,7 @@
                             <p class="fs-3">
                                 Antes de continuar, revise su correo electrónico para obtener un enlace de verificación.
                             </p>
-            
+
                             <span class="fs-5 fw-bold">
                                 Si no recibió el correo electrónico,
                                 <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">

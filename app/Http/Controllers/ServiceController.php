@@ -9,6 +9,7 @@ use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\ImageHelper;
 class ServiceController extends Controller
 {
     /**
@@ -16,6 +17,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
+        
         return view('admin.services.index');
     }
 
@@ -55,20 +57,17 @@ class ServiceController extends Controller
         $service->description_small = $request->description_small;
         $service->img_src = $request->img_src;
         $service->keywords = $request->keywords;
-        if ($request->hasFile('img_src')) {
-            $img_src = $request->file('img_src');
-            $extension = 'webp';
-            $originalName = pathinfo($img_src->getClientOriginalName(), PATHINFO_FILENAME);
-            $ImgName = time() . '-' . $originalName . '.' . $extension;
-            $img = Image::make($img_src)->resize(1080, 1080)->encode($extension);
-            Storage::disk('public')->put($ImgName, $img);
-            $service->img_src = $ImgName;
-            dd($service->img_src);
-        }elseif ($request->file('img_src') == null) {
-            $service->img_src = null;
+        $imgName = ImageHelper::uploadAndResizeImage(
+            $request->file('img_src'),
+            'public',
+            1080,
+            1080
+        );
+        if ($imgName) {
+            $service->img_src = $imgName;
         }
         $service->save();
-        return redirect()->route('services.index')
+        return redirect()->route('admin.services.index')
             ->with('message', 'Service created successfully.');
     }
 
@@ -85,9 +84,13 @@ class ServiceController extends Controller
      */
     public function edit(service $service)
     {
-        return view('admin.services.edit', compact('service'));
+        $user = Auth::user();
+        $categories = Category::all();
+        $companies = Company::whereHas('UserProvider', function ($query) use ($user) {
+            $query->where('users_id', $user->id);
+        })->get();
+        return view('admin.services.edit', compact('service', 'categories', 'companies'));
     }
-
     /**
      * Update the specified resource in storage.
      */
