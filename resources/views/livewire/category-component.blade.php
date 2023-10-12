@@ -22,7 +22,6 @@
                                             <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
-                                            <option value="100">100</option>
                                         </select>
                                     </form>
                                 </div>
@@ -55,18 +54,10 @@
                                     @endif
                                 </td>
                                 <td>{{ $categorias->name }}</td>
-                                <td>
-                                    <form action="{{ url('category/'.$categorias->id) }}" method="post"
-                                        class="btn-group form-delete form-edit form-add text-center">
-                                        @method("DELETE")
-                                        @csrf
-                                        <a type="button" class="btn btn-warning ms-1"
-                                            href="{{ url('category/'.$categorias->id. '/category-show') }}"> Mostrar</a>
-                                        <a type="button" class="btn btn-primary ms-1"
-                                            href="{{ url('category/'.$categorias->id. '/category-edit') }}">Editar</a>
-                                        <button type="submit"
-                                            class="btn btn-danger ms-1">Eliminar</button>
-                                    </form>
+                                <td class="btn-group form-delete form-edit form-add text-center">
+                                    <a type="button" class="btn btn-sm btn-success" href="{{ url('category/'.$categorias->id. '/category-show') }}">Ver</a>
+                                    <a type="button" class="btn btn-sm btn-warning" href="{{ url('category/'.$categorias->id. '/category-edit') }}">Editar</a>
+                                    <button wire:click="deleteConfirm({{ $categorias->id }})" class="btn btn-sm btn-danger">Eliminar</button>
                                 </td>
                             </tr>
                             @endforeach

@@ -42,31 +42,3 @@
     </div>
 </form>
 @endsection
-
-@section('js')
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-    $('.form-add').submit(function (e) {
-        e.preventDefault();
-
-        Swal.fire({
-            title: 'Estas seguro?',
-            text: "Podrás editar esto despues",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Registrar!',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.value) {
-                this.submit();
-            }
-        })
-    });
-
-</script>
-
-@endsection

@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $category->category_id = $request->input('category_id');
         $category->name = $request->input('name');                     
         $category->save();
-        return redirect()->route('category')->with('add', 'ok');
+        return redirect()->route('category');
     }
     /**
      * Display the specified resource.
@@ -74,7 +74,7 @@ class CategoryController extends Controller
         $category->category_id = $request->input('category_id');
         $category->name = $request->input('name');               
         $category->save();
-        return redirect()->route('category')->with('edit', 'ok');
+        return redirect()->route('category');
     }
     /**
      * Remove the specified resource from storage.
@@ -84,7 +84,7 @@ class CategoryController extends Controller
         
         $category ->delete();
 
-        return redirect("/category")->with('delete', 'ok');
+        return redirect("/category");
     }
     
 }
