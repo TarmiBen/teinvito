@@ -1,4 +1,7 @@
 @extends('layouts.users.app')
+
+@section('title','Category-add')
+
 @section('content')
 
 

@@ -1,4 +1,7 @@
 @extends('layouts.users.app')
+
+@section('title','Category-show')
+
 @section('content')
 
 <div class="row justify-content-between align-items-center mb-3">

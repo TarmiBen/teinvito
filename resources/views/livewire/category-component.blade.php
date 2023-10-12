@@ -1,10 +1,9 @@
 <div>
-    @livewireStyles
     <div class="row justify-content-between align-items-center">
-        <h3 class="col-auto">Categoria</h3>
+        <h3 class="col-auto">Categoría</h3>
         <div class="col-auto">
             <a href="{{ route('category.create') }}" class="btn btn-primary">
-                Nueva categoria
+                Nueva categoriía
             </a>
         </div>
     </div>
@@ -38,7 +37,7 @@
                                 <th class="sort" wire:click="sortOrder('id')">ID {!! $sortLink !!}</th>
                                 <th class="sort" wire:click="sortOrder('category_id')">Categoria {!! $sortLink !!}</th>
                                 <th class="sort" wire:click="sortOrder('name')">Nombre {!! $sortLink !!}</th>
-                                <th>Accion</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <br>
@@ -68,6 +67,4 @@
             </div>
         </div>
     </div>
-</div>
-@livewireScripts
 </div>
