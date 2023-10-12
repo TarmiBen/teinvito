@@ -3,7 +3,7 @@
         <h3 class="col-auto">Categoría</h3>
         <div class="col-auto">
             <a href="{{ route('category.create') }}" class="btn btn-primary">
-                Nueva categoriía
+                Nueva categoría
             </a>
         </div>
     </div>

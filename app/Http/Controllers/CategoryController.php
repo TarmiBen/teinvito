@@ -38,7 +38,8 @@ class CategoryController extends Controller
         $category->category_id = $request->input('category_id');
         $category->name = $request->input('name');                     
         $category->save();
-        return redirect()->route('category');
+        return redirect()->route('category')
+        ->with('message', 'Categoría creada exitosamente.');
     }
     /**
      * Display the specified resource.
@@ -59,6 +60,7 @@ class CategoryController extends Controller
 
         $fathercategories = Category::whereNull('category_id')->orderBy('name', 'asc')->get();   
         return view('/category/category-edit', compact('category','fathercategories'));
+        // ->with('message', 'Categoria editada exitosamente.');
 
     }
     /**
@@ -74,7 +76,8 @@ class CategoryController extends Controller
         $category->category_id = $request->input('category_id');
         $category->name = $request->input('name');               
         $category->save();
-        return redirect()->route('category');
+        return redirect()->route('category')
+            ->with('message', 'Categoría actualizada exitosamente.');
     }
     /**
      * Remove the specified resource from storage.
@@ -85,6 +88,7 @@ class CategoryController extends Controller
         $category ->delete();
 
         return redirect("/category");
+        // ->with('message', 'Categoria eliminada exitosamente.');
     }
     
 }
