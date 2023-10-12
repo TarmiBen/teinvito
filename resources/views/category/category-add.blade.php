@@ -63,7 +63,7 @@
                     </ul>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            @endif
+            
 
             @csrf{{-- Token CSRF para la seguridad del formulario --}}
 
@@ -101,7 +101,7 @@
             <span>Made by <a href=""></a>benito</span>
         </div>
 
-        @endif
+        
 
         @csrf
 
