@@ -1,16 +1,14 @@
 <div>
-    @livewireStyles()
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto">Lista de Contactos</h3>
         <div class="col-auto">
             <a href="{{ route('admin.contacts.create') }}" class="btn btn-primary">
-                <i data-feather="plus-square"></i>
-                Crear Contacto
+                <i class="fa-regular fa-square-plus"></i>
+                Nuevo Contacto
             </a>
         </div>
     </div>
-<div class="row mt-3">
-    <div class="stretch-card">
+    <div class="row mt-3">
         <div class="card">
             <div class="card-body">
                 <table id="products" class="w-100 table table-striped">
@@ -38,7 +36,7 @@
                             <th>Apellido</th>
                             <th>Correo</th>
                             <th>Celular</th>
-                            <th>Telefono</th>
+                            <th>Teléfono</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -68,6 +66,4 @@
             </div>
         </div>
     </div>
-</div>
-@livewireScripts()
 </div>
