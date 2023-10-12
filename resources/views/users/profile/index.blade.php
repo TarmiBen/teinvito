@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-auto ms-2 d-flex flex-column justify-content-start">
                                     <div class="fs-4 fw-bold text-quaternary-ti">
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->name }} {{ Auth::user()->lastname }}
                                     </div>
                                     <div>
                                         {{ Auth::user()->email }}
@@ -35,7 +35,7 @@
                         </div>
                         <div class="mt-3">
                             <label for="name" class="form-label">Nombre:</label>
-                            <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control" disabled>
+                            <input type="text" name="name" value="{{ Auth::user()->name }} {{ Auth::user()->lastname }}" class="form-control" disabled>
                         </div>
                         <div class="mt-3">
                             <label for="email" class="form-label">Correo:</label>
