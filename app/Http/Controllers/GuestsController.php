@@ -124,14 +124,6 @@ class GuestsController extends Controller
         //
     }
 
-    public function link(Invitation $invitation){
-        $link = URL::temporarySignedRoute(
-            'guests.create',
-            now()->addMinutes(30),
-            ['user' => 1]
-        );
-    }
-
     public function response( $hash){
         $guests = guests::where('hash', $hash)->first();
         return view('guests.response', compact('guests'));

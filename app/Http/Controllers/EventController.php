@@ -61,7 +61,7 @@ class EventController extends Controller
         $event->title = $request->title;
         $user = User::find($userInvited);
 
-        //$user->notify(new UserInvitedId());
+        $user->notify(new UserInvitedId());
 
         $event->save();
 
