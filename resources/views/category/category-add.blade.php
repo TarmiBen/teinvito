@@ -1,6 +1,7 @@
 @extends('layouts.users.app')
 @section('content')
 
+
 <form action="{{ route('category') }}" method="post" data-parsley-validate="" novalidate="">
     @csrf
     <div class="row justify-content-between align-items-center mb-3">
