@@ -1,7 +1,11 @@
 @extends('layouts.users.app')
+
+@section('title', 'Contactos')
+
 @section('content')
-@livewireStyles()
-@include('layouts.users.alert')
+
+    @include('layouts.users.alert')
+
     @livewire('contact-index')
-@livewireScripts()
+
 @endsection

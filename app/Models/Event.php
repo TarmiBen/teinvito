@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
-{   
+
     use HasFactory;
     use SoftDeletes;
     protected $table = 'events';
@@ -21,7 +21,7 @@ class Event extends Model
         'event_date',
         'title',
     ];
-    
+
     public function User()
     {
         return $this->belongsTo(User::class, 'id');

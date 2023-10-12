@@ -16,20 +16,21 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
 
+
     protected $fillable = [
-        'id', 
-        'email', 
-        'name', 
-        'lastname', 
-        'phone', 
-        'email_verified_at', 
-        'password', 
-        'remember_token', 
+        'id',
+        'email',
+        'name',
+        'lastname',
+        'phone',
+        'email_verified_at',
+        'password',
+        'remember_token',
     ];
 
     protected $hidden = [
-        'password', 
-        'remember_token', 
+        'password',
+        'remember_token',
     ];
 
     protected $casts = [
@@ -49,4 +50,5 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Invitation::class, 'user_id');
     }
 }
+
 
