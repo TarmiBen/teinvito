@@ -4,7 +4,6 @@
         <h3 class="col-auto">Categoria</h3>
         <div class="col-auto">
             <a href="{{ route('category.create') }}" class="btn btn-primary">
-                <i data-feather="plus-square"></i>
                 Nueva categoria
             </a>
         </div>
@@ -13,12 +12,12 @@
         <div class="stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <table class="w-100 table table-striped" id="cat">
+                    <table id="cat" class="w-100 table table-striped" >
                         <div class="row justify-content-between align-items-center">
                             <div class="col-auto">
                                 <div class="form-group">
+                                    <label for="pagination">Mostrar:</label>
                                     <form wire:submit.prevent="updatePagination">
-                                        <label for="pagination">Mostrar:</label>
                                         <select wire:model="paginate" id="pagination" class="form-control">
                                             <option value="10">10</option>
                                             <option value="25">25</option>
@@ -28,12 +27,13 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-auto">
+                            <div class="col-auto">
                             <div class="form-group">
                                 <input wire:model="search" type="text" class="form-control" placeholder="Buscar...">
                             </div>
                         </div>
+                        </div>
+                        {{-- $sortLink = '<i class="fas fa-caret-up"></i>'; --}}
                         <thead>
                             <tr>
                                 <th class="sort" wire:click="sortOrder('id')">ID {!! $sortLink !!}</th>
@@ -60,12 +60,12 @@
                                         class="btn-group form-delete form-edit form-add text-center">
                                         @method("DELETE")
                                         @csrf
-                                        <a type="button" class="btn btn-outline-warning far fa-eye"
-                                            href="{{ url('category/'.$categorias->id. '/category-show') }}"></a>
-                                        <a type="button" class="btn btn-outline-info far fa-edit"
-                                            href="{{ url('category/'.$categorias->id. '/category-edit') }}"></a>
+                                        <a type="button" class="btn btn-warning ms-1"
+                                            href="{{ url('category/'.$categorias->id. '/category-show') }}"> Mostrar</a>
+                                        <a type="button" class="btn btn-primary ms-1"
+                                            href="{{ url('category/'.$categorias->id. '/category-edit') }}">Editar</a>
                                         <button type="submit"
-                                            class="btn btn-outline-danger typcn typcn-delete  "></button>
+                                            class="btn btn-danger ms-1">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
