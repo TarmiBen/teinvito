@@ -36,13 +36,14 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-
+        $today = now();
+        $nextDay = $today->addDay();
         $request->validate([
             'user_id' => 'required',
             'invitation_id' => 'required',
             'type' => 'required',
-            'ceremony_date' => 'required',
-            'event_date' => 'required',
+            'ceremony_date' => "required|date|after_or_equal:$nextDay",
+            'event_date' => "required|date|after_or_equal:$nextDay",
             'title' => 'required',
         ]);
         $event = new Event();
@@ -50,13 +51,17 @@ class EventController extends Controller
         $event->user_invited_id = $request->user_invited_id;
         $userInvited = $request->user_invited_id;
         $event->invitation_id = $request->invitation_id;
-        $event->type = $request->type;
+        if ($request->type1 == null && $request->type != null) {
+            $event->type = $request->type;
+        }elseif ($request->type == 'new' && $request->type1 != null) {
+            $event->type = $request->type1;
+        }
         $event->ceremony_date = $request->ceremony_date;
         $event->event_date = $request->event_date;
         $event->title = $request->title;
         $user = User::find($userInvited);
 
-        $user->notify(new UserInvitedId());
+        //$user->notify(new UserInvitedId());
 
         $event->save();
 

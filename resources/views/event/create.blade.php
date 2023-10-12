@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <input type="hidden" name="user_id" value="{{$userId}}">
                     <div class="col-auto mt-4">
-                        <label for="name">UserInvitedId</label>
+                        <label for="name">Usuario Invitado</label>
                         <select name="user_invited_id">
                             <option value="">Selection</option>
                             @foreach($users as $user)
@@ -32,12 +32,12 @@
                         @enderror
                     </div>
                     <div class="col-auto mt-4">
-                    <label for="name">InvitationId</label>
+                    <label for="name">Seleccione Invitacion</label>
                         <select name="invitation_id">
                             <option value="">Selection</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="1">BODA</option>
+                            <option value="2">XV AÑOS</option>
+                            <option value="3">GRADUACION</option>
                         </select>
                         @error('invitation_id')
                         <small class="text-danger">{{ $message }}</small>
@@ -47,12 +47,12 @@
                         <label for="name">Type</label>
                         <select name="type" id="new_type" >
                             <option value="">Selection</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="BODA">BODA</option>
+                            <option value="XV AÑOS">XV AÑOS</option>
+                            <option value="GRADUACION">GRADUACION</option>
                             <option value="new">New</option>
                         </select>
-                        <input type="text" name="type" id="type" placeholder="ingresar una nueva" style="display: none;" value="{{old('type')}}">
+                        <input type="text" name="type1" id="type" placeholder="ingresar una nueva" style="display: none;">
                         @error('type')
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
