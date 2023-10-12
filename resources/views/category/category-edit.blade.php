@@ -24,8 +24,8 @@
             name="category_id" required>
             <option value="">Selecciona una categoria</option>
             @foreach($fathercategories as $fathercategory)
-                <option value="{{ $fathercategory->id }}" @if ($fathercategory->id == $fathercategory->id)
-                    selected @endif>{{ $fathercategory->name }}</option>
+                <option value="{{ $fathercategory->id }}" @if ($fathercategory->id == $category->id)
+                    {{'0'}} @endif>{{ $fathercategory->name }}</option>
             @endforeach
         </select>
     </div>
