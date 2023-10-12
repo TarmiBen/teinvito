@@ -1,34 +1,10 @@
 @extends('layouts.users.app')
-
 @section('content')
 @livewireStyles()
 @include('layouts.users.alert')
     @livewire('category-component')
 @livewireScripts()
 @endsection
-
-
-<div class="content content-components ">
-    <div class="d-flex justify-content-between align-items-center ">
-        <h3 class="">.....</h3>
-        <a href="{{route('category.create')}}" class="btn btn-primary ">
-            .........</a>
-    </div>
-<div>
-<div class="">
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @section('scripts') 

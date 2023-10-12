@@ -25,7 +25,7 @@ class Company extends Model
 
     public function UserProvider()
     {
-        return $this->hasMany(UserProvider::class, 'id');
+        return $this->hasMany(UserProvider::class, 'company_id');
     }
     
     public function Contacts()

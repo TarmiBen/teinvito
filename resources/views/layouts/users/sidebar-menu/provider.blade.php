@@ -7,3 +7,4 @@
 		<a href="el-alerts.html">Opción 2</a>
 	</nav>
 </li>
+<li class="nav-item show"><a class="nav-link active" ><i data-feather="layers"></i> Categorias</a></li>
