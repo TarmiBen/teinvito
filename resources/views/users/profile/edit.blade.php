@@ -6,9 +6,18 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="fw-bold m-0">Editar Información de Perfil</h2>
                 <div class="">
-                    <a href="{{ route('profile.index') }}" class="btn btn-outline-danger">Cancelar</a>
-                    <button type="button" class="btn btn-outline-primary" id="changePasswordBtn">Cambiar Contraseña</button>
-                    <button class="btn btn-success">Guardar</button>
+                    <a href="{{ route('profile.index') }}" class="btn btn-outline-danger">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </a>
+                    <button type="button" class="btn btn-outline-primary" id="changePasswordBtn">
+                        <i class="fas fa-key"></i>
+                        Cambiar Contraseña
+                    </button>
+                    <button class="btn btn-success">
+                        <i class="fas fa-save"></i>
+                        Guardar
+                    </button>
                 </div>
             </div>
 
@@ -19,21 +28,23 @@
                     <form action="{{route('profile.update', Auth::user()->id)}}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="mt-3">
-                            <label for="name" class="form-label">Nombre:</label>
-                            <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control">
-                        </div>
-                        <div class="mt-3">
-                            <label for="lastname" class="form-label">Apellidos</label>
-                            <input type="text" name="lastname" value="{{ Auth::user()->lastname }}" class="form-control">
-                        </div>
-                        <div class="mt-3 d-none" id="passwordField">
-                            <label for="password" class="form-label">Nueva Contraseña:</label>
-                            <input type="password" name="password" class="form-control">
-                        </div>
-                        <div class="mt-3 d-none" id="confirmationPasswordField">
-                            <label for="password_confirmation" class="form-label">Confirmar Contraseña:</label>
-                            <input type="password" name="password_confirmation" class="form-control">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <label for="name" class="form-label">Nombre:</label>
+                                <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="lastname" class="form-label">Apellidos</label>
+                                <input type="text" name="lastname" value="{{ Auth::user()->lastname }}" class="form-control">
+                            </div>
+                            <div class="col-12 d-none" id="passwordField">
+                                <label for="password" class="form-label">Nueva Contraseña:</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+                            <div class="col-12 d-none" id="confirmationPasswordField">
+                                <label for="password_confirmation" class="form-label">Confirmar Contraseña:</label>
+                                <input type="password" name="password_confirmation" class="form-control">
+                            </div>
                         </div>
                     </form>
                 </div>
