@@ -20,6 +20,7 @@ class guests extends Model
             'name',
             'lastname',
             'phone',
+            'email',
             'number',
             'status int',
         ];
