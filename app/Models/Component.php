@@ -23,11 +23,20 @@ class Component extends Model
 
     public function ComponentsData()
     {
-        return $this->hasMany(ComponentData::class, 'component_id');
+        return $this->hasMany(ComponentData::class);
     }
 
     public function ComponentPackage()
     {
         return $this->belongsTo(ComponentPackage::class, 'id');
+    }
+    
+    public function componentDataOrder()
+    {
+        $componentDataOrder = [];
+        foreach ($this->ComponentsData as  $value) {
+            $componentDataOrder[$value->key] = $value->value;
+        }
+        return $componentDataOrder;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Invitation;
 
 class InvitationController extends Controller
 {
@@ -17,10 +18,11 @@ class InvitationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($invitationId = null)
     {
-        return view('admin.invitations.create');
+        return view('admin.invitations.create', compact('invitationId'));
     }
+
 
     /**
      * Store a newly created resource in storage.

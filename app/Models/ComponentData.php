@@ -21,10 +21,10 @@ class ComponentData extends Model
     ];
 
     public function Component(){
-        return $this->belongsTo(Component::class, 'id');
+        return $this->belongsTo(Component::class);
     }
 
     public function Invitation(){
-        return $this->belongsTo(Invitation::class, 'id');
+        return $this->belongsTo(Invitation::class);
     }
 }

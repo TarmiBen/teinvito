@@ -51,7 +51,9 @@ Route::resource('guests', GuestsController::class)->names('guests');
 Route::get('/confirmar/{codigoInvitacion}', [GuestsController::class, 'response'])->name('guests.confirmar');
 Route::get('/invitado/{codigo}', [GuestsController::class, 'confirmarAsistencia'])->name('guests.invitado');
 
-Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
+// Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
+Route::get('admin/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->name('admin.invitations.create');
+Route::get('admin/invitations', [InvitationController::class, 'index'])->name('admin.invitations.index');
 Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {
     Route::resource('admin/userProviders', UserProviderController::class)->names('admin.userProviders');

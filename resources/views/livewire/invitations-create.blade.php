@@ -18,6 +18,11 @@
             @livewire($componentData['component'], ['props' => $componentData['props']], key($index))
             <button wire:click="removeComponent({{ $index }})" class="btn btn-danger">Reset</button>
         @endforeach
+        @if($invitationId != null)
+            @foreach($invitationComponents as $component)
+            @livewire($component->Component->model_type, ['info' => $component->component->componentDataOrder(), 'invitationId' => $invitationId], key($component->id))
+            @endforeach
+        @endif
     </div>
     <button wire:click="saveAll" class="btn btn-primary">Guardar</button>
 
