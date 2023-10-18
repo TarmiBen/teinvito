@@ -23,11 +23,11 @@ class InvitationComponent extends Model
 
     public function Invitation()
     {
-        return $this->belongsTo(Invitation::class, 'id');
+        return $this->belongsTo(Invitation::class, 'invitation_id', 'id');
     }
 
     public function Component()
     {
-        return $this->belongsTo(Component::class, 'id');
+        return $this->belongsTo(Component::class, 'component_id','id');
     }
 }

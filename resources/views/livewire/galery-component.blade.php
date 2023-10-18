@@ -1,20 +1,4 @@
 <div>
-    <div class="hidden" id="modal">
-        <div class="card-content">
-            <div class="card-header">
-                <p>Recorta tu foto</p>
-            </div>
-            <div class="card-body">
-                <div class="image-container">
-                    <img src="" alt="" class="img-cropper" id="cropped-image">
-                </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn primary" id="cut">Recortar</button>
-                <button class="btn secondary" id="close">Cancelar</button>
-            </div>
-        </div>
-    </div>
     <section class="container py-5 position-relative">
         <div class="row g-3">
             <div class="col-12 col-lg-6">

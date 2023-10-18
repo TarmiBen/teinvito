@@ -20,13 +20,21 @@ class GiftTableComponent extends Component
     public $isEditing = true;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount()
+    public function mount($data = null)
     {
         $this->title = "Gift Table";
         $this->text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.";
         $this->button = "View";
         $this->button_link = "";
         $this->image = "";
+        if($data){
+            $this->title = $data['title'];
+            $this->text = $data['text'];
+            $this->button = $data['button'];
+            $this->button_link = $data['button_link'];
+            $this->image = $data['image'];
+            $this->isEditing = false;
+        }
 
     }
 

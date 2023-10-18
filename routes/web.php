@@ -30,6 +30,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('admin/invitations/show/{invitationId}', [InvitationController::class, 'show'])->name('show');
+
 Auth::routes(['verify' => true]);
 //logout
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
