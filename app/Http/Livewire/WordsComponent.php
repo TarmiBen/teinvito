@@ -15,10 +15,17 @@ class WordsComponent extends Component
     public $isEditing = true;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount()
+    public function mount($data = null)
     {
         $this->content = 'Contenido';
         $this->text = 'Texto';
+
+        if($data)
+        {
+            $this->content = $data['content'];
+            $this->text = $data['text'];
+            $this->isEditing = false;
+        }
     }
 
     public function render()

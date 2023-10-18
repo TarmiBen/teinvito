@@ -18,11 +18,19 @@ class VideoComponent extends Component
     public $isEditing = true;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount ()
+    public function mount ($data = null)
     {
         $this->title = 'Video de nuestra historia';
         $this->video = '';
         $this->videoUrl = '';
+
+        if($data)
+        {
+            $this->title = $data['title'];
+            $this->video = $data['video'];
+            $this->videoUrl = $data['videoUrl'];
+            $this->isEditing = false;
+        }
     }
 
     public function render()

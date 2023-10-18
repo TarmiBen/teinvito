@@ -19,7 +19,7 @@ class GaleryComponent extends Component
     public $isEditing = true;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount()
+    public function mount($data = null)
     {
         $this->images = [
             'images1' => null,
@@ -27,6 +27,17 @@ class GaleryComponent extends Component
             'images3' => null,
             'images4' => null,
         ];
+
+        if($data)
+        {
+            $this->images = [
+                'images1' => $data['images1'],
+                'images2' => $data['images2'],
+                'images3' => $data['images3'],
+                'images4' => $data['images4'],
+            ];
+            $this->isEditing = false;
+        }
     }
 
     public function render()

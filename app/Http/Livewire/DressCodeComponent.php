@@ -21,7 +21,7 @@ class DressCodeComponent extends Component
     public $isEditing = true;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount()
+    public function mount($data = null)
     {
         $this->title = "Código de Vestimenta";
         $this->subtitle = "Formal";
@@ -30,6 +30,18 @@ class DressCodeComponent extends Component
         $this->text = "Estaremos felices de contar con tu presencia.";
         $this->finalMessage = "!Gracias!";
         $this->coupleName = "Benito y Lupita";
+
+        if($data)
+        {
+            $this->title = $data['title'];
+            $this->subtitle = $data['subtitle'];
+            $this->image = $data['image'];
+            $this->image2 = $data['image2'];
+            $this->text = $data['text'];
+            $this->finalMessage = $data['finalMessage'];
+            $this->coupleName = $data['coupleName'];
+            $this->isEditing = false;
+        }
     }
 
     public function render()
