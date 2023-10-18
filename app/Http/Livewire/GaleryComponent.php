@@ -20,7 +20,7 @@ class GaleryComponent extends Component
     public $invitationId;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount($info = null, $invitationId = null)
+    public function mount($data = null, $info = null, $invitationId = null)
     {
         $this->invitationId = $invitationId;
         $this->images = [
@@ -36,6 +36,18 @@ class GaleryComponent extends Component
                 'images3' => $info['images3'],
                 'images4' => $info['images4'],
             ];
+            $this->isEditing = true;
+        }
+
+        if($data)
+        {
+            $this->images = [
+                'images1' => $data['images1'],
+                'images2' => $data['images2'],
+                'images3' => $data['images3'],
+                'images4' => $data['images4'],
+            ];
+            $this->isEditing = false;
         }
     }
 

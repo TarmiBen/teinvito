@@ -17,7 +17,7 @@ class WordsComponent extends Component
     public $invitationId;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount($info = null, $invitationId = null)
+    public function mount($data = null, $info = null, $invitationId = null)
     {
         $this->invitationId = $invitationId;
         $this->content = 'Contenido';
@@ -25,6 +25,13 @@ class WordsComponent extends Component
         if($info){
             $this->content = $info['content'];
             $this->text = $info['text'];
+        }
+
+        if($data)
+        {
+            $this->content = $data['content'];
+            $this->text = $data['text'];
+            $this->isEditing = false;
         }
     }
 

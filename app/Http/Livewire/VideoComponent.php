@@ -19,7 +19,7 @@ class VideoComponent extends Component
     public $invitationId;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount($info = null, $invitationId = null)
+    public function mount ($data = null, $info = null, $invitationId = null)
     {
         $this->invitationId = $invitationId;
         $this->title = 'Video de nuestra historia';
@@ -27,6 +27,13 @@ class VideoComponent extends Component
         if ($info) {
             $this->title = $info['title'];
             $this->videoUrl = $info['videoUrl'];
+            $this->isEditing = true;
+        }
+        if($data)
+        {
+            $this->title = $data['title'];
+            $this->videoUrl = $data['videoUrl'];
+            $this->isEditing = false;
         }
     }
 

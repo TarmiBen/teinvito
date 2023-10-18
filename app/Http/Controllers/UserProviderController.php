@@ -108,7 +108,7 @@ class UserProviderController extends Controller
                 ->orWhere("id","LIKE","%{$request->input('query')}%")
                 ->orWhere("email","LIKE","%{$request->input('query')}%")
                 ->get();
-   
+
         return response()->json($data);
     }
 

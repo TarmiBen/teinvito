@@ -22,7 +22,7 @@ class GiftTableComponent extends Component
     public $invitationId;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount($info = null, $invitationId = null)
+    public function mount($data = null, $info = null, $invitationId = null)
     {
 
         $this->invitationId = $invitationId;
@@ -37,6 +37,14 @@ class GiftTableComponent extends Component
             $this->button = $info['button'];
             $this->button_link = $info['button_link'];
             $this->image = $info['image'];
+        }
+        if($data){
+            $this->title = $data['title'];
+            $this->text = $data['text'];
+            $this->button = $data['button'];
+            $this->button_link = $data['button_link'];
+            $this->image = $data['image'];
+            $this->isEditing = false;
         }
     }
 
@@ -61,8 +69,6 @@ class GiftTableComponent extends Component
             if ($this->image) {
                 $imagePath = $this->image->store('public/images');
                 $this->image = $imagePath;
-            }else{
-                null;
             }
             $this->componentData = [
                 'title' => $this->title,

@@ -17,6 +17,19 @@ class BannerComponent extends Component
     public $isEditing = true;   
     public $listeners = ['saveComponents' => 'saveComponents'];
 
+    public function mount($data = null)
+    {
+        $this->title = 'Título';
+        $this->subtitle = 'Subtítulo';
+
+        if($data)
+        {
+            $this->title = $data['title'];
+            $this->subtitle = $data['subtitle'];
+            $this->isEditing = false;
+        }
+    }
+
     public function render()
     {
         return view('livewire.banner-component');

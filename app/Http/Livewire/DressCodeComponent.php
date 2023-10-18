@@ -23,7 +23,7 @@ class DressCodeComponent extends Component
     public $invitationId;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount($info = null, $invitationId = null)
+    public function mount($data = null, $info = null, $invitationId = null)
     {
         $this->invitationId = $invitationId;
         $this->title = "Código de Vestimenta";
@@ -41,6 +41,18 @@ class DressCodeComponent extends Component
             $this->text = $info['text'];
             $this->finalMessage = $info['finalMessage'];
             $this->coupleName = $info['coupleName'];
+            $this->isEditing = true;
+        }
+        if($data)
+        {
+            $this->title = $data['title'];
+            $this->subtitle = $data['subtitle'];
+            $this->image = $data['image'];
+            $this->image2 = $data['image2'];
+            $this->text = $data['text'];
+            $this->finalMessage = $data['finalMessage'];
+            $this->coupleName = $data['coupleName'];
+            $this->isEditing = false;
         }
     }
 

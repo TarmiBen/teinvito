@@ -1,5 +1,7 @@
 @extends('layouts.users.app')
 
+@section('title', 'Crear Contacto')
+
 @section('content')
 <div>
     <form action="{{ route('admin.contacts.store') }}" method="POST" enctype="multipart/form-data">
@@ -8,7 +10,7 @@
             <h3 class="col-auto m-0"></h3>
             <div class="col-auto">
                 <button type="submit" class="btn btn-success">
-                    <i data-feather="plus-square"></i>
+                    <i class="fa-regular fa-square-plus"></i>
                     Guardar
                 </button>
             </div>
@@ -22,6 +24,7 @@
                     <div class="card-body">
                         @csrf
                         <div class="row">
+                            <h3>Datos de contacto</h3>
                             <div class="col-12 col-sm-6 mt-3">
                                 <label for="name">Nombre:</label>
                                 <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{ old('name') }}">
@@ -42,7 +45,7 @@
                             </div>
         
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="telephone">Telefono:</label>
+                                <label for="telephone">Teléfono:</label>
                                 <input type="text" name="telephone" class="form-control" placeholder="Telefono" value="{{ old('telephone') }}">
                             </div>
 

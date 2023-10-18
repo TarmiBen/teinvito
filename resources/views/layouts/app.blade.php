@@ -23,7 +23,6 @@
     <div class="text-center mt-3">
         <div class="inline-flex" id="main_menu">
             <ul class="flex flex-wrap p-1 md:p-2 sm:bg-gray-300 sm:rounded-full text-sm md:text-base" id="menu_nav">
-                              
                 
                 <li class="relative mx-1 px-4 py-2 group bg-gray-300 rounded-full mb-1 md:mb-0" id="button_home">
                     <a class="font-semibold whitespace-no-wrap text-gray-600 hover:text-blue-800" href="/select2">

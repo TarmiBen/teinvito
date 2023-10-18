@@ -30,7 +30,6 @@ class Component extends Model
     {
         return $this->belongsTo(ComponentPackage::class, 'id');
     }
-    
     public function componentDataOrder()
     {
         $componentDataOrder = [];
