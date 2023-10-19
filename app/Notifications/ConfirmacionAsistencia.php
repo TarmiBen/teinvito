@@ -38,8 +38,6 @@ class ConfirmacionAsistencia extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $user = Auth::user();
-        $guests = guests::latest()->first();
-        $hash = $guests->hash;
         return (new MailMessage)
             ->line($user->name . ' ' . 'Te ha invitado a un evento')
                     ->action('Responder', $this->url)

@@ -7,23 +7,22 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Responder a la invitación</div>
-
                 <div class="card-body">
-                    <form action="{{ route('guests.invitado', $guests->hash) }}" method="POST">
+                    <form action="{{ route('guests.guest', $guests->hash) }}" method="POST">
                         @csrf
                         <div class="col-auto mt-4">
                             <label for="Asistire">
-                                <input type="radio" name="respuesta" value="1" id="opcion_voy"> Voy
+                                <input type="radio" name="request" value="1"> Confirmar Asistencia
                             </label>
                         </div>
                         <div class="col-auto mt-4">
                             <label for="No Asistire">
-                                <input type="radio" name="respuesta" value="2" id="opcion_no_voy"> No voy
+                                <input type="radio" name="request" value="2"> No Asistire
                             </label>
                         </div>
                         <div class="col-auto mt-4">
                             <label for="No lo se">
-                                <input type="radio" name="respuesta" value="3" id="opcion_talvez"> Tal vez
+                                <input type="radio" name="request" value="3"> Aún no lo se
                             </label>
                         </div>
                         <div class="col-auto mt-4">

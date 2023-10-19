@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
@@ -62,32 +63,25 @@ class GuestsController extends Controller
         $guest->number = $request->number;
         $guest->status = 3;
         $guest->save();
-        $user = Auth::user();
+
         $guest = guests::latest()->first();
         $hash = $guest->hash;
-
-        $url = URL::temporarySignedRoute('guests.confirmar',
+        $url = URL::temporarySignedRoute('guests.confirm',
             now()->addMinutes(5), [ 'hash' => $hash]);
 
         $notification = new ConfirmacionAsistencia($url);
         \Notification::route('mail', $userInvited)->notify($notification);
 
         return redirect()->route('guests.index')->with('message','Invitado creado correctamente');
-
-
     }
 
-    public function confirmarAsistencia(Request $request,  $hash)
+    public function confirmAssistance(Request $request,  $hash)
     {
-        if (!$request->hasValidSignature()) {
-            abort(403, 'ha expirado el tiempo de confirmacion');
-        }else {
-            $guests = guests::where('hash', $hash)->latest()->first();
-            $respuesta = $request->input('respuesta');
-            $guests->status = $respuesta;
-            $guests->update();
-            return redirect()->route('guests.index')->with('message', ' Estatus Invitado confirmado correctamente');
-        }
+        $guests = guests::where('hash', $hash)->latest()->first();
+        $response = $request->input('request');
+        $guests->status = $response;
+        $guests->update();
+        return redirect()->route('guests.index')->with('message', ' Estatus Invitado confirmado correctamente');
     }
 
 
@@ -124,7 +118,11 @@ class GuestsController extends Controller
         //
     }
 
-    public function response( $hash){
+    public function urlValid(Request $request, $hash)
+    {
+        if (!$request->hasValidSignature( )) {
+            abort(403, 'La URL no es válida o ha expirado el tiempo de confirmación');
+        }
         $guests = guests::where('hash', $hash)->first();
         return view('guests.response', compact('guests'));
     }
