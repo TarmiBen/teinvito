@@ -34,7 +34,7 @@
           </div>
     </header>
 
-    <div id="sidebarMenu" class="sidebar sidebar-fixed sidebar-components ">
+    <div id="sidebarMenu " class="sidebar sidebar-fixed sidebar-components ">
         <div class="sidebar-header">
             <a href="" id="mainMenuOpen"><i data-feather="menu"></i></a>
             <h5>Componentes</h5>

@@ -49,7 +49,7 @@ class CategoryComponent extends Component
         // Aquí obtén los datos de las categorías y asigna el resultado a $this->categoria
 
         $this->category = Category::orderBy('id', 'desc')->get(); // Ejemplo de obtener todas las categorías desde un modelo llamado Categoria
-         $this->categories = Category::orderBy('id', 'asc')->get();
+        $this->categories = Category::orderBy('id', 'asc')->get();
     }
 
     public function render()
@@ -61,7 +61,6 @@ class CategoryComponent extends Component
         //      })
         //     ->orderBy($this->sort, $this->order)
         //     ->get();
-       
         $categoriaQuery = Category::orderBy($this->orderColumn, $this->sortOrder)->select('*');
 
         if(!empty($this->search)){
@@ -80,31 +79,31 @@ class CategoryComponent extends Component
     public function sortOrder($columnName=""){
         $caretOrder = "up";
         if($this->sortOrder == 'asc'){
-             $this->sortOrder = 'desc';
-             $caretOrder = "down";
+            $this->sortOrder = 'desc';
+            $caretOrder = "down";
         }else{
-             $this->sortOrder = 'asc';
-             $caretOrder = "up";
+            $this->sortOrder = 'asc';
+            $caretOrder = "up";
         } 
         $this->sortLink = '<i class="sorticon fa-solid fa-caret-'.$caretOrder.'"></i>';
 
         $this->orderColumn = $columnName;
 
-   }
+    }
 
-   public function updatePagination()
+    public function updatePagination()
     {
         $this->resetPage(); // Reiniciar la página a la primera cuando cambia la paginación
     }
-  
+
     public function deleteConfirm($id)
     {
         $count = Category::where('id', $id)->count();
         $this->deleteId = $id;
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'question',
-            'message' => '¿Esta seguro de esta accion?',
-            'text' => $count > 0 ? "Se eliminara registro de $count postulaciones, puede haber error a futuro" : 'Eliminar Registro',
+            'message' => '¿Estás seguro de eliminar esta categoría?',
+            'text' => "Esta acción no se puede deshacer.",
         ]);
     }
 
