@@ -12,14 +12,12 @@
 </head>
 
 <body>
-    <section class="py-5 container">
+    {{-- banner section --}}
+    <section class="py-5 bg-deg-quaternary-3">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7 col-12">
-                    <div class="px-5 text-center text-md-start">
-                        <!-- <h1>
-                            Conviértete en el proveedor, anfitrión o fotógrafo de momentos inolvidables junto a nosotros
-                        </h1> -->
+                    <div class="px-5 text-center text-md-start text-white">
                         <h1>
                             Conviértete en el <span id="element"></span> de momentos inolvidables junto a nosotros
                         </h1>
@@ -27,14 +25,14 @@
                             Descubre un mundo de invitaciones diseñadas para hacer que cada evento sea especial.
                         </h5>
                         <div class="mt-5 d-md-block d-flex flex-column justify-content-center align-items-center">
-                            <a href="" class="btn btn-primary-ti fw-bold p-3 fs-5">
+                            <a href="" class="btn btn-warning fw-bold p-3 fs-5">
                                 ¡ Unete ahora !
                             </a>
                             <a href="#" class="ms-md-5 link-underline link-underline-opacity-0 mt-4 mt-lg-0">
-                                <span class="btn btn-primary-ti rounded-circle">
+                                <span class="btn btn-warning rounded-circle">
                                     <i class="fa-solid fa-play"></i>
                                 </span>
-                                <span class="link-dark">
+                                <span class="link-light">
                                     Mira nuestro video
                                 </span>
                             </a>
@@ -65,10 +63,11 @@
         </div>
     </section>
 
+    {{-- services section --}}
     <section class="py-5 container">
         <div class="row g-3">
             <div class="col-12 col-lg-8">
-                <div id="carouselPrincipal" class="carousel slide h-100">
+                <div id="carouselPrincipal" class="carousel slide h-100" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselPrincipal" data-bs-slide-to="0" class="active"
                             aria-current="true" aria-label="Slide 1"></button>
@@ -119,11 +118,11 @@
                 <div class="row g-3">
                     <div class="col-12">
                         <img src="https://picsum.photos/300/230" class="card-img" alt="..."
-                            style="height: 230px">
+                            style="height: 250px">
                     </div>
                     <div class="col-12">
                         <img src="https://picsum.photos/300/230" class="card-img" alt="..."
-                            style="height: 230px">
+                            style="height: 250px">
                     </div>
 
                 </div>
@@ -131,101 +130,69 @@
         </div>
     </section>
 
-    <section class="py-5">
-        <div class="container">
-            <div id="carouselExample" class="carousel slide">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn btn-tertiary-ti" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <i class="fa fa-arrow-left"></i>
-                    </div>
-                    <h2 class="text-center fw-bold">
-                        Servicios
-                    </h2>
-                    <div class="btn btn-tertiary-ti" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <i class="fa fa-arrow-right"></i>
-                    </div>
+    {{-- slide services section --}}
+    <section class="py-5 container">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn btn-tertiary-ti" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <i class="fa fa-arrow-left"></i>
                 </div>
-                <hr>
-                <div class="carousel-inner">
-                    @for ($i = 0; $i < 4; $i++)
-                        <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
-                            <div class="row g-3">
-                                @for ($j = 1; $j <= 4; $j++)
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                        <div class="card bg-white shadow-sm">
-                                            <img src="https://picsum.photos/600/500" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                {{-- <span class="fs-4 bg-warning p-2 py-1 rounded">
-                                                    <i class="fa-solid fa-icons"></i>
-                                                </span> --}}
-                                                <div class="fs-2 fw-bold">
-                                                    Servicio {{ $i * 4 + $j }}
+                <h2 class="text-center fw-bold">
+                    Servicios
+                </h2>
+                <div class="btn btn-tertiary-ti" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <i class="fa fa-arrow-right"></i>
+                </div>
+            </div>
+            <hr>
+            <div class="carousel-inner">
+                @for ($i = 0; $i < 4; $i++)
+                    <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
+                        <div class="row g-3">
+                            @for ($j = 1; $j <= 4; $j++)
+                                <div class="col-lg-3 col-6">
+                                    <div class="card bg-white shadow-sm">
+                                        <img src="https://picsum.photos/600/500" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <div class="fs-5 fw-bold">
+                                                Servicio {{ $i * 4 + $j }}
+                                            </div>
+                                            <div class="text-muted">
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero adipisci
+                                            </div>
+                                            <div class="mt-3 row g-3 align-items-center">
+                                                <div
+                                                    class="col-12 col-md-auto col-lg-12 col-xl-auto order-1 order-md-0 order-lg-1 order-xl-0">
+                                                    <a class="w-100 btn btn-tertiary-ti py-2 px-3">
+                                                        Comprar
+                                                    </a>
                                                 </div>
-                                                <div class="mt-2 text-primary fw-bold fs-4">
-                                                    $ {{$i * 4 + $j}},000.00 MXN
-                                                </div>
-                                                <div class="mt-3">
-                                                    <span class="badge rounded-pill text-bg-info fs-5">
-                                                        <i class="fa-solid fa-phone"></i>
-                                                        Contactanos
-                                                    </span>
+                                                <div
+                                                    class="col-12 col-md col-lg-12 col-xl order-0 order-md-1 order-lg-0 order-xl-1">
+                                                    <div
+                                                        class="text-primary fw-bold fs-4 text-center text-md-end text-lg-center text-xl-end">
+                                                        $ {{ $i * 4 + $j }},000 MXN
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        @if ($j != 4)
-                                            <div class="d-none d-lg-block"></div>
-                                        @endif
                                     </div>
-                                @endfor
-                            </div>
+                                    @if ($j != 4)
+                                        <div class="d-none d-lg-block"></div>
+                                    @endif
+                                </div>
+                            @endfor
                         </div>
-                    @endfor
-                </div>
+                    </div>
+                @endfor
             </div>
         </div>
     </section>
 
-    <section class="py-5 bg-secondary-ti">
-        <div class="container">
-            <h2 class="text-center">
-                Categorias
-            </h2>
-            <div class="row mt-4 align-items-center">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="row g-3 row-cols-lg-2">
-                        @for ($j = 1; $j < 7; $j++)
-                            <div class="col">
-                                <button class="w-100 card btn btn-primary">
-                                    <div class="card-body py-2">
-                                        <div class="d-flex align-items-center">
-                                            <div class="bg-warning p-2 py-1 rounded">
-                                                <i class="fa-solid fa-camera"></i>
-                                            </div>
-                                            <span class="ms-3">
-                                                Categoria {{ $j }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </button>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12 mt-4 mt-md-0">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <img src="https://picsum.photos/500/500" alt=""
-                                class="img-fluid rounded shadow-lg w-100" style="height:300px">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5">
-        <h2 class="text-center">
-            Paquetes
+    {{-- invitation package section --}}
+    <section class="py-5 bg-deg-primary-1">
+        <h2 class="text-center fw-bold">
+            Paquetes de Invitaciones
         </h2>
         <div class="container">
             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-3 justify-content-center mt-3">
@@ -273,8 +240,48 @@
         </div>
     </section>
 
-    <section class="py-5 bg-primary-ti">
-        <h2 class="text-center">
+    {{-- categories section --}}
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold">
+                Categorias
+            </h2>
+            <div class="row mt-4 align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="row g-3 row-cols-lg-2">
+                        @for ($j = 1; $j < 7; $j++)
+                            <div class="col">
+                                <button class="w-100 btn btn-quaternary-ti">
+                                    <div class="card-body py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-warning p-2 py-1 rounded">
+                                                <i class="fa-solid fa-camera"></i>
+                                            </div>
+                                            <span class="ms-3">
+                                                Categoria {{ $j }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        @endfor
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12 mt-4 mt-md-0">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <img src="https://picsum.photos/500/500" alt=""
+                                class="img-fluid rounded shadow-lg w-100" style="height:300px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- demos section --}}
+    <section class="py-5 bg-deg-secondary-2">
+        <h2 class="text-center fw-bold ">
             Demos
         </h2>
         <div class="container">
@@ -323,8 +330,25 @@
         </div>
     </section>
 
+    {{-- announcement section --}}
+    <section class="py-5 container">
+        <h2 class="text-center fw-bold">
+            Anuncios
+        </h2>
+
+        <div class="mt-2 row g-5 row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-center">
+            @for ($i = 1; $i < 4; $i++)
+                <div class="col">
+                    <img src="https://picsum.photos/600/200" alt="" class="img-fluid rounded shadow-lg w-100"
+                        style="height:200px">
+                </div>
+            @endfor
+        </div>
+    </section>
+
+    {{-- testimonials section --}}
     <section class="py-5 bg-primary-subtle">
-        <h2 class="text-center">
+        <h2 class="text-center fw-bold ">
             Testimonios
         </h2>
         <div class="container mt-5">
@@ -380,12 +404,12 @@
     </section>
 
     <script src="/assets/lib/typed.js/typed.min.js"></script>
-
-
     <script>
         const typed = new Typed('#element', {
-            strings: ['<i class="fw-bold text-primary">Proveedor</i>',
-                '<i class="fw-bold text-primary">Anfitrión</i>', '<i class="fw-bold text-primary">Fotógrafo</i>'
+            strings: [
+                '<i class="fw-bold text-warning">Proveedor</i>',
+                '<i class="fw-bold text-warning">Anfitrión</i>',
+                '<i class="fw-bold text-warning">Fotógrafo</i>'
             ],
             typeSpeed: 50,
             backSpeed: 50,
