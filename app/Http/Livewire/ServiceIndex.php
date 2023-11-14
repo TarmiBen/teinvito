@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ServiceIndex extends Component
 {
@@ -35,6 +36,13 @@ class ServiceIndex extends Component
                 ->orWhere('description_small', 'LIKE', '%' . $this->search . '%');
         })
             ->paginate($this->paginate);
+            if ($services->isEmpty()) {
+                if ($this->search != '') {
+                    Log::channel('livewire')->info('El usuario con id:' . $user->id . ' buscó una dirección que no existe: ' . $this->search);
+                } else {
+                    Log::channel('livewire')->info('El usuario con id:' . $user->id . ' entró a la vista de direcciones y no tiene ninguna dirección asociada');
+                }
+            }
         return view('livewire.service-index', compact('services'));
     }
 

@@ -35,7 +35,7 @@
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="company_id">Selecciona una Subcategoria:</label>
+                                <label for="company_id">Selecciona una compañia:</label>
                                 <select name="company_id" id="company_id" class="form-control">
                                     <option value="">Selecciona una Compañia</option>
                                     @foreach ($companies as $companie)

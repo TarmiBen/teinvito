@@ -19,7 +19,6 @@ class InvitationsCreate extends Component
     public function mount($invitationId = null)
     {
         $this->invitationId = $invitationId;
-
         $this->availableComponents = ModelsComponent::pluck('name', 'model_type')->toArray();
         if ($invitationId) {
             $this->loadInvitationComponents($invitationId);

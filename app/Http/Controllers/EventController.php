@@ -8,6 +8,8 @@ use App\Notifications\UserInvitedId;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -37,7 +39,7 @@ class EventController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'user_id' => 'required',
             'invitation_id' => 'required',
             'type' => 'required',
@@ -45,6 +47,13 @@ class EventController extends Controller
             'event_date' => 'required',
             'title' => 'required',
         ]);
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó crear un evento pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $event = new Event();
         $event->users_id = $request->user_id;
         $event->user_invited_id = $request->user_invited_id;
@@ -85,14 +94,20 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        $request->validate([
-
+        $validator = Validator::make($request->all(), [
             'invitation_id' => 'required',
             'type' => 'required',
             'ceremony_date' => 'required',
             'event_date' => 'required',
             'title' => 'required',
         ]);
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar un evento pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $event->user_invited_id = $request->user_invited_id;
         $event->invitation_id = $request->invitation_id;
         $event->type = $request->type;

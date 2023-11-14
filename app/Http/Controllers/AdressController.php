@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Company;
 use App\Models\UserProvider;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class AdressController extends Controller
 {
@@ -24,6 +26,9 @@ class AdressController extends Controller
     {
         $company_id  = $request->input('company_id');
         $UserProviders = UserProvider::where('users_id', auth()->user()->id)->get();
+        if ($UserProviders->isEmpty()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' entró a la vista de crear direcciones y no tiene ningún proveedor asociado');
+        }
         $selectedAddress = null;
         if ($company_id ) {
             $selectedAddress = Company::find($company_id );
@@ -36,7 +41,7 @@ class AdressController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'company_id' => 'required',
             'name' => 'required',
             'street' => 'required',
@@ -47,6 +52,14 @@ class AdressController extends Controller
             'city' => 'nullable|required_with:street',
             'state' => 'nullable|required_with:street',
         ]);
+
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó crear una dirección pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $adress = new Address();
         $adress->company_id = $request->company_id;
@@ -79,6 +92,9 @@ class AdressController extends Controller
     public function edit(Address $address)
     {
         $UserProviders = UserProvider::where('users_id', auth()->user()->id)->get();
+        if ($UserProviders->isEmpty()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' entró a la vista de actualizar direcciones y no tiene ningún proveedor asociado');
+        }
         return view('admin.addresses.edit',compact('address', 'UserProviders'));
     }
 
@@ -87,7 +103,7 @@ class AdressController extends Controller
      */
     public function update(Request $request, Address $address)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'company_id' => 'required',
             'name' => 'required',
             'street' => 'required',
@@ -98,6 +114,13 @@ class AdressController extends Controller
             'city' => 'nullable|required_with:street',
             'state' => 'nullable|required_with:street',
         ]);
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar una dirección pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $address->company_id = $request->company_id;
         $address->priority = 0;
         $address->name = $request->name;

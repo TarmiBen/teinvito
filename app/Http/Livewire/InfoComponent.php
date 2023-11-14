@@ -8,6 +8,7 @@ use App\Models\Component as ModelComponent;
 use App\Models\ComponentData;
 use App\Models\Invitation;
 use App\Helpers\ComponentHelper;
+use Illuminate\Support\Facades\Log;
 
 class InfoComponent extends Component
 {
@@ -44,8 +45,8 @@ class InfoComponent extends Component
         $this->date2 = 'Fecha 2';
         $this->hour2 = 'Hora 2';
         $this->place2 = 'Lugar 2';
-        $this->image1 = 'https://th.bing.com/th/id/R.ee8354e0bd34be81bfe0ec79486f8ada?rik=wdqC5I4gZ1753w&pid=ImgRaw&r=0';
-        $this->image2 = 'https://i.pinimg.com/originals/93/e4/59/93e459a2ae0d7f9e5cda24acee8b79b8.jpg';
+        $this->image1 = '';
+        $this->image2 = '';
 
         if($info){
             $this->link = $info['link'];
@@ -116,10 +117,16 @@ class InfoComponent extends Component
                 $imagePaths['image1'] = $imagePath;
                 $this->image1 = null;
             }
+            if (!$this->image1) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image1');
+            }
             if ($this->image2) {
                 $imagePath = $this->image2->store('public/images');
                 $imagePaths['image2'] = $imagePath;
                 $this->image2 = null;
+            }
+            if (!$this->image2) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image2');
             }
             $this->componentData = [
                 'title'         => $this->title,
@@ -136,6 +143,11 @@ class InfoComponent extends Component
                 'image2'        => $imagePaths['image2'] ?? null,
                 'link'          => $this->link,
             ];
+            foreach (['title', 'description', 'event1', 'date1', 'hour1', 'place1', 'event2', 'date2', 'hour2', 'place2', 'link'] as $field) {
+                if (empty($this->componentData[$field])) {
+                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo ' . str_replace('_', ' ', $field));
+                }
+            }
             ComponentHelper::updateComponentData($component, $this->invitationId, $this->componentData);
         }else{
         $component = ModelComponent::firstOrCreate([
@@ -154,10 +166,16 @@ class InfoComponent extends Component
                 $imagePaths['image1'] = $imagePath;
                 $this->image1 = null;
             }
+            if (!$this->image1) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image1');
+            }
             if ($this->image2) {
                 $imagePath = $this->image2->store('public/images');
                 $imagePaths['image2'] = $imagePath;
                 $this->image2 = null;
+            }
+            if (!$this->image2) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image2');
             }
     
             $this->componentData = [
@@ -171,10 +189,15 @@ class InfoComponent extends Component
                 'date2'         => $this->date2,
                 'hour2'         => $this->hour2,
                 'place2'        => $this->place2,
-                'image1'        => $imagePaths['image1'] ?? null,
-                'image2'        => $imagePaths['image2'] ?? null,
+                'image1'        => $this->image1,
+                'image2'        => $this->image2,
                 'link'          => $this->link,
             ];
+            foreach (['title', 'description', 'event1', 'date1', 'hour1', 'place1', 'event2', 'date2', 'hour2', 'place2', 'link'] as $field) {
+                if (empty($this->componentData[$field])) {
+                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo ' . str_replace('_', ' ', $field));
+                }
+            }
             ComponentHelper::createComponentData($component, $invitationId, $this->componentData);
         }
     }

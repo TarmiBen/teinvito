@@ -8,6 +8,7 @@ use App\Models\Component as ModelComponent;
 use App\Models\ComponentData;
 use App\Models\Invitation;
 use App\Helpers\ComponentHelper;
+use Illuminate\Support\Facades\Log;
 class DressCodeComponent extends Component
 {
     use WithFileUploads;
@@ -28,8 +29,8 @@ class DressCodeComponent extends Component
         $this->invitationId = $invitationId;
         $this->title = "Código de Vestimenta";
         $this->subtitle = "Formal";
-        $this->image = "https://th.bing.com/th/id/R.ee8354e0bd34be81bfe0ec79486f8ada?rik=wdqC5I4gZ1753w&pid=ImgRaw&r=0";
-        $this->image2 = "https://i.pinimg.com/originals/93/e4/59/93e459a2ae0d7f9e5cda24acee8b79b8.jpg";
+        $this->image = "";
+        $this->image2 = "";
         $this->text = "Estaremos felices de contar con tu presencia.";
         $this->finalMessage = "!Gracias!";
         $this->coupleName = "Benito y Lupita";
@@ -79,6 +80,10 @@ class DressCodeComponent extends Component
                 $this->image = $imagePath;
             }
 
+            if (!$this->image) {
+                Log::error('No se subio una imagen');
+            }
+
             if ($this->image2) {
                 $imagePath = $this->image2->store('public/images');
                 $this->image2 = $imagePath;
@@ -99,18 +104,24 @@ class DressCodeComponent extends Component
                 'name' => 'dress code',
                 'model_type' => 'dress-code-component',
             ]);
-
             $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
             $invitationId = $invitation->id;
-
             if ($this->image) {
                 $imagePath = $this->image->store('public/images');
                 $this->image = $imagePath;
             }
 
+            if (!$this->image) {
+                Log::channel('livewire')->error('No se subio una imagen');
+            }
+
             if ($this->image2) {
                 $imagePath = $this->image2->store('public/images');
                 $this->image2 = $imagePath;
+            }
+
+            if (!$this->image2) {
+                Log::channel('livewire')->error('No se subio una segunda imagen');
             }
 
             $this->componentData = [
@@ -122,9 +133,12 @@ class DressCodeComponent extends Component
                 'finalMessage' => $this->finalMessage,
                 'coupleName' => $this->coupleName,
             ];
-
+            foreach (['title', 'subtitle', 'text', 'finalMessage', 'coupleName'] as $field) {
+                if (empty($this->componentData[$field])) {
+                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo dress code sin el campo ' . str_replace('_', ' ', $field));
+                }
+            }
             ComponentHelper::createComponentData($component, $invitationId, $this->componentData);
         }
-
     }
 }

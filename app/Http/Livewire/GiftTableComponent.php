@@ -8,6 +8,7 @@ use App\Models\ComponentData;
 use App\Models\Invitation;
 use Livewire\WithFileUploads;
 use App\Helpers\ComponentHelper;
+use Illuminate\Support\Facades\Log;
 
 class GiftTableComponent extends Component
 {
@@ -70,6 +71,9 @@ class GiftTableComponent extends Component
                 $imagePath = $this->image->store('public/images');
                 $this->image = $imagePath;
             }
+            if (!$this->image) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image');
+            }
             $this->componentData = [
                 'title' => $this->title,
                 'text' => $this->text,
@@ -77,6 +81,11 @@ class GiftTableComponent extends Component
                 'button_link' => $this->button_link,
                 'image' => $this->image,
             ];
+            foreach (['title', 'text', 'button', 'button_link'] as $field) {
+                if (empty($this->componentData[$field])) {
+                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo ' . str_replace('_', ' ', $field));
+                }
+            }
             ComponentHelper::updateComponentData($component, $this->invitationId, $this->componentData);
         }else{
             $component = ModelComponent::firstOrCreate([
@@ -91,8 +100,9 @@ class GiftTableComponent extends Component
             if ($this->image) {
                 $imagePath = $this->image->store('public/images');
                 $this->image = $imagePath;
-            }else{
-                null;
+            }
+            if (!$this->image) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó guardar un componente de tipo gift table sin el campo image');
             }
             $this->componentData = [
                 'title' => $this->title,
@@ -101,6 +111,11 @@ class GiftTableComponent extends Component
                 'button_link' => $this->button_link,
                 'image' => $this->image,
             ];
+            foreach (['title', 'text', 'button', 'button_link'] as $field) {
+                if (empty($this->componentData[$field])) {
+                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó guardar un componente de tipo gift table sin el campo ' . str_replace('_', ' ', $field));
+                }
+            }
             ComponentHelper::createComponentData($component, $invitationId, $this->componentData);
         }
     }

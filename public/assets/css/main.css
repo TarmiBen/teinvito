@@ -302,3 +302,30 @@
 .link-quintenary-ti:hover {
     color: var(--color-quintenario-claro);
 }
+
+.error-bg {
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.info-bg {
+    background-color: blue;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.warning-bg {
+    background-color: yellow;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.debug-bg {
+    background-color: green;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}

@@ -7,6 +7,8 @@ use Livewire\WithFileUploads;
 use App\Models\Component as ModelComponent;
 use App\Models\ComponentData;
 use App\Models\Invitation;
+use App\Helpers\ComponentHelper;
+use Illuminate\Support\Facades\Log;
 
 class GaleryComponent extends Component
 {
@@ -102,6 +104,18 @@ class GaleryComponent extends Component
                 $imagePaths['images4'] = $imagePath;
                 $this->images4 = null;
             }
+            if (!$this->image1) {
+                Log::channel('livewire')->error('No se subio una imagen');
+            }
+            if (!$this->image2) {
+                Log::channel('livewire')->error('No se subio una imagen');
+            }
+            if (!$this->image3) {
+                Log::channel('livewire')->error('No se subio una imagen');
+            }
+            if (!$this->image4) {
+                Log::channel('livewire')->error('No se subio una imagen');
+            }
             foreach ($imagePaths as $key => $imagePath) {
                 $filePath = storage_path('app/' . $imagePath);
         
@@ -158,7 +172,18 @@ class GaleryComponent extends Component
                 $imagePaths['images4'] = $imagePath;
                 $this->images4 = null;
             }
-    
+            if (!$this->images1) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' guardo un componente de tipo galery sin el dato imagen 1');
+            }
+            if (!$this->images2) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' guardo un componente de tipo galery sin el dato imagen 2');
+            }
+            if (!$this->images3) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' guardo un componente de tipo galery sin el dato imagen 3');
+            }
+            if (!$this->images4) {
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' guardo un componente de tipo galery sin el dato imagen 4');
+            }
             foreach ($imagePaths as $key => $imagePath) {
                 $filePath = storage_path('app/' . $imagePath);
         

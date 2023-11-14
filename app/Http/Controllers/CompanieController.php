@@ -8,6 +8,8 @@ use App\Models\company;
 use App\Models\Contact;
 use App\Models\Address;
 use App\Models\UserProvider;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class CompanieController extends Controller
 {
@@ -33,7 +35,7 @@ class CompanieController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'phone' => 'required',
             'name' => 'required',
             'email' => 'required', //|unique:company,email|email|max:255',
@@ -78,6 +80,13 @@ class CompanieController extends Controller
             851,     
             315      
         );
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó crear una compañia pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $company = new company();
         $company->phone = $request->phone;
         $company->name = $request->name;
@@ -135,7 +144,7 @@ class CompanieController extends Controller
      */
     public function update(Request $request, company $company)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'phone' => 'required',
             'name' => 'required',
             'email' => 'required|email|max:255|unique:company,email,'.$company->id,
@@ -163,6 +172,13 @@ class CompanieController extends Controller
             851,     
             315      
         );
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar una compañia pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $company->phone = $request->phone;
         $company->name = $request->name;
         $company->email = $request->email;

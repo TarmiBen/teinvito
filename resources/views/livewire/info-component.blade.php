@@ -20,7 +20,9 @@
             <div class="row bg-light border shadow rounded">
                 <div class="col-12 col-sm-6 p-0">
                     @if($isEditing)
-                        <img src="{{ $image1->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow h-100">
+                    @if($image1)
+                        <img src="{{ is_string($image1) ? $image1 : $image1->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow h-100">
+                    @endif
                         <input type="file" wire:model="image1" class="form-control">
                     @else
                         <img src="{{ asset('storage/' . $image1) }}" alt="" class="img-fluid object-fit-cover shadow h-100">
@@ -80,7 +82,9 @@
             <div class="row bg-light border shadow rounded">
                 <div class="col-12 col-sm-6 p-0">
                     @if($isEditing)
+                    @if($image1)
                         <img src="{{ $image2->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow h-100">
+                    @endif
                         <input type="file" wire:model="image2" class="form-control">
                     @else
                         <img src="{{ asset('storage/' . $image2) }}" alt="" class="img-fluid object-fit-cover shadow h-100">
