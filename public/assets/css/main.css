@@ -14,6 +14,19 @@
     --color-quintenario-claro: #737a85;
 }
 
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-terciario-claro);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-terciario);
+}
+
 /* variables de fuentes */
 .text-primary-ti {
     color: var(--color-primario);
@@ -54,25 +67,6 @@
 .bg-quintenary-ti {
     background-color: var(--color-quintenario);
 }
-
-/* Buttons */
-
-/* .btn-ti {
-    display: inline-block;
-    padding: 0.375rem 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    border-radius: 0.35rem;
-    text-decoration: none;
-    cursor: pointer;
-    color: #000;
-    border: transparent solid 1px;
-    user-select: none;
-}
-
-.btn-ti:active {
-    border: #000 solid 1px;
-} */
 
 .btn.btn-primary-ti {
     color: var(--texto-oscuro);
@@ -262,3 +256,126 @@
     color: var(--color-primario);
     font-weight: bold;
 }
+
+.text-primary-ti, .link-primary-ti {
+    color: var(--color-primario);
+}
+
+.link-primary-ti:hover {
+    color: var(--color-primario-claro);
+}
+
+.text-secondary-ti, .link-secondary-ti {
+    color: var(--color-secundario);
+}
+
+.link-secondary-ti:hover {
+    color: var(--color-secundario-claro);
+}
+
+.text-tertiary-ti, .link-tertiary-ti {
+    color: var(--color-terciario);
+}
+
+.link-tertiary-ti:hover {
+    color: var(--color-terciario-claro);
+}
+
+.text-quaternary-ti, .link-quaternary-ti {
+    color: var(--color-cuaternario);
+}
+
+.link-quaternary-ti:hover {
+    color: var(--color-cuaternario-claro);
+}
+
+.text-quintenary-ti, .link-quintenary-ti {
+    color: var(--color-quintenario);
+}
+
+.link-quintenary-ti:hover {
+    color: var(--color-quintenario-claro);
+}
+
+.bg-deg-primary-1 {
+    background: linear-gradient(90deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+}
+
+.bg-deg-primary-2 {
+    background: linear-gradient(90deg, var(--color-primario) 0%, var(--color-terciario) 100%);
+}
+
+.bg-deg-primary-3 {
+    background: linear-gradient(90deg, var(--color-primario) 0%, var(--color-cuaternario) 100%);
+}
+
+.bg-deg-primary-4 {
+    background: linear-gradient(90deg, var(--color-primario) 0%, var(--color-quintenario) 100%);
+}
+
+.bg-deg-secondary-1 {
+    background: linear-gradient(90deg, var(--color-secundario) 0%, var(--color-primario) 100%);
+}
+
+.bg-deg-secondary-2 {
+    background: linear-gradient(90deg, var(--color-secundario) 0%, var(--color-terciario) 100%);
+}
+
+.bg-deg-secondary-3 {
+    background: linear-gradient(90deg, var(--color-secundario) 0%, var(--color-cuaternario) 100%);
+}
+
+.bg-deg-secondary-4 {
+    background: linear-gradient(90deg, var(--color-secundario) 0%, var(--color-quintenario) 100%);
+}
+
+.bg-deg-tertiary-1 {
+    background: linear-gradient(90deg, var(--color-terciario) 0%, var(--color-primario) 100%);
+}
+
+.bg-deg-tertiary-2 {
+    background: linear-gradient(90deg, var(--color-terciario) 0%, var(--color-secundario) 100%);
+}
+
+.bg-deg-tertiary-3 {
+    background: linear-gradient(90deg, var(--color-terciario) 0%, var(--color-cuaternario) 100%);
+}
+
+.bg-deg-tertiary-4 {
+    background: linear-gradient(90deg, var(--color-terciario) 0%, var(--color-quintenario) 100%);
+}
+
+.bg-deg-quaternary-1 {
+    background: linear-gradient(90deg, var(--color-cuaternario) 0%, var(--color-primario) 100%);
+}
+
+.bg-deg-quaternary-2 {
+    background: linear-gradient(90deg, var(--color-cuaternario) 0%, var(--color-secundario) 100%);
+}
+
+.bg-deg-quaternary-3 {
+    background: linear-gradient(90deg, var(--color-cuaternario) 0%, var(--color-terciario) 100%);
+}
+
+.bg-deg-quaternary-4 {
+    background: linear-gradient(90deg, var(--color-cuaternario) 0%, var(--color-quintenario) 100%);
+}
+
+.bg-deg-quintenary-1 {
+    background: linear-gradient(90deg, var(--color-quintenario) 0%, var(--color-primario) 100%);
+}
+
+.bg-deg-quintenary-2 {
+    background: linear-gradient(90deg, var(--color-quintenario) 0%, var(--color-secundario) 100%);
+}
+
+.bg-deg-quintenary-3 {
+    background: linear-gradient(90deg, var(--color-quintenario) 0%, var(--color-terciario) 100%);
+}
+
+.bg-deg-quintenary-4 {
+    background: linear-gradient(90deg, var(--color-quintenario) 0%, var(--color-cuaternario) 100%);
+}
+
+
+

@@ -4,26 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class user_provider extends Model
+class UserProvider extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
-    protected $table = 'users_provider';
+    protected $table = 'userProvider';
     protected $fillable = [
         'id',
-        'user_id',
+        'users_id',
         'company_id',
+        'is_boss'
     ];
 
-    public function users()
+    public function User()
     {
-        return $this->belongsTo(users::class, 'id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function company()
     {
-        return $this->belongTo(company::class, 'id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }

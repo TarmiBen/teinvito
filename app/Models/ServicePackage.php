@@ -4,27 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class service_package extends Model
+class ServicePackage extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'servicePackage';
+    protected $table = 'service_package';
     protected $fillable = [
-        'id', 
         'service_id', 
         'name', 
         'description', 
         'price',         
     ];
 
-    public function galery(){
-        return $this->hasMany(galery::class, 'service_package_id');
+    public function Galery(){
+        return $this->hasMany(Galery::class, 'service_package_id');
     }
 
-    public function service()
+    public function Service()
     {
-        return $this->belongsTo(service::class, 'id');
+        return $this->belongsTo(Service::class, 'service_id');
     }
 }

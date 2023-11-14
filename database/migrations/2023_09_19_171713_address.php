@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('address', function (Blueprint $table) {
-            $table->id();            
+            $table->id();  
+            $table->BigInteger('company_id')->unsigned();
+            $table->integer('priority');          
             $table->string('name');            
             $table->string('street');
             $table->string('int');
@@ -20,8 +22,15 @@ return new class extends Migration
             $table->integer('cp')->unsigned();
             $table->string('colony');
             $table->string('city');
-            $table->string('state');            
+            $table->string('state');  
+            $table->timestamps();
+            $table->softDeletes()->nullable();          
         });
+
+        Schema::table('address', function (Blueprint $table) {
+            $table->foreign('company_id')->references('id')->on('companies');          
+        });
+
     }
 
     /**

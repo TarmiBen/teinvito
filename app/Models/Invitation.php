@@ -4,39 +4,53 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class invitation extends Model
+class Invitation extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
-    protected $table = 'invitation';
+
+    protected $table = 'invitations';
     protected $fillable = [
         'id',
-        'user_id',
-        'package_id',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'users_id',
+        'package_id',        
+
     ];
     
-    public function event()
+    public function User()
     {
-        return $this->hasOne(event::class, 'invitation_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function packages()
+    public function Event()
     {
-        return $this->belongsTo(packages::class, 'id');
+        return $this->hasOne(Event::class, 'invitation_id');
     }
 
-    public function invitationComponents()
+    public function Package()
     {
-        return $this->hasMany(invitationComponent::class, 'invitation_id');
+        return $this->belongsTo(Package::class, 'id');
+    }
+
+    public function InvitationsComponents()
+    {
+        return $this->hasMany(InvitationComponent::class, 'invitation_id');
     }
 
     public function ComponentsData()
     {
         return $this->hasMany(ComponentData::class, 'invitation_id');
+    }
+    
+    public function Guests()
+    {
+        return $this->hasMany(Guests::class, 'invitation_id');
+    }
+
+    public function Events_Invitations()
+    {
+    return $this->belongsTo(Events_Invitations::class, 'invitation_id');
     }
 }

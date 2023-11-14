@@ -12,19 +12,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('user_invited_id');
+            $table->biginteger('users_id')->unsigned();
+            $table->integer('user_invited_id')->unsigned();
             $table->bigInteger('invitation_id')->unsigned();
             $table->string('type');
-            $table->timestamp('ceremony_date');
-            $table->timestamp('event_date')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('ceremony_date');
+            $table->datetime('event_date');
+            $table->timestamps();
+            $table->softDeletes()->nullable();
             $table->string('title');
         });
 
-        Schema::table('event', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitation');
+        Schema::table('events', function (Blueprint $table) {
+            $table->foreign('invitation_id')->references('id')->on('invitations');
+        });
+
+        Schema::table('events', function (Blueprint $table) {
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
     /**
@@ -32,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event');
+        Schema::dropIfExists('events');
     }
 };
