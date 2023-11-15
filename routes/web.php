@@ -50,8 +50,8 @@ Route::resource('event', EventController::class)->names('event');
 Route::get('/event/restore/{id}', [EventController::class, 'restore'])->name('event.restore');
 
 Route::resource('guests', GuestsController::class)->names('guests');
-Route::get('/confirmar/{codigoInvitacion}', [GuestsController::class, 'response'])->name('guests.confirmar');
-Route::get('/invitado/{codigo}', [GuestsController::class, 'confirmarAsistencia'])->name('guests.invitado');
+Route::get('/invitation/{hash}', [GuestsController::class, 'urlValid'])->name('guests.confirm');
+Route::post('/guest/{hash}', [GuestsController::class, 'confirmAssistance'])->name('guests.guest');
 
 Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
 Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
