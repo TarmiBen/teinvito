@@ -1,5 +1,7 @@
 @extends('layouts.users.app')
 
+@section('title', 'Iniciar Sesion')
+
 @section('content')
 <div class="container-fluid">
     <div class="row vh-100">
