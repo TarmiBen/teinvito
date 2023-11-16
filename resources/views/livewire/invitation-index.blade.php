@@ -1,6 +1,6 @@
 <div>
     <div class="row justify-content-between align-items-center">
-        <h3 class="col-auto m-0">Lista de Invitaciones</h3>
+        <h3 class="col-auto m-0">Lista de invitaciones</h3>
         <div class="col-auto">
             <a href="{{ route('admin.invitations.create') }}" class="btn btn-primary">
                 <i data-feather="plus-square"></i>

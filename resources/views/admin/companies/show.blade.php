@@ -100,7 +100,7 @@
                         Contactos
                     </div>
                     <div class="col-auto d-flex">
-                        <a href="{{ route('admin.contacts.create', ['company_id' => $company->id]) }}" class="btn btn-outline-success">
+                        <a href="{{ route('admin.contacts.create', ['company_id' => $company->id]) }}" class="btn btn-outline-primary">
                             <i class="fa-regular fa-square-plus"></i>
                             Nuevo Contacto
                         </a>
@@ -158,7 +158,7 @@
                                     Direcciones
                                 </div>
                                 <div class="col-auto d-flex">
-                                    <a href="{{ route('admin.addresses.create', ['company_id' => $company->id]) }}" class="btn btn-outline-success">
+                                    <a href="{{ route('admin.addresses.create', ['company_id' => $company->id]) }}" class="btn btn-outline-primary">
                                         <i class="fa-regular fa-square-plus"></i>
                                         Nueva Dirección
                                     </a>

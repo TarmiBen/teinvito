@@ -1,4 +1,7 @@
 @extends('layouts.users.app')
+
+@section('title', 'Detalle del Contacto')
+
 @section('content')
 <div class="row justify-content-between align-items-center">
     <h3 class="col-auto">Detalle del Contacto</h3>
@@ -6,7 +9,7 @@
         <form action="{{ route('admin.companies.destroy', $contact) }}" method="POST">
             @csrf
             @method('DELETE')
-            <a href="{{route('admin.companies.create')}}" class="btn btn-outline-success">
+            <a href="{{route('admin.companies.create')}}" class="btn btn-outline-primary">
                 <i data-feather="plus-square"></i>
                 Nuevo Contacto
             </a>
