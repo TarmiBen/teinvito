@@ -15,6 +15,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdressController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServicePackageController;
+use App\Http\Controllers\CustomViewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -82,3 +83,5 @@ Route::get('/category/{id}/category-edit', [CategoryController::class, 'edit'])-
 Route::put('/category/{id}/category-edit', [CategoryController::class, 'update'])->name('category.update');
 Route::get('/category/{id}/category-show', [CategoryController::class, 'show'])->name('category.show');
 Route::delete('/category/{categoria}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+Route::get('/admin/customView/create/{CustomViewId?}', [CustomViewController::class, 'create'])->name('admin.customView.create');
