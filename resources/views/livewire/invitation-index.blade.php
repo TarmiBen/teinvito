@@ -4,7 +4,7 @@
         <div class="col-auto">
             <a href="{{ route('admin.invitations.create') }}" class="btn btn-primary">
                 <i data-feather="plus-square"></i>
-                Nueva Compañia
+                Nueva Invitacion
             </a>
         </div>
     </div>
@@ -46,8 +46,8 @@
                                     <td>{{ $invitation->User->email }}</td>
                                     <td>
                                         <a href="{{ route('admin.invitations.show', $invitation) }}" class="btn btn-sm btn-success">Ver</a>
-                                        <a href="{{ route('admin.invitations.edit', $invitation) }}" class="btn btn-sm btn-primary">Editar</a>
-                                        <form action="{{ route('admin.invitations.destroy', $invitation) }}" method="POST">
+                                        <a href="{{ route('admin.invitations.create', $invitation) }}" class="btn btn-sm btn-warning">Editar</a>
+                                        {{-- <form action="{{ route('admin.invitations.destroy', $invitation) }}" method="POST"> --}}
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>

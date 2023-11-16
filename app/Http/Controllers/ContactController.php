@@ -6,6 +6,8 @@ use App\Models\UserProvider;
 use App\Models\Contact;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 
 class ContactController extends Controller
@@ -25,6 +27,9 @@ class ContactController extends Controller
     {
         $company_id  = $request->input('company_id');
         $UserProviders = UserProvider::where('users_id', auth()->user()->id)->get();
+        if ($UserProviders->isEmpty()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' entró a la vista de crear contacto y no tiene ninguna compañia asociada');
+        }
         $selectedCompany = null;
         if ($company_id ) {
             $selectedCompany = Company::find($company_id );
@@ -37,7 +42,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'lastname' => 'required',
             'email' => 'required|unique:contacts,email|email|max:255',
@@ -45,6 +50,13 @@ class ContactController extends Controller
             'telephone' => 'nullable|required_with:phone',
             'company_id' => 'required',
         ]);
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó crear un contacto pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $contact = new contact();
         $contact->company_id = $request->company_id;
         $contact->name = $request->name;
@@ -71,6 +83,9 @@ class ContactController extends Controller
     public function edit(contact $contact)
     {
         $UserProviders = UserProvider::where('users_id', auth()->user()->id)->get();
+        if ($UserProviders->isEmpty()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' entró a la vista de actualizar contacto y no tiene ninguna compañia asociada');
+        }
         return view('admin.contacts.edit',compact('contact', 'UserProviders'));
     }
 
@@ -79,7 +94,7 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'lastname' => 'required',
             'name' => 'required|unique:categories,name,'.$contact->id,
@@ -87,6 +102,13 @@ class ContactController extends Controller
             'telephone' => 'nullable|required_with:phone',
             'company_id' => 'required',
         ]);
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar un contacto pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $contact->company_id = $request->company_id;
         $contact->name = $request->name;
         $contact->lastname = $request->lastname;

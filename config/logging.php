@@ -126,6 +126,16 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'livewire' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/components.log'),
+        ],
+
+        'controller' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/controller.log'),
+        ],
     ],
 
 ];

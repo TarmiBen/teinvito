@@ -7,24 +7,32 @@ use Livewire\WithFileUploads;
 use App\Models\Component as ModelComponent;
 use App\Models\ComponentData;
 use App\Models\Invitation;
+use App\Helpers\ComponentHelper;
+use Illuminate\Support\Facades\Log;
 
 class BannerComponent extends Component
 {
     use WithFileUploads;
 
-    public $title = 'Título';
-    public $subtitle = 'Subtítulo';
-    public $isEditing = true;   
+    public $title;
+    public $subtitle;
+    public $isEditing = true;
+    public $invitationId;
     public $listeners = ['saveComponents' => 'saveComponents'];
 
-    public function mount($data = null)
+    public function mount($data = null, $info = null, $invitationId = null)
     {
-        $this->title = 'Título';
+        $this->invitationId = $invitationId;
+        $this->title = 'dffd';
         $this->subtitle = 'Subtítulo';
-
+        if($info){
+            $this->title = $info['title'];
+            $this->subtitle = $info['subtitle'];
+            $this->isEditing = true;
+        }
         if($data)
         {
-            $this->title = $data['title'];
+            $this->title = $data['title']; // 'Título
             $this->subtitle = $data['subtitle'];
             $this->isEditing = false;
         }
@@ -47,29 +55,46 @@ class BannerComponent extends Component
 
     public function saveComponentData()
     {
-        $component = ModelComponent::firstOrCreate([
-            'component_package_id' => 1,
-            'name' => 'banner',
-            'model_type' => 'banner-component',
-        ]);
-
-        $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
-        $invitationId = $invitation->id;
-
-        $this->componentData = [
-            'title' => $this->title,
-            'subtitle' => $this->subtitle,
-        ];
-
-        foreach ($this->componentData as $key => $body) {
-            if(!is_null($body)) {
-                ComponentData::create([
-                    'key' => $key,
-                    'value' => $body,
-                    'invitation_id' => $invitationId,
-                    'component_id' => $component->id,
-                ]);
+        if ($this->invitationId) {
+            $component = ModelComponent::firstOrCreate([
+                'component_package_id' => 1,
+                'name' => 'banner',
+                'model_type' => 'banner-component',
+            ]);
+    
+            $this->componentData = [
+                'title' => $this->title,
+                'subtitle' => $this->subtitle,
+            ];
+    
+            foreach (['title', 'subtitle'] as $field) {
+                if (empty($this->componentData[$field])) {
+                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo banner sin el campo ' . str_replace('_', ' ', $field));
+                }
             }
+            ComponentHelper::updateComponentData($component, $this->invitationId, $this->componentData);
+        } else {
+            $component = ModelComponent::firstOrCreate([
+                'component_package_id' => 1,
+                'name' => 'banner',
+                'model_type' => 'banner-component',
+            ]);
+
+            $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
+            $invitationId = $invitation->id;
+
+            $this->componentData = [
+                'title' => $this->title,
+                'subtitle' => $this->subtitle,
+            ];
+
+            foreach (['title', 'subtitle'] as $field) {
+                if (empty($this->componentData[$field])) {
+                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó guardar un componente de tipo banner sin el campo ' . str_replace('_', ' ', $field));
+                }
+            }
+
+            ComponentHelper::createComponentData($component, $invitationId, $this->componentData);
         }
     }
     

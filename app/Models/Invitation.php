@@ -36,12 +36,12 @@ class Invitation extends Model
 
     public function InvitationsComponents()
     {
-        return $this->hasMany(InvitationComponent::class, 'invitation_id');
+        return $this->hasMany(InvitationComponent::class);
     }
 
     public function ComponentsData()
     {
-        return $this->hasMany(ComponentData::class, 'invitation_id');
+        return $this->hasMany(ComponentData::class);
     }
     
     public function Guests()

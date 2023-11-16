@@ -297,6 +297,33 @@
     color: var(--color-quintenario-claro);
 }
 
+.error-bg {
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.info-bg {
+    background-color: blue;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.warning-bg {
+    background-color: yellow;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.debug-bg {
+    background-color: green;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
 .bg-deg-primary-1 {
     background: linear-gradient(90deg, var(--color-primario) 0%, var(--color-secundario) 100%);
 }
@@ -376,6 +403,3 @@
 .bg-deg-quintenary-4 {
     background: linear-gradient(90deg, var(--color-quintenario) 0%, var(--color-cuaternario) 100%);
 }
-
-
-
