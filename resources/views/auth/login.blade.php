@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.users.app')
+
+@section('title', 'Iniciar Sesion')
 
 @section('content')
 <div class="container-fluid">

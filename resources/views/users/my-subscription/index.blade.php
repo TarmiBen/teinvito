@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.users.app')
 @section('content')
 
 <section>
@@ -11,10 +11,10 @@
 
     <div class="mt-4">
         <div class="card">
-            <div class="rounded-top py-4 px-3 bg-quaternary-ti text-light">
-                <h3 class="fw-bold">Plan Básico</h3>
+            <div class="rounded-top py-4 px-3 bg-quaternary-ti">
+                <h3 class="fw-bold text-white">Plan Básico</h3>
             </div>
-            <div class="container p-3">
+            <div class="p-3">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <span class="fw-bold fs-5">

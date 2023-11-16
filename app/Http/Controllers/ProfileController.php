@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -19,19 +21,22 @@ class ProfileController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $user = User::find($id);
-        // $user->name=$request->name;
-        // $user->save();
-        // return redirect()->route('profile.index');
-
         $user = User::find($id);
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
-
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar su perfil pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $user->name = $request->name;
+        $user->lastname = $request->lastname;
 
         if ($request->password) {
             $user->password = bcrypt($request->password);

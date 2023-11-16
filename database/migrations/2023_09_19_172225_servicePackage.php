@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('servicePackage', function (Blueprint $table) {
+        Schema::create('service_package', function (Blueprint $table) {
             $table->id();  
             $table->BigInteger('service_id')->unsigned();                                
             $table->string('name');    
             $table->text('description');
             $table->float('price'); 
+            $table->timestamps();
+            $table->softDeletes()->nullable();
         });
 
-        Schema::table('servicePackage', function (Blueprint $table) {            
-            $table->foreign('service_id')->references('id')->on('service')->onDelete('cascade')->onUpdate('cascade');            
+        Schema::table('service_package', function (Blueprint $table) {            
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');            
         });
     }
 
