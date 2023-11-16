@@ -20,7 +20,7 @@
         @endforeach
         @if($invitationId != null)
             @foreach($invitationComponents as $component)
-            @livewire($component->Component->model_type, ['info' => $component->component->componentDataOrder(), 'invitationId' => $invitationId], key($component->id))
+            @livewire($component->Component->model_type, ['info' => $component->component->componentDataOrderInvitation($component->invitation_id), 'invitationId' => $invitationId], key($component->id))
             @endforeach
         @endif
     </div>

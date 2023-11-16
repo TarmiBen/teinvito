@@ -40,7 +40,6 @@ class InvitationController extends Controller
                 }]);
             }])->orderBy('order','asc');
         }])->first();
-        
         return view('admin.invitations.show', ['invitation' => $invitation]);
     }
 

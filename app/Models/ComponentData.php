@@ -11,20 +11,18 @@ class ComponentData extends Model
     use HasFactory;
     use SoftDeletes;
     protected $table = 'component_data';
-    protected $fillable = [
-        
+    protected $fillable = [   
         'invitation_id',
         'component_id',
         'key',
-        'value',
-        
+        'value',    
     ];
 
     public function Component(){
-        return $this->belongsTo(Component::class);
+        return $this->belongsTo(Component::class,  'component_id', 'id');
     }
 
     public function Invitation(){
-        return $this->belongsTo(Invitation::class);
+        return $this->belongsTo(Invitation::class,  'invitation_id', 'id');
     }
 }

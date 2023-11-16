@@ -58,23 +58,16 @@
                                 <td>{{ $guest->number }}</td>
                                 <td>{{ $guest->status }}</td>
                                 <td>
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <form action="{{ route('guests.destroy', $guest) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <div class="btn-group">
-                                                <a href="{{ route('guests.show', $guest) }}" class="btn btn-icon btn-primary">
-                                                    <i data-feather="eye">Show</i>
-                                                </a>
-                                                <a href="{{ route('guests.edit', $guest) }}" class="btn btn-icon btn-info">
-                                                    <i data-feather="edit">Update</i>
-                                                </a>
-                                                <button type="submit" class="btn btn-icon btn-danger">
-                                                    <i data-feather="trash">Delete</i>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <form action="{{ route('guests.destroy', $guest) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="{{ route('guests.show', $guest) }}" class="btn btn-icon btn-warning">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
+                                        <button type="submit" class="btn btn-icon btn-danger">
+                                             <i class="fa-regular fa-trash-alt"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

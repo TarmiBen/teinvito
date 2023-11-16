@@ -31,9 +31,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin/invitations/show/{invitationId}', [InvitationController::class, 'show'])->name('show');
-
 Auth::routes(['verify' => true]);
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //logout
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 
@@ -62,10 +61,10 @@ Route::delete('admin/invitations/{invitation}', [InvitationController::class, 'd
 
 Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {
+    Route::get('logs', [LogController::class, 'index'])->name('logs.index');
     Route::resource('admin/userProviders', UserProviderController::class)->names('admin.userProviders');
 });
 
-Route::get('logs', [LogController::class, 'index'])->name('logs.index');
 Route::resource('admin/contacts', ContactController::class)->names('admin.contacts');
 Route::resource('admin/addresses', AdressController::class)->names('admin.addresses');
 Route::resource('admin/services', ServiceController::class)->names('admin.services');
