@@ -2,7 +2,7 @@
     <div>
         <form wire:submit.prevent="storeOrUpdate" enctype="multipart/form-data" method="POST">
             <div class="row justify-content-between align-items-center mb-3">
-                <h3 class="col-auto m-0"></h3>
+                <h3 class="col-auto m-0">Datos del paquete de servicios</h3>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-success">
                         <i data-feather="plus-square"></i>
