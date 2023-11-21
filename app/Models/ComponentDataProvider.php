@@ -10,10 +10,10 @@ class ComponentDataProvider extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'component_view_datas';
+    protected $table = 'component_data_provider';
     protected $fillable = [
         'company_id',
-        'component_view_id',
+        'component_provider_id',
         'key',
         'value',
     ];

@@ -74,7 +74,7 @@ class SectionCreate extends Component
             ]);
             foreach ($this->selectedComponents as $index => $componentViewData) {
                 $componentName = $componentViewData['ComponentView'];
-                $componentRecord = Component_View::where('model_type', $componentName)->first();
+                $componentRecord = ComponentProvider::where('model_type', $componentName)->first();
                 if ($componentRecord) {
                     $componentClassName = $componentRecord->model_type;
                     $order = $index + 1;
