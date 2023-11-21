@@ -2,7 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Company;
+use App\Models\company;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Log;
@@ -22,7 +23,7 @@ class CompanieIndex extends Component
 
     public function render()
     {
-        $companys = Company::where('name', 'LIKE', '%' . $this->search . '%')
+        $companys = company::where('name', 'LIKE', '%' . $this->search . '%')
             ->orWhere('email', 'LIKE', '%' . $this->search . '%')
             ->orWhere('phone', 'LIKE', '%' . $this->search . '%')
             ->orWhere('rfc', 'LIKE', '%' . $this->search . '%')
@@ -31,9 +32,9 @@ class CompanieIndex extends Component
 
             if ($companys->isEmpty()) {
                 if ($this->search != '') {
-                    Log::channel('livewire')->error('El usuario con id:' . $user->id . ' buscó una dirección que no existe: ' . $this->search);
+                    Log::channel('livewire')->error('El usuario con id:' . User::find(auth()->user()->id)->id . ' buscó la compañia con nombre:' . $this->search . ' y no se encontró');
                 } else {
-                    Log::channel('livewire')->error('El usuario con id:' . $user->id . ' entró a la vista de direcciones y no tiene ninguna dirección asociada');
+                    Log::channel('livewire')->error('El usuario con id:' . User::find(auth()->user()->id)->id . ' buscó todas las compañias y no se encontró ninguna');
                 }
             }
 

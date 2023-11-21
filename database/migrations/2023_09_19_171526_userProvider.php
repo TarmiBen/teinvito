@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('userProvider', function (Blueprint $table) {
+        Schema::create('UserProvider', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('users_id')->unsigned();
             $table->BigInteger('company_id')->unsigned();
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->softDeletes()->nullable();
         });
         
-        Schema::table('userProvider', function (Blueprint $table) {
+        Schema::table('UserProvider', function (Blueprint $table) {
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -29,7 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('userProvider');
+        Schema::dropIfExists('UserProvider');
     }
 };
 

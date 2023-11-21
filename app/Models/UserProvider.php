@@ -12,7 +12,7 @@ class UserProvider extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'userProvider';
+    protected $table = 'userprovider';
     protected $fillable = [
         'id',
         'users_id',
