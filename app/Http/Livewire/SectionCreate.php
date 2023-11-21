@@ -31,7 +31,7 @@ class SectionCreate extends Component
     public function loadSectionComponents($CustomViewId)
     {
         // Realiza una consulta para obtener la invitación relacionada
-        $this->customView = Section::with('SectionComponent.Component_View')->find($CustomViewId);
+        $this->customView = Section::with('SectionComponent.ComponentProvider')->find($CustomViewId);
         // Luego, puedes acceder a los componentes de la invitación
         $this->invitationComponents = $this->customView->SectionComponent;
     }

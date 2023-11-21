@@ -29,6 +29,7 @@ class CustomViewController extends Controller
                 }]);
             }])->orderBy('order', 'asc');
         }])->first();
+
         return view('admin.provider.show', compact('section', 'allSections'));
     }
 }

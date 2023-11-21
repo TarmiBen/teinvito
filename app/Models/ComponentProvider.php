@@ -21,10 +21,11 @@ class ComponentProvider extends Model
         return $this->hasMany(SectionComponent::class, 'id');
     }
 
-    public function ComponentViewData()
+    public function ComponentDataProvider()
     {
-        return $this->hasMany(ComponentData::class);
+        return $this->hasMany(ComponentDataProvider::class);
     }
+
 
     public function ComponentViewDataOrder()
     {

@@ -24,6 +24,6 @@ class SectionComponent extends Model
 
     public function ComponentProvider()
     {
-        return $this->belongsTo(ComponentData::class, 'component_id');
+        return $this->belongsTo(ComponentProvider::class, 'component_id');
     }
 }
