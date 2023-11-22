@@ -1,12 +1,14 @@
 @extends('layouts.users.app')
 
+@section('title', 'Nueva Compañia')
+
 @section('content')
 <link rel="stylesheet" type="text/css" href="/assets/css/cropper.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/cropperImage.css">
 <div>
     <form action="{{ route('admin.companies.store') }}" method="POST" enctype="multipart/form-data">
         <div class="row justify-content-between align-items-center mb-3">
-            <h3 class="col-auto m-0"></h3>
+            <h3 class="col-auto m-0">Nueva Compañia</h3>
             <div class="col-auto">
                 <button type="submit" class="btn btn-success">
                     <i class="fa-regular fa-square-plus"></i>

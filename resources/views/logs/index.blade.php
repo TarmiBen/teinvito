@@ -1,11 +1,11 @@
 @extends('layouts.users.app')
 
-@section('title', 'Invitaciones')
+@section('title', 'Direcciones')
 
 @section('content')
 
     @include('layouts.users.alert')
-
-    @livewire('invitation-index')
+    
+    @livewire('log-index')
 
 @endsection

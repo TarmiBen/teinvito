@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AdressIndex extends Component
 {
@@ -39,6 +40,13 @@ class AdressIndex extends Component
                 ->orWhere('city', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('state', 'LIKE', '%' . $this->search . '%');
         })->paginate($this->paginate);
+        if ($addresses->isEmpty()) {
+            if ($this->search != '') {
+                Log::channel('livewire')->info('El usuario con id:' . $user->id . ' buscó una dirección que no existe: ' . $this->search);
+            } else {
+                Log::channel('livewire')->info('El usuario con id:' . $user->id . ' entró a la vista de direcciones y no tiene ninguna dirección asociada');
+            }
+        }
         return view('livewire.adress-index', compact('addresses'));
     }
 }

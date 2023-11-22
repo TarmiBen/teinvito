@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Log;
 
 
 class CategoryComponent extends Component
@@ -71,6 +72,14 @@ class CategoryComponent extends Component
 
         
         $categoria = $categoriaQuery->paginate($this->paginate);
+        if($categoria->isEmpty()){
+            if($this->search != ''){
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' buscó una categoría que no existe: ' . $this->search);
+            }else{
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' entró a la vista de categorías y no tiene ninguna categoría asociada');
+            }
+        }
+
         // $categoria = Category::paginate(10);
         
         return view('livewire.category-component', compact('categoria'));

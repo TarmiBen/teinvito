@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Company;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Log;
 
 class CompanieIndex extends Component
 {
@@ -27,6 +28,15 @@ class CompanieIndex extends Component
             ->orWhere('rfc', 'LIKE', '%' . $this->search . '%')
             ->orderBy($this->orderBy, $this->order)
             ->paginate($this->paginate);
+
+            if ($companys->isEmpty()) {
+                if ($this->search != '') {
+                    Log::channel('livewire')->error('El usuario con id:' . $user->id . ' buscó una dirección que no existe: ' . $this->search);
+                } else {
+                    Log::channel('livewire')->error('El usuario con id:' . $user->id . ' entró a la vista de direcciones y no tiene ninguna dirección asociada');
+                }
+            }
+
         return view('livewire.companie-index', compact('companys'));
     }
 }

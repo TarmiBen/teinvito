@@ -65,6 +65,7 @@ class ServicePackageCreate extends Component
 
     public function storeOrUpdate()
     {
+        dd($this->servicePackageId);
         $this->validate([
             'name' => 'required',
             'description' => 'required',
@@ -80,7 +81,6 @@ class ServicePackageCreate extends Component
             'description' => $this->description,
             'price' => $this->price,
         ];
-    
         if ($this->servicePackageId) {
             // Si estamos editando, actualizamos el registro existente
             $servicePackage = ServicePackage::find($this->servicePackageId);

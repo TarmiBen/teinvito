@@ -34,13 +34,12 @@
                     <thead>
                     <tr>
                         <th data-priority="id">Id</th>
-                        <th data-priority="user_id">UserId</th>
-                        <th data-priority="user_invited_id">UserInvitedId</th>
-                        <th data-priority="invitation_id">InvitationId</th>
+                        <th data-priority="user_id">Creador</th>
+                        <th data-priority="user_invited_id">Usuario Invitado</th>
+                        <th data-priority="tittle">Nombre del Evento</th>
                         <th data-priority="type">Type</th>
                         <th data-priority="ceremony_date">CeremonyDate</th>
                         <th data-priority="event_date">EventDate</th>
-                        <th data-priority="tittle">Tittle</th>
                         <th data-priority="actions">Actions</th>
                     </tr>
                     </thead>
@@ -48,33 +47,30 @@
                     @foreach($events as $event)
                         <tr>
                             <td>{{$event->id}}</td>
-                            <td>{{ $event->users_id }}</td>
+                            <td>{{ $event->User->name }}</td>
                             @if( $event->user_invited_id == null))
                                 <td>NA</td>
                             @else
-                                <td>{{ $event->user_invited_id }}</td>
+                                <td>{{ $event->UserInvited->name }} - {{ $event->UserInvited->email }}</td>
                             @endif
-                            <td>{{ $event->invitation_id }}</td>
-                            <td>{{ $event->type }}</td>
-                            <td>{{ $event->ceremony_date }}</td>
-                            <td>{{ $event->event_date }}</td>
                             <td>{{ $event->title }}</td>
+                            <td>{{ $event->type }}</td>
+                            <td>{{ carbon\Carbon::parse($event->ceremony_date)->format('d-m-Y') }}</td>
+                            <td>{{ carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <form action="{{ route('event.destroy', $event) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <div class="btn-group">
-                                            <a href="{{ route('event.show', $event) }}" class="btn btn-icon btn-primary">
-                                                <i data-feather="eye">Show</i>
+                                            <a href="{{ route('event.show', $event) }}" class="btn btn-icon btn-warning">
+                                                <i class="fa-regular fa-eye"></i>
                                             </a>
                                             <a href="{{ route('event.edit', $event) }}" class="btn btn-icon btn-info">
-                                                <i data-feather="edit">Update</i>
+                                                <i class="fa-regular fa-edit"></i>
                                             </a>
                                             <button type="submit" class="btn btn-icon btn-danger">
-                                                <i data-feather="trash">Delete</i>
+                                                <i class="fa-regular fa-trash-alt"></i>
                                             </button>
-                                        </div>
                                     </form>
                                 </div>
                             </td>

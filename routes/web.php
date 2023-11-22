@@ -13,6 +13,7 @@ use App\Http\Controllers\CompanieController;
 use App\Http\Controllers\UserProviderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdressController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServicePackageController;
 use App\Http\Controllers\CustomViewController;
@@ -31,9 +32,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin/invitations/show/{invitationId}', [InvitationController::class, 'show'])->name('show');
-
 Auth::routes(['verify' => true]);
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //logout
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 
@@ -54,11 +54,18 @@ Route::resource('guests', GuestsController::class)->names('guests');
 Route::get('/invitation/{hash}', [GuestsController::class, 'urlValid'])->name('guests.confirm');
 Route::post('/guest/{hash}', [GuestsController::class, 'confirmAssistance'])->name('guests.guest');
 
-Route::resource('admin/invitations', InvitationController::class)->names('admin.invitations');
+Route::get('admin/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->name('admin.invitations.create');
+Route::get('admin/invitations', [InvitationController::class, 'index'])->name('admin.invitations.index');
+Route::get('admin/invitations/show/{invitationId}', [InvitationController::class, 'show'])->name('admin.invitations.show');
+Route::get('admin/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->name('admin.invitations.deleteConfirm');
+Route::delete('admin/invitations/{invitation}', [InvitationController::class, 'destroy'])->name('admin.invitations.destroy');
+
 Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {
+    Route::get('logs', [LogController::class, 'index'])->name('logs.index');
     Route::resource('admin/userProviders', UserProviderController::class)->names('admin.userProviders');
 });
+
 Route::resource('admin/contacts', ContactController::class)->names('admin.contacts');
 Route::resource('admin/addresses', AdressController::class)->names('admin.addresses');
 Route::resource('admin/services', ServiceController::class)->names('admin.services');

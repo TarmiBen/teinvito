@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ContactIndex extends Component
 {
@@ -36,6 +37,15 @@ class ContactIndex extends Component
                 ->orWhere('phone', 'LIKE', '%' . $this->search . '%');
         })
         ->paginate($this->paginate);
+
+        if ($contacts->isEmpty()) {
+            if ($this->search != '') {
+                Log::channel('livewire')->error('El usuario con id:' . $user->id . ' buscó un contacto que no existe: ' . $this->search);
+            } else {
+                Log::channel('livewire')->error('El usuario con id:' . $user->id . ' entró a la vista de contactos y no tiene ningun contacto asociado');
+            }
+        }
+
         return view('livewire.contact-index', compact('contacts'));
     }
 }

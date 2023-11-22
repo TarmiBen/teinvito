@@ -23,20 +23,35 @@ class Component extends Model
 
     public function ComponentsData()
     {
-        return $this->hasMany(ComponentData::class, 'component_id');
+        return $this->hasMany(ComponentData::class, 'component_id', 'id');
     }
 
     public function ComponentPackage()
     {
         return $this->belongsTo(ComponentPackage::class, 'id');
     }
-
     public function componentDataOrder()
     {
-        $componentDataOrder = [];
+        $componentDataOrder2 = [];
+        $i = 0;
         foreach ($this->ComponentsData as  $value) {
-            $componentDataOrder[$value->key] = $value->value;
+            $componentData[$value->key] = $value->value;
+            $componentsDataOrder2[$i] = $componentData;
+            // dd($componentData);
+            $i++;
         }
-        return $componentDataOrder;
+
+        // dd($this->ComponentsData);
+        return $componentDataOrder2;
+    }
+
+    public function componentDataOrderInvitation($id)
+    {
+        $format = [];
+        $componentData = ComponentData::where('invitation_id', $id)->where('component_id', $this->id)->get();
+        foreach ($componentData as  $item) {
+            $format[$item->key] = $item->value;
+        }
+        return $format;
     }
 }
