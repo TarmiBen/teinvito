@@ -25,7 +25,7 @@ class ComponentDataProvider extends Model
         return $this->belongsTo(Section::class);
     }
 
-    public function Component_View()
+    public function ComponentProvider()
     {
         return $this->belongsTo(ComponentProvider::class);
     }

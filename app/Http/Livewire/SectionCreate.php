@@ -46,7 +46,7 @@ class SectionCreate extends Component
     public function addComponent($component)
     {
         if (count($this->selectedComponents) < 5) {
-            $this->selectedComponents[] = ['ComponentView' => $component, 'props' => []];
+            $this->selectedComponents[] = ['ComponentProvider' => $component, 'props' => []];
         }
     }
 
@@ -73,7 +73,7 @@ class SectionCreate extends Component
                 'name' => $this->name,
             ]);
             foreach ($this->selectedComponents as $index => $componentViewData) {
-                $componentName = $componentViewData['ComponentView'];
+                $componentName = $componentViewData['ComponentProvider'];
                 $componentRecord = ComponentProvider::where('model_type', $componentName)->first();
                 if ($componentRecord) {
                     $componentClassName = $componentRecord->model_type;
