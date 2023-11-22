@@ -65,7 +65,6 @@ class ServicePackageCreate extends Component
 
     public function storeOrUpdate()
     {
-        dd($this->servicePackageId);
         $this->validate([
             'name' => 'required',
             'description' => 'required',
@@ -96,7 +95,7 @@ class ServicePackageCreate extends Component
         foreach ($this->src as $index => $file) {
             $imgName = ImageHelper::uploadAndResizeImage(
                 $file,
-                'public/galery',
+                'galery',
                 1080,
                 1080
             );

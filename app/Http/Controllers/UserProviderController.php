@@ -131,8 +131,7 @@ class UserProviderController extends Controller
     public function autocompleteCompany(Request $request)
     {
         $user = Auth::user()->id;
-        $data = Company::
-        whereHas('UserProvider', function ($query) use ($user) {
+        $data = Company::whereHas('UserProvider', function ($query) use ($user) {
             $query->where('users_id', $user);
         })
         ->where(function ($query) use ($request) {

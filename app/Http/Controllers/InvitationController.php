@@ -18,7 +18,7 @@ class InvitationController extends Controller
      */
     public function index()
     {
-        return view('admin.Invitations.index');
+        return view('admin.invitations.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class InvitationController extends Controller
      */
     public function create($invitationId = null)
     {
-        return view('admin.Invitations.create', compact('invitationId'));
+        return view('admin.invitations.create', compact('invitationId'));
     }
 
 
@@ -40,7 +40,7 @@ class InvitationController extends Controller
                 }]);
             }])->orderBy('order','asc');
         }])->first();
-        return view('admin.Invitations.show', ['invitation' => $invitation]);
+        return view('admin.invitations.show', ['invitation' => $invitation]);
     }
 
     /**

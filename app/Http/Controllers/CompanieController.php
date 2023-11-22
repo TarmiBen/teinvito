@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
 use Illuminate\Http\Request;
-use App\Models\company;
+use App\Models\Company;
 use App\Models\Contact;
 use App\Models\Address;
 use App\Models\UserProvider;
@@ -40,23 +40,17 @@ class CompanieController extends Controller
             'name' => 'required',
             'email' => 'required', //|unique:company,email|email|max:255',
             'description' => 'required',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|dimensions:min_width=400,min_height=400,max_width=400,max_height=400|max:2048',
+            'logo' =>[
+                'nullable',
+                'image',
+                'mimes:jpeg,png,jpg,gif,svg',
+                'max:2048',
+            ],
             'cover' => [
                 'nullable',
                 'image',
                 'mimes:jpeg,png,jpg,gif,svg',
                 'max:2048',
-                function ($attribute, $value, $fail) {
-                    // Verificar las dimensiones de la imagen
-                    [$width, $height] = getimagesize($value);
-        
-                    // Comprobar si las dimensiones coinciden con las permitidas
-                    if ($width != 851 || $height != 315) {
-                        if ($width != 1200 || $height != 628) {
-                            $fail('La imagen de portada debe tener dimensiones de 851x315 o 1200x628.');
-                        }
-                    }
-                },
             ],
             'rfc' => 'required|string|max:255',
             'street' => 'nullable',
@@ -70,13 +64,13 @@ class CompanieController extends Controller
         ]);
         $imgName = ImageHelper::uploadAndResizeImage(
             $request->file('logo'),
-            'public/companies/logos', 
+            'companies/logos', 
             400,     
             400      
         );
         $imgNameCover = ImageHelper::uploadAndResizeImage(
             $request->file('cover'),
-            'public/companies/covers',
+            'companies/covers',
             851,     
             315      
         );
@@ -87,7 +81,7 @@ class CompanieController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        $company = new company();
+        $company = new Company();
         $company->phone = $request->phone;
         $company->name = $request->name;
         $company->email = $request->email;
@@ -123,7 +117,7 @@ class CompanieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(company $company)
+    public function show(Company $company)
     {
         $principalAddress = Address::where('company_id', $company->id)->where('priority', 1)->first();
         $contacts = Contact::where('company_id', $company->id)->get();
@@ -134,7 +128,7 @@ class CompanieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(company $company)
+    public function edit(Company $company)
     {
         return view('admin.companies.edit',compact('company'));
     }
@@ -142,7 +136,7 @@ class CompanieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, company $company)
+    public function update(Request $request, Company $company)
     {
         $validator = Validator::make($request->all(), [
             'phone' => 'required',
@@ -194,7 +188,7 @@ class CompanieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(company $company)
+    public function destroy(Company $company)
     {
         $company->delete();
         return redirect()->route('admin.companies.index')
@@ -206,7 +200,7 @@ class CompanieController extends Controller
      */
     public function restore($id)
     {
-        $company = company::onlyTrashed()->find($id)->restore();
+        $company = Company::onlyTrashed()->find($id)->restore();
         return redirect()->route('admin.companies.index')
             ->with('message','Company restored successfully.');
     }
