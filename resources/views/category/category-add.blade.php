@@ -10,9 +10,6 @@
     <div class="row justify-content-between align-items-center mb-3">
         <h3 class="col-auto">Registrar categoria nueva</h3>
         <div class="col-auto d-flex">
-            <a href="{{ route('category') }}" class="btn btn-outline-info">
-                Regresar
-            </a>
             <button type="submit" class="btn btn-success ms-2">
                 Guardar
             </button>     
