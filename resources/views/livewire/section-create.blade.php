@@ -57,7 +57,7 @@
                 </div>
             </div>
             @foreach($selectedComponents as $index => $componentData)
-                @livewire($componentData['ComponentView'], ['props' => $componentData['props']], key($index))
+                @livewire($componentData['ComponentProvider'], ['props' => $componentData['props']], key($index))
                 <button wire:click="removeComponent({{ $index }})" class="btn btn-danger">Reset</button>
             @endforeach
             @if($CustomViewId != null)

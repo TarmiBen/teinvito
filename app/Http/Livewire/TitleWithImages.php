@@ -42,7 +42,7 @@ class TitleWithImages extends Component
         $this->description3 = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam nis";
 
         if ($info) {
-            $this->isEditing = false;
+            $this->isEditing = true;
             $this->preview = false;
             $this->title = $info['title'];
             $this->image1 = $info['image1'];

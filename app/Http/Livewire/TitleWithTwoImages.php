@@ -39,7 +39,7 @@ class TitleWithTwoImages extends Component
         $this->text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam nis";
         $this->finalMessage = "mensaje final";
         if($info){
-            $this->isEditing = false;
+            $this->isEditing = true;
             $this->preview = false;
             $this->title = $info['title'];
             $this->subtitle = $info['subtitle'];
