@@ -23,6 +23,13 @@ class ImageWithTextComponent extends Component
     public $CustomViewId;
     protected $listeners = ['saveComponents' => 'saveComponents', 'togglePreviewMode' => 'togglePreviewMode'];
 
+
+    public function render()
+    {
+        return view('livewire.image-with-text-component');
+    }
+
+
     public function mount($info = null, $data = null,  $CustomViewId = null)
     {
         $this->CustomViewId = $CustomViewId;
@@ -53,10 +60,7 @@ class ImageWithTextComponent extends Component
 
     }
 
-    public function render()
-    {
-        return view('livewire.image-with-text-component');
-    }
+
 
     public function togglePreviewMode()
     {
@@ -74,11 +78,13 @@ class ImageWithTextComponent extends Component
             $headers = @get_headers($this->buttonLink);
             if ($headers === false || strpos($headers[0], '200 OK') === false) {
                 $this->emit('message', 'La url no es valida');
+
                 return;
             }
         } elseif (empty($this->buttonLink)) {
             $this->emit('message', 'La url no puede estar vacia');
             return;
+
         }
         if ($this->CustomViewId){
             $component = ComponentProvider::firstOrCreate([

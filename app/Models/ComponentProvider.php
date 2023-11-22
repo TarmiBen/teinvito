@@ -21,17 +21,18 @@ class ComponentProvider extends Model
         return $this->hasMany(SectionComponent::class, 'id');
     }
 
-    public function ComponentViewData()
+    public function ComponentDataProvider()
     {
-        return $this->hasMany(ComponentData::class);
+        return $this->hasMany(ComponentDataProvider::class);
     }
+
 
     public function ComponentViewDataOrder()
     {
-        $ComponentViewData = [];
-        foreach ($this->ComponentViewData as  $value) {
-            $ComponentViewData[$value->key] = $value->value;
+        $ComponentDataProvider = [];
+        foreach ($this->ComponentDataProvider as  $value) {
+            $ComponentDataProvider[$value->key] = $value->value;
         }
-        return $ComponentViewData;
+        return $ComponentDataProvider;
     }
 }

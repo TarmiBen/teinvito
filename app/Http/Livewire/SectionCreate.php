@@ -31,7 +31,7 @@ class SectionCreate extends Component
     public function loadSectionComponents($CustomViewId)
     {
         // Realiza una consulta para obtener la invitación relacionada
-        $this->customView = Section::with('SectionComponent.Component_View')->find($CustomViewId);
+        $this->customView = Section::with('SectionComponent.ComponentProvider')->find($CustomViewId);
         // Luego, puedes acceder a los componentes de la invitación
         $this->invitationComponents = $this->customView->SectionComponent;
     }
@@ -74,7 +74,7 @@ class SectionCreate extends Component
             ]);
             foreach ($this->selectedComponents as $index => $componentViewData) {
                 $componentName = $componentViewData['ComponentView'];
-                $componentRecord = Component_View::where('model_type', $componentName)->first();
+                $componentRecord = ComponentProvider::where('model_type', $componentName)->first();
                 if ($componentRecord) {
                     $componentClassName = $componentRecord->model_type;
                     $order = $index + 1;

@@ -15,10 +15,7 @@ class SectionIndex extends Component
     public $orderBy = 'id';
     public $order = 'desc';
 
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
+
 
     public function render()
     {
@@ -31,4 +28,11 @@ class SectionIndex extends Component
 
         return view('livewire.section-index', compact('sections'));
     }
+
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
 }

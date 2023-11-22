@@ -62,7 +62,7 @@
             @endforeach
             @if($CustomViewId != null)
                 @foreach($invitationComponents as $component)
-                @livewire($component->Component_View->model_type, ['info' => $component->Component_View->ComponentViewDataOrder(), 'CustomViewId' => $CustomViewId], key($component->id))
+                @livewire($component->ComponentProvider->model_type, ['info' => $component->ComponentProvider->ComponentViewDataOrder(), 'CustomViewId' => $CustomViewId], key($component->id))
                 @endforeach
             @endif
             <button type="submit" class="btn btn-primary mt-4">Guardar</button>
