@@ -84,4 +84,7 @@ Route::put('/category/{id}/category-edit', [CategoryController::class, 'update']
 Route::get('/category/{id}/category-show', [CategoryController::class, 'show'])->name('category.show');
 Route::delete('/category/{categoria}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-Route::get('/admin/customView/create/{CustomViewId?}', [CustomViewController::class, 'create'])->name('admin.customView.create');
+
+Route::resource('CustomView', CustomViewController::class)->names('CustomView')->only(['index']);
+Route::get('CustomView/create/{CustomViewId?}', [CustomViewController::class, 'create'])->name('CustomView.create');
+Route::get('CustomView/show/{id}', [CustomViewController::class, 'show'])->name('CustomView.show');
