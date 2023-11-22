@@ -94,7 +94,7 @@ class ImageWithTextComponent extends Component
                 'buttonText' => $this->buttonText,
                 'buttonLink' => $this->buttonLink,
             ];
-            ComponentHelper::updateComponentData($component, $this->CustomViewId, $this->componentData);
+            ComponentHelper::updateComponentDataProvider($component, $this->CustomViewId, $this->componentData);
         } else {
             $component = ComponentProvider::firstOrCreate([
                 'name' => 'Image con texto',
@@ -113,7 +113,7 @@ class ImageWithTextComponent extends Component
                 'buttonText' => $this->buttonText,
                 'buttonLink' => $this->buttonLink,
             ];
-            ComponentHelper::createComponentData($component, $CustomViewId, $this->componentData);
+            ComponentHelper::createComponentDataProvider($component, $CustomViewId, $this->componentData);
         }
     }
 }

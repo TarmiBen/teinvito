@@ -101,7 +101,7 @@ class TitleWithImages extends Component
                 'image3' => $this->image3,
                 'description3' => $this->description3,
             ];
-            ComponentHelper::updateComponentData($component, $this->CustomViewId, $this->componentData);
+            ComponentHelper::updateComponentDataProvider($component, $this->CustomViewId, $this->componentData);
         } else {
             $component = ComponentProvider::firstOrCreate([
                 'name' => 'Titulo con imagenes',
@@ -127,7 +127,7 @@ class TitleWithImages extends Component
                 'image3' => $this->image3,
                 'description3' => $this->description3,
             ];
-            ComponentHelper::createComponentData($component, $CustomViewId, $this->componentData);
+            ComponentHelper::createComponentDataProvider($component, $CustomViewId, $this->componentData);
         }
     }
 }
