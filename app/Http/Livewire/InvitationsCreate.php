@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Event;
-use App\Models\events_invitations;
+use App\Models\Events_invitations;
 use Livewire\Component;
 use App\Models\Invitation;
 use App\Models\Component as ModelsComponent;
@@ -77,7 +77,7 @@ class InvitationsCreate extends Component
             }
             $this->emit('saveComponents');
     
-            events_invitations::create([
+            Events_invitations::create([
             'event_id' => Event::where('users_id', auth()->id())->latest()->first()->id,
             'invitation_id' => Invitation::where('users_id', auth()->id())->latest()->first()->id,
             ]);
