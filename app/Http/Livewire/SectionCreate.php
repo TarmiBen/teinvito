@@ -66,7 +66,7 @@ class SectionCreate extends Component
 
         if ($this->CustomViewId) {
             $this->emit('saveComponents');
-            return redirect('http://127.0.0.1:8000/admin/customView')->with('message', 'Invitación actualizada con éxito.');
+            return redirect('admin/customView')->with('message', 'Invitación actualizada con éxito.');
         } else {
             $customView = Section::create([
                 'user_id' => auth()->id(),
@@ -88,7 +88,7 @@ class SectionCreate extends Component
             }
             $this->emit('saveComponents');
         }
-        return redirect('http://127.0.0.1:8000/admin/customView')->with('message', 'Invitación creada con éxito.');
+        return redirect('admin/customView')->with('message', 'Invitación creada con éxito.');
     }
 
     public function removeComponent($index)
