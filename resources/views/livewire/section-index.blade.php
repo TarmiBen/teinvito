@@ -8,11 +8,6 @@
             </a>
         </div>
     </div>
-    @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif
     <div class="row mt-3">
         <div class="col">
             <div class="card">
