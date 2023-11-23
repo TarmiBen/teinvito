@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('component_data_provider', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('company_id');
-            $table->bigInteger('component_provider');
+            $table->bigInteger('component_provider_id');
             $table->string('key');
             $table->string('value');
             $table->timestamps();
