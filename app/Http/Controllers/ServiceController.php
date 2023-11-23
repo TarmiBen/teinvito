@@ -70,7 +70,7 @@ class ServiceController extends Controller
         $service->keywords = $request->keywords;
         $imgName = ImageHelper::uploadAndResizeImage(
             $request->file('img_src'),
-            'public',
+            'service',
             1080,
             1080
         );
@@ -133,8 +133,14 @@ class ServiceController extends Controller
         $service->description_small = $request->description_small;
         $service->img_src = $request->img_src;
         $service->keywords = $request->keywords;
-        if ($request->file('img_src')) {
-            $service->img_src = $request->file('img_src')->store('public');
+        $imgName = ImageHelper::uploadAndResizeImage(
+            $request->file('img_src'),
+            'service',
+            1080,
+            1080
+        );
+        if ($imgName) {
+            $service->img_src = $imgName;
         }
         $service->save();
 
