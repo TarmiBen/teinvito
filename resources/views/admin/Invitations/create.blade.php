@@ -1,5 +1,6 @@
 @extends('layouts.users.app')
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@section('title', 'Crear Invitación')
 @section('content')
 @livewire('invitations-create', ['invitationId' => $invitationId])
     @livewireScripts

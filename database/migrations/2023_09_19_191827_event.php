@@ -24,9 +24,6 @@ return new class extends Migration
             $table->softDeletes()->nullable();
         });
 
-        Schema::table('events', function (Blueprint $table) {
-            $table->foreign('invitation_id')->references('id')->on('invitations');
-        });
 
         Schema::table('events', function (Blueprint $table) {
             $table->foreign('users_id')->references('id')->on('users');
