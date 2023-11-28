@@ -92,7 +92,7 @@ class TitleWithTwoImages extends Component
                 'text' => $this->text,
                 'finalMessage' => $this->finalMessage,
             ];
-            ComponentHelper::updateComponentData($component, $this->CustomViewId, $this->componentData);
+            ComponentHelper::updateComponentDataProvider($component, $this->CustomViewId, $this->componentData);
         } else {
             $component = ComponentProvider::firstOrCreate([
                 'name' => 'Titulo con dos imagenes',
@@ -114,7 +114,7 @@ class TitleWithTwoImages extends Component
                 'text' => $this->text,
                 'finalMessage' => $this->finalMessage,
             ];
-            ComponentHelper::createComponentData($component, $CustomViewId, $this->componentData);
+            ComponentHelper::createComponentDataProvider($component, $CustomViewId, $this->componentData);
         }
     }
 }

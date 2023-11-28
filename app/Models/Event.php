@@ -14,9 +14,8 @@ class Event extends Model
     protected $table = 'events';
     protected $fillable = [
         'id',
-        'user_id',
+        'users_id',
         'user_invited_id',
-        'invitation_id',
         'type',
         'ceremony_date',
         'event_date',
@@ -25,12 +24,17 @@ class Event extends Model
 
     public function User()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'users_id');
+    }
+
+    public function UserInvited()
+    {
+        return $this->belongsTo(User::class, 'user_invited_id');
     }
 
     public function Events_Invitations()
     {
-        return $this->belongsTo(Events_Invitations::class, 'event_id');
+        return $this->belongsTo(Events_invitations::class, 'event_id');
     }
 }
 

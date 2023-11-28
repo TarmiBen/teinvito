@@ -1,12 +1,12 @@
 <div>
     <div class="row justify-content-between align-items-center">
-        <h3 class="col-auto m-0">Lista de Compañias</h3>
+        <h3 class="col-auto m-0">Lista de Secciones</h3>
         <div class="col-auto">
 
             <a href="{{ route('admin.customView.create') }}" class="btn btn-sm btn-success">
 
                 <i data-feather="plus-square"></i>
-                Nueva Compañia
+                Nueva Seccion
             </a>
         </div>
     </div>

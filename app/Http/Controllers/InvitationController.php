@@ -24,9 +24,9 @@ class InvitationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($invitationId = null)
     {
-        return view('admin.invitations.create');
+        return view('admin.invitations.create', compact('invitationId'));
     }
 
 
@@ -40,7 +40,6 @@ class InvitationController extends Controller
                 }]);
             }])->orderBy('order','asc');
         }])->first();
-        
         return view('admin.invitations.show', ['invitation' => $invitation]);
     }
 

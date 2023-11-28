@@ -47,7 +47,6 @@ class GuestsController extends Controller
             'lastname' => 'required',
             'phone' => 'required',
             'email' => 'required',
-            'number' => 'required',
         ]);
 
         $guest = new guests();
@@ -60,7 +59,7 @@ class GuestsController extends Controller
         $guest->phone = $request->phone;
         $guest->email = $request->email;
         $userInvited = $request->email;
-        $guest->number = $request->number;
+        $guest->number = guests::where('invitation_id', $guest->invitation_id)->count() + 1;
         $guest->status = 3;
         $guest->save();
 
@@ -113,9 +112,21 @@ class GuestsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(guests $guests)
     {
-        //
+        $guests->delete();
+        return redirect()->route('guests.index')
+        ->with('message', 'Contact deleted successfully. <a href="' . route('admin.contacts.restore', $guests->id) . '">Restore</a>');
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($id)
+    {
+        guests::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('guests.index')
+            ->with('message', 'Contact restored successfully');
     }
 
     public function urlValid(Request $request, $hash)

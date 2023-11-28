@@ -73,10 +73,10 @@
 							</div>
 							<div>
 								<a class="h6 mt-2 mt-sm-0" href="#">
-									Emmanuel Santoyo
+									{{ Auth::user()->name }}
 								</a>
 								<p class="small m-0">
-									example@gmail.com
+									{{ Auth::user()->email }}
 								</p>
 							</div>
 						</div>

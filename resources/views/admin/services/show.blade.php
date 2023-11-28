@@ -1,4 +1,5 @@
 @extends('layouts.users.app')
+@section('title', 'Detalle del Servicio')
 @section('content')
 <div class="row justify-content-between align-items-center">
     <h3 class="col-auto">Detalle del Servicio</h3>

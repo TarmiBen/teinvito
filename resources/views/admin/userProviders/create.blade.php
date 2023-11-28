@@ -1,4 +1,5 @@
     @extends('layouts.users.app')
+    @section('title', 'Asignar Usuario a Compañia')
     @section('content')
     <div class="row mt-4">
         <div class="stretch-card">

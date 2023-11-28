@@ -1,9 +1,11 @@
 @extends('layouts.users.app')
-@section('title', 'Servicios')
+
+@section('title', 'Direcciones')
+
 @section('content')
 
     @include('layouts.users.alert')
-
-    @livewire('service-index')
+    
+    @livewire('log-index')
 
 @endsection

@@ -80,7 +80,6 @@ class ServicePackageCreate extends Component
             'description' => $this->description,
             'price' => $this->price,
         ];
-    
         if ($this->servicePackageId) {
             // Si estamos editando, actualizamos el registro existente
             $servicePackage = ServicePackage::find($this->servicePackageId);
@@ -96,7 +95,7 @@ class ServicePackageCreate extends Component
         foreach ($this->src as $index => $file) {
             $imgName = ImageHelper::uploadAndResizeImage(
                 $file,
-                'public/galery',
+                'galery',
                 1080,
                 1080
             );

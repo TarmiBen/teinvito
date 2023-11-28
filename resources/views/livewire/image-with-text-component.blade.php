@@ -9,21 +9,22 @@
         <div class="alert alert-danger">{{ $errors->first('message') }}</div>
     @endif
 
-    @if($preview)
-    <div style="background-image: url('{{ $backgroundImage }}'); background-size: 50% 50%;">
-        <div class="container text-center" style="padding: 100px;">
-                <h1>{{ $title }}</h1>
-            <p>
-                    {{ $text }}
-            </p>
-                    <a href="{{ $buttonLink }}" class="btn btn-primary btn-lg">
-                        {{ $buttonText }}
-                    </a>
-            <br>
+        @if($preview)
+        <div style="background-image: url('{{ $backgroundImage }}'); background-size: 50% 50%;">
+            <div class="container text-center" style="padding: 100px;">
+                    <h1>{{ $title }}</h1>
+                <p>
+                        {{ $text }}
+                </p>
+                        <a href="{{ $buttonLink }}" class="btn btn-primary btn-lg">
+                            {{ $buttonText }}
+                        </a>
+                <br>
+            </div>
         </div>
-    </div>
-    @else
+        @else
     @if($backgroundImage)
+
     <div style="background-image: url('{{ $backgroundImage->temporaryUrl() }}'); background-size: 50% 50%;">
         <input type="file" class="form-control-file" id="backgroundImage" wire:model="backgroundImage">
     @elseif($isEditing)

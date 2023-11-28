@@ -3,7 +3,7 @@
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto">Lista de Servicios</h3>
         <div class="col-auto">
-            <a href="{{ route('admin.servicePackages.create') }}" class="btn btn-primary">
+            <a href="{{ route('admin.services.create') }}" class="btn btn-primary">
                 <i data-feather="plus-square"></i>
                 Crear Servicio
             </a>

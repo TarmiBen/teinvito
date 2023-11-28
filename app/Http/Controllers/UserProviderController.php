@@ -9,6 +9,8 @@ use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\UserProviderAccessNotification;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class UserProviderController extends Controller
 {
@@ -34,10 +36,17 @@ class UserProviderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'users_id',
             'company_id',
         ]);
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó crear un UserProvider pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $userProvider = new userProvider();
         $userProvider->users_id = $request->usersId;
         $userProvider->company_id = $request->companyId;
@@ -73,10 +82,17 @@ class UserProviderController extends Controller
      */
     public function update(Request $request, userProvider $userProvider)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'users_id',
             'company_id',
         ]);
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar un UserProvider pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $userProvider->users_id = $request->usersId;
         $userProvider->company_id = $request->companyId;
         $userProvider->save();
@@ -115,8 +131,7 @@ class UserProviderController extends Controller
     public function autocompleteCompany(Request $request)
     {
         $user = Auth::user()->id;
-        $data = Company::
-        whereHas('UserProvider', function ($query) use ($user) {
+        $data = Company::whereHas('UserProvider', function ($query) use ($user) {
             $query->where('users_id', $user);
         })
         ->where(function ($query) use ($request) {
