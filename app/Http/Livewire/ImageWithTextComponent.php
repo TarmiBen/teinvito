@@ -9,6 +9,7 @@ use App\Models\Section;
 use App\Helpers\ComponentHelper;
 use function get_headers;
 
+
 class ImageWithTextComponent extends Component
 {
     use WithFileUploads;
@@ -22,10 +23,12 @@ class ImageWithTextComponent extends Component
     public $CustomViewId;
     protected $listeners = ['saveComponents' => 'saveComponents', 'togglePreviewMode' => 'togglePreviewMode'];
 
+
     public function render()
     {
         return view('livewire.image-with-text-component');
     }
+
 
     public function mount($info = null, $data = null,  $CustomViewId = null)
     {
@@ -57,6 +60,8 @@ class ImageWithTextComponent extends Component
 
     }
 
+
+
     public function togglePreviewMode()
     {
         $this->preview = !$this->preview;
@@ -73,11 +78,13 @@ class ImageWithTextComponent extends Component
             $headers = @get_headers($this->buttonLink);
             if ($headers === false || strpos($headers[0], '200 OK') === false) {
                 $this->emit('message', 'La url no es valida');
-                return; 
+
+                return;
             }
         } elseif (empty($this->buttonLink)) {
             $this->emit('message', 'La url no puede estar vacia');
-            return; 
+            return;
+
         }
         if ($this->CustomViewId){
             $component = ComponentProvider::firstOrCreate([

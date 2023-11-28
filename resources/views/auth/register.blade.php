@@ -8,7 +8,7 @@
         <div class="col-6 d-none d-lg-flex px-5 bg-quaternary-ti flex-column justify-content-center align-items-center">
             <span class="h1 fw-bold text-center text-white">
                 Cada evento comienza de manera excepcional con una invitación digital asombrosa.
-            </span>    
+            </span>
             <img src="/assets/img/login/login.svg" alt="" class="img-fluid">
         </div>
         <div class="col-12 col-lg-6 px-0 px-lg-5 py-5 d-flex justify-content-center align-items-center">
@@ -29,40 +29,40 @@
                                     <label for="name" class="form-label">
                                         Nombre
                                     </label>
-                                    <input id="name" type="text" class="py-3 form-control @error('name') is-invalid @enderror" name="name" placeholder="" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="py-3 form-control @error('name') is-invalid @enderror" name="name" placeholder="" value="{{ old('name') }}" required autofocus>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span> 
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="email" class="form-label">
                                         Correo Electrónico
                                     </label>
-                                    <input id="email" type="email" class="py-3 form-control @error('email') is-invalid @enderror" name="email" placeholder="" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="email" class="py-3 form-control @error('email') is-invalid @enderror" name="email" placeholder="" value="{{ old('email') }}" required autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span> 
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="password" class="form-label">
                                         Contraseña
                                     </label>
-                                    <input id="password" type="password" class="py-3 form-control @error('password') is-invalid @enderror" name="password" placeholder="" required autocomplete="current-password">
+                                    <input id="password" type="password" class="py-3 form-control @error('password') is-invalid @enderror" name="password" placeholder="" required>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span> 
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="password-confirm" class="form-label">
                                         Confirmar Contraseña
                                     </label>
-                                    <input id="password-confirm" type="password" class="py-3 form-control" name="password_confirmation" placeholder="" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password" class="py-3 form-control" name="password_confirmation" placeholder="" required>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <button type="submit" class="btn btn-quaternary-ti w-100 p-2">
@@ -95,7 +95,7 @@
                             </div>
                         </div> -->
                         <div class="mt-4 text-center">
-                            ¿Ya tienes una cuenta? 
+                            ¿Ya tienes una cuenta?
                             <a href="{{ route('login') }}" class="text-decoration-none">
                                 Inicia Sesion
                             </a>

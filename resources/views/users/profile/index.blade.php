@@ -47,9 +47,13 @@
                     <label for="lastname" class="form-label">Apellidos</label>
                     <input type="text" class="form-control" id="lastname" value="{{ Auth::user()->lastname }}" disabled>
                 </div>
-                <div class="col-12">
+                <div class="col-12 col-sm-6">
                     <label for="email" class="form-label">Correo electrónico</label>
                     <input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}" disabled>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="phone" value="{{ Auth::user()->phone }}" disabled>
                 </div>
             </div>
         </div>

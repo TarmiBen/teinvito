@@ -23,7 +23,7 @@ class CompanieIndex extends Component
 
     public function render()
     {
-        $companys = company::where('name', 'LIKE', '%' . $this->search . '%')
+        $companys = Company::where('name', 'LIKE', '%' . $this->search . '%')
             ->orWhere('email', 'LIKE', '%' . $this->search . '%')
             ->orWhere('phone', 'LIKE', '%' . $this->search . '%')
             ->orWhere('rfc', 'LIKE', '%' . $this->search . '%')

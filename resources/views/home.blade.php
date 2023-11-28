@@ -1,13 +1,15 @@
 @extends ('layouts.users.app')
-
+@section('title', 'Home')
 @section('content')
 <div>
     <h3>
         !Hola {{ Auth::user()->name }}!
     </h3>    
-
+        <div>
+            @include('layouts.users.alert')
+        </div>
     <hr>
-    
+
     <h4 class="fw-bold mt-4">
         Dashboard
     </h4>
@@ -69,7 +71,7 @@
                                 Invitados
                             </div>
                             <div class="card-body fw-bold">
-                                {{ $guests['accepted'] + $guests['pending'] + $guests['rejected'] }}
+                                {{ $guestCount['accepted'] + $guestCount['pending'] + $guestCount['rejected'] }}
                             </div>
                         </div>
                     </div>
@@ -91,13 +93,13 @@
                             <div class="card-body p-0">
                                 <div class="d-flex fw-bold w-100">
                                     <div class="col bg-success-subtle py-3">
-                                        {{ $guests['accepted'] }}
+                                        {{ $guestCount['accepted'] }}
                                     </div>
                                     <div class="col bg-warning-subtle py-3">
-                                        {{ $guests['pending'] }}
+                                        {{ $guestCount['pending'] }}
                                     </div>
                                     <div class="col bg-danger-subtle py-3">
-                                        {{ $guests['rejected'] }}
+                                        {{ $guestCount['rejected'] }}
                                     </div>
                                 </div>
                             </div>
@@ -116,88 +118,55 @@
                                         Familia
                                     </th>
                                     <th>
-                                        No. Invitados
+                                        Nombre
                                     </th>
                                     <th>
-                                        No. Mesa
+                                        Telefono
                                     </th>
                                     <th>
-                                        Invitación
+                                        Email
                                     </th>
                                     <th>
                                         Asistencia
                                     </th>
-                                    <th>
-                                        Acciones
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">
-                                            Aceptado
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning">
-                                            Pendiente
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-danger">
-                                            Rechazado
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
+                                @foreach($guests as $guest)
+                                    <tr>
+                                        <td>
+                                            {{ $guest->lastname }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->name }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->phone }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->email }}
+                                        </td>
+                                        @if($guest->status == 1)
+                                            <td>
+                                                <span class="badge bg-success">
+                                                    Asistiré
+                                                </span>
+                                            </td>
+                                        @elseif($guest->status == 2)
+                                            <td>
+                                                <span class="badge bg-warning">
+                                                    Por Confirmar
+                                                </span>
+                                            </td>
+                                        @elseif($guest->status == 3)
+                                            <td>
+                                                <span class="badge bg-danger">
+                                                    No Asistiré
+                                                </span>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

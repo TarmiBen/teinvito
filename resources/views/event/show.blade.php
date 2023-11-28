@@ -1,5 +1,6 @@
 @extends('layouts.users.app')
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@section('title', 'Detalle del Evento')
 @section('content')
 <div class="row justify-content-between align-items-center">
     <h3 class="col-auto">Detalle del Evento</h3>

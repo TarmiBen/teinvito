@@ -1,5 +1,6 @@
 @extends('layouts.users.app')
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@section('title', 'Nuevo Invitado')
 @section('content')
     <div>
         <form action="{{ route('guests.store') }}" method="POST" enctype="multipart/form-data">
@@ -21,7 +22,7 @@
                         <div class="card-body">
                             @csrf
                             <div class="row">
-                                <h3> Nuevo Evento</h3>
+                                <h3> Nuevo Invitado</h3>
 
                                 <div class="col-12 col-sm-6 mt-3">
                                     <label for="name">Name</label>

@@ -51,7 +51,7 @@
                     </ul>
                 </div>
             </div>
-            <a href="#" class="login-button me-4 text-white">Login</a>
+            <a href="/login" class="login-button me-4 text-white">Login</a>
             <button class="navbar-toggler bg-secondary-ti" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
