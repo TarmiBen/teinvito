@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\guests;
+use App\Models\Invitation;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +26,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
+
+        $guests = guests::whereHas('Invitation', function ($query) use ($user) {
+            $query->where('users_id', $user->id);
+        })->orderBy('status', 'asc')->take(10)->get();
+
+       
         if (empty($user->name) || empty($user->lastname) || empty($user->phone) || empty($user->email)) {
             $editProfileLink = '<a href="'.route('profile.edit', $user->id).'">Editar perfil</a>';
             $message = 'Falta por completar algunos datos de tu perfil. '.$editProfileLink;
@@ -32,7 +40,8 @@ class HomeController extends Controller
         }else{
             session()->forget('warning');
         }
-        return view('home');
+       return view('home', compact('guests'));        
+
     }
     
 }

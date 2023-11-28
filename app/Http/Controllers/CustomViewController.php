@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Section;
+use Illuminate\Http\Request;
+
+
 
 class CustomViewController extends Controller
 {
@@ -16,6 +18,7 @@ class CustomViewController extends Controller
         return view('admin.provider.create', compact('CustomViewId'));
     }
 
+
     public function show($id)
     {
         $company = Section::find($id)->company_id;
@@ -23,13 +26,17 @@ class CustomViewController extends Controller
 
         $sectionId = Section::where('id', $id)->first()->id;
         $section = Section::where('id', $sectionId)->with(['SectionComponent' => function ($ivcom) use ($sectionId) {
+
             $ivcom->with(['ComponentProvider' => function ($com) use ($sectionId) {
                 $com->with(['ComponentDataProvider' => function ($data) use ($sectionId) {
+
                     $data->where('company_id', $sectionId); // Cambia 'company_id' a 'component_id'
                 }]);
             }])->orderBy('order', 'asc');
         }])->first();
 
+
         return view('admin.provider.show', compact('section', 'allSections'));
+
     }
 }
