@@ -4,10 +4,10 @@
 <div>
     <h3>
         !Hola {{ Auth::user()->name }}!
-    </h3>    
+    </h3>
 
     <hr>
-    
+
     <h4 class="fw-bold mt-4">
         Dashboard
     </h4>
@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col fs-5">
-                        Anfritrion(es): <span class="fw-bold">Nombre del anfitrión</span>
+                        Anfritrion(es): <span class="fw-bold">{{ Auth::user()->name }}</span>
                     </div>
                     <div class="col-auto">
                         <div class="row justify-content-center rounded-3">
@@ -114,88 +114,55 @@
                                         Familia
                                     </th>
                                     <th>
-                                        No. Invitados
+                                        Nombre
                                     </th>
                                     <th>
-                                        No. Mesa
+                                        Telefono
                                     </th>
                                     <th>
-                                        Invitación
+                                        Email
                                     </th>
                                     <th>
                                         Asistencia
                                     </th>
-                                    <th>
-                                        Acciones
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">
-                                            Aceptado
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning">
-                                            Pendiente
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-danger">
-                                            Rechazado
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
+                                @foreach($guests as $guest)
+                                    <tr>
+                                        <td>
+                                            {{ $guest->lastname }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->name }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->phone }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->email }}
+                                        </td>
+                                        @if($guest->status == 1)
+                                            <td>
+                                                <span class="badge bg-success">
+                                                    Asistiré
+                                                </span>
+                                            </td>
+                                        @elseif($guest->status == 2)
+                                            <td>
+                                                <span class="badge bg-warning">
+                                                    Por Confirmar
+                                                </span>
+                                            </td>
+                                        @elseif($guest->status == 3)
+                                            <td>
+                                                <span class="badge bg-danger">
+                                                    No Asistiré
+                                                </span>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

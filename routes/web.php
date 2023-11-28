@@ -35,7 +35,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //logout
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 
 Route::resource('profile', ProfileController::class)->middleware('verified')->names('profile');
 
@@ -54,11 +54,11 @@ Route::resource('guests', GuestsController::class)->names('guests');
 Route::get('/invitation/{hash}', [GuestsController::class, 'urlValid'])->name('guests.confirm');
 Route::post('/guest/{hash}', [GuestsController::class, 'confirmAssistance'])->name('guests.guest');
 
-Route::get('admin/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->name('admin.Invitations.create');
-Route::get('admin/invitations', [InvitationController::class, 'index'])->name('admin.Invitations.index');
-Route::get('admin/invitations/show/{invitationId}', [InvitationController::class, 'show'])->name('admin.Invitations.show');
-Route::get('admin/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->name('admin.Invitations.deleteConfirm');
-Route::delete('admin/invitations/{invitation}', [InvitationController::class, 'destroy'])->name('admin.Invitations.destroy');
+Route::get('admin/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->name('admin.invitations.create');
+Route::get('admin/invitations', [InvitationController::class, 'index'])->name('admin.invitations.index');
+Route::get('admin/invitations/show/{invitationId}', [InvitationController::class, 'show'])->name('admin.invitations.show');
+Route::get('admin/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->name('admin.invitations.deleteConfirm');
+Route::delete('admin/invitations/{invitation}', [InvitationController::class, 'destroy'])->name('admin.invitations.destroy');
 
 Route::resource('admin/companies', CompanieController::class)->names('admin.companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {
