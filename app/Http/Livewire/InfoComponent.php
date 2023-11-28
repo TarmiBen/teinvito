@@ -139,8 +139,8 @@ class InfoComponent extends Component
                 'date2'         => $this->date2,
                 'hour2'         => $this->hour2,
                 'place2'        => $this->place2,
-                'image1'        => $imagePaths['image1'] ?? null,
-                'image2'        => $imagePaths['image2'] ?? null,
+                'image1'        => $this->image1,
+                'image2'        => $this->image2,
                 'link'          => $this->link,
             ];
             foreach (['title', 'description', 'event1', 'date1', 'hour1', 'place1', 'event2', 'date2', 'hour2', 'place2', 'link'] as $field) {

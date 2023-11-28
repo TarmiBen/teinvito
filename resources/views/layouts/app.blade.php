@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Invitaciones para eventos">
+    <meta name="keywords" content="eventos, fiestas, invitaciones, invitaciones para eventos, invitaciones para fiestas, invitaciones para bodas, invitaciones para cumpleaños," />
+    <meta name="robots" content="index"/>
+    <meta name="robots" content="noindex"/>
     <title>
         @yield('title') | Te Invito
     </title>
