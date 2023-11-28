@@ -22,7 +22,7 @@
                         <div class="card-body">
                             @csrf
                             <div class="row">
-                                <h3> Nuevo Evento</h3>
+                                <h3> Nuevo Invitado</h3>
 
                                 <div class="col-12 col-sm-6 mt-3">
                                     <label for="name">Name</label>
