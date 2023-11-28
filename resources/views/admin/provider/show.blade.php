@@ -1,5 +1,5 @@
 @extends('layouts.users.app')
-
+@section('title', 'Detalle de la Sección')
 @section('content')
 <div class="mt-4">
     <ul class="nav nav-tabs">

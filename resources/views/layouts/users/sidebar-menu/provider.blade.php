@@ -1,6 +1,6 @@
 <li class="nav-label mg-b-15">Menú [Proveedor]</li>
 <li class="nav-item">
-	<a href="index-2.html" class="nav-link">
+	<a href="{{route('home')}}" class="nav-link">
 		<i data-feather="layout"></i> 
 		Dashboard
 	</a>
@@ -42,11 +42,22 @@
 <li class="nav-item">
 	<a href="#" class="nav-link with-sub">
 		<i data-feather="briefcase"></i> 
-		Organizaciones
+		Compañias
 	</a>
 	<nav class="nav">
 		<a href="{{route('admin.companies.index')}}">Ver todas</a>
 		<a href="{{route('admin.companies.create')}}">Nueva compañia</a>
+	</nav>
+</li>
+
+<li class="nav-item">
+	<a href="#" class="nav-link with-sub">
+		<i data-feather="layout"></i> 
+		Personalización sobre compañias
+	</a>
+	<nav class="nav">
+		<a href="{{route('admin.customView.index')}}">Ver Secciones creadas</a>
+		<a href="{{route('admin.customView.index')}}">Nueva Sección</a>
 	</nav>
 </li>
 
