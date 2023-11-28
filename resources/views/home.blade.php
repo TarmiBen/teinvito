@@ -1,5 +1,5 @@
 @extends ('layouts.users.app')
-
+@section('title', 'Home')
 @section('content')
 <div>
     <h3>

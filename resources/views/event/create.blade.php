@@ -1,5 +1,6 @@
 @extends('layouts.users.app')
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@section('title', 'Nuevo Evento')
 @section('content')
 <div>
     <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data">

@@ -1,4 +1,10 @@
 @extends('layouts.users.app')
+//si se pasa un id el titulo sera editar sino sera crear
+@if($servicePackageId)
+    @section('title', 'Editar Paquete de Servicio')
+@else
+    @section('title', 'Crear Paquete de Servicio')
+@endif
 
 @section('content')
     <link rel="stylesheet" type="text/css" href="/assets/css/cropper.css">

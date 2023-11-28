@@ -1,4 +1,5 @@
 @extends('layouts.users.app')
+@section('title', 'Paquetes de Servicios')
 
 @section('content')
 
