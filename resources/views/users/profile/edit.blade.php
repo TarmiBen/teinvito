@@ -37,6 +37,10 @@
                                 <label for="lastname" class="form-label">Apellidos</label>
                                 <input type="text" name="lastname" value="{{ Auth::user()->lastname }}" class="form-control">
                             </div>
+                            <div class="col-12">
+                                <label for="phone" class="form-label">Teléfono:</label>
+                                <input type="text" name="phone" value="{{ Auth::user()->phone }}" class="form-control">
+                            </div>
                             <div class="col-12 d-none" id="passwordField">
                                 <label for="password" class="form-label">Nueva Contraseña:</label>
                                 <input type="password" name="password" class="form-control">
