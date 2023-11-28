@@ -11,12 +11,12 @@ class guests extends Model
 
         use HasFactory;
         use SoftDeletes;
-    
+
         protected $table = 'guests';
         protected $fillable = [
             'id',
             'hash',
-            'invitation_id', 
+            'invitation_id',
             'name',
             'lastname',
             'phone',
@@ -27,7 +27,7 @@ class guests extends Model
 
         public function Invitation()
         {
-            return $this->belongsTo(Component::class, 'id');
+            return $this->belongsTo(Invitation::class, 'invitation_id', 'id');
         }
-    
+
 }

@@ -1,5 +1,5 @@
 @extends('layouts.users.app')
-
+@section('title', 'Editar Servicio')
 @section('content')
 <div>
     <form action="{{ route('admin.services.update', $service) }}" method="POST" enctype="multipart/form-data">

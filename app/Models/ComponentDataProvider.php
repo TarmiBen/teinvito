@@ -13,7 +13,9 @@ class ComponentDataProvider extends Model
     protected $table = 'component_data_provider';
     protected $fillable = [
         'company_id',
+
         'component_provider_id',
+
         'key',
         'value',
     ];

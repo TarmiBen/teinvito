@@ -1,13 +1,15 @@
 @extends ('layouts.users.app')
-
+@section('title', 'Home')
 @section('content')
 <div>
     <h3>
         !Hola {{ Auth::user()->name }}!
     </h3>    
-
+        <div>
+            @include('layouts.users.alert')
+        </div>
     <hr>
-    
+
     <h4 class="fw-bold mt-4">
         Dashboard
     </h4>
@@ -20,32 +22,34 @@
                         Información de la última invitación
                     </div>
                     <div class="ms-auto">
-                        <a href="#" class="btn btn-secondary-ti">
+                        <a href="{{ route('admin.invitations.create', $lastInvitation->id ?? null) }}" class="btn btn-secondary-ti">
                             Editar
                         </a>
-                        <a href="#" class="btn btn-primary-ti">
-                            Ver
-                        </a>
+                        @if ($lastInvitation)
+                            <a href="{{ route('admin.invitations.show', $lastInvitation->id ) }}" class="btn btn-primary-ti">Ver</a>
+                        @else
+                            <a href="#" class="btn btn-primary-ti">Ver</a>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col fs-5">
-                        Anfritrion(es): <span class="fw-bold">Nombre del anfitrión</span>
+                        Anfritrion(es): <span class="fw-bold">{{ $invitations['userName'] }}</span>
                     </div>
                     <div class="col-auto">
                         <div class="row justify-content-center rounded-3">
-                            <div class="col-8 border fs-5 text-center">
+                            <div class="col-9 border fs-5 text-center">
                                 <div class="">
                                     Faltan
                                 </div>
                                 <div class="fs-3">
-                                    <span class="fw-bold">10:00:00</span>
+                                    <span class="fw-bold">Mucho</span>
                                 </div>
                             </div>
-                            <div class="col-8 border text-center text-muted">
-                                Fecha: <span class="fw-bold">10/10/2021</span>
+                            <div class="col-9 border text-center text-muted">
+                                Fecha: <span class="fw-bold">{{ $lastEventDate }}</span>
                             </div>
                         </div>
                     </div>
@@ -57,7 +61,7 @@
                                 Invitaciones creadas
                             </div>
                             <div class="card-body fw-bold">
-                                10
+                                {{ $invitations['invitationsCount'] }}
                             </div>
                         </div>
                     </div>
@@ -67,7 +71,7 @@
                                 Invitados
                             </div>
                             <div class="card-body fw-bold">
-                                42
+                                {{ $guestCount['accepted'] + $guestCount['pending'] + $guestCount['rejected'] }}
                             </div>
                         </div>
                     </div>
@@ -89,13 +93,13 @@
                             <div class="card-body p-0">
                                 <div class="d-flex fw-bold w-100">
                                     <div class="col bg-success-subtle py-3">
-                                        5
+                                        {{ $guestCount['accepted'] }}
                                     </div>
                                     <div class="col bg-warning-subtle py-3">
-                                        4
+                                        {{ $guestCount['pending'] }}
                                     </div>
                                     <div class="col bg-danger-subtle py-3">
-                                        1
+                                        {{ $guestCount['rejected'] }}
                                     </div>
                                 </div>
                             </div>
@@ -114,88 +118,55 @@
                                         Familia
                                     </th>
                                     <th>
-                                        No. Invitados
+                                        Nombre
                                     </th>
                                     <th>
-                                        No. Mesa
+                                        Telefono
                                     </th>
                                     <th>
-                                        Invitación
+                                        Email
                                     </th>
                                     <th>
                                         Asistencia
                                     </th>
-                                    <th>
-                                        Acciones
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">
-                                            Aceptado
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning">
-                                            Pendiente
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Santoyo
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        A2
-                                    </td>
-                                    <td>
-                                        http://invitacion.com
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-danger">
-                                            Rechazado
-                                        </span>
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
+                                @foreach($guests as $guest)
+                                    <tr>
+                                        <td>
+                                            {{ $guest->lastname }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->name }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->phone }}
+                                        </td>
+                                        <td>
+                                            {{ $guest->email }}
+                                        </td>
+                                        @if($guest->status == 1)
+                                            <td>
+                                                <span class="badge bg-success">
+                                                    Asistiré
+                                                </span>
+                                            </td>
+                                        @elseif($guest->status == 2)
+                                            <td>
+                                                <span class="badge bg-warning">
+                                                    Por Confirmar
+                                                </span>
+                                            </td>
+                                        @elseif($guest->status == 3)
+                                            <td>
+                                                <span class="badge bg-danger">
+                                                    No Asistiré
+                                                </span>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -205,3 +176,4 @@
     </section>
 </div>
 @endsection
+

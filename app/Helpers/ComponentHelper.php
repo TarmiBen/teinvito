@@ -21,6 +21,7 @@ class ComponentHelper
             }
         }
 
+
         public static function createComponentData($component, $invitationId, $data)
         {
             foreach ($data as $key => $body) {
@@ -32,9 +33,10 @@ class ComponentHelper
                 ]);
             }
         }
-    
+
 
         public static function updateComponentDataProvider($component, $CustomViewId, $data)
+
         {
             foreach ($data as $key => $body) {
                 $componentData = ComponentDataProvider::updateOrCreate([
@@ -60,4 +62,5 @@ class ComponentHelper
             }
         }
 }
+
 
