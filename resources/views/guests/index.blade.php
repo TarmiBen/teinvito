@@ -2,23 +2,12 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 @section('title', 'Invitaciones')
 @section('content')
-
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Event</title>
-    </head>
-    <body>
     <div class="row justify-content-between align-items-center">
-        <h3 class="col-auto">Guests</h3>
+        <h3 class="col-auto">Invitados</h3>
         <div class="col-auto">
             <a href="{{ route('guests.create') }}" class="btn btn-outline-success">
                 <i data-feather="plus-square"></i>
-                New Guests
+                Nuevo Invitado
             </a>
         </div>
     </div>
@@ -78,8 +67,5 @@
             </div>
         </div>
     </div>
-
-    </body>
-    </html>
 
 @endsection

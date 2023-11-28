@@ -23,6 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        if (empty($user->name) || empty($user->lastname) || empty($user->phone) || empty($user->email)) {
+            $editProfileLink = '<a href="'.route('profile.edit', $user->id).'">Editar perfil</a>';
+            $message = 'Falta por completar algunos datos de tu perfil. '.$editProfileLink;
+    
+            session()->put('warning', $message);
+        }else{
+            session()->forget('warning');
+        }
         return view('home');
     }
+    
 }
