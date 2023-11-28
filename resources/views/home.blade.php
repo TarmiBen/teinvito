@@ -20,32 +20,34 @@
                         Información de la última invitación
                     </div>
                     <div class="ms-auto">
-                        <a href="#" class="btn btn-secondary-ti">
+                        <a href="{{ route('admin.invitations.create', $lastInvitation->id ?? null) }}" class="btn btn-secondary-ti">
                             Editar
                         </a>
-                        <a href="#" class="btn btn-primary-ti">
-                            Ver
-                        </a>
+                        @if ($lastInvitation)
+                            <a href="{{ route('admin.invitations.show', $lastInvitation->id ) }}" class="btn btn-primary-ti">Ver</a>
+                        @else
+                            <a href="#" class="btn btn-primary-ti">Ver</a>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col fs-5">
-                        Anfritrion(es): <span class="fw-bold">Nombre del anfitrión</span>
+                        Anfritrion(es): <span class="fw-bold">{{ $invitations['userName'] }}</span>
                     </div>
                     <div class="col-auto">
                         <div class="row justify-content-center rounded-3">
-                            <div class="col-8 border fs-5 text-center">
+                            <div class="col-9 border fs-5 text-center">
                                 <div class="">
                                     Faltan
                                 </div>
                                 <div class="fs-3">
-                                    <span class="fw-bold">10:00:00</span>
+                                    <span class="fw-bold">Mucho</span>
                                 </div>
                             </div>
-                            <div class="col-8 border text-center text-muted">
-                                Fecha: <span class="fw-bold">10/10/2021</span>
+                            <div class="col-9 border text-center text-muted">
+                                Fecha: <span class="fw-bold">{{ $lastEventDate }}</span>
                             </div>
                         </div>
                     </div>
@@ -57,7 +59,7 @@
                                 Invitaciones creadas
                             </div>
                             <div class="card-body fw-bold">
-                                10
+                                {{ $invitations['invitationsCount'] }}
                             </div>
                         </div>
                     </div>
@@ -67,7 +69,7 @@
                                 Invitados
                             </div>
                             <div class="card-body fw-bold">
-                                42
+                                {{ $guests['accepted'] + $guests['pending'] + $guests['rejected'] }}
                             </div>
                         </div>
                     </div>
@@ -89,13 +91,13 @@
                             <div class="card-body p-0">
                                 <div class="d-flex fw-bold w-100">
                                     <div class="col bg-success-subtle py-3">
-                                        5
+                                        {{ $guests['accepted'] }}
                                     </div>
                                     <div class="col bg-warning-subtle py-3">
-                                        4
+                                        {{ $guests['pending'] }}
                                     </div>
                                     <div class="col bg-danger-subtle py-3">
-                                        1
+                                        {{ $guests['rejected'] }}
                                     </div>
                                 </div>
                             </div>
@@ -205,3 +207,4 @@
     </section>
 </div>
 @endsection
+
