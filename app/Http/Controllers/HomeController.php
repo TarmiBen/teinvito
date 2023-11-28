@@ -6,10 +6,8 @@ use App\Models\guests;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Invitation;
 use App\Models\Event;
 use App\Models\events_invitations;
-use App\Models\guests;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 
@@ -33,15 +31,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $invitations        = $this->invitations();
-        $guests             = $this->guests();
+        $user = auth()->user();
+
+        $guests = guests::whereHas('Invitation', function ($query) use ($user) {
+            $query->where('users_id', $user->id);
+        })->orderBy('status', 'asc')->take(10)->get();
+
+       
+        if (empty($user->name) || empty($user->lastname) || empty($user->phone) || empty($user->email)) {
+            $editProfileLink = '<a href="'.route('profile.edit', $user->id).'">Editar perfil</a>';
+            $message = 'Falta por completar algunos datos de tu perfil. '.$editProfileLink;
+    
+            session()->put('warning', $message);
+        }else{
+            session()->forget('warning');
+        }
+
+        $invitations        = $this->invitationCount();
+        $guestCount            = $this->guests();
         $lastEventDate      = $this->getLastEventDate();
         $lastInvitation     = $this->show();
-        return view('home', compact('guests', 'invitations', 'lastEventDate', 'lastInvitation'));
+        return view('home', compact('guests', 'invitations', 'lastEventDate', 'lastInvitation', 'guestCount'));
     }
 
-    public function invitations()
+    public function invitationCount()
     {
         $user = Auth::user()->id;
 
@@ -131,27 +144,5 @@ class HomeController extends Controller
             ->first();
         
         return $lastInvitation;
-    }
-
-=======
-        $user = auth()->user();
-
-        $guests = guests::whereHas('Invitation', function ($query) use ($user) {
-            $query->where('users_id', $user->id);
-        })->orderBy('status', 'asc')->take(10)->get();
-
-       
-        if (empty($user->name) || empty($user->lastname) || empty($user->phone) || empty($user->email)) {
-            $editProfileLink = '<a href="'.route('profile.edit', $user->id).'">Editar perfil</a>';
-            $message = 'Falta por completar algunos datos de tu perfil. '.$editProfileLink;
-    
-            session()->put('warning', $message);
-        }else{
-            session()->forget('warning');
-        }
-       return view('home', compact('guests'));        
-
-    }
-    
->>>>>>> 1d3eb96da15f6cc17d8365cc7ebbf0f6bda4fb6d
+    }    
 }
