@@ -4,8 +4,11 @@
 <div>
     <h3>
         !Hola {{ Auth::user()->name }}!
-    </h3>
 
+    </h3>
+        <div>
+            @include('layouts.users.alert')
+        </div>
     <hr>
 
     <h4 class="fw-bold mt-4">

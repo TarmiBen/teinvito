@@ -30,6 +30,18 @@ class HomeController extends Controller
             $query->where('users_id', $user->id);
         })->orderBy('status', 'asc')->take(10)->get();
 
+
+        if (empty($user->name) || empty($user->lastname) || empty($user->phone) || empty($user->email)) {
+            $editProfileLink = '<a href="'.route('profile.edit', $user->id).'">Editar perfil</a>';
+            $message = 'Falta por completar algunos datos de tu perfil. '.$editProfileLink;
+
+            session()->put('warning', $message);
+        }else{
+            session()->forget('warning');
+        }
         return view('home', compact('guests'));
+
+
     }
+
 }
