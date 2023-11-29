@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\company;
+use App\Models\Company;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;

@@ -59,7 +59,7 @@ class InvitationsCreate extends Component
             $this->emit('saveComponents');
         } else {
             $invitation = Invitation::create([
-                'users_id' => auth()->id(),
+                'user_id' => auth()->id(),
                 'package_id' => null,
             ]);
             foreach ($this->selectedComponents as $index => $componentData) {
@@ -79,7 +79,7 @@ class InvitationsCreate extends Component
     
             Events_invitations::create([
             'event_id' => Event::where('users_id', auth()->id())->latest()->first()->id,
-            'invitation_id' => Invitation::where('users_id', auth()->id())->latest()->first()->id,
+            'invitation_id' => Invitation::where('user_id', auth()->id())->latest()->first()->id,
             ]);
         }
 

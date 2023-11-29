@@ -147,7 +147,7 @@ class GaleryComponent extends Component
                 'model_type' => 'galery-component',
             ]);
     
-            $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
+            $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
             $invitationId = $invitation->id;
     
             $imagePaths = [];

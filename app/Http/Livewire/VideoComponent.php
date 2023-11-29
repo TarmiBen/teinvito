@@ -80,7 +80,7 @@ class VideoComponent extends Component
                 'model_type' => 'video-component',
             ]);
     
-            $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
+            $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
             $invitationId = $invitation->id;
     
             if ($this->videoUrl) {
