@@ -104,7 +104,7 @@ class DressCodeComponent extends Component
                 'name' => 'dress code',
                 'model_type' => 'dress-code-component',
             ]);
-            $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
+            $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
             $invitationId = $invitation->id;
             if ($this->image) {
                 $imagePath = $this->image->store('public/images');

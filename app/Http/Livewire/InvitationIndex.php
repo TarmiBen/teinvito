@@ -24,10 +24,10 @@ class InvitationIndex extends Component
     {
         $user = Auth::user()->id;
     
-        $invitations = Invitation::whereIn('users_id', function ($query) use ($user) {
-            $query->select('users_id')
+        $invitations = Invitation::whereIn('user_id', function ($query) use ($user) {
+            $query->select('user_id')
                 ->from('users')
-                ->where('users_id', $user);
+                ->where('user_id', $user);
         })->where(function ($query) {
             $query->where('id', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('package_id', 'LIKE', '%' . $this->search . '%')
