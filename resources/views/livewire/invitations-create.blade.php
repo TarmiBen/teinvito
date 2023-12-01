@@ -2,7 +2,21 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/cropper.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/cropperImage.css">
     @livewireStyles
-
+    @if (session()->has('no_events'))
+        <div class="alert alert-warning" role="alert">
+            {!! session('no_events') !!}
+        </div>
+    @endif
+    @if (session()->has('invitation_message'))
+        <div class="alert alert-info">
+            {!! session('invitation_message') !!}
+        </div>
+    @endif
+    @if (session()->has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
     <h2>Agregar Componentes</h2>
     <ul>
         @foreach($availableComponents as $component => $label)

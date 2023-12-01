@@ -41,13 +41,13 @@ class CompanieController extends Controller
             'email' => 'required', //|unique:company,email|email|max:255',
             'description' => 'required',
             'logo' =>[
-                'nullable',
+                'required',
                 'image',
                 'mimes:jpeg,png,jpg,gif,svg',
                 'max:2048',
             ],
             'cover' => [
-                'nullable',
+                'required',
                 'image',
                 'mimes:jpeg,png,jpg,gif,svg',
                 'max:2048',
@@ -56,7 +56,7 @@ class CompanieController extends Controller
             'street' => 'nullable',
             'address_name' => 'nullable|required_with:street',
             'state' => 'nullable|required_with:street', // El campo state puede ser nulo
-            'int' => 'nullable|required_with:street',
+            'int' => 'nullable',
             'ext' => 'nullable|required_with:street',
             'colony' => 'nullable|required_with:street',
             'city' => 'nullable|required_with:street',
@@ -141,31 +141,37 @@ class CompanieController extends Controller
         $validator = Validator::make($request->all(), [
             'phone' => 'required',
             'name' => 'required',
-            'email' => 'required|email|max:255|unique:company,email,'.$company->id,
+            'email' => 'required|email|max:255|unique:companies,email,'.$company->id,
             'description' => 'required',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'street' => 'nullable',
             'address_name' => 'nullable|required_with:street',
             'state' => 'nullable|required_with:street', // El campo state puede ser nulo
-            'int' => 'nullable|required_with:street',
+            'int' => 'nullable',
             'ext' => 'nullable|required_with:street',
             'colony' => 'nullable|required_with:street',
             'city' => 'nullable|required_with:street',
             'cp' => 'nullable|required_with:street',
         ]);
-        $imgName = ImageHelper::uploadAndResizeImage(
-            $request->file('logo'),
-            'companies/logos', 
-            400,     
-            400      
-        );
-        $imgNameCover = ImageHelper::uploadAndResizeImage(
-            $request->file('cover'),
-            'companies/covers', 
-            851,     
-            315      
-        );
+        if ($request->hasFile('logo')) {
+            $imgName = ImageHelper::uploadAndResizeImage(
+                $request->file('logo'),
+                'companies/logos',
+                400,
+                400
+            );
+            $company->logo = $imgName;
+        }
+        if ($request->hasFile('cover')) {
+            $imgNameCover = ImageHelper::uploadAndResizeImage(
+                $request->file('cover'),
+                'companies/covers',
+                851,
+                315
+            );
+            $company->cover = $imgNameCover;
+        }
         if ($validator->fails()) {
             Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar una compañia pero fallo en el dato: ' . $validator->errors()->first());
     
@@ -177,8 +183,8 @@ class CompanieController extends Controller
         $company->name = $request->name;
         $company->email = $request->email;
         $company->description = $request->description;
-        $company->logo = $imgName;
-        $company->cover = $imgNameCover;
+        // $company->logo = $imgName;
+        // $company->cover = $imgNameCover;
         $company->rfc = $request->rfc;
         $company->save();
         return redirect()->route('admin.companies.index')

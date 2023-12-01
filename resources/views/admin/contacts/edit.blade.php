@@ -8,11 +8,10 @@
         @method('PUT')
         <div class="row justify-content-between align-items-center mb-3">
             <h3 class="col-auto m-0">Datos de contacto</h3>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-success">
-                    <i class="fa-regular fa-square-plus"></i>
-                    Guardar
-                </button>
+        </div>
+        <div class="mt-4">
+            <div class="alert alert-primary" role="alert">
+                Todos los campos marcados con ( <span class="text-danger">*</span> ) son necesarios para su registro.
             </div>
         </div>
         <div class="row mt-4">
@@ -22,18 +21,27 @@
                         <div class="row">
                             @include('layouts.users.alert')
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="name">Nombre:</label>
+                                <label for="company_id"><span class="text-danger">*</span>Compañia:</label>
+                                <select name="company_id" id="company_id" class="form-select">
+                                    @foreach ($UserProviders as $UserProvider)
+                                        <option value="{{ $UserProvider->company_id }}">{{ $UserProvider->company->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 mt-3">
+                                <label for="name"><span class="text-danger">*</span>Nombre:</label>
                                 <input type="text" name="name" class="form-control" placeholder="Nombre"
                                     value="{{ $contact->name }}">
                             </div>
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="lastname">Apellido:</label>
+                                <label for="lastname"><span class="text-danger">*</span>Apellido:</label>
                                 <input type="text" name="lastname" class="form-control" placeholder="Apellido"
                                     value="{{ $contact->lastname }}">
                             </div>
 
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="email">Email:</label>
+                                <label for="email"><span class="text-danger">*</span>Email:</label>
                                 <input type="text" name="email" class="form-control" placeholder="Email"
                                     value="{{ $contact->email }}">
                             </div>
@@ -45,22 +53,21 @@
                             </div>
 
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="telephone">Telefono:</label>
+                                <label for="telephone"><span class="text-danger">*</span>Telefono:</label>
                                 <input type="text" name="telephone" class="form-control" placeholder="Telefono"
                                     value="{{ $contact->telephone }}">
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3 mt-3 mt-sm-0">
-                                <label for="company_id">Compañia:</label>
-                                <select name="company_id" id="company_id" class="form-control">
-                                    @foreach ($UserProviders as $UserProvider)
-                                        <option value="{{ $UserProvider->company_id }}">{{ $UserProvider->company->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
                             </div>
                             <div class="col-12 mt-3">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
+
+                            <div class="col-12 d-flex justify-content-end mt-3">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa-regular fa-square-plus"></i>
+                                    Guardar
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

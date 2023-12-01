@@ -31,7 +31,8 @@
                             <div class="cover-photo" style="background-image: url('{{ asset($company->cover) }}');">
                             </div>
                             <div class="profile-photo-container">
-                                <img src="{{ asset($company->logo) }}" alt="Profile Photo" class="profile-photo img-fluid">
+                                <img src="{{ asset('/storage/app/public/' . $company->logo) }}"
+                                alt="Profile Photo" class="profile-photo img-fluid">
                             </div>
                             <h3 class="mt-5 mb-1">{{ $company->name }}</h3>
                         </div>

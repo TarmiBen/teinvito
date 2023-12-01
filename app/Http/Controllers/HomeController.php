@@ -34,7 +34,7 @@ class HomeController extends Controller
         $user = auth()->user();
 
         $guests = guests::whereHas('Invitation', function ($query) use ($user) {
-            $query->where('users_id', $user->id);
+            $query->where('user_id', $user->id);
         })->orderBy('status', 'asc')->take(10)->get();
 
        
@@ -58,18 +58,18 @@ class HomeController extends Controller
     {
         $user = Auth::user()->id;
 
-        $invitations['invitationsCount'] = Invitation::whereIn('users_id', function ($query) use ($user) {
-            $query->select('users_id')
+        $invitations['invitationsCount'] = Invitation::whereIn('user_id', function ($query) use ($user) {
+            $query->select('user_id')
                 ->from('users')
-                ->where('users_id', $user);
+                ->where('user_id', $user);
         })->count();
 
         // Obtén solo el nombre del usuario
-        $invitations['userName'] = Invitation::whereIn('users_id', function ($query) use ($user) {
-            $query->select('users_id')
+        $invitations['userName'] = Invitation::whereIn('user_id', function ($query) use ($user) {
+            $query->select('user_id')
                 ->from('users')
-                ->where('users_id', $user);
-        })->join('users', 'users.id', '=', 'invitations.users_id') // Asegúrate de ajustar los nombres de las tablas y las columnas según tu base de datos
+                ->where('user_id', $user);
+        })->join('users', 'users.id', '=', 'invitations.user_id') // Asegúrate de ajustar los nombres de las tablas y las columnas según tu base de datos
             ->value('users.name');
 
         return $invitations;
@@ -81,7 +81,7 @@ class HomeController extends Controller
         $user = Auth::user()->id;
 
         // Obtener la última invitación del usuario logeado
-        $latestInvitation = Invitation::where('users_id', $user)
+        $latestInvitation = Invitation::where('user_id', $user)
             ->latest()
             ->first();
 
@@ -139,7 +139,7 @@ class HomeController extends Controller
         $userId = Auth::user()->id;
 
         // Obtener la última invitación creada por el usuario
-        $lastInvitation = Invitation::where('users_id', $userId)
+        $lastInvitation = Invitation::where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->first();
         

@@ -80,7 +80,7 @@ class BannerComponent extends Component
                 'model_type' => 'banner-component',
             ]);
 
-            $invitation = Invitation::where('users_id', auth()->id())->latest()->first();
+            $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
             $invitationId = $invitation->id;
 
             $this->componentData = [
