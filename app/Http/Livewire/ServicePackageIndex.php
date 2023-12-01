@@ -59,7 +59,6 @@ class ServicePackageIndex extends Component
             $servicePackage = ServicePackage::find($this->deleteId);
             if ($servicePackage) {
                 $servicePackage->delete();
-                // Limpiar el ID de eliminación después de la eliminación exitosa
                 $this->deleteId = null;
             }
         }

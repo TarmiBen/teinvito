@@ -46,7 +46,7 @@ class AdressController extends Controller
             'name' => 'required',
             'street' => 'required',
             'int' => 'nullable',
-            'ext' => 'nullable',
+            'ext' => 'nullable|required_with:street',
             'cp' => 'nullable|required_with:street',
             'colony' => 'nullable|required_with:street',
             'city' => 'nullable|required_with:street',

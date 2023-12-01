@@ -1,5 +1,4 @@
 @extends('layouts.users.app')
-//si se pasa un id el titulo sera editar sino sera crear
 @if($servicePackageId)
     @section('title', 'Editar Paquete de Servicio')
 @else

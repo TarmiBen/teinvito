@@ -19,7 +19,11 @@
             </button>
         </div>
     </div>
-
+    <div class="mt-4">
+        <div class="alert alert-primary" role="alert">
+            Todos los campos marcados con ( <span class="text-danger">*</span> ) son necesarios para su registro.
+        </div>
+    </div>
     @method("PUT")
     @csrf
     <div class="input-group mg-b-10">
