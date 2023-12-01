@@ -14,6 +14,8 @@ class InvitationIndex extends Component
     public $search = '';
     public $orderBy = 'id';
     public $order = 'desc';
+    public $deleteId = null;
+    protected $listeners = ['destroy'];
 
     public function updatingSearch()
     {
@@ -39,6 +41,40 @@ class InvitationIndex extends Component
         ->paginate($this->paginate);
     
         return view('livewire.invitation-index', compact('invitations'));
+    }
+
+    public function deleteConfirm($id)
+    {
+        $this->deleteId = $id;
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'question',
+            'message' => '¿Estás seguro de eliminar este servicio?',
+            'text' => "Esta acción no se puede deshacer.",
+        ]);
+    }
+
+    public function destroy()
+    {
+        if ($this->deleteId) {
+            $invitation = Invitation::with('InvitationsComponents', 'ComponentsData')->find($this->deleteId);
+    
+            if ($invitation) {
+                // Eliminar los registros relacionados en InvitationsComponents
+                $invitation->InvitationsComponents()->delete();
+    
+                // Eliminar los registros relacionados en ComponentsData
+                $invitation->ComponentsData()->delete();
+    
+                // Eliminar la invitación principal
+                $invitation->delete();
+    
+                // Limpiar el ID de eliminación después de la eliminación exitosa
+                $this->deleteId = null;
+    
+                // Emitir evento o mensaje de éxito
+                // $this->emit('invitationsDeleted');
+            }
+        }
     }
     
 }

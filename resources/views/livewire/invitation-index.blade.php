@@ -1,4 +1,9 @@
 <div>
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto m-0">Lista de invitaciones</h3>
         <div class="col-auto">
@@ -47,11 +52,7 @@
                                     <td>
                                         <a href="{{ route('admin.invitations.show', $invitation) }}" class="btn btn-sm btn-success">Ver</a>
                                         <a href="{{ route('admin.invitations.create', $invitation) }}" class="btn btn-sm btn-warning">Editar</a>
-                                        {{-- <form action="{{ route('admin.invitations.destroy', $invitation) }}" method="POST"> --}}
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                        </form>
+                                        <button wire:click="deleteConfirm({{ $invitation->id }})" class="btn btn-sm btn-danger">Eliminar</button>
                                     </td>
                                 </tr>
                             @endforeach

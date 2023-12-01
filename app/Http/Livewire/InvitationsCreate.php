@@ -36,6 +36,15 @@ class InvitationsCreate extends Component
     public function render()
     {
         $this->availableComponents = ModelsComponent::pluck('name', 'model_type')->toArray();
+        //traer el ultimo evento creado por el usuario
+        $user = auth()->user();
+        $latestEvent = Event::where('users_id', $user->id)->latest()->first();
+
+        if (!$latestEvent) {
+            session()->flash('no_events', 'Cuidado: no tienes eventos. Esto puede causar errores. <a href="' . route('event.create') . '">Crea un evento ahora</a>.');
+        } else {
+            session()->flash('invitation_message', 'La invitación será creada usando el siguiente evento: ' . $latestEvent->title . ', si este es un evento pasado, considere crear un nuevo evento. <a href="' . route('event.create') . '">Crea un evento ahora</a>.');
+        }
         return view('livewire.invitations-create');
     }
 
@@ -54,9 +63,16 @@ class InvitationsCreate extends Component
 
     public function saveAll()
     {
+        $user = auth()->user();
+        $latestEvent = Event::where('users_id', $user->id)->latest()->first();
+
+        if (!$latestEvent) {
+            return redirect()->route('admin.invitations.index')->with('success', 'No hay eventos disponibles');
+        };
 
         if ($this->invitationId) {
             $this->emit('saveComponents');
+            return redirect()->route('admin.invitations.index')->with('success', 'No hay eventos disponibles');
         } else {
             $invitation = Invitation::create([
                 'user_id' => auth()->id(),
@@ -75,14 +91,13 @@ class InvitationsCreate extends Component
                     ]);
                 }
             }
-            $this->emit('saveComponents');
-    
+            $this->emit('saveComponents', ['success' => 'Invitación creada con éxito']);
             Events_invitations::create([
-            'event_id' => Event::where('users_id', auth()->id())->latest()->first()->id,
-            'invitation_id' => Invitation::where('user_id', auth()->id())->latest()->first()->id,
+                'event_id' => $latestEvent->id,
+                'invitation_id' => $invitation->id,
             ]);
+            return redirect()->route('admin.invitations.index')->with('success', 'No hay eventos disponibles');
         }
-
     }
     //remover el ultimo componente que se agrego
     public function removeComponent($index)

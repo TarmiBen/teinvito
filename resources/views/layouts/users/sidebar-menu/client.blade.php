@@ -29,36 +29,13 @@
 	</nav>
 </li>
 
-<li class="nav-item">
+<li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Esta sección es para volverse proveedor de servicios">
 	<a href="#" class="nav-link with-sub">
 		<i data-feather="briefcase"></i> 
 		Compañias
 	</a>
 	<nav class="nav">
-		<a href="{{route('admin.companies.index')}}">Ver todas</a>
 		<a href="{{route('admin.companies.create')}}">Nueva compañia</a>
-	</nav>
-</li>
-
-<li class="nav-item">
-	<a href="#" class="nav-link with-sub">
-		<i data-feather="phone"></i> 
-		Contactos
-	</a>
-	<nav class="nav">
-		<a href="{{route('admin.contacts.index')}}">Ver contactos</a>
-		<a href="{{route('admin.contacts.create')}}">Nuevo contacto</a>
-	</nav>
-</li>
-
-<li class="nav-item">
-	<a href="#" class="nav-link with-sub">
-		<i data-feather="map"></i> 
-		Ubicaciones
-	</a>
-	<nav class="nav">
-		<a href="{{route('admin.addresses.index')}}">Ver direcciones</a>
-		<a href="{{route('admin.addresses.create')}}">Nueva dirección</a>
 	</nav>
 </li>
 

@@ -11,7 +11,11 @@
                 </div>
             </div>
             @include('layouts.users.alert')
-    
+            <div class="mt-4">
+                <div class="alert alert-primary" role="alert">
+                    Todos los campos marcados con ( <span class="text-danger">*</span> ) son necesarios para su registro.
+                </div>
+            </div>
             <div class="row mt-3">
                 <div class="col">
                     <div class="card">
@@ -19,7 +23,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="service_id">Servicio:</label>
+                                    <label for="service_id"><span class="text-danger">*</span>Servicio:</label>
                                     <select wire:model="service_id" class="form-control">
                                         <option value="">Selecciona una opción</option>
                                         @foreach ($services as $service)
@@ -29,32 +33,28 @@
                                     @error('service_id') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="name">Name</label>
+                                    <label for="name"><span class="text-danger">*</span>Name</label>
                                     <input type="text" wire:model="name" class="form-control">
-                                    @error('name') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="description">Description</label>
+                                    <label for="description"><span class="text-danger">*</span>Description</label>
                                     <textarea wire:model="description" class="form-control"></textarea>
-                                    @error('description') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="price">Price</label>
-                                    <input  class="form-control" wire:model="price" type="text" placeholder='precio'>
-                                    @error('price') <span class="error">{{ $message }}</span> @enderror
+                                    <label for="price"><span class="text-danger">*</span>Price</label>
+                                    <input class="form-control" wire:model="price" type="number" step="any">
                                 </div>
                                 <div class="col-12 col-sm-12 mt-3">
-                                    <label for="src">Imagen</label>
+                                    <label for="src"><span class="text-danger">*</span>Imagen</label>
                                     <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" data-image-id="1" wire:model="src">
-                                    @error('src.*') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 @if (count($src) > 0)
                                     <table class="table table-striped mt-3">    
                                         <thead>
                                             <tr>
                                                 <th>Imagen</th>
-                                                <th>Título</th>
-                                                <th>Texto</th>
+                                                <th><span class="text-danger">*</span>Título</th>
+                                                <th><span class="text-danger">*</span>Texto</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>

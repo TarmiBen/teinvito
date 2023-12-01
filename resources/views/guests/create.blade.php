@@ -15,7 +15,11 @@
             </div>
     
             @include('layouts.users.alert')
-    
+            <div class="mt-4">
+                <div class="alert alert-primary" role="alert">
+                    Todos los campos marcados con ( <span class="text-danger">*</span> ) son necesarios para su registro.
+                </div>
+            </div>
             <div class="row mt-3">
                 <div class="col">
                     <div class="card">
@@ -25,23 +29,19 @@
                                 <h3> Nuevo Invitado</h3>
 
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="name">Name</label>
+                                    <label for="name"><span class="text-danger">*</span>Name</label>
                                     <input type="text" name="name" class="form-control" placeholder="Titulo" value="{{ old('name') }}">
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="lastname">Last Name</label>
+                                    <label for="lastname"><span class="text-danger">*</span>Last Name</label>
                                     <input type="text" name="lastname" class="form-control" placeholder="Titulo" value="{{ old('lastname') }}">
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="phone">Phone</label>
+                                    <label for="phone"><span class="text-danger">*</span>Phone</label>
                                     <input maxlength="10" type="number" name="phone" class="form-control" placeholder="Titulo" value="{{ old('phone') }}">
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="phone">Phone</label>
-                                    <input maxlength="10" type="number" name="phone" class="form-control" placeholder="Titulo" value="{{ old('phone') }}">
-                                </div>
-                                <div class="col-12 col-sm-6 mt-3">
-                                    <label for="email">Email</label>
+                                    <label for="email"><span class="text-danger">*</span>Email</label>
                                     <input type="email" name="email" class="form-control" placeholder="Titulo" value="{{ old('email') }}">
                                 </div>
                             </div>

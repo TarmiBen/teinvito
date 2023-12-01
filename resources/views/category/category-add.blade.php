@@ -26,7 +26,11 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-
+    <div class="mt-4">
+        <div class="alert alert-primary" role="alert">
+            Todos los campos marcados con ( <span class="text-danger">*</span> ) son necesarios para su registro.
+        </div>
+    </div>
     <div class="input-group mg-b-10">
         <select id="select2" class="js-example-basic-single form-control" style="width: 100%;" wire:model="category_id"
             name="category_id" required>

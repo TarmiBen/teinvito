@@ -18,7 +18,11 @@
         </div>
 
         @include('layouts.users.alert')
-
+        <div class="mt-4">
+            <div class="alert alert-primary" role="alert">
+                Todos los campos marcados con ( <span class="text-danger">*</span> ) son necesarios para su registro.
+            </div>
+        </div>
         <div class="row mt-3">
             <div class="col">
                 <div class="card">
@@ -27,26 +31,27 @@
                         <div class="row">
                             <h3>Datos de la compañia</h3>
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="name">Nombre de la Compañia:</label>
+
+                                <label for="name"><span class="text-danger">*</span>Nombre de la Compañia:</label>
                                 <input type="text" name="name" class="form-control" placeholder="Nombre de la Compañia" value="{{ old('name') }}">
                             </div>
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="rfc">RFC:</label>
+                                <label for="rfc"><span class="text-danger">*</span>RFC:</label>
                                 <input type="text" name="rfc" class="form-control" placeholder="RFC" value="{{ old('rfc') }}">
                             </div>
                             
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="email">Email:</label>
+                                <label for="email"><span class="text-danger">*</span>Email:</label>
                                 <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
                             </div>
                             
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="phone">Teléfono:</label>
+                                <label for="phone"><span class="text-danger">*</span>Teléfono:</label>
                                 <input type="text" name="phone" class="form-control" placeholder="Teléfono" value="{{ old('phone') }}">
                             </div>
         
                             <div class="col-12 col-sm-12 mt-3">
-                                <label for="description">Descripción:</label>
+                                <label for="description"><span class="text-danger">*</span>Descripción:</label>
                                 <textarea name="description" class="form-control" placeholder="Descripción">{{ old('description') }}</textarea>
                             </div>
         
@@ -59,49 +64,51 @@
         
                             <div class="col-12 col-md-6 mt-3">
                                 <label for="street">Calle:</label>
-                                <input type="text" name="street" class="form-control" placeholder="Calle">
+                                <input type="text" name="street" class="form-control" placeholder="Calle" value="{{ old('street') }}">
                             </div>
         
                             <div class="col-12 col-sm-6 col-md-3 mt-3">
                                 <label for="ext">Número Exterior:</label>
-                                <input type="text" name="ext" class="form-control" placeholder="Numero Exterior">
+                                <input type="text" name="ext" class="form-control" placeholder="Numero Exterior" value="{{ old('ext') }}">
                             </div>
         
                             <div class="col-12 col-sm-6 col-md-3 mt-3">
                                 <label for="int">Número Interior:</label>
-                                <input type="text" name="int" class="form-control" placeholder="Numero Interior">
+                                <input type="text" name="int" class="form-control" placeholder="Numero Interior" value="{{ old('int') }}">
                             </div>
         
                             <div class="col-12 col-sm-6 mt-3">
                                 <label for="cp">Código Postal:</label>
-                                <input type="text" name="cp" class="form-control" placeholder="Codigo Postal" value="{{ old('cp') }}">
+                                <input type="text" name="cp" class="form-control" placeholder="Codigo Postal" id="cp" value="{{ old('cp') }}">
                             </div>
         
                             <div class="col-12 col-sm-6 mt-3">
                                 <label for="colony">Colonia:</label>
-                                <input type="text" name="colony" class="form-control" placeholder="Colonia">
+                                <select class="form-select" name="colony" id="colonia">
+                                    <option value="{{ old('colonia') }}">Selecciona una opción</option>
+                                </select>
                             </div>
         
                             <div class="col-12 col-sm-6 mt-3">
                                 <label for="city">Ciudad:</label>
-                                <input type="text" name="city" class="form-control" placeholder="Ciudad">
+                                <input type="text" name="city" class="form-control" placeholder="Ciudad" value="{{ old('city') }}">
                             </div>
         
                             <div class="col-12 col-sm-6 mt-3">
                                 <label for="state">Estado:</label>
-                                <input type="text" name="state" class="form-control" placeholder="Estado">
+                                <input type="text" name="state" class="form-control" placeholder="Estado"  id="estado" value="{{ old('state') }}">
                             </div>
         
                             <h3 class="col-12 mt-4">Información Adicional</h3>
         
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="logo">Logo:</label>
+                                <label for="logo"><span class="text-danger">*</span>Logo:</label>
                                 <input type="file" name="logo" class="form-control input-file" placeholder="Logo" value="{{ old('logo') }}" accept=".png,.jpg,.jpeg" data-image-id="1">
                                 <img class="img-fluid object-fit-cover shadow crop-image" data-image-id="1">
                             </div>
         
                             <div class="col-12 col-sm-6 mt-3">
-                                <label for="cover">Portada:</label>
+                                <label for="cover"><span class="text-danger">*</span>Portada:</label>
                                 <input type="file" name="cover" class="form-control input-file" placeholder="Cover" value="{{ old('cover') }}" accept=".png,.jpg,.jpeg" data-image-id="2">
                                 <img class="img-fluid object-fit-cover shadow crop-image" data-image-id="2">
                             </div>
@@ -130,6 +137,7 @@
 </div>
 <script src="/assets/js/jquery.js"></script>
 <script src="/assets/js/cropper.js"></script>
+<script src="/assets/js/postalcode.js"> </script>
 <script>
         let cropper = null;
         let currentImageId = null; // Variable para guardar el id de la imagen que se esta cortando
@@ -205,7 +213,7 @@
                 cropImage.src = urlCut;
             });
 
-            input.value = "";
+            input.value = urlCut;
 
             if (cropper) {
                 cropper.destroy();
