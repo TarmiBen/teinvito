@@ -5,13 +5,7 @@
     <div>
         <form action="{{ route('guests.store') }}" method="POST" enctype="multipart/form-data">
             <div class="row justify-content-between align-items-center mb-3">
-                <h3 class="col-auto m-0"></h3>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa-regular fa-square-plus"></i>
-                        Guardar
-                    </button>
-                </div>
+                <h3 class="col-auto m-0">Nuevo Invitado</h3>
             </div>
     
             @include('layouts.users.alert')
@@ -26,8 +20,6 @@
                         <div class="card-body">
                             @csrf
                             <div class="row">
-                                <h3> Nuevo Invitado</h3>
-
                                 <div class="col-12 col-sm-6 mt-3">
                                     <label for="name"><span class="text-danger">*</span>Name</label>
                                     <input type="text" name="name" class="form-control" placeholder="Titulo" value="{{ old('name') }}">
@@ -44,6 +36,13 @@
                                     <label for="email"><span class="text-danger">*</span>Email</label>
                                     <input type="email" name="email" class="form-control" placeholder="Titulo" value="{{ old('email') }}">
                                 </div>
+                                <div class="col-12 d-flex justify-content-end mt-3">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa-regular fa-square-plus"></i>
+                                        Guardar
+                                    </button>
+                                </div>
+                
                             </div>
                         </div>
                     </div>

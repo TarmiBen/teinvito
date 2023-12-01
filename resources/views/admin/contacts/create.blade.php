@@ -7,12 +7,6 @@
         <form action="{{ route('admin.contacts.store') }}" method="POST" enctype="multipart/form-data">
             <div class="row justify-content-between align-items-center mb-3">
                 <h3 class="col-auto m-0">Datos de contacto</h3>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa-regular fa-square-plus"></i>
-                        Guardar
-                    </button>
-                </div>
             </div>
 
             @include('layouts.users.alert')
@@ -65,6 +59,12 @@
                                     <label for="telephone"><span class="text-danger">*</span>Teléfono:</label>
                                     <input type="text" name="telephone" class="form-control" placeholder="Telefono"
                                         value="{{ old('telephone') }}">
+                                </div>
+                                <div class="col-12 d-flex justify-content-end mt-3">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa-regular fa-square-plus"></i>
+                                        Guardar
+                                    </button>
                                 </div>
                             </div>
                         </div>

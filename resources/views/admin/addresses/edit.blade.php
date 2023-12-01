@@ -9,12 +9,6 @@
 
         <div class="row justify-content-between align-items-center mb-3">
             <h3 class="col-auto m-0">Datos de la dirección</h3>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-success">
-                    <i data-feather="plus-square"></i>
-                    Guardar
-                </button>
-            </div>
         </div>
         <div class="mt-4">
             <div class="alert alert-primary" role="alert">
@@ -84,6 +78,14 @@
                                 <input type="text" name="state" class="form-control" placeholder="Estado"
                                     value="{{ $address->state }}" id="estado">
                             </div>
+
+                            <div class="col-12 d-flex justify-content-end mt-3">
+                                <button type="submit" class="btn btn-success">
+                                    <i data-feather="plus-square"></i>
+                                    Guardar
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -11,12 +11,6 @@
         @method('PUT')
         <div class="row justify-content-between align-items-center mb-3">
             <h3 class="col-auto m-0">Datos de la compañia</h3>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-success">
-                    <i class="fa-regular fa-square-plus"></i>
-                    Guardar
-                </button>
-            </div>
         </div>
 
         @include('layouts.users.alert')
@@ -69,6 +63,14 @@
                             <input type="file" name="cover" class="form-control" placeholder="Cover"
                                 value="{{ $company->cover }}">
                         </div>
+
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa-regular fa-square-plus"></i>
+                                Guardar
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>
