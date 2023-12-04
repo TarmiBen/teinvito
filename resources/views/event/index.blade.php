@@ -38,11 +38,7 @@
                         <tr>
                             <td>{{$event->id}}</td>
                             <td>{{ $event->User->name }}</td>
-                            @if( $event->user_invited_id == null))
-                                <td>NA</td>
-                            @else
-                                <td>{{ $event->UserInvited->name }} - {{ $event->UserInvited->email }}</td>
-                            @endif
+                            <td>{{ $event->user_invited_id }}</td>
                             <td>{{ $event->title }}</td>
                             <td>{{ $event->type }}</td>
                             <td>{{ carbon\Carbon::parse($event->ceremony_date)->format('d-m-Y') }}</td>
