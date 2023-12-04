@@ -8,7 +8,7 @@
                 <h3 class="col-auto m-0">Nuevo Evento</h3>
             </div>
 
-            @include('layouts.users.alert')
+
 
             <div class="row mt-3">
                 <div class="col">
@@ -34,33 +34,35 @@
                                 </div>
                                 <div class="col-12 col-sm-6  mt-3">
                                     <label for="type">Tipo de Evento:</label>
-                                    <select name="type" id="new_type" class="form-select">
+                                    <select name="type" id="new_type" class="form-select" onchange="mostrarOcultarInput()">
                                         <option value="">Selecciona una opción</option>
-                                        <option value="BODA">BODA</option>
-                                        <option value="XV AÑOS">XV AÑOS</option>
-                                        <option value="GRADUACION">GRADUACION</option>
-                                        <option value="new">OTRA</option>
+                                        <option value="BODA" {{ old('type') == 'BODA' ? 'selected' : '' }}>BODA</option>
+                                        <option value="XV AÑOS" {{ old('type') == 'XV AÑOS' ? 'selected' : '' }}>XV AÑOS</option>
+                                        <option value="GRADUACION" {{ old('type') == 'GRADUACION' ? 'selected' : '' }}>GRADUACION</option>
+                                        <option value="new" {{ old('type') == 'new' ? 'selected' : '' }}>OTRA</option>
                                     </select>
-                                </div>
-                                @error('type')
+                                    <input type="text" name="type2" id="otro_tipo" class="form-control mt-3"
+                                        placeholder="Escribe el tipo de evento" value="{{ old('type2') }}" style="display:none;">
+                                    @error('type')
                                     <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                    @enderror
+                                </div>
                                 <div class="col-12 col-sm-6 mt-3">
                                     <label for="ceremony_date">Fecha de Ceremonia:</label>
-                                    <input type="date" name="ceremony_date" class="form-control"
+                                    <input type="datetime-local" name="ceremony_date" class="form-control"
                                         placeholder="Fecha de Ceremonia" value="{{ old('ceremony_date') }}">
-                                </div>
-                                @error('ceremony_date')
+                                    @error('ceremony_date')
                                     <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                    @enderror
+                                </div>
                                 <div class="col-12 col-sm-6 mt-3">
                                     <label for="event_date">Fecha de Evento:</label>
-                                    <input type="date" name="event_date" class="form-control"
+                                    <input type="datetime-local" name="event_date" class="form-control"
                                         placeholder="Fecha de Evento" value="{{ old('event_date') }}">
-                                </div>
-                                @error('event_date')
+                                    @error('event_date')
                                     <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                    @enderror
+                                </div>
                                 <div class="col-12 d-flex justify-content-end mt-3">
                                     <button type="submit" class="btn btn-success" id="btnGuardar">
                                         <i class="fa-regular fa-square-plus"></i>
@@ -89,18 +91,19 @@
             });
         });
     </script>
+
     <script>
-        $(document).ready(function() {
-            $('#new_type').change(function() {
-                if ($(this).val() === 'new') {
-                    $('#type').show();
-                    $('#new_type').hide();
-                } else {
-                    $('#type').hide();
-                    $('#new_type').show();
-                }
-            });
+        function mostrarOcultarInput() {
+            var select = document.getElementById('new_type');
+            var inputOtroTipo = document.getElementById('otro_tipo');
+
+            // Si la opción seleccionada es "new", muestra el input, de lo contrario, ocúltalo.
+            inputOtroTipo.style.display = (select.value === 'new') ? 'block' : 'none';
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarOcultarInput();
         });
     </script>
+
 
 @endsection
