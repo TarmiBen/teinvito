@@ -19,11 +19,10 @@ return new class extends Migration
             $table->string('type');
             $table->datetime('ceremony_date');
             $table->datetime('event_date');
-            $table->varchar('title');
+            $table->string('title');
             $table->timestamps();
             $table->softDeletes()->nullable();
         });
-
 
         Schema::table('events', function (Blueprint $table) {
             $table->foreign('users_id')->references('id')->on('users');

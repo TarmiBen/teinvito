@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Invitaciones para eventos">
+    <meta name="keywords"
+        content="eventos, fiestas, invitaciones, invitaciones para eventos, invitaciones para fiestas, invitaciones para bodas, invitaciones para cumpleaños," />
+    <meta name="robots" content="index" />
+    <meta name="robots" content="noindex" />
     <title>
         @yield('title') | Te Invito
     </title>
@@ -30,24 +35,21 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link text-white mx-lg-2 active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link text-white mx-lg-2 active" aria-current="page" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white mx-lg-2" href="#">About</a>
+                            <a class="nav-link text-white mx-lg-2" href="/invitaciones">Invitaciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white mx-lg-2" href="#">Services</a>
+                            <a class="nav-link text-white mx-lg-2" href="/proveedores">Proveedores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white mx-lg-2" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white mx-lg-2" href="#">Contact</a>
+                            <a class="nav-link text-white mx-lg-2" href="/contacto">Contacto</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <a href="/login" class="login-button me-4 text-white">Login</a>
+            <a href="/login" class="login-button me-4 text-white">Iniciar Sesión</a>
             <button class="navbar-toggler bg-secondary-ti" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -75,8 +77,7 @@
                                     </h1>
                                 </div>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum
-                                    voluptates. Quisquam, voluptatum voluptates.
+                                    Descubre la forma más fácil de invitar a tus amigos y familiares a tus eventos.
                                 </p>
                                 <p class="copyright-text">
                                     Diseñado y desarrollado por
@@ -88,33 +89,35 @@
                         </div>
                         <div class="col-lg-2 col-md-6 col-12">
                             <div class="">
-                                <h3>Solutions</h3>
+                                <h3>
+                                    Productos
+                                </h3>
                                 <div class="d-flex flex-column">
-                                    <a href="" class="link-light text-decoration-none ">Marketing</a>
-                                    <a href="" class="link-light text-decoration-none ">Analytics</a>
-                                    <a href="" class="link-light text-decoration-none ">Commerce</a>
-                                    <a href="" class="link-light text-decoration-none ">Insights</a>
+                                    <a href="" class="link-light text-decoration-none">Invitaciones</a>
+                                    <a href="" class="link-light text-decoration-none">Proveedores</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6 col-12">
                             <div class="">
-                                <h3>Support</h3>
+                                <h3>Soporte</h3>
                                 <div class="d-flex flex-column">
-                                    <a href="" class="link-light text-decoration-none ">Pricing</a>
-                                    <a href="" class="link-light text-decoration-none ">Documentation</a>
-                                    <a href="" class="link-light text-decoration-none ">Guides</a>
-                                    <a href="" class="link-light text-decoration-none ">API Status</a>
+                                    <a href="" class="link-light text-decoration-none">Preguntas frecuentes</a>
+                                    <a href="" class="link-light text-decoration-none">Contacto</a>
+                                    <a href="" class="link-light text-decoration-none">Privacidad</a>
+                                    <a href="" class="link-light text-decoration-none">Términos</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="">
-                                <h3>Subscribe</h3>
-                                <p>Subscribe to our newsletter for the latest updates</p>
+                                <h3>Subscribete</h3>
+                                <p>
+                                    Obtén las últimas noticias y actualizaciones de Te Invito, totalmente gratis.
+                                </p>
                                 <form action="#" method="post" target="_blank" class="">
-                                    <input name="email" placeholder="Email address" required="required" type="email"
-                                        class="form-control text-center">
+                                    <input name="email" placeholder="Correo electrónico" required="required"
+                                        type="email" class="form-control text-center">
                                     <div class="mt-2">
                                         <button class="btn btn-secondary-ti w-100">
                                             <i class="fa fa-paper-plane" aria-hidden="true"></i>

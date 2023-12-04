@@ -68,8 +68,8 @@ class ServicePackageCreate extends Component
         $this->validate([
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required',
-            'src.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'price' => 'required|numeric',
+            'src' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tittle' => 'required',
             'text' => 'required',
         ]);
@@ -81,15 +81,12 @@ class ServicePackageCreate extends Component
             'price' => $this->price,
         ];
         if ($this->servicePackageId) {
-            // Si estamos editando, actualizamos el registro existente
             $servicePackage = ServicePackage::find($this->servicePackageId);
             $servicePackage->update($servicePackageData);
         } else {
-            // Si estamos creando, creamos un nuevo registro
             $servicePackage = ServicePackage::create($servicePackageData);
         }
     
-        // Luego, trabajemos con la galería
         $galleryData = [];
     
         foreach ($this->src as $index => $file) {
@@ -108,10 +105,8 @@ class ServicePackageCreate extends Component
             ];
         }
     
-        // Eliminar imágenes existentes en la galería antes de agregar las nuevas
         $servicePackage->Galery()->delete();
     
-        // Crear nuevas entradas en la galería
         Galery::insert($galleryData);
     
         return redirect()->route('admin.servicePackages.index')
@@ -121,7 +116,7 @@ class ServicePackageCreate extends Component
     public function addImage()
     {
         $this->validate([
-            'src.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'src' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         foreach ($this->src as $image) {

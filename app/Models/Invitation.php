@@ -14,14 +14,14 @@ class Invitation extends Model
     protected $table = 'invitations';
     protected $fillable = [
         'id',
-        'users_id',
+        'user_id',
         'package_id',        
 
     ];
     
     public function User()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function Event()
