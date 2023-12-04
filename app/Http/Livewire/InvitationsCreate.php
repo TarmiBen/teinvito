@@ -67,12 +67,12 @@ class InvitationsCreate extends Component
         $latestEvent = Event::where('users_id', $user->id)->latest()->first();
 
         if (!$latestEvent) {
-            return redirect()->route('admin.invitations.index')->with('success', 'No hay eventos disponibles');
+            return redirect()->route('admin.invitations.index')->with('success', 'No tienes eventos. Crea un evento ahora');
         };
 
         if ($this->invitationId) {
             $this->emit('saveComponents');
-            return redirect()->route('admin.invitations.index')->with('success', 'No hay eventos disponibles');
+            return redirect()->route('admin.invitations.index')->with('success', 'Invitación actualizada con éxito');
         } else {
             $invitation = Invitation::create([
                 'user_id' => auth()->id(),
@@ -96,7 +96,7 @@ class InvitationsCreate extends Component
                 'event_id' => $latestEvent->id,
                 'invitation_id' => $invitation->id,
             ]);
-            return redirect()->route('admin.invitations.index')->with('success', 'No hay eventos disponibles');
+            return redirect()->route('admin.invitations.index')->with('success', 'Invitación creada con éxito');
         }
     }
     //remover el ultimo componente que se agrego
