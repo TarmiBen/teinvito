@@ -2,33 +2,57 @@
     <section class="container py-5 position-relative">
         <div class="row g-3">
             <div class="col-12 col-lg-6">
-                <img class="img-fluid object-fit-cover shadow crop-image" data-image-id="1">
-                <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" data-image-id="1">
+                @if($isEditing)
+                    @if($images1)
+                        <img src="{{ is_string($images1) ? $images1 : $images1->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow">
+                    @endif
+                    <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" wire:model="images1" placeholder="subir imagen">
+                @else
+                    <img src="{{ asset($images1) }}" alt="" class="img-fluid object-fit-cover shadow">
+                @endif
             </div>
             <div class="col-12 col-lg-6">
                 <div class="row g-3">
                     <div class="col-12">
                         <div class="row g-3">
                             <div class="col-6">
-                                <img class="img-fluid object-fit-cover shadow crop-image" data-image-id="2">
-                                <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" data-image-id="2">
+                                @if($isEditing)
+                                    @if($images2)
+                                        <img src="{{ is_string($images2) ? $images2 : $images2->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow" >
+                                    @endif
+                                    <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" wire:model="images2" placeholder="subir imagen">
+                                @else
+                                    <img src="{{ asset($images2) }}" alt="" class="img-fluid object-fit-cover shadow">
+                                @endif
                             </div>
                             <div class="col-6">
-                                <img class="img-fluid object-fit-cover shadow crop-image" data-image-id="3">
-                                <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" data-image-id="3">
+                                @if($isEditing)
+                                    @if($images3)
+                                        <img src="{{ is_string($images3) ? $images3 : $images3->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow" >
+                                    @endif
+                                    <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" wire:model="images3" placeholder="subir imagen">
+                                @else
+                                    <img src="{{ asset($images3) }}" alt="" class="img-fluid object-fit-cover shadow">
+                                @endif
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
-                        <img class="img-fluid object-fit-cover shadow crop-image" data-image-id="4">
-                        <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" data-image-id="4">
+                        @if($isEditing)
+                            @if($images4)
+                                <img src="{{ is_string($images4) ? $images4 : $images4->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow">
+                            @endif
+                            <input type="file" class="form-control input-file" accept=".png,.jpg,.jpeg" wire:model="images4" placeholder="subir imagen">
+                        @else
+                            <img src="{{ asset($images4) }}" alt="" class="img-fluid object-fit-cover shadow" >
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
-<script>
+<!-- <script>
     let cropper = null;
     let currentImageId = null; // Variable para guardar el id de la imagen que se esta cortando
 
@@ -111,4 +135,4 @@
 
         $('#modal').removeClass('active'); // Quitamos la clase active de la tarjeta
     });
-</script>
+</script> -->

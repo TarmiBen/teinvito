@@ -8,6 +8,7 @@ use App\Models\Component as ModelComponent;
 use App\Models\ComponentData;
 use App\Models\Invitation;
 use App\Helpers\ComponentHelper;
+use Illuminate\Support\Facades\Session;
 
 class VideoComponent extends Component
 {
@@ -53,7 +54,8 @@ class VideoComponent extends Component
         if (strpos($this->videoUrl, 'https://youtu.be/') === 0) {
             $videoCode = substr($this->videoUrl, 17);
             $videoCode = strtok($videoCode, '?');
-            $this->videoUrl = "https://www.youtube.com/embed/$videoCode";
+            $embedUrl = "https://www.youtube.com/embed/$videoCode";
+            $this->videoUrl = $embedUrl;
         }
     }
 

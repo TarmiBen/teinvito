@@ -38,6 +38,7 @@ class GiftTableComponent extends Component
             $this->button = $info['button'];
             $this->button_link = $info['button_link'];
             $this->image = $info['image'];
+            $this->isEditing = true;
         }
         if($data){
             $this->title = $data['title'];

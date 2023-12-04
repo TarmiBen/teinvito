@@ -10,11 +10,10 @@
         <div class="mt-4 h-75 w-100">
             @if($isEditing)
                 <input type="text" class="form-control" wire:model="videoUrl" placeholder="pegar url del video">
-                    @if ($videoUrl)
-                    @php
-                        $this->processVideoUrl();
-                    @endphp  
+                @if ($videoUrl)
                     <iframe class="w-100 h-100" src="{{ $videoUrl }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                @else
+                    <small class="text-muted">Pega la url del video.</small>
                 @endif
             @else
                 @if ($videoUrl)
