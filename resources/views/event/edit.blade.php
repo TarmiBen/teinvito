@@ -26,12 +26,9 @@
                                 </div>
                                 <div class="col-12 col-sm-6  mt-3">
                                     <label for="user_invited_id">Usuario Invitado:</label>
-                                    <select name="user_invited_id" id="user_invited_id" class="form-select">
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name . ' - ' . $user->email }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" name="user_invited_id" class="form-control"
+                                        placeholder="Email del usuario invitado"
+                                        value="{{ $event->user_invited_id }}">
                                 </div>
                                 <div class="col-12 col-sm-6  mt-3">
                                     <label for="type">Tipo de Evento:</label>

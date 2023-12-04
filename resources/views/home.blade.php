@@ -1,6 +1,7 @@
 @extends ('layouts.users.app')
 @section('title', 'Home')
 @section('content')
+
     <div>
         <h3>
             !Hola {{ Auth::user()->name }}!
@@ -9,6 +10,7 @@
             @include('layouts.users.alert')
         </div>
         <hr>
+
 
         <h4 class="fw-bold mt-4">
             Dashboard
