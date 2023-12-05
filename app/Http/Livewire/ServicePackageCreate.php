@@ -23,15 +23,6 @@ class ServicePackageCreate extends Component
     public $servicePackageId;
     public $imageFields = [];
 
-    // protected $rules = [
-    //     'name' => 'required',
-    //     'description' => 'required',
-    //     'price' => 'required',
-    //     'src.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-    //     'tittle' => 'required',
-    //     'text' => 'required',
-    // ];
-
     public function render()
     {
         $services = Service::whereHas('Company', function ($query) {
@@ -69,9 +60,10 @@ class ServicePackageCreate extends Component
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
-            'src' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tittle' => 'required',
-            'text' => 'required',
+            'src.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'src' => 'required',
+            'tittle.*' => 'required',
+            'text.*' => 'required',
         ]);
     
         $servicePackageData = [

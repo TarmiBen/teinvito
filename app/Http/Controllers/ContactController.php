@@ -66,7 +66,7 @@ class ContactController extends Controller
         $contact->telephone = $request->telephone;
         $contact->save();
         return redirect()->route('admin.companies.index')
-        ->with('message','Contact created successfully.');
+        ->with('message','El contacto se ha agregado correctamente a la empresa.');
     }
 
     /**
@@ -117,7 +117,7 @@ class ContactController extends Controller
         $contact->telephone = $request->telephone;
         $contact->save();
         return redirect()->route('admin.companies.index')
-            ->with('message','Contact updated successfully.');
+            ->with('message','El contacto se ha actualizado correctamente.');
     }
 
     /**
@@ -127,7 +127,7 @@ class ContactController extends Controller
     {
         $contact->delete();
         return redirect()->route('admin.contacts.index')
-            ->with('message', 'Contact deleted successfully. <a href="' . route('admin.contacts.restore', $contact->id) . '">Restore</a>');
+            ->with('message', 'El contacto fue elimando correctamente. <a href="' . route('admin.contacts.restore', $contact->id) . '">Restore</a>');
     
     }
 
@@ -138,6 +138,6 @@ class ContactController extends Controller
     {
         $contact = Contact::onlyTrashed()->find($id)->restore();
         return redirect()->route('admin.contacts.index')
-            ->with('message','Contact restored successfully.');
+            ->with('message','El contacto fue restaurado correctamente');
     }
 }

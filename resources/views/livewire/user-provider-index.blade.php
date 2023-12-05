@@ -5,7 +5,7 @@
         <div class="col-auto">
             <a href="{{ route('admin.userProviders.create') }}" class="btn btn-primary">
                 <i data-feather="plus-square"></i>
-                Nueva Postulación
+                Agregar Proveedor
             </a>
         </div>
     </div>
