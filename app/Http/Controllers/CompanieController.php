@@ -14,16 +14,20 @@ use Illuminate\Support\Facades\Validator;
 
 class CompanieController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        if (Storage::disk('public')->exists('companies/logos/test.webp')) {
-            echo 'existe';
-        }
+        // if (Storage::disk('public')->exists('companies/logos/test.webp')) {
+        //     echo 'existe';
+        // }
 
-        //return view('admin.companies.index');
+        return view('admin.companies.index');
     }
 
 
