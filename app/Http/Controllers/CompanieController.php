@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Models\Address;
 use App\Models\UserProvider;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class CompanieController extends Controller
@@ -18,9 +19,13 @@ class CompanieController extends Controller
      */
     public function index()
     {
-        return view('admin.companies.index');
+        if (Storage::disk('public')->exists('companies/logos/test.webp')) {
+            echo 'existe';
+        }
+
+        //return view('admin.companies.index');
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -70,19 +75,19 @@ class CompanieController extends Controller
         }
         $imgName = ImageHelper::uploadAndResizeImage(
             $request->file('logo'),
-            'companies/logos', 
-            400,     
-            400      
+            'companies/logos',
+            400,
+            400
         );
         $imgNameCover = ImageHelper::uploadAndResizeImage(
             $request->file('cover'),
             'companies/covers',
-            851,     
-            315      
+            851,
+            315
         );
         if ($validator->fails()) {
             Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó crear una compañia pero fallo en el dato: ' . $validator->errors()->first());
-    
+
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
@@ -128,6 +133,7 @@ class CompanieController extends Controller
         $principalAddress = Address::where('company_id', $company->id)->where('priority', 1)->first();
         $contacts = Contact::where('company_id', $company->id)->get();
         $addresses = Address::where('company_id', $company->id)->get();
+
         return view('admin.companies.show',compact('company', 'contacts', 'addresses', 'principalAddress'));
     }
 
@@ -180,7 +186,7 @@ class CompanieController extends Controller
         }
         if ($validator->fails()) {
             Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar una compañia pero fallo en el dato: ' . $validator->errors()->first());
-    
+
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
