@@ -74,7 +74,7 @@ class AdressController extends Controller
         $adress->state = $request->state;
         $adress->save();
 
-        return redirect()->route('admin.addresses.index')->with('message','Adress created successfully.');
+        return redirect()->route('admin.addresses.index')->with('message','La dirección se ha agregado correctamente a la empresa.');
 
     }
 
@@ -133,7 +133,7 @@ class AdressController extends Controller
         $address->state = $request->state;
         $address->save();
 
-        return redirect()->route('admin.addresses.index')->with('message','Adress updated successfully.');
+        return redirect()->route('admin.addresses.index')->with('message','La dirección se ha actualizado correctamente a la empresa.');
     }
 
     /**
@@ -142,7 +142,7 @@ class AdressController extends Controller
     public function destroy(Address $address)
     {
         $address->delete();
-        return redirect()->route('admin.addresses.index')->with('message','Adress deleted successfully. <a href="'.route('admin.addresses.restore', $address->id).'">Restore</a>');
+        return redirect()->route('admin.addresses.index')->with('message','La direccion fue eliminada correctamente. <a href="'.route('admin.addresses.restore', $address->id).'">Restore</a>');
     }
 
     /**
@@ -152,6 +152,6 @@ class AdressController extends Controller
     {
         $address = Address::onlyTrashed()->where('id', $id)->firstOrFail();
         $address->restore();
-        return redirect()->route('admin.addresses.index')->with('message','Adress restored successfully.');
+        return redirect()->route('admin.addresses.index')->with('message','La direccion fue restaurada correctamente');
     }
 }

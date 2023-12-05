@@ -13,11 +13,15 @@
                             <label for="users_id"><span class="text-danger">*</span> Asignar Usuario:</label>
                             <input required type="text" class="form-control" id="searchUser" name="usersId" autocomplete="off" placeholder="Asignar Usuario">
                             <input type="hidden" id="usersId" name="usersId">
+                            <br>
+                            <small class="text-muted">Este campo se autocompleta</small>
                         </div>
                         <div class="col-12 col-sm-6 col-lg-3 mt-3 mt-sm-0">
                             <label for="company_id"><span class="text-danger">*</span> Asignar Compañia:</label>
                             <input required type="text" class="form-control" id="searchCompany" autocomplete="off" placeholder="Asignar Usuario">
                             <input type="hidden" id="companyId" name="companyId">
+                                                        <br>
+                            <small class="text-muted">Este campo se autocompleta</small>
                         </div>
                             <div class="col-12 mt-3">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -43,7 +47,7 @@
         $('#searchUser').typeahead({
             hint: true,
             highlight: true,
-            minLength: 1
+            minLength: 3
         }, {
             name: 'Usuario',
             displayKey: 'name',
@@ -63,7 +67,7 @@
     </script>
     <script>
         var route = "{{ url('/autoCompleteCompany/json?q=%QUERY') }}";
-        var clave = new Bloodhound({
+        var claveCompany  = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
@@ -79,7 +83,7 @@
             name: 'Company',
             displayKey: 'name',
             limit: 9,
-            source: clave.ttAdapter(),
+            source: claveCompany .ttAdapter(),
             templates: {
                 suggestion: function (data) {
                     return '<div class="typeahead-result">' + data.name + '</div>';

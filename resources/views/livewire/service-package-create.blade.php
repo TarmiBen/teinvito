@@ -62,7 +62,13 @@
                                             @foreach ($src as $index => $image)
                                             <tr>
                                                 <td>
-                                                    <img class="img-fluid object-fit-cover shadow crop-image" data-image-id="1" width="100">
+                                                    <div id="cropped-images-container" class="mt-3">
+                                                    @if (is_string($image))
+                                                    <img src="{{ asset('storage/' . $image) }}" alt="Imagen">
+                                                    @else
+                                                        <img src="{{ $image->temporaryUrl() }}" class="img-fluid object-fit-cover shadow crop-image" data-image-id="1" width="100">
+                                                    @endif
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <input type="text" wire:model="tittle.{{ $index }}" class="form-control">

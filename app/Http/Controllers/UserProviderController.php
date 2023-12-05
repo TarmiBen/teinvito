@@ -58,7 +58,7 @@ class UserProviderController extends Controller
         Notification::send(User::whereIn('id', $usersInCompany)->get(), new UserProviderAccessNotification());
 
     return redirect()->route('admin.userProviders.index')
-        ->with('message', 'UserProvider creado exitosamente.');
+        ->with('message', 'El usuario se ha agregado correctamente a la empresa.');
     }
 
     /**
@@ -97,7 +97,7 @@ class UserProviderController extends Controller
         $userProvider->company_id = $request->companyId;
         $userProvider->save();
         return redirect()->route('admin.userProviders.index')
-            ->with('message','UserProvider updated successfully.');
+            ->with('message','El usuario se ha actualizado correctamente.');
     }
 
     /**
@@ -107,36 +107,43 @@ class UserProviderController extends Controller
     {
         $userProvider->delete();
         return redirect()->route('admin.userProviders.index')
-            ->with('message','UserProvider deleted successfully <a href="'.route('admin.userProviders.restore',$userProvider->id).'">Restore</a>');
+            ->with('message','El usuario fue eliminado correctamente <a href="'.route('admin.userProviders.restore',$userProvider->id).'">Restore</a>');
     }
 
     public function restore(string $id)
     {
         $userProvider = userProvider::withTrashed()->find($id)->restore();
         return redirect()->route('admin.userProviders.index')
-            ->with('message','UserProvider restored successfully.');
+            ->with('message','El usuario fue restaurado correctamente');
     }
 
     public function autocompleteUser(Request $request)
     {
-        $data = User::select("name", "id", "email")
-                ->where("name","LIKE","%{$request->input('query')}%")
-                ->orWhere("id","LIKE","%{$request->input('query')}%")
-                ->orWhere("email","LIKE","%{$request->input('query')}%")
-                ->get();
+        $query = $request->get('q');
+        $data = User::where('name', 'LIKE', '%'.$request->get('q').'%')
+            ->orWhere('email', 'LIKE', '%'.$request->get('q').'%')
+            ->orWhere('id', 'LIKE', '%'.$request->get('q').'%')
+            ->select('name', 'id', 'email')
+            ->get();
 
-        return response()->json($data);
+        if(count($data) > 0){
+            return response()->json($data);
+        }else{
+            $value ='No se encontraron resultados';
+            return $value;
+        }
     }
 
     public function autocompleteCompany(Request $request)
     {
         $user = Auth::user()->id;
+        $query = $request->get('q');
         $data = Company::whereHas('UserProvider', function ($query) use ($user) {
             $query->where('users_id', $user);
         })
         ->where(function ($query) use ($request) {
-            $query->where("name", "LIKE", "%{$request->input('query')}%")
-                ->orWhere("id", "LIKE", "%{$request->input('query')}%");
+            $query->where("name", "LIKE", '%'.$request->get('q').'%')
+                ->orWhere("id", "LIKE", '%'.$request->get('q').'%');
         })
         ->select("name", "id")
         ->get();

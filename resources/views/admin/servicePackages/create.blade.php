@@ -69,13 +69,9 @@
                         preview: '.img-sample',
                         zoomable: false,
                         viewMode: 1,
-                        responsive: false,
+                        responsive: true,
                         dragMode: 'none',
                         restore: true,
-                        ready() {
-                            document.querySelector('.cropper-container').style.width = '100%';
-                            document.querySelector('.cropper-container').style.height = '50%';
-                        }
                     });
 
                     $('#modal').addClass('active'); // Agregamos la clase active a la tarjeta
@@ -103,13 +99,14 @@
             let canva = cropper.getCroppedCanvas(); // Obtenemos el canvas de la imagen cortada
             let cropImage = document.querySelector(`.crop-image[data-image-id="${currentImageId}"]`);// Obtenemos la imagen que se esta cortando
             let input = document.querySelector(`.input-file[data-image-id="${currentImageId}"]`);// Obtenemos el input que se esta modificando
+            let urlCut;
 
             canva.toBlob(function(blob) {
-                let urlCut = URL.createObjectURL(blob);
+                urlCut = URL.createObjectURL(blob);
                 cropImage.src = urlCut;
             });
 
-            input.value = "";
+            input.value = urlCut;
 
             if (cropper) {
                 cropper.destroy();

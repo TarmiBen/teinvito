@@ -38,7 +38,7 @@ class CompanieController extends Controller
         $validator = Validator::make($request->all(), [
             'phone' => 'required',
             'name' => 'required',
-            'email' => 'required', //|unique:company,email|email|max:255',
+            'email' => 'required|unique:companies,email|email|max:255',
             'description' => 'required',
             'logo' =>[
                 'required',
@@ -52,16 +52,22 @@ class CompanieController extends Controller
                 'mimes:jpeg,png,jpg,gif,svg',
                 'max:2048',
             ],
-            'rfc' => 'required|string|max:255',
-            'street' => 'nullable',
+            'rfc' => 'nullable|string|max:255',
+            'street' => 'nullable|required_with:address_name',
             'address_name' => 'nullable|required_with:street',
-            'state' => 'nullable|required_with:street', // El campo state puede ser nulo
+            'state' => 'nullable|required_with:address_name', // El campo state puede ser nulo
             'int' => 'nullable',
-            'ext' => 'nullable|required_with:street',
-            'colony' => 'nullable|required_with:street',
-            'city' => 'nullable|required_with:street',
-            'cp' => 'nullable|required_with:street',
+            'ext' => 'nullable|required_with:colony',
+            'colony' => 'nullable|required_with:ext',
+            'city' => 'nullable|required_with:cp',
+            'cp' => 'nullable|required_with:city',
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+                dd($validator->errors());
+        }
         $imgName = ImageHelper::uploadAndResizeImage(
             $request->file('logo'),
             'companies/logos', 
@@ -112,7 +118,7 @@ class CompanieController extends Controller
             $address->save();
         }
         return redirect()->route('admin.companies.index')
-            ->with('message','Company created successfully.');
+            ->with('message','Compañia creada exitosamente.');
     }
     /**
      * Display the specified resource.
@@ -188,7 +194,7 @@ class CompanieController extends Controller
         $company->rfc = $request->rfc;
         $company->save();
         return redirect()->route('admin.companies.index')
-            ->with('message','Company updated successfully.');
+            ->with('message','Compañia actualizada exitosamente.');
     }
 
     /**
@@ -198,7 +204,7 @@ class CompanieController extends Controller
     {
         $company->delete();
         return redirect()->route('admin.companies.index')
-            ->with('message','Company deleted successfully <a href="'.route('admin.companies.restore',$company->id).'">Restore</a>');
+            ->with('message','Compania eliminada exitosamente. <a href="'.route('admin.companies.restore',$company->id).'">Restore</a>');
     }
 
     /**
@@ -208,6 +214,6 @@ class CompanieController extends Controller
     {
         $company = Company::onlyTrashed()->find($id)->restore();
         return redirect()->route('admin.companies.index')
-            ->with('message','Company restored successfully.');
+            ->with('message','Compañia restaurada exitosamente.');
     }
 }

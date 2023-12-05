@@ -111,11 +111,10 @@ class InfoComponent extends Component
                 'name' => 'info',
                 'model_type' => 'info-component',
             ]);
-            $imagePaths = [];
             if ($this->image1) {
                 $imagePath = $this->image1->store('public/images');
                 $imagePaths['image1'] = $imagePath;
-                $this->image1 = null;
+                // $this->image1 = null;
             }
             if (!$this->image1) {
                 Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image1');
@@ -123,7 +122,7 @@ class InfoComponent extends Component
             if ($this->image2) {
                 $imagePath = $this->image2->store('public/images');
                 $imagePaths['image2'] = $imagePath;
-                $this->image2 = null;
+                // $this->image2 = null;
             }
             if (!$this->image2) {
                 Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image2');
@@ -159,12 +158,10 @@ class InfoComponent extends Component
             $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
             $invitationId = $invitation->id;
     
-            $imagePaths = [];//array to save the images paths
-    
             if ($this->image1) {
                 $imagePath = $this->image1->store('public/images');
                 $imagePaths['image1'] = $imagePath;
-                $this->image1 = null;
+                // $this->image1 = null;
             }
             if (!$this->image1) {
                 Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image1');
@@ -172,7 +169,7 @@ class InfoComponent extends Component
             if ($this->image2) {
                 $imagePath = $this->image2->store('public/images');
                 $imagePaths['image2'] = $imagePath;
-                $this->image2 = null;
+                // $this->image2 = null;
             }
             if (!$this->image2) {
                 Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image2');
