@@ -31,7 +31,7 @@
                         @if($image)
                             <img src="{{ is_string($image) ? $image : $image->temporaryUrl() }}" alt="" class="img-fluid object-fit-contain w-75">
                         @endif
-                        <input type="file" class="form-control" wire:model="image" placeholder="subir imagen">
+                        <input type="file" class="form-control" wire:model="image" placeholder="subir imagen" accept=".png,.jpg,.jpeg">
                     @else
                         <img src="{{asset('/storage/app/public/' . $image)}}" alt="Imagen" class="img-fluid" style="max-width: 400px; height: 400px;">
                     @endif

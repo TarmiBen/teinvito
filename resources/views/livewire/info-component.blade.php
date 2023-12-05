@@ -23,7 +23,7 @@
                         @if($image1)
                             <img src="{{ is_string($image1) ? $image1 : $image1->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow h-100">
                         @endif
-                            <input type="file" wire:model="image1" class="form-control">
+                            <input type="file" wire:model="image1" class="form-control" accept=".png,.jpg,.jpeg">
                         @else
                             <img src="{{ asset('storage/' . $image1) }}" alt="" class="img-fluid object-fit-cover shadow h-100">
                     @endif
@@ -85,7 +85,7 @@
                         @if($image2)
                             <img src="{{ is_string($image2) ? $image2 : $image2->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow h-100">
                         @endif
-                            <input type="file" wire:model="image2" class="form-control">
+                            <input type="file" wire:model="image2" class="form-control" accept=".png,.jpg,.jpeg">
                         @else
                             <img src="{{ asset('storage/' . $image2) }}" alt="" class="img-fluid object-fit-cover shadow h-100">
                     @endif

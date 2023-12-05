@@ -21,12 +21,12 @@
                     </h4>
                 @endif
                 <div class="row mt-4 justify-content-center">
-                    <div class="col-5 col-md-3 col-lg-2">
+                    <div class="col-5 col-md-3 col-lg-2 ms-lg-5">
                         @if($isEditing)
                             @if($image)
                                 <img src="{{ is_string($image) ? $image : $image->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow w-100 rounded-pill" style="height: 300px;">
                             @endif
-                            <input type="file" class="form-control" wire:model="image" placeholder="subir imagen">
+                            <input type="file" class="form-control" wire:model="image" placeholder="subir imagen" accept=".png,.jpg,.jpeg">
                         @else
                             <img src="{{asset($image)}}" alt="Imagen" class="img-fluid object-fit-cover shadow w-100 rounded-pill" style="height: 300px;">
                         @endif
@@ -36,7 +36,7 @@
                             @if($image2)
                                 <img src="{{ is_string($image2) ? $image2 : $image2->temporaryUrl() }}" alt="" class="img-fluid object-fit-cover shadow w-100 rounded-pill" style="height: 300px;">
                             @endif
-                            <input type="file" class="form-control" wire:model="image2" placeholder="subir imagen">
+                            <input type="file" class="form-control" wire:model="image2" placeholder="subir imagen" accept=".png,.jpg,.jpeg">
                         @else
                             <img src="{{ $image2 }}" alt="" class="img-fluid object-fit-cover shadow w-100 rounded-pill" style="height: 300px;">
                         @endif

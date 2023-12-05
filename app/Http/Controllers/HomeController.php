@@ -37,15 +37,16 @@ class HomeController extends Controller
             $query->where('user_id', $user->id);
         })->orderBy('status', 'asc')->take(10)->get();
 
-       
+
         if (empty($user->name) || empty($user->lastname) || empty($user->phone) || empty($user->email)) {
             $editProfileLink = '<a href="'.route('profile.edit', $user->id).'">Editar perfil</a>';
             $message = 'Falta por completar algunos datos de tu perfil. '.$editProfileLink;
-    
+
             session()->put('warning', $message);
         }else{
             session()->forget('warning');
         }
+
 
         $invitations        = $this->invitationCount();
         $guestCount            = $this->guests();
@@ -135,14 +136,15 @@ class HomeController extends Controller
 
     public function show()
     {
-        // Obtener el ID del usuario 
+        // Obtener el ID del usuario
         $userId = Auth::user()->id;
 
         // Obtener la última invitación creada por el usuario
         $lastInvitation = Invitation::where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->first();
-        
+
         return $lastInvitation;
-    }    
+    }
+
 }

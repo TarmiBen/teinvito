@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Log;
 class InfoComponent extends Component
 {
     use WithFileUploads;
-    public $link;
-    public $link2;
+
     public $title;
     public $description;
     public $event1;
@@ -27,12 +26,15 @@ class InfoComponent extends Component
     public $place2;
     public $image1;
     public $image2;
+    public $link;
+    public $link2;
     public $isEditing = true;
     public $invitationId;
     protected $listeners = ['saveComponents' => 'saveComponents'];
 
     public function mount($data = null, $info = null, $invitationId = null)
     {
+        $this->invitationId = $invitationId;
         $this->link = 'Agregar link';
         $this->link2 = 'Agregar link';
         $this->title = 'Información';
@@ -49,39 +51,40 @@ class InfoComponent extends Component
         $this->image2 = '';
 
         if($info){
-            $this->link = $info['link'];
-            $this->link2 = $info['link2'];
-            $this->title = $info['title'];
-            $this->description = $info['description'];
-            $this->event1 = $info['event1'];
-            $this->date1 = $info['date1'];
-            $this->hour1 = $info['hour1'];
-            $this->place1 = $info['place1'];
-            $this->event2 = $info['event2'];
-            $this->date2 = $info['date2'];
-            $this->hour2 = $info['hour2'];
-            $this->place2 = $info['place2'];
-            $this->image1 = $info['image1'];
-            $this->image2 = $info['image2'];
+            $this->title        = $info['title'];
+            $this->description  = $info['description'];
+            $this->event1       = $info['event1'];
+            $this->date1        = $info['date1'];
+            $this->hour1        = $info['hour1'];
+            $this->place1       = $info['place1'];
+            $this->event2       = $info['event2'];
+            $this->date2        = $info['date2'];
+            $this->hour2        = $info['hour2'];
+            $this->place2       = $info['place2'];
+            $this->image1       = $info['image1'];
+            $this->image2       = $info['image2'];
+            $this->link         = $info['link'];
+            $this->link2        = $info['link2'];
+            $this->isEditing    = true;
         }
 
         if($data)
         {
-            $this->link = $data['link'];
-            $this->link2 = $data['link2'];
-            $this->title = $data['title'];
-            $this->description = $data['description'];
-            $this->event1 = $data['event1'];
-            $this->date1 = $data['date1'];
-            $this->hour1 = $data['hour1'];
-            $this->place1 = $data['place1'];
-            $this->event2 = $data['event2'];
-            $this->date2 = $data['date2'];
-            $this->hour2 = $data['hour2'];
-            $this->place2 = $data['place2'];
-            $this->image1 = $data['image1'];
-            $this->image2 = $data['image2'];
-            $this->isEditing = false;
+            $this->title            = $data['title'];
+            $this->description      = $data['description'];
+            $this->event1           = $data['event1'];
+            $this->date1            = $data['date1'];
+            $this->hour1            = $data['hour1'];
+            $this->place1           = $data['place1'];
+            $this->event2           = $data['event2'];
+            $this->date2            = $data['date2'];
+            $this->hour2            = $data['hour2'];
+            $this->place2           = $data['place2'];
+            $this->image1           = $data['image1'];
+            $this->image2           = $data['image2'];
+            $this->link             = $data['link'];
+            $this->link2            = $data['link2'];
+            $this->isEditing        = false;
         }
     }
 
@@ -113,19 +116,17 @@ class InfoComponent extends Component
             ]);
             if ($this->image1) {
                 $imagePath = $this->image1->store('public/images');
-                $imagePaths['image1'] = $imagePath;
-                // $this->image1 = null;
+                $this->image1 = $imagePath;
             }
             if (!$this->image1) {
-                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image1');
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo info sin el campo image1');
             }
             if ($this->image2) {
                 $imagePath = $this->image2->store('public/images');
-                $imagePaths['image2'] = $imagePath;
-                // $this->image2 = null;
+                $this->image2 = $imagePath;
             }
             if (!$this->image2) {
-                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image2');
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo info sin el campo image2');
             }
             $this->componentData = [
                 'title'         => $this->title,
@@ -141,38 +142,32 @@ class InfoComponent extends Component
                 'image1'        => $this->image1,
                 'image2'        => $this->image2,
                 'link'          => $this->link,
+                'link2'         => $this->link2,
             ];
-            foreach (['title', 'description', 'event1', 'date1', 'hour1', 'place1', 'event2', 'date2', 'hour2', 'place2', 'link'] as $field) {
-                if (empty($this->componentData[$field])) {
-                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo ' . str_replace('_', ' ', $field));
-                }
-            }
             ComponentHelper::updateComponentData($component, $this->invitationId, $this->componentData);
         }else{
-        $component = ModelComponent::firstOrCreate([
-            'component_package_id' => 1,
-            'name' => 'info',
-            'model_type' => 'info-component',
-        ]);
+            $component = ModelComponent::firstOrCreate([
+                'component_package_id' => 1,
+                'name' => 'info',
+                'model_type' => 'info-component',
+            ]);
     
             $invitation = Invitation::where('user_id', auth()->id())->latest()->first();
             $invitationId = $invitation->id;
     
             if ($this->image1) {
                 $imagePath = $this->image1->store('public/images');
-                $imagePaths['image1'] = $imagePath;
-                // $this->image1 = null;
+                $this->image1 = $imagePath;
             }
             if (!$this->image1) {
-                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image1');
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo info sin el campo image1');
             }
             if ($this->image2) {
                 $imagePath = $this->image2->store('public/images');
-                $imagePaths['image2'] = $imagePath;
-                // $this->image2 = null;
+                $this->image2 = $imagePath;
             }
             if (!$this->image2) {
-                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo image2');
+                Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo info sin el campo image2');
             }
     
             $this->componentData = [
@@ -189,10 +184,11 @@ class InfoComponent extends Component
                 'image1'        => $this->image1,
                 'image2'        => $this->image2,
                 'link'          => $this->link,
+                'link2'         => $this->link2,
             ];
-            foreach (['title', 'description', 'event1', 'date1', 'hour1', 'place1', 'event2', 'date2', 'hour2', 'place2', 'link'] as $field) {
+            foreach (['title', 'description', 'event1', 'date1', 'hour1', 'place1', 'event2', 'date2', 'hour2', 'place2', 'link','link2'] as $field) {
                 if (empty($this->componentData[$field])) {
-                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo gift table sin el campo ' . str_replace('_', ' ', $field));
+                    Log::channel('livewire')->error('El usuario con id:' . auth()->id() . ' intentó actualizar un componente de tipo info sin el campo ' . str_replace('_', ' ', $field));
                 }
             }
             ComponentHelper::createComponentData($component, $invitationId, $this->componentData);
