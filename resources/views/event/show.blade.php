@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="mt-5">
-                        <h4 class="mb-2">Fechas del Evento</h4>
+                        <h4 class="mb-2">Fecha del Evento</h4>
                         <div class="row">
                             <div class="col-12 col-sm-6 col-md-4 mt-2 d-flex align-items-center">
                                 <span class="fw-bold">
@@ -63,7 +63,7 @@
                             <br>
                             <div class="col-12 col-sm-6 col-md-4 mt-2 d-flex align-items-center">
                                 <span class="fw-bold">
-                                    <span class="text-muted">Fecha de Evento:</span> {{ carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}
+                                    <span class="text-muted">Fecha del Evento:</span> {{ carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}
                                 </span>
                             </div>
                         </div>

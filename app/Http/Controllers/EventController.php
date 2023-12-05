@@ -62,10 +62,10 @@ class EventController extends Controller
         $event->user_invited_id = $request->user_invited_id;
         $userInvited = $request->user_invited_id;
         $event->invitation_id = Invitation::where('user_id', $user->id)->latest()->first()->id;
-        if ($request->type1 == null && $request->type != null) {
+        if ($request->type == 'new') {
+            $event->type = $request->type2;
+        }else {
             $event->type = $request->type;
-        }elseif ($request->type == 'new' && $request->type1 != null) {
-            $event->type = $request->type1;
         }
         $event->ceremony_date = $request->ceremony_date;
         $event->event_date = $request->event_date;
@@ -106,6 +106,7 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
         $validator = Validator::make($request->all(), [
+            'user_invited_id' => 'required|email',
             'type' => 'required',
             'ceremony_date' => 'required',
             'event_date' => 'required',
@@ -120,7 +121,11 @@ class EventController extends Controller
         }
         $event->user_invited_id = $request->user_invited_id;
         $userInvited = $request->user_invited_id;
-        $event->type = $request->type;
+        if ($request->type == 'new') {
+            $event->type = $request->type2;
+        }else {
+            $event->type = $request->type;
+        }
         $event->ceremony_date = $request->ceremony_date;
         $event->event_date = $request->event_date;
         $event->title = $request->title;
@@ -129,7 +134,7 @@ class EventController extends Controller
             ->notify(new UserInvitedId());
         $event->update();
 
-        return redirect()->route('event.index')->with('message', 'Event updated successfully');
+        return redirect()->route('event.index')->with('message', 'Evento actualizado correctamente');
     }
 
     /**
