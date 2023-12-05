@@ -7,14 +7,24 @@
     <div class="d-flex position-relative vh-100 h-100">
         <div class="col-12 col-xl-4">
             <div class="h-100 d-flex justify-content-center align-items-center align-items-xl-end pb-xl-5">
-                <div class="text-start border border-3 py-3 px-4 text-white rounded">
+                <div class="text-start border border-3 py-3 px-4 text-black rounded">
                     <p>
-                        <span>
-                            <input type="text" wire:model="title">
-                        </span>
+                        @if($isEditing)
+                            <span>
+                                <input type="text" wire:model="title">
+                            </span>
+                        @else
+                            <span>
+                                {{ $title }}
+                            </span>
+                        @endif
                     </p>
                     <h4 class="mt-4 fw-bold">
-                        <input type="text" wire:model="subtitle">
+                        @if($isEditing)
+                            <input type="text" wire:model="subtitle">
+                        @else
+                            {{ $subtitle }}
+                        @endif
                     </h4>
                 </div>
             </div>

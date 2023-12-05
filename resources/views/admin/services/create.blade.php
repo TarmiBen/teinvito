@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-12 col-sm-6 mt-3">
                                 <label for="img_src"><span class="text-danger">*</span>Imagen del Servicio:</label>
-                                <input type="file" name="img_src" class="form-control" placeholder="Imagen" value="{{ old('img_src') }}">
+                                <input type="file" name="img_src" class="form-control input-file" placeholder="Imagen" value="{{ old('img_src') }}" accept=".png,.jpg,.jpeg" data-image-id="1">
                             </div>
                             <div class="col-12 col-sm-12 mt-3">
                                 <label for="description_large"><span class="text-danger">*</span>Descripción completa del Servicio:</label>

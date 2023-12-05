@@ -35,7 +35,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Servicio</th>
-                            <th>Nombres</th>
+                            <th>Nombre</th>
                             <th>Descipcion</th>
                             <th>Precio</th>
                             <th>Acciones</th>

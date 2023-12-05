@@ -3,11 +3,11 @@
 @section('title', 'Eventos')
 @section('content')
 <div class="row justify-content-between align-items-center">
-    <h3 class="col-auto">Events</h3>
+    <h3 class="col-auto">Eventos</h3>
     <div class="col-auto">
         <a href="{{ route('event.create') }}" class="btn btn-outline-success">
             <i data-feather="plus-square"></i>
-            New Event
+            Nuevo Evento
         </a>
     </div>
 </div>
@@ -27,10 +27,10 @@
                         <th data-priority="user_id">Creador</th>
                         <th data-priority="user_invited_id">Usuario Invitado</th>
                         <th data-priority="tittle">Nombre del Evento</th>
-                        <th data-priority="type">Type</th>
-                        <th data-priority="ceremony_date">CeremonyDate</th>
-                        <th data-priority="event_date">EventDate</th>
-                        <th data-priority="actions">Actions</th>
+                        <th data-priority="type">Tipo de Evento</th>
+                        <th data-priority="ceremony_date">Fecha de Ceremonia</th>
+                        <th data-priority="event_date">Fecha del Evento</th>
+                        <th data-priority="actions">Acciones</th>
                     </tr>
                     </thead>
                     <tbody enctype="multipart/form-data">
@@ -38,15 +38,11 @@
                         <tr>
                             <td>{{$event->id}}</td>
                             <td>{{ $event->User->name }}</td>
-                            @if( $event->user_invited_id == null))
-                                <td>NA</td>
-                            @else
-                                <td>{{ $event->UserInvited->name }} - {{ $event->UserInvited->email }}</td>
-                            @endif
+                            <td>{{ $event->user_invited_id }}</td>
                             <td>{{ $event->title }}</td>
                             <td>{{ $event->type }}</td>
-                            <td>{{ carbon\Carbon::parse($event->ceremony_date)->format('d-m-Y') }}</td>
-                            <td>{{ carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</td>
+                            <td>{{ carbon\Carbon::parse($event->ceremony_date)->format('d-m-Y H:i:s') }}</td>
+                            <td>{{ carbon\Carbon::parse($event->event_date)->format('d-m-Y H:i:s') }}</td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <form action="{{ route('event.destroy', $event) }}" method="POST">

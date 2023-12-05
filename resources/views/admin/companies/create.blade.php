@@ -61,17 +61,17 @@
 
                                 <div class="col-12 col-md-6 mt-3">
                                     <label for="street">Calle:</label>
-                                    <input type="text" name="street" class="form-control" placeholder="Calle">
+                                    <input type="text" name="street" class="form-control" placeholder="Calle" value="{{ old('street') }}">
                                 </div>
 
                                 <div class="col-12 col-sm-6 col-md-3 mt-3">
                                     <label for="ext">Número Exterior:</label>
-                                    <input type="text" name="ext" class="form-control" placeholder="Numero Exterior">
+                                    <input type="text" name="ext" class="form-control" placeholder="Numero Exterior" value="{{ old('ext') }}">
                                 </div>
 
                                 <div class="col-12 col-sm-6 col-md-3 mt-3">
                                     <label for="int">Número Interior:</label>
-                                    <input type="text" name="int" class="form-control" placeholder="Numero Interior">
+                                    <input type="text" name="int" class="form-control" placeholder="Numero Interior" value="{{ old('int') }}">
                                 </div>
 
                                 <div class="col-12 col-sm-6 mt-3">
@@ -88,7 +88,7 @@
 
                                 <div class="col-12 col-sm-6 mt-3">
                                     <label for="city">Ciudad:</label>
-                                    <input type="text" name="city" class="form-control" placeholder="Ciudad">
+                                    <input type="text" name="city" class="form-control" placeholder="Ciudad" id="mubicipio" value="{{ old('city') }}">
                                 </div>
 
                                 <div class="col-12 col-sm-6 mt-3">
@@ -133,7 +133,7 @@
                 </div>
                 <div class="card-body">
                     <div class="image-container">
-                        <img src="" alt="" class="img-cropper" id="cropped-image">
+                        <img src="" alt="" class="img-cropper" id="cropped-image" style="width: 500%; height: 100%;">
                     </div>
                 </div>
                 <div class="card-footer">
@@ -153,6 +153,7 @@
 
         $('.input-file').on('change', function() {
             const input = this; // Obtenemos el input que se esta modificando
+            const inputName = input.name;
             currentImageId = input.dataset.imageId; // Obtenemos el id de la imagen que se esta modificando
 
             let archivos = input.files; // Obtenemos los archivos seleccionados en el input
@@ -176,19 +177,19 @@
                     if (cropper) {
                         cropper.destroy();
                     }
+                    let aspectRatio = 1; // Default aspect ratio for logo
+                    if (inputName === 'cover') {
+                        aspectRatio = 5 / 2; // Aspect ratio for cover
+                    }
                     // Crear cropper
                     cropper = new Cropper(image, {
-                        aspectRatio: 1,
+                        aspectRatio: aspectRatio,
                         preview: '.img-sample',
                         zoomable: false,
                         viewMode: 1,
-                        responsive: false,
+                        responsive: true,
                         dragMode: 'none',
                         restore: true,
-                        ready() {
-                            document.querySelector('.cropper-container').style.width = '100%';
-                            document.querySelector('.cropper-container').style.height = '50%';
-                        }
                     });
 
                     $('#modal').addClass('active'); // Agregamos la clase active a la tarjeta

@@ -11,7 +11,7 @@
                 @method('DELETE')
                 <a href="{{ route('admin.addresses.create') }}" class="btn btn-outline-primary">
                     <i data-feather="plus-square"></i>
-                    Nuevo Contacto
+                    Nueva Dirección
                 </a>
                 <a href="{{ route('admin.addresses.edit', $address) }}" class="btn btn-warning">
                     <i data-feather="edit"></i>

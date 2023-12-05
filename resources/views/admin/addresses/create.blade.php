@@ -71,7 +71,7 @@
                                 <div class="col-12 col-sm-6 mt-3">
                                     <label for="city"><span class="text-danger">*</span>Ciudad:</label>
                                     <input type="text" name="city" class="form-control" placeholder="Ciudad"
-                                        value="{{ old('city') }}">
+                                        value="{{ old('city') }}" id="municipio">
                                 </div>
 
                                 <div class="col-12 col-sm-6 mt-3">

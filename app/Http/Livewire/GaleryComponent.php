@@ -25,30 +25,25 @@ class GaleryComponent extends Component
     public function mount($data = null, $info = null, $invitationId = null)
     {
         $this->invitationId = $invitationId;
-        $this->images = [
-            'images1' => null,
-            'images2' => null,
-            'images3' => null,
-            'images4' => null,
-        ];
+        $this->images1 = "";
+        $this->images2 = "";
+        $this->images3 = "";
+        $this->images4 = "";
+    
         if ($info) {
-            $this->images = [
-                'images1' => $info['images1'],
-                'images2' => $info['images2'],
-                'images3' => $info['images3'],
-                'images4' => $info['images4'],
-            ];
+            $this->images1 = $info['images1'];
+            $this->images2 = $info['images2'];
+            $this->images3 = $info['images3'];
+            $this->images4 = $info['images4'];
             $this->isEditing = true;
         }
 
         if($data)
         {
-            $this->images = [
-                'images1' => $data['images1'],
-                'images2' => $data['images2'],
-                'images3' => $data['images3'],
-                'images4' => $data['images4'],
-            ];
+            $this->images1 = $data['images1'];
+            $this->images2 = $data['images2'];
+            $this->images3 = $data['images3'];
+            $this->images4 = $data['images4'];
             $this->isEditing = false;
         }
     }

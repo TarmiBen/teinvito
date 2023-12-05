@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Invitation;
 use App\Models\User;
 use App\Notifications\UserInvitedId;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class EventController extends Controller
         $today = now();
         $nextDay = $today->addDay();
         $validator = Validator::make($request->all(), [
+            'user_invited_id' => 'required|email',
             'type' => 'required',
             'ceremony_date' => "required|date|after_or_equal:$nextDay",
             'event_date' => "required|date|after_or_equal:$nextDay",
@@ -49,7 +51,7 @@ class EventController extends Controller
         ]);
         if ($validator->fails()) {
             Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó crear un evento pero fallo en el dato: ' . $validator->errors()->first());
-    
+
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
@@ -59,17 +61,21 @@ class EventController extends Controller
         $event->users_id = $user->id;
         $event->user_invited_id = $request->user_invited_id;
         $userInvited = $request->user_invited_id;
-        if ($request->type1 == null && $request->type != null) {
+        $event->invitation_id = Invitation::where('user_id', $user->id)->latest()->first()->id;
+        if ($request->type == 'new') {
+            $event->type = $request->type2;
+        }else {
             $event->type = $request->type;
-        }elseif ($request->type == 'new' && $request->type1 != null) {
-            $event->type = $request->type1;
         }
         $event->ceremony_date = $request->ceremony_date;
         $event->event_date = $request->event_date;
         $event->title = $request->title;
-        $user = User::find($userInvited);
+        $user = $userInvited;
+        Notification::route('mail', $user)
+            ->notify(new UserInvitedId());
 
-        $user->notify(new UserInvitedId());
+
+
 
         $event->save();
 
@@ -100,6 +106,7 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
         $validator = Validator::make($request->all(), [
+            'user_invited_id' => 'required|email',
             'type' => 'required',
             'ceremony_date' => 'required',
             'event_date' => 'required',
@@ -107,19 +114,27 @@ class EventController extends Controller
         ]);
         if ($validator->fails()) {
             Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' intentó actualizar un evento pero fallo en el dato: ' . $validator->errors()->first());
-    
+
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
         $event->user_invited_id = $request->user_invited_id;
-        $event->type = $request->type;
+        $userInvited = $request->user_invited_id;
+        if ($request->type == 'new') {
+            $event->type = $request->type2;
+        }else {
+            $event->type = $request->type;
+        }
         $event->ceremony_date = $request->ceremony_date;
         $event->event_date = $request->event_date;
         $event->title = $request->title;
+        $user = $userInvited;
+        Notification::route('mail', $user)
+            ->notify(new UserInvitedId());
         $event->update();
 
-        return redirect()->route('event.index')->with('message', 'Event updated successfully');
+        return redirect()->route('event.index')->with('message', 'Evento actualizado correctamente');
     }
 
     /**

@@ -1,10 +1,10 @@
 <div>
     <div class="row justify-content-between align-items-center">
-        <h3 class="col-auto">Lista de Contactos</h3>
+        <h3 class="col-auto">Lista de Direcciones</h3>
         <div class="col-auto">
             <a href="{{ route('admin.addresses.create') }}" class="btn btn-primary">
                 <i class="fa-regular fa-square-plus"></i>
-                Nuevo Contacto
+                Nueva Dirección
             </a>
         </div>
     </div>

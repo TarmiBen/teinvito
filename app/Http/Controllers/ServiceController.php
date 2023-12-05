@@ -79,7 +79,7 @@ class ServiceController extends Controller
         }
         $service->save();
         return redirect()->route('admin.services.index')
-            ->with('message', 'Service created successfully.');
+            ->with('message', 'El servicio se ha creado correctamente.');
     }
 
     /**
@@ -145,7 +145,7 @@ class ServiceController extends Controller
         $service->save();
 
         return redirect()->route('services.index')
-            ->with('message', 'Service updated successfully.');
+            ->with('message', 'El servicio se ha actualizado correctamente.');
     }
 
     /**

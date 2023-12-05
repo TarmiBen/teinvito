@@ -10,7 +10,7 @@
             @method('DELETE')
             <a href="{{ route('event.create') }}" class="btn btn-outline-success">
                 <i data-feather="plus-square"></i>
-                Nuevo Contacto
+                Nuevo Evento
             </a>
             <a href="{{ route('event.edit', $event) }}" class="btn btn-warning">
                 <i data-feather="edit"></i>
@@ -43,7 +43,7 @@
                             <span class="fw-bold">
                                 Colaborador:
                             </span>
-                            <a class="ms-2" href="#">{{ $event->UserInvited->name }}</a>
+                            <a class="ms-2" href="#">{{ $event->user_invited_id }}</a>
                         </div>
                         <div class="mt-2 text-muted d-flex align-items-center">
                             <span class="fw-bold">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="mt-5">
-                        <h4 class="mb-2">Fechas del Evento</h4>
+                        <h4 class="mb-2">Fecha del Evento</h4>
                         <div class="row">
                             <div class="col-12 col-sm-6 col-md-4 mt-2 d-flex align-items-center">
                                 <span class="fw-bold">
@@ -63,7 +63,7 @@
                             <br>
                             <div class="col-12 col-sm-6 col-md-4 mt-2 d-flex align-items-center">
                                 <span class="fw-bold">
-                                    <span class="text-muted">Fecha de Evento:</span> {{ carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}
+                                    <span class="text-muted">Fecha del Evento:</span> {{ carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}
                                 </span>
                             </div>
                         </div>
