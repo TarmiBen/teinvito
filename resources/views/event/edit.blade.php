@@ -18,7 +18,7 @@
                         <div class="card-body">
                             @csrf
                             <div class="row">
-                                <h3> Nuevo Evento</h3>
+                                <h3> Actualizar Evento</h3>
                                 <div class="col-12 col-sm-12 mt-3">
                                     <label for="title">Nombre del evento:</label>
                                     <input type="text" name="title" class="form-control" placeholder="Titulo"
@@ -32,26 +32,28 @@
                                 </div>
                                 <div class="col-12 col-sm-6  mt-3">
                                     <label for="type">Tipo de Evento:</label>
-                                    <select name="type" id="new_type" class="form-select">
+                                    <select name="type" id="new_type" class="form-select" onchange="mostrarOcultarInput()">
                                         <option value="{{ $event->type }}">{{ $event->type }}</option>
                                         <option value="BODA">BODA</option>
                                         <option value="XV AÑOS">XV AÑOS</option>
                                         <option value="GRADUACION">GRADUACION</option>
-                                        <option value="new">New</option>
+                                        <option value="new">OTRA</option>
                                     </select>
+                                    <input type="text" name="type2" id="otro_tipo" class="form-control mt-3"
+                                           placeholder="Escribe el tipo de evento"  style="display:none;">
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
                                     <label for="ceremony_date">Fecha de Ceremonia:</label>
-                                    <input type="date" name="ceremony_date" class="form-control"
+                                    <input type="datetime-local" name="ceremony_date" class="form-control"
                                         placeholder="Fecha de Ceremonia"
-                                        value="{{ \Carbon\Carbon::parse($event->ceremony_date)->format('Y-m-d') }}">
+                                        value="{{ \Carbon\Carbon::parse($event->ceremony_date)->format('Y-m-d H:i:s') }}">
                                 </div>
 
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="event_date">Fecha de Evento:</label>
-                                    <input type="date" name="event_date" class="form-control"
+                                    <label for="event_date">Fecha del Evento:</label>
+                                    <input type="datetime-local" name="event_date" class="form-control"
                                         placeholder="Fecha de Evento"
-                                        value="{{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') }}">
+                                        value="{{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d H:i:s') }}">
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-end mt-3">
@@ -68,5 +70,15 @@
             </div>
         </form>
     </div>
+
+    <script>
+        function mostrarOcultarInput() {
+            var select = document.getElementById('new_type');
+            var inputOtroTipo = document.getElementById('otro_tipo');
+
+            // Si la opción seleccionada es "new", muestra el input, de lo contrario, ocúltalo.
+            inputOtroTipo.style.display = (select.value === 'new') ? 'block' : 'none';
+        }
+    </script>
 
 @endsection
