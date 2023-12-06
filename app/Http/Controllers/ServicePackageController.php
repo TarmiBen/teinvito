@@ -8,6 +8,10 @@ use App\Models\Galery;
 
 class ServicePackageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
