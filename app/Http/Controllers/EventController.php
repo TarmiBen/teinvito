@@ -14,12 +14,17 @@ use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::where('users_id', auth()->user()->id)->get();
 
         return view('event.index', compact('events'));
     }
@@ -45,6 +50,7 @@ class EventController extends Controller
         $validator = Validator::make($request->all(), [
             'user_invited_id' => 'required|email',
             'type' => 'required',
+            'type2' => 'required_if:type,new',
             'ceremony_date' => "required|date|after_or_equal:$nextDay",
             'event_date' => "required|date|after_or_equal:$nextDay",
             'title' => 'required',
@@ -56,30 +62,32 @@ class EventController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        $event = new Event();
-        $user = Auth::user();
-        $event->users_id = $user->id;
-        $event->user_invited_id = $request->user_invited_id;
-        $userInvited = $request->user_invited_id;
-        $event->invitation_id = Invitation::where('user_id', $user->id)->latest()->first()->id;
-        if ($request->type == 'new') {
-            $event->type = $request->type2;
-        }else {
-            $event->type = $request->type;
+        $latestInvitation = Invitation::where('user_id', auth()->user()->id)->latest()->first();
+        if ($latestInvitation) {
+            $event = new Event();
+            $user = Auth::user();
+            $event->users_id = $user->id;
+            $event->user_invited_id = $request->user_invited_id;
+            $userInvited = $request->user_invited_id;
+            $event->invitation_id = Invitation::where('user_id', $user->id)->latest()->first()->id;
+            if ($request->type == 'new') {
+                $event->type = $request->type2;
+            } else {
+                $event->type = $request->type;
+            }
+            $event->ceremony_date = $request->ceremony_date;
+            $event->event_date = $request->event_date;
+            $event->title = $request->title;
+            $user = $userInvited;
+            Notification::route('mail', $user)->notify(new UserInvitedId());
+            $event->save();
+
+            return redirect()->route('event.index')->with('message', 'Evento creado correctamente');
+        } else {
+
+            return redirect()->back()->with('invitation_error', 'Necesitas una invitación para crear un evento <a href="' . route('admin.invitations.create') . '">"Crear invitación"</a>');
+
         }
-        $event->ceremony_date = $request->ceremony_date;
-        $event->event_date = $request->event_date;
-        $event->title = $request->title;
-        $user = $userInvited;
-        Notification::route('mail', $user)
-            ->notify(new UserInvitedId());
-
-
-
-
-        $event->save();
-
-        return redirect()->route('event.index')->with('message', 'Evento creado correctamente');
     }
 
     /**
@@ -105,11 +113,14 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+        $today = now();
+        $nextDay = $today->addDay();
         $validator = Validator::make($request->all(), [
             'user_invited_id' => 'required|email',
             'type' => 'required',
-            'ceremony_date' => 'required',
-            'event_date' => 'required',
+            'type2' => 'required_if:type,new',
+            'ceremony_date' => "required|date|after_or_equal:$nextDay",
+            'event_date' => "required|date|after_or_equal:$nextDay",
             'title' => 'required',
         ]);
         if ($validator->fails()) {

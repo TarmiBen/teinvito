@@ -53,17 +53,17 @@
                         </div>
                     </div>
                     <div class="mt-5">
-                        <h4 class="mb-2">Fecha del Evento</h4>
+                        <h4 class="mb-2">Fecha y hora del Evento</h4>
                         <div class="row">
                             <div class="col-12 col-sm-6 col-md-4 mt-2 d-flex align-items-center">
                                 <span class="fw-bold">
-                                    <span class="text-muted">Fecha de Ceremonia:</span> {{ carbon\Carbon::parse($event->ceremony_date)->format('d-m-Y') }}
+                                    <span class="text-muted">Fecha y hora de Ceremonia:</span> {{ carbon\Carbon::parse($event->ceremony_date)->format('d-m-Y H:i:s') }}
                                 </span>
                             </div>
                             <br>
                             <div class="col-12 col-sm-6 col-md-4 mt-2 d-flex align-items-center">
                                 <span class="fw-bold">
-                                    <span class="text-muted">Fecha del Evento:</span> {{ carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}
+                                    <span class="text-muted">Fecha y hora del Evento:</span> {{ carbon\Carbon::parse($event->event_date)->format('d-m-Y H:i:s') }}
                                 </span>
                             </div>
                         </div>
