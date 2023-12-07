@@ -43,7 +43,7 @@ class UserProviderAccessNotification extends Notification implements ShouldQueue
         $url = route('admin.userProviders.show', ['userProvider' => $userProvider->id]);
         $indexurl = route('admin.userProviders.index');
         return (new MailMessage)
-            ->line('El usuario ' . Auth::user()->name . ' ' . 'ha asignado oto usuario a la compañia ')
+            ->line('El usuario ' . Auth::user()->name . ' ' . 'ha asignado otro usuario a la compañia ')
             ->action('Ver registros', $indexurl)
             ->line('Gracias por usar nuestra aplicación.')
             ->line('Si, usted acepto la asignación de usuario a la compañia ignorar este mensaje');

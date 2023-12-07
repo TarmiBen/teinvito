@@ -28,7 +28,6 @@ use App\Http\Controllers\QueryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 
 Route::resource('profile', ProfileController::class)->middleware('verified')->names('profile');
 
@@ -47,27 +46,27 @@ Route::resource('/guests', GuestsController::class)->middleware('verified')->nam
 Route::get('/invitation/{hash}', [GuestsController::class, 'urlValid'])->name('guests.confirm');
 Route::post('/guest/{hash}', [GuestsController::class, 'confirmAssistance'])->name('guests.guest');
 
-Route::get('/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->name('admin.invitations.create');
-Route::get('/invitations', [InvitationController::class, 'index'])->name('admin.invitations.index');
-Route::get('/invitations/show/{invitationId}', [InvitationController::class, 'show'])->name('admin.invitations.show');
-Route::get('/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->name('admin.invitations.deleteConfirm');
-Route::delete('/invitations/{invitation}', [InvitationController::class, 'destroy'])->name('admin.invitations.destroy');
+Route::get('/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->meddleware('verified')->name('invitations.create');
+Route::get('/invitations', [InvitationController::class, 'index'])->meddleware('verified')->name('invitations.index');
+Route::get('/invitations/show/{invitationId}', [InvitationController::class, 'show'])->meddleware('verified')->name('invitations.show');
+Route::get('/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->meddleware('verified')->name('invitations.deleteConfirm');
+Route::delete('/invitations/{invitation}', [InvitationController::class, 'destroy'])->meddleware('verified')->name('invitations.destroy');
 
-Route::resource('/companies', CompanieController::class)->names('admin.companies');
+Route::resource('/companies', CompanieController::class)->middleware('verified')->names('admin.companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {
-    Route::get('logs', [LogController::class, 'index'])->name('logs.index');
-    Route::resource('/userProviders', UserProviderController::class)->names('admin.userProviders');
+    Route::get('logs', [LogController::class, 'index'])->middleware('verified')->name('logs.index');
+    Route::resource('/userProviders', UserProviderController::class)->middleware('verified')->names('admin.userProviders');
 });
-Route::resource('/contacts', ContactController::class)->names('admin.contacts');
-Route::resource('/addresses', AdressController::class)->names('admin.addresses');
-Route::resource('/services', ServiceController::class)->names('admin.services');
+Route::resource('/contacts', ContactController::class)->middleware('verified')->names('admin.contacts');
+Route::resource('/addresses', AdressController::class)->middleware('verified')->names('admin.addresses');
+Route::resource('/services', ServiceController::class)->middleware('verified')->names('admin.services');
 
 //servicePackage section
-Route::get('/servicePackage/create/{servicePackageId?}', [ServicePackageController::class, 'create'])->name('admin.servicePackages.create');
-Route::get('/servicePackage', [ServicePackageController::class, 'index'])->name('admin.servicePackages.index');
-Route::get('/servicePackage/show/{servicePackage}', [ServicePackageController::class, 'show'])->name('admin.servicePackages.show');
-Route::get('/servicePackage/delete/{deleteId}', [ServicePackageController::class, 'deleteConfirm'])->name('admin.servicePackages.deleteConfirm');
-Route::delete('/servicePackage/{servicePackage}', [ServicePackageController::class, 'destroy'])->name('admin.servicePackages.destroy');
+Route::get('/servicePackage/create/{servicePackageId?}', [ServicePackageController::class, 'create'])->middleware('verified')->name('admin.servicePackages.create');
+Route::get('/servicePackage', [ServicePackageController::class, 'index'])->middleware('verified')->name('admin.servicePackages.index');
+Route::get('/servicePackage/show/{servicePackage}', [ServicePackageController::class, 'show'])->middleware('verified')->name('admin.servicePackages.show');
+Route::get('/servicePackage/delete/{deleteId}', [ServicePackageController::class, 'deleteConfirm'])->middleware('verified')->name('admin.servicePackages.deleteConfirm');
+Route::delete('/servicePackage/{servicePackage}', [ServicePackageController::class, 'destroy'])->middleware('verified')->name('admin.servicePackages.destroy');
 
 //restored section
 Route::get('/companies/{id}/restore', [CompanieController::class, 'restore'])->name('admin.companies.restore');
@@ -75,19 +74,14 @@ Route::get('/userProviders/{id}/restore', [UserProviderController::class, 'resto
 Route::get('/contacts/{id}/restore', [ContactController::class, 'restore'])->name('admin.contacts.restore');
 Route::get('/addresses/{id}/restore', [AdressController::class, 'restore'])->name('admin.addresses.restore');
 
-//query section
-Route::get('/autoCompleteUser/json', [UserProviderController::class, 'autoCompleteUser'])->name('admin.userProviders.autoCompleteUser');
-Route::get('/autoCompleteCompany/json', [UserProviderController::class, 'autoCompleteCompany'])->name('admin.userProviders.autoCompleteCompany');
-
-Route::get('/codigo-postal/{cp}', [QueryController::class, 'getCP'])->name('admin.getCP');
 //category
-Route::get('/category', [CategoryController::class, 'index'])->name('category');
-Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-Route::get('/category/category-add', [CategoryController::class, 'create'])->name('category.create');
-Route::get('/category/{id}/category-edit', [CategoryController::class, 'edit'])->name('category.edit');
-Route::put('/category/{id}/category-edit', [CategoryController::class, 'update'])->name('category.update');
-Route::get('/category/{id}/category-show', [CategoryController::class, 'show'])->name('category.show');
-Route::delete('/category/{categoria}', [CategoryController::class, 'destroy'])->name('category.destroy');
+Route::get('/category', [CategoryController::class, 'index'])->middleware('verified')->name('category');
+Route::post('/category', [CategoryController::class, 'store'])->middleware('verified')->name('category.store');
+Route::get('/category/category-add', [CategoryController::class, 'create'])->middleware('verified')->name('category.create');
+Route::get('/category/{id}/category-edit', [CategoryController::class, 'edit'])->middleware('verified')->name('category.edit');
+Route::put('/category/{id}/category-edit', [CategoryController::class, 'update'])->middleware('verified')->name('category.update');
+Route::get('/category/{id}/category-show', [CategoryController::class, 'show'])->middleware('verified')->name('category.show');
+Route::delete('/category/{categoria}', [CategoryController::class, 'destroy'])->middleware('verified')->name('category.destroy');
 
 //customView
 Route::resource('/customView', CustomViewController::class)->names('admin.customView')->only(['index']);
