@@ -8,7 +8,11 @@
                 <h3 class="col-auto m-0">Nuevo Evento</h3>
             </div>
 
-
+            @if(session('invitation_error'))
+                <div class="alert alert-danger">
+                    {!! session('invitation_error') !!}
+                </div>
+            @endif
 
             <div class="row mt-3">
                 <div class="col">
@@ -44,11 +48,14 @@
                                     <input type="text" name="type2" id="otro_tipo" class="form-control mt-3"
                                         placeholder="Escribe el tipo de evento" value="{{ old('type2') }}" style="display:none;">
                                     @error('type')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('type2')
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="ceremony_date">Fecha de Ceremonia:</label>
+                                    <label for="ceremony_date">Fecha y hora de Ceremonia:</label>
                                     <input type="datetime-local" name="ceremony_date" class="form-control"
                                         placeholder="Fecha de Ceremonia" value="{{ old('ceremony_date') }}">
                                     @error('ceremony_date')
@@ -56,7 +63,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-12 col-sm-6 mt-3">
-                                    <label for="event_date">Fecha de Evento:</label>
+                                    <label for="event_date">Fecha y hora del Evento:</label>
                                     <input type="datetime-local" name="event_date" class="form-control"
                                         placeholder="Fecha de Evento" value="{{ old('event_date') }}">
                                     @error('event_date')
@@ -78,32 +85,14 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#btnGuardar').on('click', function () {
-                // Desactivar el botón
-                $(this).prop('disabled', true);
-
-                // Cambiar el texto del botón (opcional)
-                $(this).html('<i class="fa-regular fa-square-plus"></i> Guardando...');
-
-                // Puedes descomentar la siguiente línea si deseas enviar el formulario después de desactivar el botón
-                $('form').submit();
-            });
-        });
-    </script>
-
-    <script>
         function mostrarOcultarInput() {
             var select = document.getElementById('new_type');
             var inputOtroTipo = document.getElementById('otro_tipo');
-
-            // Si la opción seleccionada es "new", muestra el input, de lo contrario, ocúltalo.
             inputOtroTipo.style.display = (select.value === 'new') ? 'block' : 'none';
         }
         document.addEventListener('DOMContentLoaded', function () {
             mostrarOcultarInput();
         });
     </script>
-
 
 @endsection

@@ -39,10 +39,10 @@ Route::get('/paypal', [PayPalController::class,'index']);
 Route::get('/withpay', [PayPalController::class,'payWhit']);
 Route::get('/paypal/status', [PayPalController::class,'status']);
 
-Route::resource('/event', EventController::class)->names('event');
+Route::resource('/event', EventController::class)->middleware('verified')->names('event');
 Route::get('/event/restore/{id}', [EventController::class, 'restore'])->name('event.restore');
 
-Route::resource('/guests', GuestsController::class)->names('guests');
+Route::resource('/guests', GuestsController::class)->middleware('verified')->names('guests');
 Route::get('/invitation/{hash}', [GuestsController::class, 'urlValid'])->name('guests.confirm');
 Route::post('/guest/{hash}', [GuestsController::class, 'confirmAssistance'])->name('guests.guest');
 
