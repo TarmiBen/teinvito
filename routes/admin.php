@@ -1,5 +1,6 @@
-<!-- Espacio de Pedro -->
+<?php
+//Espacio de Pedro
 
-<!-- Espacio del tonto de Paco -->
+//Espacio del tonto de Paco
 
-<!-- Espacio de Fer -->
+//Espacio de Fer

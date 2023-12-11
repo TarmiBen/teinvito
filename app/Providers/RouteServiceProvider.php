@@ -7,6 +7,9 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use App\Events\RouteVisited;
+use Illuminate\Support\Facades\Event;
+use App\Models\Visit;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -40,10 +43,31 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('user')
                 ->group(base_path('routes/user.php'));
 
-            Route::middleware('web')
+            Route::middleware('web', 'recordVisit')
                 ->prefix('admin')
                 ->group(base_path('routes/admin.php'));
-            
+
+                $this->registerVisits();
+        });
+
+        Event::listen(RouteVisited::class, function ($event) {
+            $ruta = Visit::where('name', $event->nameRoute)->first();
+            if (!$ruta) {
+                Visit::create([
+                    'name' => $event->nameRoute,
+                    'count' => 0,
+                ]);
+            }
+        });
+    }
+
+    protected function registerVisits()
+    {
+        collect(Route::getRoutes())->each(function ($route) {
+            $nombreRuta = $route->uri();
+            if ($nombreRuta && !str_contains($nombreRuta, '_ignition') && !str_contains($nombreRuta, 'livewire') && !str_contains($nombreRuta, 'user')) {
+                event(new RouteVisited($nombreRuta));
+            }
         });
     }
 }
