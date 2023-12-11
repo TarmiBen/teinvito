@@ -39,18 +39,18 @@ Route::get('/paypal', [PayPalController::class,'index']);
 Route::get('/withpay', [PayPalController::class,'payWhit']);
 Route::get('/paypal/status', [PayPalController::class,'status']);
 
-Route::resource('/event', EventController::class)->names('event');
+Route::resource('/event', EventController::class)->middleware('verified')->names('event');
 Route::get('/event/restore/{id}', [EventController::class, 'restore'])->name('event.restore');
 
-Route::resource('/guests', GuestsController::class)->names('guests');
+Route::resource('/guests', GuestsController::class)->middleware('verified')->names('guests');
 Route::get('/invitation/{hash}', [GuestsController::class, 'urlValid'])->name('guests.confirm');
 Route::post('/guest/{hash}', [GuestsController::class, 'confirmAssistance'])->name('guests.guest');
 
-Route::get('/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->middleware('verified')->name('admin.invitations.create');
-Route::get('/invitations', [InvitationController::class, 'index'])->middleware('verified')->name('admin.invitations.index');
-Route::get('/invitations/show/{invitationId}', [InvitationController::class, 'show'])->middleware('verified')->name('admin.invitations.show');
-Route::get('/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->middleware('verified')->name('admin.invitations.deleteConfirm');
-Route::delete('/invitations/{invitation}', [InvitationController::class, 'destroy'])->middleware('verified')->name('admin.invitations.destroy');
+Route::get('/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->middleware('verified')->name('invitations.create');
+Route::get('/invitations', [InvitationController::class, 'index'])->middleware('verified')->name('invitations.index');
+Route::get('/invitations/show/{invitationId}', [InvitationController::class, 'show'])->middleware('verified')->name('invitations.show');
+Route::get('/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->middleware('verified')->name('invitations.deleteConfirm');
+Route::delete('/invitations/{invitation}', [InvitationController::class, 'destroy'])->middleware('verified')->name('invitations.destroy');
 
 Route::resource('/companies', CompanieController::class)->middleware('verified')->names('admin.companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {
