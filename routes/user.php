@@ -46,11 +46,11 @@ Route::resource('/guests', GuestsController::class)->middleware('verified')->nam
 Route::get('/invitation/{hash}', [GuestsController::class, 'urlValid'])->name('guests.confirm');
 Route::post('/guest/{hash}', [GuestsController::class, 'confirmAssistance'])->name('guests.guest');
 
-Route::get('/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->meddleware('verified')->name('invitations.create');
-Route::get('/invitations', [InvitationController::class, 'index'])->meddleware('verified')->name('invitations.index');
-Route::get('/invitations/show/{invitationId}', [InvitationController::class, 'show'])->meddleware('verified')->name('invitations.show');
-Route::get('/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->meddleware('verified')->name('invitations.deleteConfirm');
-Route::delete('/invitations/{invitation}', [InvitationController::class, 'destroy'])->meddleware('verified')->name('invitations.destroy');
+Route::get('/invitations/create/{invitationId?}', [InvitationController::class, 'create'])->name('invitations.create');
+Route::get('/invitations', [InvitationController::class, 'index'])->name('invitations.index');
+Route::get('/invitations/show/{invitationId}', [InvitationController::class, 'show'])->name('invitations.show');
+Route::get('/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->name('invitations.deleteConfirm');
+Route::delete('/invitations/{invitation}', [InvitationController::class, 'destroy'])->name('invitations.destroy');
 
 Route::resource('/companies', CompanieController::class)->middleware('verified')->names('admin.companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {

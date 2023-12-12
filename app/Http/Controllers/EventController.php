@@ -155,7 +155,7 @@ class EventController extends Controller
     {
         $event = Event::find($event->id);
         $event->delete();
-        return redirect()->route('event.index')->with('message', 'Event deleted successfully <a href="'.route('event.restore', $event->id).'">Restore</a>');
+        return redirect()->route('event.index')->with('message', 'EventLiveWire deleted successfully <a href="'.route('event.restore', $event->id).'">Restore</a>');
 
     }
 
@@ -163,6 +163,6 @@ class EventController extends Controller
     {
         Event::onlyTrashed()->find($id)->restore();
 
-        return redirect()->back()->with('message', 'Event restored successfully');
+        return redirect()->back()->with('message', 'EventLiveWire restored successfully');
     }
 }

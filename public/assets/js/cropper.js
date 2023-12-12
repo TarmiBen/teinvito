@@ -263,7 +263,7 @@
     minCropBoxHeight: 0,
     minContainerWidth: MIN_CONTAINER_WIDTH,
     minContainerHeight: MIN_CONTAINER_HEIGHT,
-    // Shortcuts of events
+    // Shortcuts of event
     ready: null,
     cropstart: null,
     cropmove: null,
@@ -709,7 +709,7 @@
    */
 
   function dispatchEvent(element, type, data) {
-    var event; // Event and CustomEvent on IE9-11 are global objects, not constructors
+    var event; // EventLiveWire and CustomEvent on IE9-11 are global objects, not constructors
 
     if (isFunction(Event) && isFunction(CustomEvent)) {
       event = new CustomEvent(type, {

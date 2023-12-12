@@ -1,11 +1,11 @@
-// sample calendar events data
+// sample calendar event data
 
 'use strict'
 
 var curYear = moment().format('YYYY');
 var curMonth = moment().format('MM');
 
-// Calendar Event Source
+// Calendar EventLiveWire Source
 var calendarEvents = {
   id: 1,
   backgroundColor: '#d9e8ff',

@@ -25,7 +25,7 @@ class InvitationIndex extends Component
     public function render()
     {
         $user = Auth::user()->id;
-    
+
         $invitations = Invitation::whereIn('user_id', function ($query) use ($user) {
             $query->select('user_id')
                 ->from('users')
@@ -33,13 +33,13 @@ class InvitationIndex extends Component
         })->where(function ($query) {
             $query->where('id', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('package_id', 'LIKE', '%' . $this->search . '%')
-                ->orWhereHas('User', function ($query) {
+                ->orWhereHas('UserLw', function ($query) {
                     $query->where('name', 'LIKE', '%' . $this->search . '%')
                     ->orWhere('email', 'LIKE', '%' . $this->search . '%');
                 });
         })->orderBy($this->orderBy, $this->order)
         ->paginate($this->paginate);
-    
+
         return view('livewire.invitation-index', compact('invitations'));
     }
 
@@ -57,24 +57,24 @@ class InvitationIndex extends Component
     {
         if ($this->deleteId) {
             $invitation = Invitation::with('InvitationsComponents', 'ComponentsData')->find($this->deleteId);
-    
+
             if ($invitation) {
                 // Eliminar los registros relacionados en InvitationsComponents
                 $invitation->InvitationsComponents()->delete();
-    
+
                 // Eliminar los registros relacionados en ComponentsData
                 $invitation->ComponentsData()->delete();
-    
+
                 // Eliminar la invitación principal
                 $invitation->delete();
-    
+
                 // Limpiar el ID de eliminación después de la eliminación exitosa
                 $this->deleteId = null;
-    
+
                 // Emitir evento o mensaje de éxito
                 // $this->emit('invitationsDeleted');
             }
         }
     }
-    
+
 }

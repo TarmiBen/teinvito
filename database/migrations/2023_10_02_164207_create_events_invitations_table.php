@@ -16,11 +16,11 @@ return new class extends Migration
             $table->biginteger('event_id')->unsigned();
             $table->biginteger('invitation_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes()->nullable(); 
+            $table->softDeletes()->nullable();
         });
 
         Schema::table('events_invitations', function (Blueprint $table) {
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('event_id')->references('id')->on('event');
         });
 
         Schema::table('events_invitations', function (Blueprint $table) {
