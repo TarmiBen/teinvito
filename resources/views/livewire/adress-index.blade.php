@@ -2,7 +2,7 @@
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto">Lista de Direcciones</h3>
         <div class="col-auto">
-            <a href="{{ route('admin.addresses.create') }}" class="btn btn-primary">
+            <a href="{{ route('addresses.create') }}" class="btn btn-primary">
                 <i class="fa-regular fa-square-plus"></i>
                 Nueva Dirección
             </a>
@@ -48,13 +48,13 @@
                                     <td>{{ $address->street }}, {{ $address->int }}, {{ $address->ext }}, {{ $address->cp }}, {{ $address->colony }}, {{ $address->city }}, {{ $address->state }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a href="{{ route('admin.addresses.show', $address) }}" class="btn btn-icon btn-primary">
+                                            <a href="{{ route('addresses.show', $address) }}" class="btn btn-icon btn-primary">
                                                 <i data-feather="eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.addresses.edit', $address) }}" class="btn btn-icon btn-info">
+                                            <a href="{{ route('addresses.edit', $address) }}" class="btn btn-icon btn-info">
                                                 <i data-feather="edit"></i>
                                             </a>
-                                            <form action="{{ route('admin.addresses.destroy', $address) }}" method="POST">
+                                            <form action="{{ route('addresses.destroy', $address) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-icon btn-danger">

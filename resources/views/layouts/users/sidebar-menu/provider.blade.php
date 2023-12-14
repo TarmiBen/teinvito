@@ -34,8 +34,8 @@
 		Invitaciones
 	</a>
 	<nav class="nav">
-		<a href="{{route('admin.invitations.index')}}">Ver invitaciones</a>
-		<a href="{{route('admin.invitations.create')}}">Nueva invitación</a>
+		<a href="{{route('invitations.index')}}">Ver invitaciones</a>
+		<a href="{{route('invitations.create')}}">Nueva invitación</a>
 	</nav>
 </li>
 
@@ -45,8 +45,8 @@
 		Compañias
 	</a>
 	<nav class="nav">
-		<a href="{{route('admin.companies.index')}}">Ver todas</a>
-		<a href="{{route('admin.companies.create')}}">Nueva compañia</a>
+		<a href="{{route('companies.index')}}">Ver todas</a>
+		<a href="{{route('companies.create')}}">Nueva compañia</a>
 	</nav>
 </li>
 
@@ -67,8 +67,8 @@
 		Contactos
 	</a>
 	<nav class="nav">
-		<a href="{{route('admin.contacts.index')}}">Ver contactos</a>
-		<a href="{{route('admin.contacts.create')}}">Nuevo contacto</a>
+		<a href="{{route('contacts.index')}}">Ver contactos</a>
+		<a href="{{route('contacts.create')}}">Nuevo contacto</a>
 	</nav>
 </li>
 
@@ -78,8 +78,8 @@
 		Ubicaciones
 	</a>
 	<nav class="nav">
-		<a href="{{route('admin.addresses.index')}}">Ver direcciones</a>
-		<a href="{{route('admin.addresses.create')}}">Nueva dirección</a>
+		<a href="{{route('addresses.index')}}">Ver direcciones</a>
+		<a href="{{route('addresses.create')}}">Nueva dirección</a>
 	</nav>
 </li>
 
