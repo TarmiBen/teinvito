@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\testController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 
 // Espacio de Pedro
 Route::get  ('/register',       [AdminAuthController::class, 'showRegisterForm'])->name('admin.register'); 
@@ -18,3 +20,7 @@ Route::get('/test',     [testController::class, 'test'])->middleware('adminlogin
 // Espacio del tonto de Paco
 
 // Espacio de Fer
+Route::get('/dashboard', [AdminController::class, 'index'])->middleware('adminlogin')->name('admin.dashboard');
+Route::get('/profile', [ProfileController::class, 'indexAdmin'])->middleware('adminlogin')->name('admin.profile.index');
+Route::get('/profile/{id}/edit/', [ProfileController::class, 'editAdmin'])->middleware('adminlogin')->name('admin.profile.edit');
+Route::put('/profile/update/{id}', [ProfileController::class, 'updateAdmin'])->middleware('adminlogin')->name('admin.profile.update');

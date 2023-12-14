@@ -35,23 +35,40 @@ class RecordVisit
         $visit = Visit::where('name', $uriToRecord)->first();
     
         if ($visit) {
-            $visit->increment('count');
+            $currentWeek = date('W');
+            $currentMonth = date('m');
+        
             if ($visit->date < $today) {
                 $visit->update(['daily_count' => 1, 'date' => $today]);
+        
+                if ($visit->week < $currentWeek) {
+                    $visit->update(['weekly_count' => 1, 'week' => $currentWeek]);
+                } else {
+                    $visit->increment('weekly_count');
+                }
+        
+                if ($visit->month < $currentMonth) {
+                    $visit->update(['monthly_count' => 1, 'month' => $currentMonth]);
+                } else {
+                    $visit->increment('monthly_count');
+                }
             } else {
                 $visit->increment('daily_count');
+                $visit->increment('weekly_count');
+                $visit->increment('monthly_count');
             }
-        } 
+        }
         
         $agent = new Agent();
-
         $deviceType = $agent->isDesktop() ? 'Desktop' : ($agent->isPhone() ? 'Phone' : 'Tablet');
         $platform = $agent->platform();
         $ip = $request->ip();
+        $browserOrBot = $agent->isRobot() ? $agent->robot() : $agent->browser();
 
         $device = Device::firstOrCreate([
             'name' => $deviceType,
             'platform' => $platform,
+            'browser' => $browserOrBot,
             'ip' => $ip,
         ]);
 

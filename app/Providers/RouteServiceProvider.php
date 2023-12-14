@@ -20,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/user/home';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -43,7 +43,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('user')
                 ->group(base_path('routes/user.php'));
 
-            Route::middleware('web', 'recordVisit')
+            Route::middleware('web')
                 ->prefix('admin')
                 ->group(base_path('routes/admin.php'));
 
@@ -65,7 +65,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         collect(Route::getRoutes())->each(function ($route) {
             $nombreRuta = $route->uri();
-            if ($nombreRuta && !str_contains($nombreRuta, '_ignition') && !str_contains($nombreRuta, 'livewire') && !str_contains($nombreRuta, 'user')) {
+            $excludedStrings = ['_ignition', 'livewire', 'user', 'admin', '{token}', 'sanctum', 'json', '{cp}', '{hash}', 'api'];
+            if ($nombreRuta && !collect($excludedStrings)->contains(function ($excludedString) use ($nombreRuta) {
+                return str_contains($nombreRuta, $excludedString);
+            })) {
                 event(new RouteVisited($nombreRuta));
             }
         });

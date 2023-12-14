@@ -36,4 +36,17 @@ class Category extends Model
     {
         return $this->hasOne(Service::class, 'category_id');
     }
+
+    public static function getCounts()
+    {
+        return [
+            'total' => self::count(),
+            'monthly' => self::whereMonth('created_at', '=', date('m'))
+                ->whereYear('created_at', '=', date('Y'))
+                ->count(),
+            'yearly' => self::whereYear('created_at', '=', date('Y'))
+                ->count(),
+            'deleted' => self::onlyTrashed()->count(),
+        ];
+    }
 }

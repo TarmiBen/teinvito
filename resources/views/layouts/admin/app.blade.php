@@ -31,10 +31,6 @@
 
 <body class="pos-relative" data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
 
-    @guest
-
-        @yield('content')
-    @else
         <header class="navbar navbar-header navbar-header-fixed">
             <a href="#" id="sidebarMenuOpen" class="burger-menu">
                 <i data-feather="arrow-left"></i>
@@ -55,7 +51,7 @@
                 </div><!-- navbar-menu-header -->
             </div><!-- navbar-menu-wrapper -->
             <div class="navbar-right">
-                @include('layouts.users.navbar-menu')
+                @include('layouts.admin.navbar-menu')
                 <!-- Avatar -->
                 <a class="avatar avatar-sm p-0 ms-5" href="#" id="profileDropdown" role="button"
                     data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,10 +70,10 @@
                             </div>
                             <div>
                                 <a class="h6 mt-2 mt-sm-0" href="#">
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::guard('adminlogin')->check() ? Auth::guard('adminlogin')->user()->name : Auth::user()->name }}
                                 </a>
                                 <p class="small m-0">
-                                    {{ Auth::user()->email }}
+                                    {{ Auth::guard('adminlogin')->check() ? Auth::guard('adminlogin')->user()->email : Auth::user()->email }}
                                 </p>
                             </div>
                         </div>
@@ -86,7 +82,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <!-- Links -->
-                    @include('layouts.users.profile-options')
+                    @include('layouts.admin.profile-options')
                 </ul>
             </div>
             <!-- navbar-right -->
@@ -103,7 +99,7 @@
                 </a>
             </div><!-- sidebar-header -->
             <div class="sidebar-body">
-                @include('layouts.users.sidebar-left')
+                @include('layouts.admin.sidebar-left')
             </div><!-- sidebar-body -->
         </div><!-- sidebar -->
 
@@ -120,7 +116,6 @@
             </div><!-- container -->
         </div><!-- content -->
 
-    @endguest
 
     <script src="/assets/lib/jquery/jquery.min.js"></script>
     <script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>

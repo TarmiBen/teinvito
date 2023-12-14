@@ -36,8 +36,6 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
-
 //query section
 Route::get('/autoCompleteUser/json', [UserProviderController::class, 'autoCompleteUser'])->name('admin.userProviders.autoCompleteUser');
 Route::get('/autoCompleteCompany/json', [UserProviderController::class, 'autoCompleteCompany'])->name('admin.userProviders.autoCompleteCompany');

@@ -48,7 +48,7 @@ class AdminAuthController extends Controller
         $credentials = $request->only('email', 'password');
     
         if (auth()->guard('adminlogin')->attempt($credentials)) {
-            return redirect()->route('test')->with('success', '¡Bienvenido!');
+            return redirect()->route('admin.dashboard')->with('success', '¡Bienvenido!');
         }
     
         return redirect()->back()->with('error', 'Error en las credenciales. Por favor, inténtalo de nuevo.');

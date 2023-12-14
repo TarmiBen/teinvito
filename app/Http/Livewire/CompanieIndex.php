@@ -36,7 +36,7 @@ class CompanieIndex extends Component
                 ->orWhere('rfc', 'LIKE', '%' . $this->search . '%');
         })->orderBy($this->orderBy, $this->order)
             ->paginate($this->paginate);
-
+            
             if ($companys->isEmpty()) {
                 if ($this->search != '') {
                     Log::channel('livewire')->error('El usuario con id:' . User::find(auth()->user()->id)->id . ' buscó la compañia con nombre:' . $this->search . ' y no se encontró');

@@ -11,8 +11,9 @@ class Visit extends Model
 
     protected $fillable = [
         'name',
-        'count',
         'daily_count',
+        'weekly_count',
+        'monthly_count',
         'date',
     ];
 }

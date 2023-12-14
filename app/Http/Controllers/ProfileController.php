@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
@@ -47,5 +48,43 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->route('profile.index')->with('success', 'Perfil actualizado con éxito');
+    }
+
+    public function indexAdmin()
+    {
+        return view('admin.profile.index');
+    }
+
+    public function editAdmin($id)
+    {
+        return view('admin.profile.edit');
+    }
+
+    public function updateAdmin(Request $request, $id)
+    {
+        $admin = Admin::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+        if ($validator->fails()) {
+            Log::channel('controller')->info('El usuario con id:' . auth()->guard('adminlogin')->user()->id . ' intentó actualizar su perfil pero fallo en el dato: ' . $validator->errors()->first());
+    
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+
+        if ($request->password) {
+            $admin->password = bcrypt($request->password);
+        }
+
+        $admin->save();
+
+        return redirect()->route('admin.profile.index')->with('success', 'Perfil actualizado con éxito');
     }
 }

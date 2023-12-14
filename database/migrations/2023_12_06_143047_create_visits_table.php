@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('count')->default(0);
             $table->unsignedInteger('daily_count')->default(0);
+            $table->unsignedInteger('weekly_count')->default(0);
+            $table->unsignedInteger('monthly_count')->default(0);
             $table->date('date')->nullable();
             $table->timestamps();
             $table->softDeletes();
