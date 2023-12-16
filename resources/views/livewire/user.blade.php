@@ -30,10 +30,10 @@
                         <thead>
                         <tr>
                             <th data-priority="id">Id</th>
-                            <th data-priority="user_id">Creador</th>
-                            <th data-priority="user_invited_id">Usuario Invitado</th>
-                            <th data-priority="tittle">Nombre del Evento</th>
-                            <th data-priority="type">Tipo de Evento</th>
+                            <th data-priority="user_id">Nombre</th>
+                            <th data-priority="user_invited_id">Apellido</th>
+                            <th data-priority="tittle">Telefono</th>
+                            <th data-priority="type">Email</th>
                             <th data-priority="actions">Acciones</th>
                         </tr>
                         </thead>

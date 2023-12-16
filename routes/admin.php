@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Http\Controllers\CategoryAdmController;
+use App\Http\Controllers\InvitationAdmController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\testController;
@@ -24,6 +26,8 @@ use App\Http\Controllers\UserController;
 
 Route::resource('event', EventLwController::class)->names('admin.event');
 Route::resource('user', UserController::class)->names('admin.user');
+Route::resource('inv', InvitationAdmController::class)->names('admin.inv');
+Route::resource('category', CategoryAdmController::class)->names('admin.category');
 
 // Espacio de Fer
 

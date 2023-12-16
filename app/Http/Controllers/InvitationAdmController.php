@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use App\Models\guests;
 use App\Models\Invitation;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class InvitationAdmController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.user.index');
+        $invitations = Invitation::all();
+        return view('admin.invitation.index', compact('invitations'));
     }
 
     /**
@@ -37,19 +36,14 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($id)
     {
+        $user = User::find($id);
         $invitations = Invitation::where('user_id', $user->id)->get();
-        $events = Event::where('users_id', $user->id)->get();
-        if ($invitations->isNotEmpty()) {
-            $firstInvitationId = $invitations->first()->id;
-            $guests = guests::where('invitation_id', $firstInvitationId)->get();
-        } else {
-            $guests = collect();
-        }
 
 
-        return view('admin.user.show', compact('user', 'events', 'invitations', 'guests'));
+
+        return view('admin.invitation.show', compact( 'invitations'));
     }
 
     /**

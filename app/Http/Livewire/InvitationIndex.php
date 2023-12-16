@@ -33,7 +33,7 @@ class InvitationIndex extends Component
         })->where(function ($query) {
             $query->where('id', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('package_id', 'LIKE', '%' . $this->search . '%')
-                ->orWhereHas('UserLw', function ($query) {
+                ->orWhereHas('User', function ($query) {
                     $query->where('name', 'LIKE', '%' . $this->search . '%')
                     ->orWhere('email', 'LIKE', '%' . $this->search . '%');
                 });

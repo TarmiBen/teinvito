@@ -1,9 +1,8 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Eventos')
+@section('title', 'Categorias')
 @section('content')
 
-
-    <livewire:user-lw />
+    <livewire:category-adm />
 
 @endsection
