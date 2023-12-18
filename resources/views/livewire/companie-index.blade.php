@@ -2,7 +2,7 @@
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto m-0">Lista de Compañias</h3>
         <div class="col-auto">
-            <a href="{{ route('admin.companies.create') }}" class="btn btn-primary">
+            <a href="{{ route('companies.create') }}" class="btn btn-primary">
                 <i class="fa-regular fa-square-plus"></i>
                 Nueva Compañia
             </a>
@@ -57,13 +57,13 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('admin.companies.destroy', $company) }}" method="POST">
+                                        <form action="{{ route('companies.destroy', $company) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{ route('admin.companies.show', $company) }}" class="btn btn-icon btn-warning">
+                                            <a href="{{ route('companies.show', $company) }}" class="btn btn-icon btn-warning">
                                                 <i class="fa-regular fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-icon btn-info">
+                                            <a href="{{ route('companies.edit', $company) }}" class="btn btn-icon btn-info">
                                                 <i class="fa-regular fa-edit"></i>
                                             </a>
                                             <button type="submit" class="btn btn-icon btn-danger">

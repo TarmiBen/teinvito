@@ -4,7 +4,7 @@
 
 @section('content')
     <div>
-        <form action="{{ route('admin.contacts.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('contacts.store') }}" method="POST" enctype="multipart/form-data">
             <div class="row justify-content-between align-items-center mb-3">
                 <h3 class="col-auto m-0">Datos de contacto</h3>
             </div>
@@ -25,10 +25,10 @@
                                     <label for="company_id"><span class="text-danger">*</span>Compañia:</label>
                                     <select name="company_id" id="company_id" class="form-select">
                                         <option value="">Selecciona una opción</option>
-                                        @foreach ($companies as $company)
-                                            <option value="{{ $company->id }}"
-                                                {{ $selectedCompany && $selectedCompany->id == $company->id ? 'selected' : '' }}>
-                                                {{ $company->name }}</option>
+                                        @foreach ($UserProviders as $UserProvider)
+                                            <option value="{{ $UserProvider->company_id }}" @if (old('company_id') == $UserProvider->company_id) selected @endif
+                                                @if ($selectedCompany && $selectedCompany->id == $UserProvider->company_id) selected @endif>
+                                                {{ $UserProvider->company->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -1,10 +1,10 @@
 <div>
     <div class="row justify-content-between align-items-center">
-        <h3 class="col-auto">Lista de Contactos</h3>
+        <h3 class="col-auto m-0">Lista de Compañias</h3>
         <div class="col-auto">
-            <a href="{{ route('contacts.create') }}" class="btn btn-primary">
+            <a href="{{ route('admin.companies.create') }} " class="btn btn-primary">
                 <i class="fa-regular fa-square-plus"></i>
-                Nuevo Contacto
+                Nueva Compañia
             </a>
         </div>
     </div>
@@ -34,30 +34,36 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Apellido</th>
                                 <th>Correo</th>
-                                <th>Celular</th>
                                 <th>Teléfono</th>
+                                <th>RFC</th>
+                                <th>Imagen/archivo</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($contacts as $contact)
+                            @foreach ($companys as $company)
                                 <tr>
-                                    <td>{{ $contact->id }}</td>
-                                    <td>{{ $contact->name }}</td>
-                                    <td>{{ $contact->lastname }}</td>
-                                    <td>{{ $contact->email }}</td>
-                                    <td>{{ $contact->phone }}</td>
-                                    <td>{{ $contact->telephone }}</td>
+                                    <td>{{ $company->id }}</td>
+                                    <td>{{ $company->name }}</td>
+                                    <td>{{ $company->email }}</td>
+                                    <td>{{ $company->phone }}</td>
+                                    <td>{{ $company->rfc }}</td>
                                     <td>
-                                        <form action="{{ route('contacts.destroy', $contact) }}" method="POST">
+                                        @if ($company->logo)
+                                            <img src="{{ Storage::url("$company->logo") }}" alt="{{ $company->name }}" width="50px">
+                                        @else
+                                            Sin imagen
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('admin.companies.destroy', $company) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{ route('contacts.show', $contact) }}" class="btn btn-icon btn-warning">
+                                            <a href="{{ route('admin.companies.show', $company) }}" class="btn btn-icon btn-warning">
                                                 <i class="fa-regular fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-icon btn-info">
+                                            <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-icon btn-info">
                                                 <i class="fa-regular fa-edit"></i>
                                             </a>
                                             <button type="submit" class="btn btn-icon btn-danger">
@@ -69,7 +75,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $contacts->links() !!}
+                    
                 </div>
             </div>
         </div>

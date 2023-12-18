@@ -1,11 +1,11 @@
 @extends('layouts.users.app')
 
-@section('title', 'Compañias')
+@section('title', 'Direcciones')
 
 @section('content')
 
     @include('layouts.users.alert')
-
-    @livewire('admin-companies')
+    
+    @livewire('adress-index')
 
 @endsection

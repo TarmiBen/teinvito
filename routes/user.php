@@ -52,13 +52,13 @@ Route::get('/invitations/show/{invitationId}', [InvitationController::class, 'sh
 Route::get('/invitations/delete/{deleteId}', [InvitationController::class, 'deleteConfirm'])->middleware('verified')->name('admin.invitations.deleteConfirm');
 Route::delete('/invitations/{invitation}', [InvitationController::class, 'destroy'])->middleware('verified')->name('admin.invitations.destroy');
 
-Route::resource('/companies', CompanieController::class)->middleware('verified')->names('admin.companies');
+Route::resource('/companies', CompanieController::class)->middleware('verified')->names('companies');
 Route::middleware(['auth', 'password.confirm'])->group(function () {
     Route::get('logs', [LogController::class, 'index'])->middleware('verified')->name('logs.index');
     Route::resource('/userProviders', UserProviderController::class)->middleware('verified')->names('admin.userProviders');
 });
-Route::resource('/contacts', ContactController::class)->middleware('verified')->names('admin.contacts');
-Route::resource('/addresses', AdressController::class)->middleware('verified')->names('admin.addresses');
+Route::resource('/contacts', ContactController::class)->middleware('verified')->names('contacts');
+Route::resource('/addresses', AdressController::class)->middleware('verified')->names('addresses');
 Route::resource('/services', ServiceController::class)->middleware('verified')->names('admin.services');
 
 //servicePackage section
@@ -69,10 +69,10 @@ Route::get('/servicePackage/delete/{deleteId}', [ServicePackageController::class
 Route::delete('/servicePackage/{servicePackage}', [ServicePackageController::class, 'destroy'])->middleware('verified')->name('admin.servicePackages.destroy');
 
 //restored section
-Route::get('/companies/{id}/restore', [CompanieController::class, 'restore'])->name('admin.companies.restore');
+Route::get('/companies/{id}/restore', [CompanieController::class, 'restore'])->name('companies.restore');
 Route::get('/userProviders/{id}/restore', [UserProviderController::class, 'restore'])->name('admin.userProviders.restore');
-Route::get('/contacts/{id}/restore', [ContactController::class, 'restore'])->name('admin.contacts.restore');
-Route::get('/addresses/{id}/restore', [AdressController::class, 'restore'])->name('admin.addresses.restore');
+Route::get('/contacts/{id}/restore', [ContactController::class, 'restore'])->name('contacts.restore');
+Route::get('/addresses/{id}/restore', [AdressController::class, 'restore'])->name('addresses.restore');
 
 //category
 Route::get('/category', [CategoryController::class, 'index'])->middleware('verified')->name('category');

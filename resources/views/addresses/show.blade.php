@@ -6,14 +6,14 @@
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto">Detalle de la Dirección</h3>
         <div class="col-auto d-flex">
-            <form action="{{ route('admin.addresses.destroy', $address) }}" method="POST">
+            <form action="{{ route('addresses.destroy', $address) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <a href="{{ route('admin.addresses.create') }}" class="btn btn-outline-primary">
+                <a href="{{ route('addresses.create') }}" class="btn btn-outline-primary">
                     <i data-feather="plus-square"></i>
                     Nueva Dirección
                 </a>
-                <a href="{{ route('admin.addresses.edit', $address) }}" class="btn btn-warning">
+                <a href="{{ route('addresses.edit', $address) }}" class="btn btn-warning">
                     <i data-feather="edit"></i>
                     Editar
                 </a>

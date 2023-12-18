@@ -4,7 +4,7 @@
 
 @section('content')
     <div>
-        <form action="{{ route('admin.addresses.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('addresses.store') }}" method="POST" enctype="multipart/form-data">
             <div class="row justify-content-between align-items-center mb-3">
                 <h3 class="col-auto m-0">Datos de la dirección</h3>
             </div>
@@ -23,10 +23,12 @@
                             <div class="row">
                                 <div class="col-12 col-sm-6  mt-3">
                                     <label for="company_id"><span class="text-danger">*</span>Compañia:</label>
-                                    <select class="form-select" name="company_id">
-                                        <option value="{{ old('company_id') }}">Selecciona una opción</option>
-                                        @foreach ($companies as $company)
-                                            <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                    <select name="company_id" id="company_id" class="form-select">
+                                        <option value="">Selecciona una opción</option>
+                                        @foreach ($UserProviders as $UserProvider)
+                                            <option value="{{ $UserProvider->company_id }}"
+                                                @if ($selectedAddress && $selectedAddress->id == $UserProvider->company_id) selected @endif>
+                                                {{ $UserProvider->company->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -121,7 +121,7 @@ class GuestsController extends Controller
     {
         $guests->delete();
         return redirect()->route('guests.index')
-        ->with('message', 'Contact deleted successfully. <a href="' . route('admin.contacts.restore', $guests->id) . '">Restore</a>');
+        ->with('message', 'Contact deleted successfully. <a href="' . route('.restore', $guests->id) . '">Restore</a>');
     }
 
     /**

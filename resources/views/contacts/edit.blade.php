@@ -3,7 +3,7 @@
 @section('title', 'Editar Contacto')
 
 @section('content')
-    <form action="{{ route('admin.contacts.update', $contact) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('contacts.update', $contact) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row justify-content-between align-items-center mb-3">
@@ -22,12 +22,9 @@
                             @include('layouts.users.alert')
                             <div class="col-12 col-sm-6 mt-3">
                                 <label for="company_id"><span class="text-danger">*</span>Compañia:</label>
-                                <select name="company_id" id="company_id" class="form-control">
-                                    <option value="">Selecciona una compañia</option>
-                                    @foreach ($companies as $company)
-                                        <option value="{{ $company->id }}"
-                                            {{ $company->id == $contact->company_id ? 'selected' : '' }}>
-                                            {{ $company->name }}
+                                <select name="company_id" id="company_id" class="form-select">
+                                    @foreach ($UserProviders as $UserProvider)
+                                        <option value="{{ $UserProvider->company_id }}">{{ $UserProvider->company->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -63,6 +60,14 @@
                             <div class="col-12 mt-3">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
+
+                            <div class="col-12 d-flex justify-content-end mt-3">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa-regular fa-square-plus"></i>
+                                    Guardar
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
