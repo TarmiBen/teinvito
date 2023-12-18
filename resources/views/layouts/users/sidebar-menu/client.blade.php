@@ -24,8 +24,8 @@
 		Invitaciones
 	</a>
 	<nav class="nav">
-		<a href="{{route('admin.invitations.index')}}">Ver invitaciones</a>
-		<a href="{{route('admin.invitations.create')}}">Nueva invitación</a>
+		<a href="{{route('invitations.index')}}">Ver invitaciones</a>
+		<a href="{{route('invitations.create')}}">Nueva invitación</a>
 	</nav>
 </li>
 
@@ -35,7 +35,7 @@
 		Compañias
 	</a>
 	<nav class="nav">
-		<a href="{{route('admin.companies.create')}}">Nueva compañia</a>
+		<a href="{{route('companies.create')}}">Nueva compañia</a>
 	</nav>
 </li>
 

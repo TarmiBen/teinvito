@@ -6,10 +6,10 @@
 <div class="row justify-content-between align-items-center">
     <h3 class="col-auto">Detalle de la Compañia</h3>
     <div class="col-auto d-flex">
-        <form action="{{ route('admin.companies.destroy', $company) }}" method="POST">
+        <form action="{{ route('companies.destroy', $company) }}" method="POST">
             @csrf
             @method('DELETE')
-            <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-info">
+            <a href="{{ route('companies.edit', $company) }}" class="btn btn-info">
                 <i class="fa-regular fa-edit"></i>
                 Editar
             </a>
@@ -101,7 +101,7 @@
                         Contactos
                     </div>
                     <div class="col-auto d-flex">
-                        <a href="{{ route('admin.contacts.create', ['company_id' => $company->id]) }}" class="btn btn-outline-primary">
+                        <a href="{{ route('contacts.create', ['company_id' => $company->id]) }}" class="btn btn-outline-primary">
                             <i class="fa-regular fa-square-plus"></i>
                             Nuevo Contacto
                         </a>
@@ -128,13 +128,13 @@
                                         <td>{{ isset($contact->name) ? $contact->name : 'N/A' }}</td>
                                         <td>{{ isset($contact->email) ? $contact->email : 'N/A' }}</td>
                                         <td>
-                                            <form action="{{ route('admin.contacts.destroy', $contact) }}" method="POST">
+                                            <form action="{{ route('contacts.destroy', $contact) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('admin.contacts.show', $contact) }}" class="btn btn-icon btn-warning">
+                                                <a href="{{ route('contacts.show', $contact) }}" class="btn btn-icon btn-warning">
                                                     <i class="fa-regular fa-eye"></i>
                                                 </a>
-                                                <a href="{{ route('admin.contacts.edit', $contact) }}" class="btn btn-icon btn-info">
+                                                <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-icon btn-info">
                                                     <i class="fa-regular fa-edit"></i>
                                                 </a>
                                                 <button type="submit" class="btn btn-icon btn-danger">
@@ -159,7 +159,7 @@
                                     Direcciones
                                 </div>
                                 <div class="col-auto d-flex">
-                                    <a href="{{ route('admin.addresses.create', ['company_id' => $company->id]) }}" class="btn btn-outline-primary">
+                                    <a href="{{ route('addresses.create', ['company_id' => $company->id]) }}" class="btn btn-outline-primary">
                                         <i class="fa-regular fa-square-plus"></i>
                                         Nueva Dirección
                                     </a>
@@ -169,7 +169,7 @@
                                 <table id="accounts" class="w-100 table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>IDs</th>
+                                            <th>ID</th>
                                             <th>Compañia</th>
                                             <th>Nombre de la Sucursal u Oficina</th>
                                             <th>Dirreción</th>
@@ -187,9 +187,9 @@
                                                         {{ isset($addresse->int) ? $addresse->int : '' }}, {{ isset($addresse->colony) ? $addresse->colony : '' }}, 
                                                         {{ isset($addresse->cp) ? $addresse->cp : '' }}, {{ isset($addresse->state) ? $addresse->state : '' }}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-sm btn-success">Ver</a>
-                                                        <a href="" class="btn btn-sm btn-primary">Editar</a>
-                                                        <form action="" method="POST">
+                                                        <a href="{{ route('admin.contacts.show', $addresse) }}" class="btn btn-sm btn-success">Ver</a>
+                                                        <a href="{{ route('admin.contacts.edit', $addresse) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                        <form action="{{ route('admin.contacts.destroy', $addresse) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
@@ -203,13 +203,13 @@
                                                         {{ isset($addresse->int) ? $addresse->int : '' }}, {{ isset($addresse->colony) ? $addresse->colony : '' }}, 
                                                         {{ isset($addresse->cp) ? $addresse->cp : '' }}, {{ isset($addresse->state) ? $addresse->state : '' }}</td>
                                                     <td>
-                                                        <form action=" {{ route('admin.addresses.destroy', $addresse) }}" method="POST">
+                                                        <form action="{{ route('admin.contacts.destroy', $addresse) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <a href="{{ route('admin.addresses.show', $addresse) }}" class="btn btn-icon btn-warning">
+                                                            <a href="{{ route('admin.contacts.show', $addresse) }}" class="btn btn-icon btn-warning">
                                                                 <i class="fa-regular fa-eye"></i>
                                                             </a>
-                                                            <a href="{{ route('admin.addresses.edit', $addresse) }}" class="btn btn-icon btn-info">
+                                                            <a href="{{ route('admin.contacts.edit', $addresse) }}" class="btn btn-icon btn-primary">
                                                                 <i class="fa-regular fa-edit"></i>
                                                             </a>
                                                             <button type="submit" class="btn btn-icon btn-danger">

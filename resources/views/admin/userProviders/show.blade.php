@@ -4,14 +4,14 @@
 <div class="row justify-content-between align-items-center">
     <h3 class="col-auto">Detalle del Proveedor</h3>
     <div class="col-auto d-flex">
-        <form action="{{ route('admin.companies.destroy', $contact) }}" method="POST">
+        <form action="{{ route('companies.destroy', $contact) }}" method="POST">
             @csrf
             @method('DELETE')
-            <a href="{{route('admin.companies.create')}}" class="btn btn-outline-success">
+            <a href="{{route('companies.create')}}" class="btn btn-outline-success">
                 <i data-feather="plus-square"></i>
                 Nuevo Contacto
             </a>
-            <a href="{{ route('admin.companies.edit', $contact) }}" class="btn btn-warning">
+            <a href="{{ route('companies.edit', $contact) }}" class="btn btn-warning">
                 <i data-feather="edit"></i>
                 Editar
             </a>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-sm-auto card-subtitle mb-3 text-muted fw-bold">
-                            En la compañia: <a href="{{ route('admin.companies.show', $contact->company) }}">{{ $contact->company->name }}</a>
+                            En la compañia: <a href="{{ route('companies.show', $contact->company) }}">{{ $contact->company->name }}</a>
                         </div>
                     </div>
                     <div class="mt-4">

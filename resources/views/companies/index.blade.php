@@ -6,6 +6,6 @@
 
     @include('layouts.users.alert')
 
-    @livewire('admin-companies')
+    @livewire('companie-index')
 
 @endsection

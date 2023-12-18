@@ -21,7 +21,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('admin.contacts.index');
+        return view('contacts.index');
     }
 
     /**
@@ -38,7 +38,7 @@ class ContactController extends Controller
         if ($company_id ) {
             $selectedCompany = Company::find($company_id );
         }
-        return view('admin.contacts.create', compact('UserProviders', 'selectedCompany'));
+        return view('contacts.create', compact('UserProviders', 'selectedCompany'));
     }
 
     /**
@@ -69,7 +69,7 @@ class ContactController extends Controller
         $contact->phone = $request->phone;
         $contact->telephone = $request->telephone;
         $contact->save();
-        return redirect()->route('admin.companies.index')
+        return redirect()->route('companies.index')
         ->with('message','El contacto se ha agregado correctamente a la empresa.');
     }
 
@@ -78,7 +78,7 @@ class ContactController extends Controller
      */
     public function show(contact $contact)
     {
-        return view('admin.contacts.show',compact('contact'));
+        return view('contacts.show',compact('contact'));
     }
 
     /**
@@ -90,7 +90,7 @@ class ContactController extends Controller
         if ($UserProviders->isEmpty()) {
             Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' entró a la vista de actualizar contacto y no tiene ninguna compañia asociada');
         }
-        return view('admin.contacts.edit',compact('contact', 'UserProviders'));
+        return view('contacts.edit',compact('contact', 'UserProviders'));
     }
 
     /**
@@ -120,7 +120,7 @@ class ContactController extends Controller
         $contact->phone = $request->phone;
         $contact->telephone = $request->telephone;
         $contact->save();
-        return redirect()->route('admin.companies.index')
+        return redirect()->route('companies.index')
             ->with('message','El contacto se ha actualizado correctamente.');
     }
 
@@ -130,8 +130,8 @@ class ContactController extends Controller
     public function destroy(contact $contact)
     {
         $contact->delete();
-        return redirect()->route('admin.contacts.index')
-            ->with('message', 'El contacto fue elimando correctamente. <a href="' . route('admin.contacts.restore', $contact->id) . '">Restore</a>');
+        return redirect()->route('contacts.index')
+            ->with('message', 'El contacto fue elimando correctamente. <a href="' . route('contacts.restore', $contact->id) . '">Restore</a>');
     
     }
 
@@ -141,7 +141,7 @@ class ContactController extends Controller
     public function restore($id)
     {
         $contact = Contact::onlyTrashed()->find($id)->restore();
-        return redirect()->route('admin.contacts.index')
+        return redirect()->route('contacts.index')
             ->with('message','El contacto fue restaurado correctamente');
     }
 }

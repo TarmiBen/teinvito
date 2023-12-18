@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/cropper.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/cropperImage.css">
 <div>
-    <form action="{{ route('admin.companies.edit', $company) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('companies.update', $company) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row justify-content-between align-items-center mb-3">

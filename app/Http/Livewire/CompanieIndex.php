@@ -68,4 +68,5 @@ class CompanieIndex extends Component
             }
         }
     }
+
 }

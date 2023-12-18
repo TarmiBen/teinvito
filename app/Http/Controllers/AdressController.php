@@ -20,7 +20,7 @@ class AdressController extends Controller
      */
     public function index()
     {
-        return view('admin.addresses.index');
+        return view('addresses.index');
     }
 
     /**
@@ -37,7 +37,7 @@ class AdressController extends Controller
         if ($company_id ) {
             $selectedAddress = Company::find($company_id );
         }
-        return view('admin.addresses.create', compact('UserProviders', 'selectedAddress'));
+        return view('addresses.create', compact('UserProviders', 'selectedAddress'));
     }
 
     /**
@@ -78,7 +78,7 @@ class AdressController extends Controller
         $adress->state = $request->state;
         $adress->save();
 
-        return redirect()->route('admin.addresses.index')->with('message','La dirección se ha agregado correctamente a la empresa.');
+        return redirect()->route('addresses.index')->with('message','La dirección se ha agregado correctamente a la empresa.');
 
     }
 
@@ -87,7 +87,7 @@ class AdressController extends Controller
      */
     public function show(Address $address)
     {
-        return view('admin.addresses.show',compact('address'));
+        return view('addresses.show',compact('address'));
     }
 
     /**
@@ -99,7 +99,7 @@ class AdressController extends Controller
         if ($UserProviders->isEmpty()) {
             Log::channel('controller')->info('El usuario con id:' . auth()->user()->id . ' entró a la vista de actualizar direcciones y no tiene ningún proveedor asociado');
         }
-        return view('admin.addresses.edit',compact('address', 'UserProviders'));
+        return view('addresses.edit',compact('address', 'UserProviders'));
     }
 
     /**
@@ -137,7 +137,7 @@ class AdressController extends Controller
         $address->state = $request->state;
         $address->save();
 
-        return redirect()->route('admin.addresses.index')->with('message','La dirección se ha actualizado correctamente a la empresa.');
+        return redirect()->route('addresses.index')->with('message','La dirección se ha actualizado correctamente a la empresa.');
     }
 
     /**
@@ -146,7 +146,7 @@ class AdressController extends Controller
     public function destroy(Address $address)
     {
         $address->delete();
-        return redirect()->route('admin.addresses.index')->with('message','La direccion fue eliminada correctamente. <a href="'.route('admin.addresses.restore', $address->id).'">Restore</a>');
+        return redirect()->route('addresses.index')->with('message','La direccion fue eliminada correctamente. <a href="'.route('addresses.restore', $address->id).'">Restore</a>');
     }
 
     /**
@@ -156,6 +156,6 @@ class AdressController extends Controller
     {
         $address = Address::onlyTrashed()->where('id', $id)->firstOrFail();
         $address->restore();
-        return redirect()->route('admin.addresses.index')->with('message','La direccion fue restaurada correctamente');
+        return redirect()->route('addresses.index')->with('message','La direccion fue restaurada correctamente');
     }
 }

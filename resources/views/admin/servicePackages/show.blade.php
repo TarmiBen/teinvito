@@ -35,7 +35,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-sm-auto card-subtitle mb-3 text-muted fw-bold">
-                            de la compañia: <a href="{{ route('admin.companies.show', $servicePackage->service->Company) }}">{{ $servicePackage->service->Company->name }}</a>
+                            de la compañia: <a href="{{ route('companies.show', $servicePackage->service->Company) }}">{{ $servicePackage->service->Company->name }}</a>
                         </div>
                     </div>
                     <div class="mt-4">

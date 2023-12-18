@@ -22,7 +22,7 @@
                 <div>
                     <strong>¡No has creado ninguna invitación!</strong> Crea una invitación para poder ver el dashboard.
                 </div>
-                <a href="{{ route('admin.invitations.create') }}" class="btn btn-quaternary-ti">
+                <a href="{{ route('invitations.create') }}" class="btn btn-quaternary-ti">
                     Crear invitación
                 </a>
             </div>

@@ -26,8 +26,7 @@ class CompanieController extends Controller
         // if (Storage::disk('public')->exists('companies/logos/test.webp')) {
         //     echo 'existe';
         // }
-
-        return view('admin.companies.index');
+        return view('companies.index');
     }
 
 
@@ -36,7 +35,7 @@ class CompanieController extends Controller
      */
     public function create()
     {
-        return view('admin.companies.create');
+        return view('companies.create');
     }
 
     /**
@@ -110,7 +109,7 @@ class CompanieController extends Controller
         $userProvider->company_id = $company->id;
         $userProvider->save();
         if ($request->address_name == null) {
-            return redirect()->route('admin.companies.index')
+            return redirect()->route('companies.index')
             ->with('message','Company created successfully.');
         }else{
             $address = new Address();
@@ -126,7 +125,7 @@ class CompanieController extends Controller
             $address->cp = $request->cp;
             $address->save();
         }
-        return redirect()->route('admin.companies.index')
+        return redirect()->route('companies.index')
             ->with('message','Compañia creada exitosamente.');
     }
     /**
@@ -138,7 +137,7 @@ class CompanieController extends Controller
         $contacts = Contact::where('company_id', $company->id)->get();
         $addresses = Address::where('company_id', $company->id)->get();
 
-        return view('admin.companies.show',compact('company', 'contacts', 'addresses', 'principalAddress'));
+        return view('companies.show',compact('company', 'contacts', 'addresses', 'principalAddress'));
     }
 
     /**
@@ -146,7 +145,7 @@ class CompanieController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('admin.companies.edit',compact('company'));
+        return view('companies.edit',compact('company'));
     }
 
     /**
@@ -203,7 +202,7 @@ class CompanieController extends Controller
         // $company->cover = $imgNameCover;
         $company->rfc = $request->rfc;
         $company->save();
-        return redirect()->route('admin.companies.index')
+        return redirect()->route('companies.index')
             ->with('message','Compañia actualizada exitosamente.');
     }
 
@@ -213,8 +212,8 @@ class CompanieController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect()->route('admin.companies.index')
-            ->with('message','Compania eliminada exitosamente. <a href="'.route('admin.companies.restore',$company->id).'">Restore</a>');
+        return redirect()->route('companies.index')
+            ->with('message','Compania eliminada exitosamente. <a href="'.route('companies.restore',$company->id).'">Restore</a>');
     }
 
     /**
@@ -223,7 +222,8 @@ class CompanieController extends Controller
     public function restore($id)
     {
         $company = Company::onlyTrashed()->find($id)->restore();
-        return redirect()->route('admin.companies.index')
+        return redirect()->route('companies.index')
             ->with('message','Compañia restaurada exitosamente.');
     }
+
 }
